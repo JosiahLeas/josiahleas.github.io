@@ -15,11 +15,11 @@ body, html {
    if you *always* know that you have exactly 4 cells 
    aligned like this */
 .box:first-child {
- 
+  
 }
 .box:nth-child(2) {
-
+    
 }
 .box:nth-child(3) {
-    
+  
 }
