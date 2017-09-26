@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 <head> 
 <link href="tradingview.css" rel="stylesheet">
 <link rel="shortcut icon" type="image/png" href="favicon.png">
@@ -93,4 +94,130 @@ new TradingView.widget({
 <!-- TradingView Widget END -->
 </div>
 </body>
+=======
+  <head>
+    <link href="styles.css" rel="stylesheet">
+    <link href="tradingview.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <script src="https://use.fontawesome.com/a4e3744178.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      <div class="top-button-container">
+        <a class="button fullscreen"><i class="fa fa-expand" aria-hidden="true"></i></a>
+      </div>
+      <!-- TradingView Widget BEGIN -->
+      <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+      <script type="text/javascript">
+      new TradingView.widget({
+        "autosize": true,
+        "symbol": "COINBASE:BTCUSD",
+        "interval": "60",
+        "timezone": "America/Chicago",
+        "theme": "Dark",
+        "style": "1",
+        "locale": "en",
+        "toolbar_bg": "#f1f3f6",
+        "enable_publishing": false,
+        "hide_top_toolbar": false,
+        "hide_side_toolbar": false,
+        "allow_symbol_change": true,
+        "hideideas": true
+      });
+      </script>
+      <!-- TradingView Widget END -->
+    </div>
+    <div class="box">
+      <div class="top-button-container">
+        <a class="button fullscreen"><i class="fa fa-expand" aria-hidden="true"></i></a>
+      </div>
+      <!-- TradingView Widget BEGIN -->
+      <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+      <script type="text/javascript">
+      new TradingView.widget({
+        "autosize": true,
+        "symbol": "COINBASE:ETHUSD",
+        "interval": "60",
+        "timezone": "America/Chicago",
+        "theme": "Dark",
+        "style": "1",
+        "locale": "en",
+        "toolbar_bg": "#f1f3f6",
+        "enable_publishing": false,
+        "hide_top_toolbar": false,
+        "hide_side_toolbar": false,
+        "allow_symbol_change": true,
+        "hideideas": true
+      });
+      </script>
+      <!-- TradingView Widget END -->
+    </div>
+    <div class="box">
+      <div class="top-button-container">
+        <a class="button fullscreen"><i class="fa fa-expand" aria-hidden="true"></i></a>
+      </div>
+      <!-- TradingView Widget BEGIN -->
+      <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+      <script type="text/javascript">
+      new TradingView.widget({
+        "autosize": true,
+        "symbol": "COINBASE:LTCUSD",
+        "interval": "60",
+        "timezone": "America/Chicago",
+        "theme": "Dark",
+        "style": "1",
+        "locale": "en",
+        "toolbar_bg": "#f1f3f6",
+        "enable_publishing": false,
+        "hide_top_toolbar": false,
+        "hide_side_toolbar": false,
+        "allow_symbol_change": true,
+        "hideideas": true
+      });
+      </script>
+      <!-- TradingView Widget END -->
+    </div>
+    <div class="box">
+      <div class="top-button-container">
+        <a class="button fullscreen"><i class="fa fa-expand" aria-hidden="true"></i></a>
+      </div>
+      <!-- TradingView Widget BEGIN -->
+      <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+      <script type="text/javascript">
+      new TradingView.widget({
+        "autosize": true,
+        "symbol": "BITTREX:OMGUSDT",
+        "interval": "60",
+        "timezone": "America/Chicago",
+        "theme": "Dark",
+        "style": "1",
+        "locale": "en",
+        "toolbar_bg": "#f1f3f6",
+        "enable_publishing": false,
+        "hide_top_toolbar": false,
+        "hide_side_toolbar": false,
+        "allow_symbol_change": true,
+        "hideideas": true
+      });
+      </script>
+      <!-- TradingView Widget END -->
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $(".fullscreen").click(function () {
+        if (!$(this).hasClass("toggled")) {
+          $(".box").css({display: "none"});
+          $(this).parent().parent().css({display: "inline", width: "100%", height: "100%"})
+          $(this).addClass("toggled");
+        } else {
+          $(".box").css({display: "inline", width: "50%", height: "50%"})
+          $(this).removeClass("toggled");
+        }
+      })
+    });
+
+  </script>
+>>>>>>> origin/master
 </html>
