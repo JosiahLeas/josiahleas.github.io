@@ -1,0 +1,25 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.box {
+    box-sizing: border-box;
+    float: left;
+    width: 50%;
+    height: 50%;
+}
+
+/* This is one way of adding borders, 
+   if you *always* know that you have exactly 4 cells 
+   aligned like this */
+.box:first-child {
+ 
+}
+.box:nth-child(2) {
+
+}
+.box:nth-child(3) {
+    
+}
