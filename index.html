@@ -2,13 +2,13 @@
 <html>
 
 <head>
-  <link href="css/tradingview.css" rel="stylesheet">
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   <title>TradingView Charts</title>
 
+  <script src="js/index.js"></script>
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/tradingview.css" rel="stylesheet">
-  <link rel="icon" href="css/favicon.ico">
+
   <script src="https://use.fontawesome.com/a4e3744178.js"></script>
 </head>
 
@@ -16,9 +16,9 @@
   <div class="topnav" id="myTopnav">
     <div class="container">
       <div class="interior">
-        <a href="index.html">4x4</a>
-        <a href="Dark1x2.html">1x2</a>
+        <a id="table_toggle" onclick="change_table()" href="javascript:void(0);">1x2</a>
         <a class="btn" style="float: right;" href="#open-modal">Donate</a>
+        <a id="theme_toggle" style="float: left;" onclick="change_theme()" href="javascript:void(0);">Light</a>
       </div>
     </div>
     <div id="open-modal" class="modal-window">
@@ -37,12 +37,12 @@
 
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
   </div>
-  <div class="box">
+  <div class="box" id="b1">
     <div class="top-button-container">
       <a class="button fullscreen"><i class="fa fa-expand" aria-hidden="true"></i></a>
     </div>
     <!-- TradingView Widget BEGIN -->
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <!-- <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script> -->
     <script type="text/javascript">
       new TradingView.widget({
         "autosize": true,
@@ -62,12 +62,12 @@
     </script>
     <!-- TradingView Widget END -->
   </div>
-  <div class="box">
+  <div class="box" id="b2">
     <div class="top-button-container">
       <a class="button fullscreen"><i class="fa fa-expand" aria-hidden="true"></i></a>
     </div>
     <!-- TradingView Widget BEGIN -->
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <!-- <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script> -->
     <script type="text/javascript">
       new TradingView.widget({
         "autosize": true,
@@ -87,12 +87,12 @@
     </script>
     <!-- TradingView Widget END -->
   </div>
-  <div class="box">
+  <div class="box" id="b3">
     <div class="top-button-container">
       <a class="button fullscreen"><i class="fa fa-expand" aria-hidden="true"></i></a>
     </div>
     <!-- TradingView Widget BEGIN -->
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <!-- <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script> -->
     <script type="text/javascript">
       new TradingView.widget({
         "autosize": true,
@@ -112,12 +112,12 @@
     </script>
     <!-- TradingView Widget END -->
   </div>
-  <div class="box">
+  <div class="box" id="b4">
     <div class="top-button-container">
       <a class="button fullscreen"><i class="fa fa-expand" aria-hidden="true"></i></a>
     </div>
     <!-- TradingView Widget BEGIN -->
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <!-- <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script> -->
     <script type="text/javascript">
       new TradingView.widget({
         "autosize": true,
