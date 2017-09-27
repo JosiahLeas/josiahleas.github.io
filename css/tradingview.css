@@ -9,13 +9,13 @@
       box-sizing: border-box;
       float: left;
       width: 50%;
-      height: 50%;
+      height: calc(50% - 36px);
   }
   .box1 {
-      box-sizing: border-box;
+      /* box-sizing: border-box;
       float: left;
       width: 50%;
-      height: 100%;
+      height: calc(100% - 92px); */
   }
   body {margin:0;}
 
@@ -148,16 +148,20 @@
     color: #aaa;
   }
 
-/* This is one way of adding borders, 
-   if you *always* know that you have exactly 4 cells 
-   aligned like this */
-   .box:first-child {
-    
-  }
-  .box:nth-child(2) {
-      
-  }
-  .box:nth-child(3) {
-    
-  }
-  
+
+/* Javascript required IDs */
+#inner1 {
+  height: 100%;
+}
+
+#inner2 {
+  height: 100%;
+}
+
+#inner3 {
+  height: 100%;
+}
+
+#inner4 {
+  height: 100%;
+}
