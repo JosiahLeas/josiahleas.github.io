@@ -56,6 +56,17 @@ function lighten() {
         .style.color = "#333";
     document.getElementById("table_toggle")
         .style.background = "#eee";
+
+    /*
+    document.getElementById("inner1")
+        .innerHTML = "";
+    document.getElementById("inner2")
+        .innerHTML = "";
+    document.getElementById("inner3")
+        .innerHTML = "";
+    document.getElementById("inner4")
+        .innerHTML = ""; 
+    */
 }
 
 // Darken Theme Action
@@ -79,36 +90,77 @@ function darken() {
 // Change Table Dimensions Button and Action
 function change_table() {
     if (table === "true" || table === null) {
-        document.getElementById("b1")
-            .style.display = "none";
-        document.getElementById("b2")
-            .style.display = "none";
         document.getElementById("b3")
-            .style.height = "100%";
+            .style.visibility = "collapse";
         document.getElementById("b4")
-            .style.height = "100%";
+            .style.visibility = "collapse";
+        document.getElementById("b3")
+            .style.height = "0";
+        document.getElementById("b4")
+            .style.height = "0";
+        document.getElementById("b1")
+            .style.height = "calc(100% - 72px)";
+        document.getElementById("b2")
+            .style.height = "calc(100% - 72px)";
 
         table = "false";
     }
     else if (table === "false") {
+        document.getElementById("b3")
+            .style.visibility = "visible";
+        document.getElementById("b4")
+            .style.visibility = "visible";
+        document.getElementById("b3")
+            .style.height = "calc(50% - 36px)";
+        document.getElementById("b4")
+            .style.height = "calc(50% - 36px)";
         document.getElementById("b1")
-            .style.display = "flex";
+            .style.height = "calc(50% - 36px)";
         document.getElementById("b2")
-            .style.display = "flex";
+            .style.height = "calc(50% - 36px)";
 
         table = "true";
     }
     else {
-        document.getElementById("b1")
-            .style.display = "none";
-        document.getElementById("b2")
-            .style.display = "none";
         document.getElementById("b3")
-            .style.height = "100%";
+            .style.visibility = "collapse";
         document.getElementById("b4")
-            .style.height = "100%";
+            .style.visibility = "collapse";
+        document.getElementById("b3")
+            .style.height = "0";
+        document.getElementById("b4")
+            .style.height = "0";
+        document.getElementById("b1")
+            .style.height = "calc(100% - 72px)";
+        document.getElementById("b2")
+            .style.height = "calc(100% - 72px)";
 
         table = "false";
     }
 }
 
+// Reset Widgets for Color
+/*
+function reset_widget(n) {
+    document.getElementById("inner"+n)
+        .innerHTML = "";
+
+    switch (n) {
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            
+            break;
+    
+        default:
+            break;
+    }
+}
+*/
