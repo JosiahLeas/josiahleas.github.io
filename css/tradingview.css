@@ -134,7 +134,7 @@
   }
 
   .modal-close {
-    color: #000 !important;
+    color:white; !important;
     line-height: 50px;
     font-size: 80%;
     position: absolute;
@@ -147,6 +147,7 @@
   .modal-close:hover {
     color: #aaa;
   }
+  
 
 
 /* Javascript required IDs */
