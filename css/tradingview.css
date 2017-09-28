@@ -1,31 +1,8 @@
-<<<<<<< HEAD
-/* Setup */
-  body, html {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-  }
-
-  .box {
-      box-sizing: border-box;
-      float: left;
-      width: 50%;
-      height: calc(50% - 36px);
-  }
-  .box1 {
-      /* box-sizing: border-box;
-      float: left;
-      width: 50%;
-      height: calc(100% - 92px); */
-  }
-  body {margin:0;}
-=======
 body, html {
     padding: 0;
     margin: 0;
     height: 100%;
 }
->>>>>>> refs/remotes/origin/master
 
 .box {
     box-sizing: border-box;
@@ -79,24 +56,6 @@ body {margin:0;}
   }
 
 
-<<<<<<< HEAD
-/* Javascript required IDs */
-#inner1 {
-  height: 100%;
-}
-
-#inner2 {
-  height: 100%;
-}
-
-#inner3 {
-  height: 100%;
-}
-
-#inner4 {
-  height: 100%;
-}
-=======
 
 /* This is one way of adding borders, 
    if you *always* know that you have exactly 4 cells 
@@ -231,4 +190,3 @@ body { height: 100vh; background: #ccc; overflow: hidden; }
 
 
 
->>>>>>> refs/remotes/origin/master
