@@ -3,14 +3,14 @@
       padding: 0;
       margin: 0;
       height: 100%;
-	  
+	  overflow: hidden;
   }
 
   .box {
       box-sizing: border-box;
       float: left;
       width: 50%;
-      height: calc(50% - 36px);
+      height: calc(50% - 18px);
   }
   .box1 {
       /* box-sizing: border-box;
