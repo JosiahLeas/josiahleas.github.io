@@ -99,9 +99,9 @@ function change_table() {
         document.getElementById("b4")
             .style.height = "0";
         document.getElementById("b1")
-            .style.height = "calc(100% - 72px)";
+            .style.height = "calc(100% - 35px)";
         document.getElementById("b2")
-            .style.height = "calc(100% - 72px)";
+            .style.height = "calc(100% - 35px)";
 
         table = "false";
     }
@@ -111,13 +111,13 @@ function change_table() {
         document.getElementById("b4")
             .style.visibility = "visible";
         document.getElementById("b3")
-            .style.height = "calc(50% - 36px)";
+            .style.height = "calc(50% - 18px)";
         document.getElementById("b4")
-            .style.height = "calc(50% - 36px)";
+            .style.height = "calc(50% - 18px)";
         document.getElementById("b1")
-            .style.height = "calc(50% - 36px)";
+            .style.height = "calc(50% - 18px)";
         document.getElementById("b2")
-            .style.height = "calc(50% - 36px)";
+            .style.height = "calc(50% - 18px)";
 
         table = "true";
     }

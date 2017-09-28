@@ -4,13 +4,17 @@
       margin: 0;
       height: 100%;
 	  overflow: hidden;
+	  width: 100%;
+	  min-height: 100%;
   }
+
 
   .box {
       box-sizing: border-box;
       float: left;
       width: 50%;
       height: calc(50% - 18px);
+	  
   }
   .box1 {
       /* box-sizing: border-box;
