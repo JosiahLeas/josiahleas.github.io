@@ -141,10 +141,10 @@
         $(".fullscreen").click(function () {
           if (!$(this).hasClass("toggled")) {
             $(".box").css({ display: "none" });
-            $(this).parent().parent().css({ display: "inline", width: "100%", height: "100%" })
+            $(this).parent().parent().css({ display: "inline", width: "100%", height: "96vh" })
             $(this).addClass("toggled");
           } else {
-            $(".box").css({ display: "inline", width: "50%", height: "50%" })
+            $(".box").css({ display: "inline", width: "50%", height: "48%" })
             $(this).removeClass("toggled");
           }
         })
