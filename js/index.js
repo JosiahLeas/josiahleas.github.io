@@ -2,6 +2,7 @@
 // Stored Variables
 var dark = localStorage.getItem('theme_bool');
 var table = localStorage.getItem('table_bool');
+var expanded = false;
 
 // Resume their theme
 window.onload = theme;
@@ -87,57 +88,175 @@ function darken() {
 
 }
 
-// Change Table Dimensions Button and Action
-function change_table() {
-    if (table === "true" || table === null) {
-        document.getElementById("b3")
-            .style.visibility = "collapse";
-        document.getElementById("b4")
-            .style.visibility = "collapse";
-        document.getElementById("b3")
-            .style.height = "0";
-        document.getElementById("b4")
-            .style.height = "0";
-        document.getElementById("b1")
-            .style.height = "calc(100% - 35px)";
-        document.getElementById("b2")
-            .style.height = "calc(100% - 35px)";
+// Change Table Dimensions Button and Action Expanding and Resetting
+function change_table(id = null) {
+    if(id === null) {
+        if (table === "true" || table === null) {
+            document.getElementById("b3")
+                .style.visibility = "collapse";
+            document.getElementById("b4")
+                .style.visibility = "collapse";
+            document.getElementById("b3")
+                .style.height = "0";
+            document.getElementById("b4")
+                .style.height = "0";
+            document.getElementById("b1")
+                .style.height = "calc(100% - 35px)";
+            document.getElementById("b2")
+                .style.height = "calc(100% - 35px)";
 
-        table = "false";
+            table = "false";
+        }
+        else if (table === "false") {
+            document.getElementById("b3")
+                .style.visibility = "visible";
+            document.getElementById("b4")
+                .style.visibility = "visible";
+            document.getElementById("b3")
+                .style.height = "calc(50% - 18px)";
+            document.getElementById("b4")
+                .style.height = "calc(50% - 18px)";
+            document.getElementById("b1")
+                .style.height = "calc(50% - 18px)";
+            document.getElementById("b2")
+                .style.height = "calc(50% - 18px)";
+
+            table = "true";
+        }
+        else {
+            document.getElementById("b3")
+                .style.visibility = "collapse";
+            document.getElementById("b4")
+                .style.visibility = "collapse";
+            document.getElementById("b3")
+                .style.height = "0";
+            document.getElementById("b4")
+                .style.height = "0";
+            document.getElementById("b1")
+                .style.height = "calc(100% - 72px)";
+            document.getElementById("b2")
+                .style.height = "calc(100% - 72px)";
+
+            table = "false";
+        }
     }
-    else if (table === "false") {
+    else if (expanded) {
+        document.getElementById("b1")
+            .style.visibility = "visible";
+        document.getElementById("b2")
+            .style.visibility = "visible";
         document.getElementById("b3")
             .style.visibility = "visible";
         document.getElementById("b4")
             .style.visibility = "visible";
-        document.getElementById("b3")
-            .style.height = "calc(50% - 18px)";
-        document.getElementById("b4")
-            .style.height = "calc(50% - 18px)";
-        document.getElementById("b1")
-            .style.height = "calc(50% - 18px)";
-        document.getElementById("b2")
-            .style.height = "calc(50% - 18px)";
 
-        table = "true";
+        document.getElementById("b1")
+            .style.height = "calc(50% - 18px)"; 
+        document.getElementById("b2")
+            .style.height = "calc(50% - 18px)"; 
+        document.getElementById("b3")
+            .style.height = "calc(50% - 18px)"; 
+        document.getElementById("b4")
+            .style.height = "calc(50% - 18px)"; 
+
+        document.getElementById("b1")
+            .style.width = "50%";
+        document.getElementById("b2")
+            .style.width = "50%";
+        document.getElementById("b3")
+            .style.width = "50%";
+        document.getElementById("b4")
+            .style.width = "50%"; 
+            
+        expanded = false;
     }
-    else {
-        document.getElementById("b3")
-            .style.visibility = "collapse";
-        document.getElementById("b4")
-            .style.visibility = "collapse";
-        document.getElementById("b3")
-            .style.height = "0";
-        document.getElementById("b4")
-            .style.height = "0";
-        document.getElementById("b1")
-            .style.height = "calc(100% - 72px)";
+    else if(id === 1 && !expanded) {
         document.getElementById("b2")
-            .style.height = "calc(100% - 72px)";
+            .style.visibility = "collapse";
+        document.getElementById("b3")
+            .style.visibility = "collapse";
+        document.getElementById("b4")
+            .style.visibility = "collapse";
+        document.getElementById("b2")
+            .style.height = "0";        
+        document.getElementById("b3")
+            .style.height = "0";
+        document.getElementById("b4")
+            .style.height = "0";
 
-        table = "false";
+        document.getElementById("b1")
+            .style.height = "calc(100% - 35px)";
+        document.getElementById("b1")
+            .style.width = "100%";
+
+        expanded = true;
+    }
+    else if(id === 2 && !expanded) {
+        document.getElementById("b1")
+            .style.visibility = "collapse";
+        document.getElementById("b3")
+            .style.visibility = "collapse";
+        document.getElementById("b4")
+            .style.visibility = "collapse";
+        document.getElementById("b1")
+            .style.height = "0";        
+        document.getElementById("b3")
+            .style.height = "0";
+        document.getElementById("b4")
+            .style.height = "0";
+
+        document.getElementById("b2")
+            .style.height = "calc(100% - 35px)";
+        document.getElementById("b2")
+            .style.width = "100%";
+
+        expanded = true;
+    }
+    else if(id === 3 && !expanded) {
+        document.getElementById("b1")
+            .style.visibility = "collapse";
+        document.getElementById("b2")
+            .style.visibility = "collapse";
+        document.getElementById("b4")
+            .style.visibility = "collapse";
+        document.getElementById("b1")
+            .style.height = "0";        
+        document.getElementById("b2")
+            .style.height = "0";
+        document.getElementById("b4")
+            .style.height = "0";
+
+        document.getElementById("b3")
+            .style.height = "calc(100% - 35px)";
+        document.getElementById("b3")
+            .style.width = "100%";
+
+        expanded = true;
+    }
+    else if(id === 4 && !expanded) {
+        document.getElementById("b1")
+            .style.visibility = "collapse";
+        document.getElementById("b2")
+            .style.visibility = "collapse";
+        document.getElementById("b3")
+            .style.visibility = "collapse";
+        document.getElementById("b1")
+            .style.height = "0";
+        document.getElementById("b2")
+            .style.height = "0";        
+        document.getElementById("b3")
+            .style.height = "0";
+
+        document.getElementById("b4")
+            .style.height = "calc(100% - 35px)";
+        document.getElementById("b4")
+            .style.width = "100%";
+
+        expanded = true;
     }
 }
+
+
 
 // Reset Widgets for Color
 /*
