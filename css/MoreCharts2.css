@@ -4,14 +4,14 @@
       margin: 0;
       height: 100%;
 	  width: 100%;
-	
+	  overflow: hidden;
   }
 
 
   .box {
       box-sizing: border-box;
       float: left;
-      width: 50%;
+      width: 25%;
       height: calc(50% - 18px);
 	  
   }
