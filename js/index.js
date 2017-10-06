@@ -7,20 +7,7 @@ var a, b, c, d;
 var expanded = false;
 
 // Resume their theme
-window.onload = start;
-
-function start() {
-    
-    b = getParameterByName("b");
-    c = getParameterByName("c");
-    d = getParameterByName("d");
-
-    if(!b) params.split('_')[1];
-    if(!c) params.split('_')[2];
-    if(!d) params.split('_')[3];
-
-    theme();
-}
+window.onload = theme;
 
 // Test and Set Theme from Storage
 function theme() {
