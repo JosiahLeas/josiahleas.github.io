@@ -81,7 +81,7 @@
 
 // Grid Change
     // Change Table Dimensions Button and Action Expanding and Resetting
-    function change_table(id = null) {
+    function change_table(id) {
         if(id === null) {
             if (table === "true" || table === null) {
                 document.getElementById("b3")
@@ -166,7 +166,7 @@
                 
             expanded = false;
         }
-        else if(id === 1 && !expanded) {
+        else if(id === 1) {
             document.getElementById("b2")
                 .style.visibility = "collapse";
             document.getElementById("b3")
@@ -187,7 +187,7 @@
 
             expanded = true;
         }
-        else if(id === 2 && !expanded) {
+        else if(id === 2) {
             document.getElementById("b1")
                 .style.visibility = "collapse";
             document.getElementById("b3")
@@ -208,7 +208,7 @@
 
             expanded = true;
         }
-        else if(id === 3 && !expanded) {
+        else if(id === 3) {
             document.getElementById("b1")
                 .style.visibility = "collapse";
             document.getElementById("b2")
@@ -229,7 +229,7 @@
 
             expanded = true;
         }
-        else if(id === 4 && !expanded) {
+        else if(id === 4) {
             document.getElementById("b1")
                 .style.visibility = "collapse";
             document.getElementById("b2")
