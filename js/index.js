@@ -7,7 +7,7 @@ var a, b, c, d;
 var expanded = false;
 
 // Resume their theme
-window.onload = theme;
+document.onreadystatechange = theme;
 
 // Test and Set Theme from Storage
 function theme() {
