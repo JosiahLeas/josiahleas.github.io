@@ -23,11 +23,11 @@
   </script>
 
   <script src="https://use.fontawesome.com/a4e3744178.js"></script>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </head>
 
-<body> 
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<body>
   <div class="topnav" id="myTopnav">
     <div class="container">
       <div class="interior">
@@ -63,16 +63,16 @@
       <a class="button fullscreen" onclick="change_table(1)"><i class="fa fa-expand" aria-hidden="true"></i></a>
     </div>
     <div id="inner1">
-    <script type="text/javascript">
+      <script type="text/javascript">
       new TradingView.widget({
         "autosize": true,
-        "symbol": "COINBASE:BTCUSD",
+        "symbol": (first != null ? first : "COINBASE:BTCUSD"),
         "interval": "60",
         "timezone": "America/Chicago",
-        "theme": "Dark",
+        "theme": (dark == "true" ? "Light" : "Dark"),
         "style": "1",
         "locale": "en",
-        "toolbar_bg": "rgba(27, 32, 48, 1)",
+        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
         "enable_publishing": false,
         "hide_top_toolbar": false,
         "hide_side_toolbar": false,
@@ -90,13 +90,13 @@
       <script type="text/javascript">
       new TradingView.widget({
         "autosize": true,
-        "symbol": "COINBASE:ETHUSD",
+        "symbol": (second != null ? second : "COINBASE:BTCUSD"),
         "interval": "60",
         "timezone": "America/Chicago",
-        "theme": "Dark",
+        "theme": (dark == "true" ? "Light" : "Dark"),
         "style": "1",
         "locale": "en",
-        "toolbar_bg": "rgba(27, 32, 48, 1)",
+        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
         "enable_publishing": false,
         "hide_top_toolbar": false,
         "hide_side_toolbar": false,
@@ -114,13 +114,13 @@
       <script type="text/javascript">
       new TradingView.widget({
         "autosize": true,
-        "symbol": "COINBASE:LTCUSD",
+        "symbol": (third != null ? third : "COINBASE:BTCUSD"),
         "interval": "60",
         "timezone": "America/Chicago",
-        "theme": "Dark",
+        "theme": (dark == "true" ? "Light" : "Dark"),
         "style": "1",
         "locale": "en",
-        "toolbar_bg": "rgba(27, 32, 48, 1)",
+        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
         "enable_publishing": false,
         "hide_top_toolbar": false,
         "hide_side_toolbar": false,
@@ -138,13 +138,13 @@
       <script type="text/javascript">
       new TradingView.widget({
         "autosize": true,
-        "symbol": "BITTREX:OMGUSDT",
+        "symbol": (fourth != null ? fourth : "COINBASE:BTCUSD"),
         "interval": "60",
         "timezone": "America/Chicago",
-        "theme": "Dark",
+        "theme": (dark == "true" ? "Light" : "Dark"),
         "style": "1",
         "locale": "en",
-        "toolbar_bg": "rgba(27, 32, 48, 1)",
+        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
         "enable_publishing": false,
         "hide_top_toolbar": false,
         "hide_side_toolbar": false,

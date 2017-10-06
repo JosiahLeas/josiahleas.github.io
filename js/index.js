@@ -2,6 +2,8 @@
 // Stored Variables
 var dark = localStorage.getItem('theme_bool');
 var table = localStorage.getItem('table_bool');
+var params = localStorage.getItem('param_string');
+var first, second, third, fourth;
 var expanded = false;
 
 // Resume their theme
@@ -12,19 +14,16 @@ function theme() {
     if (dark === "true" || dark === null) {
         document.getElementById("theme_toggle")
             .innerHTML = "Dark";
-
         lighten();
     }
     else if (dark === "false") {
         document.getElementById("theme_toggle")
             .innerText = "Light";
-
         darken();
     }
     else {
         document.getElementById("theme_toggle")
             .innerText = "Dark";
-
         lighten();
     }
 }
@@ -40,6 +39,7 @@ function change_theme() {
         dark = "true";
     }
     theme();
+    window.location.reload();
 }
 
 // Lighten Theme Action
@@ -256,7 +256,16 @@ function change_table(id = null) {
     }
 }
 
-
+// Get url parameters 1, 2, 3, 4 via call
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 
 // Reset Widgets for Color
 /*
