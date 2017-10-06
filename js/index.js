@@ -3,11 +3,24 @@
 var dark = localStorage.getItem('theme_bool');
 var table = localStorage.getItem('table_bool');
 var params = localStorage.getItem('param_string');
-var first, second, third, fourth;
+var a, b, c, d;
 var expanded = false;
 
 // Resume their theme
-window.onload = theme;
+window.onload = start;
+
+function start() {
+    
+    b = getParameterByName("b");
+    c = getParameterByName("c");
+    d = getParameterByName("d");
+
+    if(!b) params.split('_')[1];
+    if(!c) params.split('_')[2];
+    if(!d) params.split('_')[3];
+
+    theme();
+}
 
 // Test and Set Theme from Storage
 function theme() {
@@ -265,6 +278,30 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function read(letter) {
+    switch(letter) {
+        case "a":
+            a = getParameterByName("a");
+            if(!a && params) params.split('_')[0];
+            return a;
+
+        case "b":
+            b = getParameterByName("b");
+            if(!b && params) params.split('_')[1];
+            return b;
+
+        case "c":
+            c = getParameterByName("c");
+            if(!c && params) params.split('_')[2];
+            return c;
+
+        case "d":
+            d = getParameterByName("d");
+            if(!d && params) params.split('_')[3];
+            return d;
+    }
 }
 
 // Reset Widgets for Color
