@@ -284,6 +284,9 @@
                 d = getParameterByName("d");
                 if(!d && params) params.split('_')[3];
                 return d;
+            case "z":
+                z = getParameterByName("z");
+                break;
         }
     }
 
