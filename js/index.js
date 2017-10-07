@@ -82,7 +82,7 @@
 // Grid Change
     // Change Table Dimensions Button and Action Expanding and Resetting
     function change_table(id) {
-        if(id === null) {
+        if(id === null && !expanded) {
             if (table === "true" || table === null) {
                 document.getElementById("b3")
                     .style.visibility = "collapse";
