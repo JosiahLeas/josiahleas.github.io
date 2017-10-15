@@ -10,7 +10,9 @@
   
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   <link href="css/styles.css" rel="stylesheet">
-  <link href="css/tradingview.css" rel="stylesheet">
+  <script>
+      document.write('<link href="css/tradingview.css?r='+ (new Date).getTime() +'" rel="stylesheet" type="text/css" />');
+  </script>
 
   <!-- Global Site Tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></script>
@@ -28,12 +30,13 @@
 </head>
 
 <body>
-  <div class="topnav" id="myTopnav">
+  <div class="topnav" id="top-nav">
     <div class="container">
       <div class="interior">
-        <a id="table_toggle" onclick="change_table(null)" href="javascript:void(0);">1x2</a>
-        <a class="btn" style="float: right;" href="#open-modal">Donate</a>
-        <a id="theme_toggle" style="float: left;" onclick="change_theme()" href="javascript:void(0);">Light</a>
+        <input class="box-width" id="box-width" title="Adjusts the chart width" type="range" name="width-size" min="1" max="3" />
+        <a class="btn" id="height-toggle" onclick="setHeight(!boxHeight)" href="javascript:void(0);">Half height</a>
+        <a class="btn right" href="#open-modal">Donate</a>
+        <a class="btn" id="theme-toggle" style="float: left;" onclick="change_theme()" href="javascript:void(0);">Light</a>
       </div>
     </div>
     <div id="open-modal" class="modal-window">
@@ -64,101 +67,49 @@
 
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
   </div>
-  <div class="box" id="b1">
-    <div class="top-button-container">
-      <a class="button fullscreen" onclick="change_table(1)"><i class="fa fa-expand" aria-hidden="true"></i></a>
-    </div>
-    <div id="inner1">
-      <script type="text/javascript">
+
+  <script>
+    setCharts();
+    for(let i = 0; i < getNrOfCharts(); i++) {
+      let boxElement = document.createElement("div");
+      boxElement.setAttribute("id", "box" + i);
+      boxElement.setAttribute("class", "box");
+      let topButtonContainerElement = document.createElement("div");
+      topButtonContainerElement.setAttribute("class", "top-button-container");
+      let fullScreenButtonElement = document.createElement("a");
+      fullScreenButtonElement.setAttribute("class", "button fullscreen");
+      fullScreenButtonElement.setAttribute("onclick", "change_table(1)");
+      let italicsElement = document.createElement("i");
+      italicsElement.setAttribute("class", "fa fa-expand");
+      italicsElement.setAttribute("aria-hidden", "true");
+      let chartContainerElement = document.createElement("div");
+      chartContainerElement.setAttribute("class", "inner");
+      fullScreenButtonElement.appendChild(italicsElement);
+      topButtonContainerElement.appendChild(fullScreenButtonElement);
+      boxElement.appendChild(topButtonContainerElement);
+      boxElement.appendChild(chartContainerElement);
+      document.body.appendChild(boxElement);
       new TradingView.widget({
-        "autosize": true,
-        "symbol": (read("a") != null ? a : "COINBASE:BTCUSD"),
-        "interval": "60",
-        "timezone": "America/Chicago",
-        "theme": (dark == "true" ? "Light" : "Dark"),
-        "style": "1",
-        "locale": "en",
-        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
-        "enable_publishing": false,
-        "hide_top_toolbar": false,
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "hideideas": true
+          "container_id": "box" + i,
+          "autosize": true,
+          "symbol": (charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"),
+          "interval": "60",
+          "timezone": "America/Chicago",
+          "theme": (dark === "true" ? "Light" : "Dark"),
+          "style": "1",
+          "locale": "en",
+          "toolbar_bg": (dark === "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
+          "enable_publishing": false,
+          "hide_top_toolbar": false,
+          "hide_side_toolbar": false,
+          "allow_symbol_change": true,
+          "hideideas": true
       });
-    </script>
-    </div>
-  </div>
-  <div class="box" id="b2">
-    <div class="top-button-container">
-      <a class="button fullscreen" onclick="change_table(2)"><i class="fa fa-expand" aria-hidden="true"></i></a>
-    </div>
-    <div id="inner2">
-      <script type="text/javascript">
-      new TradingView.widget({
-        "autosize": true,
-        "symbol": (read("b") != null ? b : "COINBASE:ETHUSD"),
-        "interval": "60",
-        "timezone": "America/Chicago",
-        "theme": (dark == "true" ? "Light" : "Dark"),
-        "style": "1",
-        "locale": "en",
-        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
-        "enable_publishing": false,
-        "hide_top_toolbar": false,
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "hideideas": true
-      });
-    </script>
-    </div>
-  </div>
-  <div class="box" id="b3">
-    <div class="top-button-container">
-      <a class="button fullscreen" onclick="change_table(3)"><i class="fa fa-expand" aria-hidden="true"></i></a>
-    </div>
-    <div id="inner3">
-      <script type="text/javascript">
-      new TradingView.widget({
-        "autosize": true,
-        "symbol": (read("c") != null ? c : "COINBASE:LTCUSD"),
-        "interval": "60",
-        "timezone": "America/Chicago",
-        "theme": (dark == "true" ? "Light" : "Dark"),
-        "style": "1",
-        "locale": "en",
-        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
-        "enable_publishing": false,
-        "hide_top_toolbar": false,
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "hideideas": true
-      });
-    </script>
-    </div>  
-  </div>
-  <div class="box" id="b4">
-    <div class="top-button-container">
-      <a class="button fullscreen" onclick="change_table(4)"><i class="fa fa-expand" aria-hidden="true"></i></a>
-    </div>
-    <div id="inner4">
-      <script type="text/javascript">
-      new TradingView.widget({
-        "autosize": true,
-        "symbol": (read("d") != null ? d : "BITTREX:OMGUSDT"),
-        "interval": "60",
-        "timezone": "America/Chicago",
-        "theme": (dark == "true" ? "Light" : "Dark"),
-        "style": "1",
-        "locale": "en",
-        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
-        "enable_publishing": false,
-        "hide_top_toolbar": false,
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "hideideas": true
-      });
-    </script>
-    </div>
-  </div>  
+    }
+    initialiseUI();
+    function getRand() {
+        return Math.random();
+    }
+  </script>
 </body>
 </html>

@@ -1,30 +1,23 @@
 // Pinche Medicado - Josiah Leas :: PrettySights.com
 // Stored Variables
-    var dark = localStorage.getItem('theme_bool');
-    var table = localStorage.getItem('table_bool');
-    var params = localStorage.getItem('param_string');
-    var a, b, c, d;
-    var expanded = false;
+    const STORAGE_WIDTH = "table_width";
+    const STORAGE_HALF_HEIGHT = "table_half_height";
+    let dark = localStorage.getItem('theme-bool');
+    let boxWidth = '';
+    let boxHeight = '';
+    let charts = { pairs: [] };
 
-// Resume their theme
+    // Resume their theme
     document.onreadystatechange = theme;
 
 // Theme
     // Test and Set Theme from Storage
     function theme() {
         if (dark === "true" || dark === null) {
-            document.getElementById("theme_toggle")
-                .innerHTML = "Dark";
             lighten();
-        }
-        else if (dark === "false") {
-            document.getElementById("theme_toggle")
-                .innerText = "Light";
+        } else if (dark === "false") {
             darken();
-        }
-        else {
-            document.getElementById("theme_toggle")
-                .innerText = "Dark";
+        } else {
             lighten();
         }
     }
@@ -32,11 +25,10 @@
     // Change Theme Button
     function change_theme() {
         if (dark === "true") {
-            localStorage.setItem('theme_bool', "false");
+            localStorage.setItem('theme-bool', "false");
             dark = "false";
-        }
-        else {
-            localStorage.setItem('theme_bool', "true");
+        } else {
+            localStorage.setItem('theme-bool', "true");
             dark = "true";
         }
         theme();
@@ -45,248 +37,97 @@
 
     // Lighten Theme Action
     function lighten() {
-        console.log("lightening...");
-        document.getElementById("open-modal")
-            .style.background = "#ddd";
-        document.getElementById("myTopnav")
-            .style.background = "#ddd";
-        document.getElementById("theme_toggle")
-            .style.color = "#333";
-        document.getElementById("theme_toggle")
-            .style.background = "#eee";
-        document.getElementById("table_toggle")
-            .style.color = "#333";
-        document.getElementById("table_toggle")
-            .style.background = "#eee";
-
+        document.getElementById("theme-toggle").innerHTML = "Dark";
+        document.getElementById("open-modal").classList.remove("dark");
+        document.getElementById("top-nav").classList.remove("dark");
+        document.getElementById("theme-toggle").classList.remove("dark");
+        document.getElementById("height-toggle").classList.remove("dark");
+        document.getElementById("box-width").classList.remove("dark");
     }
 
     // Darken Theme Action
     function darken() {
-        console.log("darkening...");
-        document.getElementById("open-modal")
-            .style.background = "#333";
-        document.getElementById("myTopnav")
-            .style.background = "#333";
-        document.getElementById("theme_toggle")
-            .style.color = "#ddd";
-        document.getElementById("theme_toggle")
-            .style.background = "#444";
-        document.getElementById("table_toggle")
-            .style.color = "#ddd";
-        document.getElementById("table_toggle")
-            .style.background = "#444";
-
+        document.getElementById("theme-toggle").innerHTML = "Light";
+        document.getElementById("open-modal").classList.add("dark");
+        document.getElementById("top-nav").classList.add("dark");
+        document.getElementById("theme-toggle").classList.add("dark");
+        document.getElementById("height-toggle").classList.add("dark");
+        document.getElementById("box-width").classList.add("dark");
     }
 
-// Grid Change
-    // Change Table Dimensions Button and Action Expanding and Resetting
-    function change_table(id) {
-        if(id === null && !expanded) {
-            if (table === "true" || table === null) {
-                document.getElementById("b3")
-                    .style.visibility = "collapse";
-                document.getElementById("b4")
-                    .style.visibility = "collapse";
-                document.getElementById("b3")
-                    .style.height = "0";
-                document.getElementById("b4")
-                    .style.height = "0";
-                document.getElementById("b1")
-                    .style.height = "calc(100% - 35px)";
-                document.getElementById("b2")
-                    .style.height = "calc(100% - 35px)";
-
-                document.getElementById("table_toggle")
-                    .innerHTML = "2x2";
-                table = "false";
-            }
-            else if (table === "false") {
-                document.getElementById("b3")
-                    .style.visibility = "visible";
-                document.getElementById("b4")
-                    .style.visibility = "visible";
-                document.getElementById("b3")
-                    .style.height = "calc(50% - 18px)";
-                document.getElementById("b4")
-                    .style.height = "calc(50% - 18px)";
-                document.getElementById("b1")
-                    .style.height = "calc(50% - 18px)";
-                document.getElementById("b2")
-                    .style.height = "calc(50% - 18px)";
-
-                document.getElementById("table_toggle")
-                    .innerHTML = "1x2";
-                table = "true";
-            }
-            else {
-                document.getElementById("b3")
-                    .style.visibility = "collapse";
-                document.getElementById("b4")
-                    .style.visibility = "collapse";
-                document.getElementById("b3")
-                    .style.height = "0";
-                document.getElementById("b4")
-                    .style.height = "0";
-                document.getElementById("b1")
-                    .style.height = "calc(100% - 72px)";
-                document.getElementById("b2")
-                    .style.height = "calc(100% - 72px)";
-
-                table = "false";
+    function setHeight(halfHeight) {
+        // I avoid having to work with strings that are booleans, so....
+        halfHeight = JSON.parse(halfHeight);
+        for(let i = 0; i < charts.pairs.length; i++) {
+            let element = document.getElementById("box" + i);
+            if(halfHeight) {
+                element.classList.add("box-half-height");
+            } else {
+                element.classList.remove("box-half-height");
             }
         }
-        else if (expanded) {
-            document.getElementById("b1")
-                .style.visibility = "visible";
-            document.getElementById("b2")
-                .style.visibility = "visible";
-            document.getElementById("b3")
-                .style.visibility = "visible";
-            document.getElementById("b4")
-                .style.visibility = "visible";
-
-            document.getElementById("b1")
-                .style.height = "calc(50% - 18px)"; 
-            document.getElementById("b2")
-                .style.height = "calc(50% - 18px)"; 
-            document.getElementById("b3")
-                .style.height = "calc(50% - 18px)"; 
-            document.getElementById("b4")
-                .style.height = "calc(50% - 18px)"; 
-
-            document.getElementById("b1")
-                .style.width = "50%";
-            document.getElementById("b2")
-                .style.width = "50%";
-            document.getElementById("b3")
-                .style.width = "50%";
-            document.getElementById("b4")
-                .style.width = "50%"; 
-                
-            expanded = false;
+        if(halfHeight) {
+            document.getElementById("height-toggle").innerHTML = "Full height";
+        } else {
+            document.getElementById("height-toggle").innerHTML = "Half height";
         }
-        else if(id === 1) {
-            document.getElementById("b2")
-                .style.visibility = "collapse";
-            document.getElementById("b3")
-                .style.visibility = "collapse";
-            document.getElementById("b4")
-                .style.visibility = "collapse";
-            document.getElementById("b2")
-                .style.height = "0";        
-            document.getElementById("b3")
-                .style.height = "0";
-            document.getElementById("b4")
-                .style.height = "0";
-
-            document.getElementById("b1")
-                .style.height = "calc(100% - 35px)";
-            document.getElementById("b1")
-                .style.width = "100%";
-
-            expanded = true;
-        }
-        else if(id === 2) {
-            document.getElementById("b1")
-                .style.visibility = "collapse";
-            document.getElementById("b3")
-                .style.visibility = "collapse";
-            document.getElementById("b4")
-                .style.visibility = "collapse";
-            document.getElementById("b1")
-                .style.height = "0";        
-            document.getElementById("b3")
-                .style.height = "0";
-            document.getElementById("b4")
-                .style.height = "0";
-
-            document.getElementById("b2")
-                .style.height = "calc(100% - 35px)";
-            document.getElementById("b2")
-                .style.width = "100%";
-
-            expanded = true;
-        }
-        else if(id === 3) {
-            document.getElementById("b1")
-                .style.visibility = "collapse";
-            document.getElementById("b2")
-                .style.visibility = "collapse";
-            document.getElementById("b4")
-                .style.visibility = "collapse";
-            document.getElementById("b1")
-                .style.height = "0";        
-            document.getElementById("b2")
-                .style.height = "0";
-            document.getElementById("b4")
-                .style.height = "0";
-
-            document.getElementById("b3")
-                .style.height = "calc(100% - 35px)";
-            document.getElementById("b3")
-                .style.width = "100%";
-
-            expanded = true;
-        }
-        else if(id === 4) {
-            document.getElementById("b1")
-                .style.visibility = "collapse";
-            document.getElementById("b2")
-                .style.visibility = "collapse";
-            document.getElementById("b3")
-                .style.visibility = "collapse";
-            document.getElementById("b1")
-                .style.height = "0";
-            document.getElementById("b2")
-                .style.height = "0";        
-            document.getElementById("b3")
-                .style.height = "0";
-
-            document.getElementById("b4")
-                .style.height = "calc(100% - 35px)";
-            document.getElementById("b4")
-                .style.width = "100%";
-
-            expanded = true;
-        }
-    }
-// URL Params
-    // Get url parameters 1, 2, 3, 4 via call
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
+        localStorage.setItem(STORAGE_HALF_HEIGHT, halfHeight);
+        boxHeight = halfHeight;
     }
 
-    function read(letter) {
-        switch(letter) {
-            case "a":
-                a = getParameterByName("a");
-                if(!a && params) params.split('_')[0];
-                return a;
-
-            case "b":
-                b = getParameterByName("b");
-                if(!b && params) params.split('_')[1];
-                return b;
-
-            case "c":
-                c = getParameterByName("c");
-                if(!c && params) params.split('_')[2];
-                return c;
-
-            case "d":
-                d = getParameterByName("d");
-                if(!d && params) params.split('_')[3];
-                return d;
-            case "z":
-                z = getParameterByName("z");
-                break;
+    function setLayout(size) {
+        for(let i = 0; i < charts.pairs.length; i++) {
+            let element = document.getElementById("box" + i);
+            switch(size) {
+                case 2:
+                    element.classList.remove("box-width-third");
+                    element.classList.add("box-width-half");
+                    break;
+                case 3:
+                    element.classList.remove("box-width-half");
+                    element.classList.add("box-width-third");
+                    break;
+                default:
+                    element.classList.remove("box-width-third");
+                    element.classList.remove("box-width-half");
+            }
         }
+        localStorage.setItem(STORAGE_WIDTH, size);
+        boxWidth = size;
     }
 
+    function setChartsByParameters(url) {
+        url = window.location.href;
+        let expression = /[?&]chart(=([^&#]*)|&|#|$)/g;
+        let match;
+        let i = 0;
+        while(match = expression.exec(url)) {
+            charts.pairs.push(match[2].replace(/\+/g, " "));
+            i++;
+        }
+        return charts;
+    }
+
+    function setCharts() {
+        charts = setChartsByParameters();
+    }
+
+    function getNrOfCharts() {
+        return charts.pairs.length;
+    }
+
+    function initialiseUI() {
+        boxWidth = localStorage.getItem(STORAGE_WIDTH);
+        boxHeight = localStorage.getItem(STORAGE_HALF_HEIGHT);
+        setLayout(parseInt(boxWidth));
+        setHeight(boxHeight);
+        let boxWidthRange = document.getElementById("box-width");
+        if(boxWidth !== null) {
+            boxWidthRange.value = boxWidth;
+        } else {
+            boxWidthRange.value = 1;
+        }
+        boxWidthRange.addEventListener("change", function() {
+            setLayout(parseInt(boxWidthRange.value));
+        }, true);
+    }
