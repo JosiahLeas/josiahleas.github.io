@@ -31,14 +31,10 @@
 
 <body>
   <div class="topnav" id="top-nav">
-    <div class="container">
-      <div class="interior">
-        <input class="box-width" id="box-width" title="Adjusts the chart width" type="range" name="width-size" min="1" max="3" />
-        <a class="btn" id="height-toggle" onclick="setHeight(!boxHeight)" href="javascript:void(0);">Half height</a>
-        <a class="btn right" href="#open-modal">Donate</a>
-        <a class="btn" id="theme-toggle" style="float: left;" onclick="change_theme()" href="javascript:void(0);">Light</a>
-      </div>
-    </div>
+    <input id="box-width-range" title="Adjusts the chart width" type="range" name="box-width" min="1" max="3" />
+    <button id="box-height-toggle" class="btn" onclick="setHeight(!boxHeight)">Half height</button>
+    <button id="theme-toggle" class="btn" onclick="change_theme()">Light theme</button>
+    <a class="right" href="#open-modal">Donate</a>
     <div id="open-modal" class="modal-window">
       <div>
         <a href="#modal-close" title="Close" class="modal-close">Close</a>
@@ -103,13 +99,13 @@
           "hide_top_toolbar": false,
           "hide_side_toolbar": false,
           "allow_symbol_change": true,
+          "show_popup_button": true,
+          "popup_width": "1000",
+          "popup_height": "650",
           "hideideas": true
       });
     }
     initialiseUI();
-    function getRand() {
-        return Math.random();
-    }
   </script>
 </body>
 </html>
