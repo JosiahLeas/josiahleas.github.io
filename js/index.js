@@ -1,7 +1,7 @@
 // Pinche Medicado - Josiah Leas :: PrettySights.com
 // Stored Variables
     const STORAGE_WIDTH = "table_width";
-    const STORAGE_HALF_HEIGHT = "table_half_height";
+    const STORAGE_HEIGHT = "table_height";
     let dark = localStorage.getItem('theme-bool');
     let boxWidth = '';
     let boxHeight = '';
@@ -38,45 +38,50 @@
     // Lighten Theme Action
     function lighten() {
         document.getElementById("theme-toggle").innerHTML = "Dark theme";
-        document.getElementById("open-modal").classList.remove("dark");
         document.getElementById("theme-toggle").classList.remove("dark");
-        document.getElementById("box-height-toggle").classList.remove("dark");
+        document.getElementById("open-modal").classList.remove("dark");
+        document.getElementById("box-height").classList.remove("dark");
+        document.getElementById("box-width").classList.remove("dark");
         document.body.classList.remove("dark");
     }
 
     // Darken Theme Action
     function darken() {
         document.getElementById("theme-toggle").innerHTML = "Light theme";
-        document.getElementById("open-modal").classList.add("dark");
         document.getElementById("theme-toggle").classList.add("dark");
-        document.getElementById("box-height-toggle").classList.add("dark");
+        document.getElementById("open-modal").classList.add("dark");
+        document.getElementById("box-height").classList.add("dark");
+        document.getElementById("box-width").classList.add("dark");
         document.body.classList.add("dark");
     }
 
-    function setHeight(halfHeight) {
+    function setHeight(height) {
         // I avoid having to work with strings that are booleans, so....
-        halfHeight = JSON.parse(halfHeight);
+        height = JSON.parse(height);
         for(let i = 0; i < charts.pairs.length; i++) {
             let element = document.getElementById("box" + i);
-            if(halfHeight) {
-                element.classList.add("box-height-half");
-            } else {
-                element.classList.remove("box-height-half");
+            switch(height) {
+                case 2:
+                    element.classList.remove("box-height-third");
+                    element.classList.add("box-height-half");
+                    break;
+                case 3:
+                    element.classList.add("box-height-third");
+                    element.classList.remove("box-height-half");
+                    break;
+                default:
+                    element.classList.remove("box-height-third");
+                    element.classList.remove("box-height-half");
             }
         }
-        if(halfHeight) {
-            document.getElementById("box-height-toggle").innerHTML = "Full height";
-        } else {
-            document.getElementById("box-height-toggle").innerHTML = "Half height";
-        }
-        localStorage.setItem(STORAGE_HALF_HEIGHT, halfHeight);
-        boxHeight = halfHeight;
+        localStorage.setItem(STORAGE_HEIGHT, height);
+        boxHeight = height;
     }
 
-    function setWidth(size) {
+    function setWidth(width) {
         for(let i = 0; i < charts.pairs.length; i++) {
             let element = document.getElementById("box" + i);
-            switch(size) {
+            switch(width) {
                 case 2:
                     element.classList.remove("box-width-third");
                     element.classList.add("box-width-half");
@@ -90,13 +95,13 @@
                     element.classList.remove("box-width-half");
             }
         }
-        localStorage.setItem(STORAGE_WIDTH, size);
-        boxWidth = size;
+        localStorage.setItem(STORAGE_WIDTH, width);
+        boxWidth = width;
     }
 
     function setTitle() {
         let title = getQueryVariable("title");
-        if(title != false) {
+        if(title !== false) {
             document.title = title;
         }
     }
@@ -123,27 +128,40 @@
 
     function initialiseUI() {
         boxWidth = localStorage.getItem(STORAGE_WIDTH);
-        boxHeight = localStorage.getItem(STORAGE_HALF_HEIGHT);
-        setWidth(parseInt(boxWidth));
-        setHeight(boxHeight);
-        let boxWidthRange = document.getElementById("box-width-range");
+        let boxWidthRange = document.getElementById("box-width");
         if(boxWidth !== null) {
+            setWidth(parseInt(boxWidth));
             boxWidthRange.value = boxWidth;
         } else {
+            setWidth(parseInt(1));
             boxWidthRange.value = 1;
         }
         boxWidthRange.addEventListener("change", function() {
             setWidth(parseInt(boxWidthRange.value));
         }, true);
+
+        boxHeight = localStorage.getItem(STORAGE_HEIGHT);
+        let boxHeightRange = document.getElementById("box-height");
+        if(boxHeight !== null) {
+            setHeight(parseInt(boxHeight));
+            boxHeightRange.value = boxHeight;
+        } else {
+            setHeight(parseInt(1));
+            boxHeightRange.value = 1;
+        }
+        boxHeightRange.addEventListener("change", function() {
+            setHeight(parseInt(boxHeightRange.value));
+        }, true);
+
         setTitle();
     }
 
     function getQueryVariable(variable) {
-        var query = window.location.search.substring(1);
-        var vars = query.split("&");
-        for (var i=0;i<vars.length;i++) {
-            var pair = vars[i].split("=");
-            if(pair[0] == variable){
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        for (let i=0;i<vars.length;i++) {
+            let pair = vars[i].split("=");
+            if(pair[0] === variable){
                 return pair[1];
             }
         }

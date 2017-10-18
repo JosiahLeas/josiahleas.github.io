@@ -1,21 +1,35 @@
 /* Setup */
   body, html {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-	  width: 100%;
-	  min-height: 100%;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+    font-family: BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    margin: 0;
   }
 
-  body {margin:0;}
+  a {
+    color: inherit;
+  }
+
+  .label {
+    display: inline;
+    margin-right: 4px;
+  }
 
   .box {
     box-sizing: border-box;
     height: calc(100% - 36px);
+    width: calc(100% - 18px);
   }
 
   .box-height-half {
     height: calc(50% - 18px);
+  }
+  .box-height-third {
+    height: calc(33% - 18px);
   }
 
   .box-width-half {
@@ -26,6 +40,10 @@
   .box-width-third {
     float: left;
     width: 33%;
+  }
+
+  .number-label {
+    margin-right: 4px;
   }
 
   .right {
@@ -63,7 +81,6 @@
 
   input#box-width-range {
     display: inline;
-    direction: rtl;
     vertical-align: middle;
   }
 
@@ -74,11 +91,11 @@
 /* TopNav */
   .topnav {
     background-color: #888;
-    padding: 3px;
+    padding: 5px;
   }
 
   .topnav a {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .topnav .icon {
@@ -100,17 +117,6 @@
   }
 
 /* Modals */
-  body {
-    font: 600 18px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    /* padding: 2rem; */
-    /* background-color: #5A7A9B; */
-    /* color: #5A7A9B */
-  }
-
-  a {
-    color: inherit;
-  }
-
   .modal-window {
     position: fixed;
     background-color: #333;/*rgba(255, 255, 255, 0.15);*/
