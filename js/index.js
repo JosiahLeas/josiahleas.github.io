@@ -2,57 +2,47 @@
 // Stored Variables
     const STORAGE_WIDTH = "table_width";
     const STORAGE_HEIGHT = "table_height";
-    let dark = localStorage.getItem('theme-bool');
+    let dark = localStorage.getItem('theme-dark');
     let boxWidth = '';
     let boxHeight = '';
     let charts = { pairs: [] };
 
-    // Resume their theme
-    document.onreadystatechange = theme;
-
-// Theme
-    // Test and Set Theme from Storage
-    function theme() {
-        if (dark === "true" || dark === null) {
-            lighten();
-        } else if (dark === "false") {
-            darken();
-        } else {
-            lighten();
-        }
+    if (dark === "false" || dark === null) {
+        dark = "false";
+    } else {
+        dark = "true";
     }
 
     // Change Theme Button
     function change_theme() {
         if (dark === "true") {
-            localStorage.setItem('theme-bool', "false");
-            dark = "false";
+            lighten();
         } else {
-            localStorage.setItem('theme-bool', "true");
-            dark = "true";
+            darken();
         }
-        theme();
         window.location.reload();
     }
 
     // Lighten Theme Action
     function lighten() {
         document.getElementById("theme-toggle").innerHTML = "Dark theme";
-        document.getElementById("theme-toggle").classList.remove("dark");
         document.getElementById("open-modal").classList.remove("dark");
         document.getElementById("box-height").classList.remove("dark");
         document.getElementById("box-width").classList.remove("dark");
         document.body.classList.remove("dark");
+        localStorage.setItem('theme-dark', "false");
+        dark = "false";
     }
 
     // Darken Theme Action
     function darken() {
         document.getElementById("theme-toggle").innerHTML = "Light theme";
-        document.getElementById("theme-toggle").classList.add("dark");
         document.getElementById("open-modal").classList.add("dark");
         document.getElementById("box-height").classList.add("dark");
         document.getElementById("box-width").classList.add("dark");
         document.body.classList.add("dark");
+        localStorage.setItem('theme-dark', "true");
+        dark = "true";
     }
 
     function setHeight(height) {
@@ -106,6 +96,10 @@
         }
     }
 
+    function setChartCount() {
+        document.getElementById("chart-count").innerHTML = charts.pairs.length + " charts";
+    }
+
     function setChartsByParameters(url) {
         url = window.location.href;
         let expression = /[?&]chart(=([^&#]*)|&|#|$)/g;
@@ -120,10 +114,22 @@
 
     function setCharts() {
         charts = setChartsByParameters();
+
     }
 
     function getNrOfCharts() {
         return charts.pairs.length;
+    }
+
+    function toggleFullscreenChart(elementId) {
+        let box = document.getElementById(elementId);
+
+        if(box.classList.contains("fullscreen")) {
+            box.classList.remove("fullscreen");
+        } else {
+            box.classList.add("fullscreen");
+        }
+
     }
 
     function initialiseUI() {
@@ -153,7 +159,13 @@
             setHeight(parseInt(boxHeightRange.value));
         }, true);
 
+        if(dark === "true") {
+            darken();
+        } else {
+            lighten();
+        }
         setTitle();
+        setChartCount();
     }
 
     function getQueryVariable(variable) {

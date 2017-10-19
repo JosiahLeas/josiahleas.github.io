@@ -57,11 +57,45 @@
     width: calc(100% - 18px);
   }
 
+  .fullscreen {
+    position: absolute;
+    height: calc(100% - 36px) !important;
+    width: calc(100% - 18px) !important;
+    z-index: 10;
+  }
+
+  .box-button-container {
+    position: absolute;
+    top: 9px;
+    right: 40px;
+    z-index: 5;
+  }
+
+  .button-fullscreen {
+    display: block;
+    cursor: default;
+    padding: 3px 6px;
+    border: 1px solid #dadde0;
+    background: #fff;
+    height: 14px;
+    color: #555;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .button.toggled {
+    border: 3px solid #3bb3e4;
+  }
+
+  .super-small-icon {
+    font-size: 12px;
+  }
+
   .box-height-half {
-    height: calc(50% - 18px);
+    height: calc(50% - 16px);
   }
   .box-height-third {
-    height: calc(33% - 18px);
+    height: calc(100% / 3 - 11px);
   }
 
   .box-width-half {
@@ -71,11 +105,15 @@
 
   .box-width-third {
     float: left;
-    width: 33%;
+    width: calc(100% / 3);
   }
 
   .number-label {
     margin-right: 4px;
+  }
+
+  .box-size {
+    width: 2em;
   }
 
   .right {
@@ -86,23 +124,23 @@
     background-color: #333;
   }
 
-  .btn {
+  .tv-btn {
     margin-left: 8px;
     padding: 0.5em 2em;
     vertical-align: middle;
   }
 
-  .btn:hover {
+  .tv-btn:hover {
     background-color: #eee;
     color: black;
   }
 
-  .btn .dark {
+  .tv-btn .dark {
     background-color: #eee;
     color: #333;
   }
 
-  .btn .dark:hover {
+  .tv-btn .dark:hover {
     background-color: #ddd;
     color: black;
   }

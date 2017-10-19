@@ -31,9 +31,10 @@
 
 <body>
   <div class="topnav" id="top-nav">
-    <div class="label"><label for="box-width" class="number-label">Width</label><input id="box-width" title="Adjusts the chart width" type="number" name="box-width" min="1" max="3" /></div>
-    <div class="label"><label for="box-width" class="number-label">Height</label><input id="box-height" title="Adjust the chart height" type="number" name="box-height" min="1" max="3" /></div>
-    <button id="theme-toggle" class="btn" onclick="change_theme()">Light theme</button>
+    <div class="label"><label for="box-width" class="number-label">Width</label><input id="box-width" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="3" /></div>
+    <div class="label"><label for="box-width" class="number-label">Height</label><input id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="3" /></div>
+    <button id="theme-toggle" onclick="change_theme()">Light theme</button>
+    <span id="chart-count">Chart count</span>
     <a class="right" href="#open-modal">Donate</a>
     <div id="open-modal" class="modal-window">
       <div>
@@ -70,40 +71,40 @@
       let boxElement = document.createElement("div");
       boxElement.setAttribute("id", "box" + i);
       boxElement.setAttribute("class", "box");
-      let topButtonContainerElement = document.createElement("div");
-      topButtonContainerElement.setAttribute("class", "top-button-container");
-      let fullScreenButtonElement = document.createElement("a");
-      fullScreenButtonElement.setAttribute("class", "button fullscreen");
-      fullScreenButtonElement.setAttribute("onclick", "change_table(1)");
-      let italicsElement = document.createElement("i");
-      italicsElement.setAttribute("class", "fa fa-expand");
-      italicsElement.setAttribute("aria-hidden", "true");
-      let chartContainerElement = document.createElement("div");
-      chartContainerElement.setAttribute("class", "inner");
-      fullScreenButtonElement.appendChild(italicsElement);
-      topButtonContainerElement.appendChild(fullScreenButtonElement);
-      boxElement.appendChild(topButtonContainerElement);
-      boxElement.appendChild(chartContainerElement);
       document.body.appendChild(boxElement);
+
       new TradingView.widget({
           "container_id": "box" + i,
           "autosize": true,
           "symbol": (charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"),
           "interval": "60",
           "timezone": "America/Chicago",
-          "theme": (dark === "true" ? "Light" : "Dark"),
+          "theme": (dark === "true" ? "Dark" : "Light"),
           "style": "1",
           "locale": "en",
-          "toolbar_bg": (dark === "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
+          "toolbar_bg": (dark === "true" ? "rgb(27, 32, 48)" : "rgb(227, 232, 248)"),
           "enable_publishing": false,
           "hide_top_toolbar": false,
           "hide_side_toolbar": false,
           "allow_symbol_change": true,
-          "show_popup_button": true,
-          "popup_width": "1000",
-          "popup_height": "650",
+          "show_popup_button": false,
           "hideideas": true
       });
+
+        let topButtonContainerElement = document.createElement("div");
+        topButtonContainerElement.setAttribute("class", "box-button-container");
+
+        let fullScreenButtonElement = document.createElement("a");
+        fullScreenButtonElement.setAttribute("class", "button-fullscreen");
+        fullScreenButtonElement.setAttribute("href", "#");
+        fullScreenButtonElement.addEventListener("click", toggleFullscreenChart.bind(null, "box"+i));
+
+        let italicsElement = document.createElement("i");
+        italicsElement.setAttribute("class", "fa fa-expand");
+
+        fullScreenButtonElement.appendChild(italicsElement);
+        topButtonContainerElement.appendChild(fullScreenButtonElement);
+        boxElement.appendChild(topButtonContainerElement);
     }
     initialiseUI();
   </script>

@@ -1,12 +1,7 @@
 .box {
     position: relative;
 }
-.top-button-container {
-    position: absolute;
-    top: 5px;
-    right: 45px;
-    z-index: 10000;
-}
+
 
 .button {
     display: block;
