@@ -50,19 +50,7 @@
         height = JSON.parse(height);
         for(let i = 0; i < charts.pairs.length; i++) {
             let element = document.getElementById("box" + i);
-            switch(height) {
-                case 2:
-                    element.classList.remove("box-height-third");
-                    element.classList.add("box-height-half");
-                    break;
-                case 3:
-                    element.classList.add("box-height-third");
-                    element.classList.remove("box-height-half");
-                    break;
-                default:
-                    element.classList.remove("box-height-third");
-                    element.classList.remove("box-height-half");
-            }
+            element.style.height = "calc((100% / " + (height) + ") - (" + (29/height) + "px)";
         }
         localStorage.setItem(STORAGE_HEIGHT, height);
         boxHeight = height;
@@ -71,19 +59,7 @@
     function setWidth(width) {
         for(let i = 0; i < charts.pairs.length; i++) {
             let element = document.getElementById("box" + i);
-            switch(width) {
-                case 2:
-                    element.classList.remove("box-width-third");
-                    element.classList.add("box-width-half");
-                    break;
-                case 3:
-                    element.classList.remove("box-width-half");
-                    element.classList.add("box-width-third");
-                    break;
-                default:
-                    element.classList.remove("box-width-third");
-                    element.classList.remove("box-width-half");
-            }
+            element.style.width = "calc(100% / " + (width) + ")";
         }
         localStorage.setItem(STORAGE_WIDTH, width);
         boxWidth = width;

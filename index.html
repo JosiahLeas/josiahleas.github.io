@@ -31,8 +31,8 @@
 
 <body>
   <div class="topnav" id="top-nav">
-    <div class="label"><label for="box-width" class="number-label">Width</label><input id="box-width" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="3" /></div>
-    <div class="label"><label for="box-width" class="number-label">Height</label><input id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="3" /></div>
+    <div class="label"><label for="box-width" class="number-label">Width</label><input id="box-width" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="9" /></div>
+    <div class="label"><label for="box-width" class="number-label">Height</label><input id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="9" /></div>
     <button id="theme-toggle" onclick="change_theme()">Light theme</button>
     <span id="chart-count">Chart count</span>
     <a class="right" href="#open-modal">Donate</a>
@@ -88,6 +88,7 @@
           "hide_side_toolbar": false,
           "allow_symbol_change": true,
           "show_popup_button": false,
+          "withdateranges": true,
           "hideideas": true
       });
 

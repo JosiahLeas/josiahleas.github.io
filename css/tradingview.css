@@ -53,14 +53,15 @@
 
   .box {
     box-sizing: border-box;
-    height: calc(100% - 36px);
-    width: calc(100% - 18px);
+    height: calc(100% - 40px);
+    width: 100%;
+    float: left;
   }
 
   .fullscreen {
     position: absolute;
     height: calc(100% - 36px) !important;
-    width: calc(100% - 18px) !important;
+    width: 100% !important;
     z-index: 10;
   }
 
@@ -89,23 +90,6 @@
 
   .super-small-icon {
     font-size: 12px;
-  }
-
-  .box-height-half {
-    height: calc(50% - 16px);
-  }
-  .box-height-third {
-    height: calc(100% / 3 - 11px);
-  }
-
-  .box-width-half {
-    float: left;
-    width: 50%;
-  }
-
-  .box-width-third {
-    float: left;
-    width: calc(100% / 3);
   }
 
   .number-label {
