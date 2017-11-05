@@ -4,7 +4,7 @@
     const STORAGE_HEIGHT = "table_height";
     let dark = null;
     try {
-        let dark = localStorage.getItem('theme-dark');
+        dark = localStorage.getItem('theme-dark');
     } catch(e) {
         //document.body.appendChild(document.createTextNode("This browser doesn't allow localStorage execution, and will therefore not work for you"));
     }
