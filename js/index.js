@@ -1,292 +1,198 @@
 // Pinche Medicado - Josiah Leas :: PrettySights.com
 // Stored Variables
-    var dark = localStorage.getItem('theme_bool');
-    var table = localStorage.getItem('table_bool');
-    var params = localStorage.getItem('param_string');
-    var a, b, c, d;
-    var expanded = false;
+    const STORAGE_WIDTH = "table_width";
+    const STORAGE_HEIGHT = "table_height";
+    let dark = null;
+    try {
+        dark = localStorage.getItem('theme-dark');
+    } catch(e) {
+        //document.body.appendChild(document.createTextNode("This browser doesn't allow localStorage execution, and will therefore not work for you"));
+    }
+    let boxWidth = '';
+    let boxHeight = '';
+    let charts = { pairs: [] };
 
-// Resume their theme
-    document.onreadystatechange = theme;
-
-// Theme
-    // Test and Set Theme from Storage
-    function theme() {
-        if (dark === "true" || dark === null) {
-            document.getElementById("theme_toggle")
-                .innerHTML = "Dark";
-            lighten();
-        }
-        else if (dark === "false") {
-            document.getElementById("theme_toggle")
-                .innerText = "Light";
-            darken();
-        }
-        else {
-            document.getElementById("theme_toggle")
-                .innerText = "Dark";
-            lighten();
-        }
+    if (dark === "false" || dark === null) {
+        dark = "false";
+    } else {
+        dark = "true";
     }
 
     // Change Theme Button
     function change_theme() {
         if (dark === "true") {
-            localStorage.setItem('theme_bool', "false");
-            dark = "false";
+            lighten();
+        } else {
+            darken();
         }
-        else {
-            localStorage.setItem('theme_bool', "true");
-            dark = "true";
-        }
-        theme();
         window.location.reload();
     }
 
     // Lighten Theme Action
     function lighten() {
-        console.log("lightening...");
-        document.getElementById("open-modal")
-            .style.background = "#ddd";
-        document.getElementById("myTopnav")
-            .style.background = "#ddd";
-        document.getElementById("theme_toggle")
-            .style.color = "#333";
-        document.getElementById("theme_toggle")
-            .style.background = "#eee";
-        document.getElementById("table_toggle")
-            .style.color = "#333";
-        document.getElementById("table_toggle")
-            .style.background = "#eee";
-
+        document.getElementById("theme-toggle").innerHTML = "Dark theme";
+        document.getElementById("open-modal").classList.remove("dark");
+        document.getElementById("box-height").classList.remove("dark");
+        document.getElementById("box-width").classList.remove("dark");
+        document.body.classList.remove("dark");
+        try {
+            localStorage.setItem('theme-dark', "false");
+        } catch(e) {
+        }
+        dark = "false";
     }
 
     // Darken Theme Action
     function darken() {
-        console.log("darkening...");
-        document.getElementById("open-modal")
-            .style.background = "#333";
-        document.getElementById("myTopnav")
-            .style.background = "#333";
-        document.getElementById("theme_toggle")
-            .style.color = "#ddd";
-        document.getElementById("theme_toggle")
-            .style.background = "#444";
-        document.getElementById("table_toggle")
-            .style.color = "#ddd";
-        document.getElementById("table_toggle")
-            .style.background = "#444";
+        document.getElementById("theme-toggle").innerHTML = "Light theme";
+        document.getElementById("open-modal").classList.add("dark");
+        document.getElementById("box-height").classList.add("dark");
+        document.getElementById("box-width").classList.add("dark");
+        document.body.classList.add("dark");
+        try {
+            localStorage.setItem('theme-dark', "true");
+        } catch(e) {
+        }
+        dark = "true";
+    }
+
+    function setHeight(height) {
+        // I avoid having to work with strings that are booleans, so....
+        try {
+            height = JSON.parse(height);
+        } catch(e) {}
+        for(let i = 0; i < charts.pairs.length; i++) {
+            let element = document.getElementById("box" + i);
+            element.style.height = "calc((100% / " + (height) + ") - (" + (29/height) + "px)";
+        }
+        try {
+            localStorage.setItem(STORAGE_HEIGHT, height);
+        } catch(e) {
+        }
+        boxHeight = height;
+    }
+
+    function setWidth(width) {
+        try {
+            width = JSON.parse(width);
+        } catch(e) {}
+        for(let i = 0; i < charts.pairs.length; i++) {
+            let element = document.getElementById("box" + i);
+            element.style.width = "calc(100% / " + (width) + ")";
+        }
+        try {
+            localStorage.setItem(STORAGE_WIDTH, width);
+        } catch(e) {}
+        boxWidth = width;
+    }
+
+    function setTitle() {
+        let title = getQueryVariable("title");
+        if(title !== false) {
+            document.title = decodeURI(title);
+        }
+    }
+
+    function setChartCount() {
+        document.getElementById("chart-count").innerHTML = charts.pairs.length + " charts";
+    }
+
+    function setChartsByParameters(url) {
+        url = window.location.href;
+        let expression = /[?&]chart(=([^&#]*)|&|#|$)/g;
+        let match;
+        let i = 0;
+
+        while ((match = expression.exec(url)) !== null) {
+            charts.pairs.push(match[2].replace(/\+/g, " "));
+            i++;
+        }
+        // Since we do global matching on the url, we need to keep track of whether
+        // anything was found manually (otherwise expression.test would've taken
+        // care of it
+        if (i === 0) {
+            charts.pairs.push("bittrex:btcusdt");
+            charts.pairs.push("kraken:btcusd");
+            charts.pairs.push("okcoin:btcusd");
+            let urlPath = location.href + "?chart=bittrex:btcusdt&chart=kraken:btcusd&chart=okcoin:btcusd&title=BTC USD exchanges";
+            //Updates the URL location field in the browser
+            history.replaceState("something", "something", urlPath);
+        }
+
+        return charts;
+    }
+
+    function setCharts() {
+        charts = setChartsByParameters();
+    }
+
+    function getNrOfCharts() {
+        return charts.pairs.length;
+    }
+
+    function toggleFullscreenChart(elementId) {
+        let box = document.getElementById(elementId);
+
+        if(box.classList.contains("fullscreen")) {
+            box.classList.remove("fullscreen");
+        } else {
+            box.classList.add("fullscreen");
+        }
 
     }
 
-// Grid Change
-    // Change Table Dimensions Button and Action Expanding and Resetting
-    function change_table(id) {
-        if(id === null && !expanded) {
-            if (table === "true" || table === null) {
-                document.getElementById("b3")
-                    .style.visibility = "collapse";
-                document.getElementById("b4")
-                    .style.visibility = "collapse";
-                document.getElementById("b3")
-                    .style.height = "0";
-                document.getElementById("b4")
-                    .style.height = "0";
-                document.getElementById("b1")
-                    .style.height = "calc(100% - 35px)";
-                document.getElementById("b2")
-                    .style.height = "calc(100% - 35px)";
+    function initialiseUI() {
+        boxWidth = 1;
+        try {
+            boxWidth = localStorage.getItem(STORAGE_WIDTH);
+        } catch(e) {
+        }
+        let boxWidthRange = document.getElementById("box-width");
+        if(boxWidth !== null) {
+            setWidth(parseInt(boxWidth));
+            boxWidthRange.value = boxWidth;
+        } else {
+            setWidth(parseInt(1));
+            boxWidthRange.value = 1;
+        }
+        boxWidthRange.addEventListener("change", function() {
+            setWidth(parseInt(boxWidthRange.value));
+        }, true);
 
-                document.getElementById("table_toggle")
-                    .innerHTML = "2x2";
-                table = "false";
+        boxHeight = 1;
+        try {
+            boxHeight = localStorage.getItem(STORAGE_HEIGHT);
+        } catch(e) {
+        }
+        let boxHeightRange = document.getElementById("box-height");
+        if(boxHeight !== null) {
+            setHeight(parseInt(boxHeight));
+            boxHeightRange.value = boxHeight;
+        } else {
+            setHeight(parseInt(1));
+            boxHeightRange.value = 1;
+        }
+        boxHeightRange.addEventListener("change", function() {
+            setHeight(parseInt(boxHeightRange.value));
+        }, true);
+
+        if(dark === "true") {
+            darken();
+        } else {
+            lighten();
+        }
+        setTitle();
+        setChartCount();
+    }
+
+    function getQueryVariable(variable) {
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        for (let i=0;i<vars.length;i++) {
+            let pair = vars[i].split("=");
+            if(pair[0] === variable){
+                return pair[1];
             }
-            else if (table === "false") {
-                document.getElementById("b3")
-                    .style.visibility = "visible";
-                document.getElementById("b4")
-                    .style.visibility = "visible";
-                document.getElementById("b3")
-                    .style.height = "calc(50% - 18px)";
-                document.getElementById("b4")
-                    .style.height = "calc(50% - 18px)";
-                document.getElementById("b1")
-                    .style.height = "calc(50% - 18px)";
-                document.getElementById("b2")
-                    .style.height = "calc(50% - 18px)";
-
-                document.getElementById("table_toggle")
-                    .innerHTML = "1x2";
-                table = "true";
-            }
-            else {
-                document.getElementById("b3")
-                    .style.visibility = "collapse";
-                document.getElementById("b4")
-                    .style.visibility = "collapse";
-                document.getElementById("b3")
-                    .style.height = "0";
-                document.getElementById("b4")
-                    .style.height = "0";
-                document.getElementById("b1")
-                    .style.height = "calc(100% - 72px)";
-                document.getElementById("b2")
-                    .style.height = "calc(100% - 72px)";
-
-                table = "false";
-            }
         }
-        else if (expanded) {
-            document.getElementById("b1")
-                .style.visibility = "visible";
-            document.getElementById("b2")
-                .style.visibility = "visible";
-            document.getElementById("b3")
-                .style.visibility = "visible";
-            document.getElementById("b4")
-                .style.visibility = "visible";
-
-            document.getElementById("b1")
-                .style.height = "calc(50% - 18px)"; 
-            document.getElementById("b2")
-                .style.height = "calc(50% - 18px)"; 
-            document.getElementById("b3")
-                .style.height = "calc(50% - 18px)"; 
-            document.getElementById("b4")
-                .style.height = "calc(50% - 18px)"; 
-
-            document.getElementById("b1")
-                .style.width = "50%";
-            document.getElementById("b2")
-                .style.width = "50%";
-            document.getElementById("b3")
-                .style.width = "50%";
-            document.getElementById("b4")
-                .style.width = "50%"; 
-                
-            expanded = false;
-        }
-        else if(id === 1) {
-            document.getElementById("b2")
-                .style.visibility = "collapse";
-            document.getElementById("b3")
-                .style.visibility = "collapse";
-            document.getElementById("b4")
-                .style.visibility = "collapse";
-            document.getElementById("b2")
-                .style.height = "0";        
-            document.getElementById("b3")
-                .style.height = "0";
-            document.getElementById("b4")
-                .style.height = "0";
-
-            document.getElementById("b1")
-                .style.height = "calc(100% - 35px)";
-            document.getElementById("b1")
-                .style.width = "100%";
-
-            expanded = true;
-        }
-        else if(id === 2) {
-            document.getElementById("b1")
-                .style.visibility = "collapse";
-            document.getElementById("b3")
-                .style.visibility = "collapse";
-            document.getElementById("b4")
-                .style.visibility = "collapse";
-            document.getElementById("b1")
-                .style.height = "0";        
-            document.getElementById("b3")
-                .style.height = "0";
-            document.getElementById("b4")
-                .style.height = "0";
-
-            document.getElementById("b2")
-                .style.height = "calc(100% - 35px)";
-            document.getElementById("b2")
-                .style.width = "100%";
-
-            expanded = true;
-        }
-        else if(id === 3) {
-            document.getElementById("b1")
-                .style.visibility = "collapse";
-            document.getElementById("b2")
-                .style.visibility = "collapse";
-            document.getElementById("b4")
-                .style.visibility = "collapse";
-            document.getElementById("b1")
-                .style.height = "0";        
-            document.getElementById("b2")
-                .style.height = "0";
-            document.getElementById("b4")
-                .style.height = "0";
-
-            document.getElementById("b3")
-                .style.height = "calc(100% - 35px)";
-            document.getElementById("b3")
-                .style.width = "100%";
-
-            expanded = true;
-        }
-        else if(id === 4) {
-            document.getElementById("b1")
-                .style.visibility = "collapse";
-            document.getElementById("b2")
-                .style.visibility = "collapse";
-            document.getElementById("b3")
-                .style.visibility = "collapse";
-            document.getElementById("b1")
-                .style.height = "0";
-            document.getElementById("b2")
-                .style.height = "0";        
-            document.getElementById("b3")
-                .style.height = "0";
-
-            document.getElementById("b4")
-                .style.height = "calc(100% - 35px)";
-            document.getElementById("b4")
-                .style.width = "100%";
-
-            expanded = true;
-        }
+        return(false);
     }
-// URL Params
-    // Get url parameters 1, 2, 3, 4 via call
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-
-    function read(letter) {
-        switch(letter) {
-            case "a":
-                a = getParameterByName("a");
-                if(!a && params) params.split('_')[0];
-                return a;
-
-            case "b":
-                b = getParameterByName("b");
-                if(!b && params) params.split('_')[1];
-                return b;
-
-            case "c":
-                c = getParameterByName("c");
-                if(!c && params) params.split('_')[2];
-                return c;
-
-            case "d":
-                d = getParameterByName("d");
-                if(!d && params) params.split('_')[3];
-                return d;
-            case "z":
-                z = getParameterByName("z");
-                break;
-        }
-    }
-

@@ -10,7 +10,9 @@
   
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   <link href="css/styles.css" rel="stylesheet">
-  <link href="css/tradingview.css" rel="stylesheet">
+  <script>
+      document.write('<link href="css/tradingview.css?r='+ (new Date).getTime() +'" rel="stylesheet" type="text/css" />');
+  </script>
 
   <!-- Global Site Tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></script>
@@ -28,14 +30,12 @@
 </head>
 
 <body>
-  <div class="topnav" id="myTopnav">
-    <div class="container">
-      <div class="interior">
-        <a id="table_toggle" onclick="change_table(null)" href="javascript:void(0);">1x2</a>
-        <a class="btn" style="float: right;" href="#open-modal">Donate</a>
-        <a id="theme_toggle" style="float: left;" onclick="change_theme()" href="javascript:void(0);">Light</a>
-      </div>
-    </div>
+  <div class="topnav" id="top-nav">
+    <div class="label"><label for="box-width" class="number-label">Width</label><input id="box-width" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="9" /></div>
+    <div class="label"><label for="box-width" class="number-label">Height</label><input id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="9" /></div>
+    <button id="theme-toggle" onclick="change_theme()">Light theme</button>
+    <span id="chart-count">Chart count</span>
+    <a class="right" href="#open-modal">Donate</a>
     <div id="open-modal" class="modal-window">
       <div>
         <a href="#modal-close" title="Close" class="modal-close">Close</a>
@@ -64,101 +64,50 @@
 
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
   </div>
-  <div class="box" id="b1">
-    <div class="top-button-container">
-      <a class="button fullscreen" onclick="change_table(1)"><i class="fa fa-expand" aria-hidden="true"></i></a>
-    </div>
-    <div id="inner1">
-      <script type="text/javascript">
+
+  <script>
+    setCharts();
+    for(let i = 0; i < getNrOfCharts(); i++) {
+      let boxElement = document.createElement("div");
+      boxElement.setAttribute("id", "box" + i);
+      boxElement.setAttribute("class", "box");
+      document.body.appendChild(boxElement);
+
       new TradingView.widget({
-        "autosize": true,
-        "symbol": (read("a") != null ? a : "COINBASE:BTCUSD"),
-        "interval": "60",
-        "timezone": "America/Chicago",
-        "theme": (dark == "true" ? "Light" : "Dark"),
-        "style": "1",
-        "locale": "en",
-        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
-        "enable_publishing": false,
-        "hide_top_toolbar": false,
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "hideideas": true
+          "container_id": "box" + i,
+          "autosize": true,
+          "symbol": (charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"),
+          "interval": "60",
+          "timezone": "America/Chicago",
+          "theme": (dark === "true" ? "Dark" : "Light"),
+          "style": "1",
+          "locale": "en",
+          "toolbar_bg": (dark === "true" ? "rgb(27, 32, 48)" : "rgb(227, 232, 248)"),
+          "enable_publishing": false,
+          "hide_top_toolbar": false,
+          "hide_side_toolbar": false,
+          "allow_symbol_change": true,
+          "show_popup_button": false,
+          "withdateranges": true,
+          "hideideas": true
       });
-    </script>
-    </div>
-  </div>
-  <div class="box" id="b2">
-    <div class="top-button-container">
-      <a class="button fullscreen" onclick="change_table(2)"><i class="fa fa-expand" aria-hidden="true"></i></a>
-    </div>
-    <div id="inner2">
-      <script type="text/javascript">
-      new TradingView.widget({
-        "autosize": true,
-        "symbol": (read("b") != null ? b : "COINBASE:ETHUSD"),
-        "interval": "60",
-        "timezone": "America/Chicago",
-        "theme": (dark == "true" ? "Light" : "Dark"),
-        "style": "1",
-        "locale": "en",
-        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
-        "enable_publishing": false,
-        "hide_top_toolbar": false,
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "hideideas": true
-      });
-    </script>
-    </div>
-  </div>
-  <div class="box" id="b3">
-    <div class="top-button-container">
-      <a class="button fullscreen" onclick="change_table(3)"><i class="fa fa-expand" aria-hidden="true"></i></a>
-    </div>
-    <div id="inner3">
-      <script type="text/javascript">
-      new TradingView.widget({
-        "autosize": true,
-        "symbol": (read("c") != null ? c : "COINBASE:LTCUSD"),
-        "interval": "60",
-        "timezone": "America/Chicago",
-        "theme": (dark == "true" ? "Light" : "Dark"),
-        "style": "1",
-        "locale": "en",
-        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
-        "enable_publishing": false,
-        "hide_top_toolbar": false,
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "hideideas": true
-      });
-    </script>
-    </div>  
-  </div>
-  <div class="box" id="b4">
-    <div class="top-button-container">
-      <a class="button fullscreen" onclick="change_table(4)"><i class="fa fa-expand" aria-hidden="true"></i></a>
-    </div>
-    <div id="inner4">
-      <script type="text/javascript">
-      new TradingView.widget({
-        "autosize": true,
-        "symbol": (read("d") != null ? d : "BITTREX:OMGUSDT"),
-        "interval": "60",
-        "timezone": "America/Chicago",
-        "theme": (dark == "true" ? "Light" : "Dark"),
-        "style": "1",
-        "locale": "en",
-        "toolbar_bg": (dark == "true" ? "rgb(227, 232, 248)" : "rgb(27, 32, 48)"),
-        "enable_publishing": false,
-        "hide_top_toolbar": false,
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "hideideas": true
-      });
-    </script>
-    </div>
-  </div>  
+
+        let topButtonContainerElement = document.createElement("div");
+        topButtonContainerElement.setAttribute("class", "box-button-container");
+
+        let fullScreenButtonElement = document.createElement("a");
+        fullScreenButtonElement.setAttribute("class", "button-fullscreen");
+        fullScreenButtonElement.setAttribute("href", "#");
+        fullScreenButtonElement.addEventListener("click", toggleFullscreenChart.bind(null, "box"+i));
+
+        let italicsElement = document.createElement("i");
+        italicsElement.setAttribute("class", "fa fa-expand");
+
+        fullScreenButtonElement.appendChild(italicsElement);
+        topButtonContainerElement.appendChild(fullScreenButtonElement);
+        boxElement.appendChild(topButtonContainerElement);
+    }
+    initialiseUI();
+  </script>
 </body>
 </html>
