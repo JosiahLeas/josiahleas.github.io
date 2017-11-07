@@ -1,5 +1,5 @@
 /* Setup */
-  body, html {
+  body, html, #nocharts{
     padding: 0;
     margin: 0;
     height: 100%;
@@ -74,7 +74,7 @@
   .button-fullscreen {
     display: block;
     cursor: default;
-    padding: 7px 14px;
+    padding: 7px 12px;
     border: 1px solid #dadde0;
     background: #fff;
     height: 14px;

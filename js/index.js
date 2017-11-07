@@ -49,6 +49,14 @@
         setTitle();
         setChartCount();
     }
+// HTML called functions
+    function setCharts() {
+        charts = setChartsByParameters();
+        if (charts.pairs.length > 0) document.getElementById("nocharts").style.display = "none";
+    }
+    function getNrOfCharts() {
+        return charts.pairs.length;
+    }
 
 // Functions
 
@@ -150,15 +158,6 @@
             i++;
         }
         return charts;
-    }
-
-    function setCharts() {
-        charts = setChartsByParameters();
-
-    }
-
-    function getNrOfCharts() {
-        return charts.pairs.length;
     }
 
     // On_Off Fullscreen Button
