@@ -13,6 +13,45 @@
         dark = "true";
     }
 
+// Startup
+    function initialiseUI() {
+        boxWidth = localStorage.getItem(STORAGE_WIDTH);
+        let boxWidthRange = document.getElementById("box-width");
+        if(boxWidth !== null) {
+            setWidth(parseInt(boxWidth));
+            boxWidthRange.value = boxWidth;
+        } else {
+            setWidth(parseInt(1));
+            boxWidthRange.value = 1;
+        }
+        boxWidthRange.addEventListener("change", function() {
+            setWidth(parseInt(boxWidthRange.value));
+        }, true);
+
+        boxHeight = localStorage.getItem(STORAGE_HEIGHT);
+        let boxHeightRange = document.getElementById("box-height");
+        if(boxHeight !== null) {
+            setHeight(parseInt(boxHeight));
+            boxHeightRange.value = boxHeight;
+        } else {
+            setHeight(parseInt(1));
+            boxHeightRange.value = 1;
+        }
+        boxHeightRange.addEventListener("change", function() {
+            setHeight(parseInt(boxHeightRange.value));
+        }, true);
+
+        if(dark === "true") {
+            darken();
+        } else {
+            lighten();
+        }
+        setTitle();
+        setChartCount();
+    }
+
+// Functions
+
     // Change Theme Button
     function change_theme() {
         if (dark === "true") {
@@ -47,6 +86,7 @@
 
     function setHeight(height) {
         // I avoid having to work with strings that are booleans, so....
+        // Works for me great job btw # p.m.
         height = JSON.parse(height);
         for(let i = 0; i < charts.pairs.length; i++) {
             let element = document.getElementById("box" + i);
@@ -121,6 +161,7 @@
         return charts.pairs.length;
     }
 
+    // On_Off Fullscreen Button
     function toggleFullscreenChart(elementId) {
         let box = document.getElementById(elementId);
 
@@ -130,42 +171,6 @@
             box.classList.add("fullscreen");
         }
 
-    }
-
-    function initialiseUI() {
-        boxWidth = localStorage.getItem(STORAGE_WIDTH);
-        let boxWidthRange = document.getElementById("box-width");
-        if(boxWidth !== null) {
-            setWidth(parseInt(boxWidth));
-            boxWidthRange.value = boxWidth;
-        } else {
-            setWidth(parseInt(1));
-            boxWidthRange.value = 1;
-        }
-        boxWidthRange.addEventListener("change", function() {
-            setWidth(parseInt(boxWidthRange.value));
-        }, true);
-
-        boxHeight = localStorage.getItem(STORAGE_HEIGHT);
-        let boxHeightRange = document.getElementById("box-height");
-        if(boxHeight !== null) {
-            setHeight(parseInt(boxHeight));
-            boxHeightRange.value = boxHeight;
-        } else {
-            setHeight(parseInt(1));
-            boxHeightRange.value = 1;
-        }
-        boxHeightRange.addEventListener("change", function() {
-            setHeight(parseInt(boxHeightRange.value));
-        }, true);
-
-        if(dark === "true") {
-            darken();
-        } else {
-            lighten();
-        }
-        setTitle();
-        setChartCount();
     }
 
     function getQueryVariable(variable) {

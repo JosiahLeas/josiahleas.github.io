@@ -66,15 +66,15 @@
 
   .box-button-container {
     position: absolute;
-    top: 9px;
-    right: 40px;
+    top: 6px;
+    right: 44px;
     z-index: 5;
   }
 
   .button-fullscreen {
     display: block;
     cursor: default;
-    padding: 3px 6px;
+    padding: 7px 14px;
     border: 1px solid #dadde0;
     background: #fff;
     height: 14px;
