@@ -122,24 +122,26 @@
     }
 
     function setWidth(width) {
-        for(let i = 0; i < charts.pairs.length; i++) {
-            let element = document.getElementById("box" + i);
-            switch(width) {
-                case 2:
-                    element.classList.remove("box-width-third");
-                    element.classList.add("box-width-half");
-                    break;
-                case 3:
-                    element.classList.remove("box-width-half");
-                    element.classList.add("box-width-third");
-                    break;
-                default:
-                    element.classList.remove("box-width-third");
-                    element.classList.remove("box-width-half");
+        if(charts.pairs.length > 0) {
+            for(let i = 0; i < charts.pairs.length; i++) {
+                let element = document.getElementById("box" + i);
+                switch(width) {
+                    case 2:
+                        element.classList.remove("box-width-third");
+                        element.classList.add("box-width-half");
+                        break;
+                    case 3:
+                        element.classList.remove("box-width-half");
+                        element.classList.add("box-width-third");
+                        break;
+                    default:
+                        element.classList.remove("box-width-third");
+                        element.classList.remove("box-width-half");
+                }
             }
-        }
-        localStorage.setItem(STORAGE_WIDTH, width);
-        boxWidth = width;
+            localStorage.setItem(STORAGE_WIDTH, width);
+            boxWidth = width;
+            }
     }
 
     function setTitle() {
