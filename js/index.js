@@ -5,7 +5,7 @@
     let dark = localStorage.getItem('theme-dark');
     let boxWidth = '';
     let boxHeight = '';
-    let charts = { pairs: [] };
+    var charts = { pairs: [] };
 
     if (dark === "false" || dark === null) {
         dark = "false";
