@@ -21,8 +21,8 @@
             setWidth(parseInt(boxWidth));
             boxWidthRange.value = boxWidth;
         } else {
-            setWidth(parseInt(1));
-            boxWidthRange.value = 1;
+            setWidth(parseInt(2));
+            boxWidthRange.value = 2;
         }
         boxWidthRange.addEventListener("change", function() {
             setWidth(parseInt(boxWidthRange.value));
@@ -34,8 +34,8 @@
             setHeight(parseInt(boxHeight));
             boxHeightRange.value = boxHeight;
         } else {
-            setHeight(parseInt(1));
-            boxHeightRange.value = 1;
+            setHeight(parseInt(2));
+            boxHeightRange.value = 2;
         }
         boxHeightRange.addEventListener("change", function() {
             setHeight(parseInt(boxHeightRange.value));
