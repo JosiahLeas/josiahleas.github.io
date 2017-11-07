@@ -210,6 +210,7 @@
 /* NoCharts Mode */
   #nocharts h1 {
     font-size: 48px;
+	color: rgba(0, 0, 0, 0.48);
   }
   #nocharts h2 {
     color: #bbb;
@@ -218,6 +219,7 @@
   }
   #nocharts p {
     font-size: 20px;
+	color: rgba(0, 0, 0, 0.7)
   }
   #nocharts a {
     font-size: 28px;
