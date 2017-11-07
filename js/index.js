@@ -52,6 +52,7 @@
 // HTML called functions
     function setCharts() {
         charts = setChartsByParameters();
+        console.log("Charts ->",charts);
         if (charts.pairs.length > 0) {
             document.getElementById("nocharts").style.display = "none";
             document.getElementById("top-nav").style.display = "block";
