@@ -41,12 +41,12 @@
             setHeight(parseInt(boxHeightRange.value));
         }, true);
 
-        if(dark === "true") {
-            darken();
-        } else {
-            lighten();
-        }
-        setTitle();
+        // if(dark === "true") {
+        //     darken();
+        // } else {
+        //     lighten();
+        // }
+        // setTitle();
         setChartCount();
     }
 // HTML called functions
