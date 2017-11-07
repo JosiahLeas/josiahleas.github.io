@@ -54,7 +54,6 @@
   .box {
     box-sizing: border-box;
     height: calc(100% - 36px);
-    width: calc(100% - 18px);
   }
 
   .fullscreen {
