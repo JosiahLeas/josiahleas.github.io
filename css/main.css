@@ -213,11 +213,19 @@
     font-size: 48px;
   }
   #nocharts h2 {
-    color: #ccc;
+    color: #bbb;
+    font-weight: 500;
     font-size: 36px;
   }
   #nocharts p {
     font-size: 20px;
+  }
+  #nocharts a {
+    font-size: 28px;
+    padding: 12px 14px;
+    color: #595959;
+    background: #09f;
+    border: 1px solid #09f;
   }
 #inner1 {
   height: 100%;
