@@ -208,6 +208,17 @@
 
 
 
+/* NoCharts Mode */
+  #nocharts h1 {
+    font-size: 48px;
+  }
+  #nocharts h2 {
+    color: #ccc;
+    font-size: 36px;
+  }
+  #nocharts p {
+    font-size: 20px;
+  }
 #inner1 {
   height: 100%;
 }

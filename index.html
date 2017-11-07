@@ -30,8 +30,8 @@
   <script type="text/javascript" src="js/index.js"></script>
 </head>
 
-<body>
-  <div class="topnav" id="top-nav">
+<body style="background: #595959;">
+  <div class="topnav" id="top-nav" style="display: none;">
     <div class="label"><label for="box-width" class="number-label">Width</label><input id="box-width" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="3" /></div>
     <div class="label"><label for="box-width" class="number-label">Height</label><input id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="3" /></div>
     <button id="theme-toggle" onclick="change_theme()">Light theme</button>
@@ -59,8 +59,24 @@
     </div>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
   </div>
-  <div id="nocharts" style="background: blue;">
-      
+  <div id="nocharts" style="text-align:center;">
+    <br />
+    <br />
+    <h1>
+      Welcome to MultiCoinCharts
+    </h1>
+    <h2>
+      Add any charts you like.
+    </h2>
+    <p>
+      Change them in the chart widget or the url*
+    </p>
+    <h2>
+      Your favorite TradingView Charts
+    </h2>
+    <p>
+      With custom light and dark modes
+    </p>
   </div>
   <script>
     setCharts();

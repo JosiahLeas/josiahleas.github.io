@@ -52,7 +52,10 @@
 // HTML called functions
     function setCharts() {
         charts = setChartsByParameters();
-        if (charts.pairs.length > 0) document.getElementById("nocharts").style.display = "none";
+        if (charts.pairs.length > 0) {
+            document.getElementById("nocharts").style.display = "none";
+            document.getElementById("top-nav").style.display = "block";
+        }
     }
     function getNrOfCharts() {
         return charts.pairs.length;
