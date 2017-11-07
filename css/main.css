@@ -59,8 +59,8 @@
 
   .fullscreen {
     position: absolute;
-    height: calc(100% - 36px) !important;
-    width: calc(100% - 18px) !important;
+    height: calc(100% - 28px) !important;
+    width: 100% !important;
     z-index: 10;
   }
 
