@@ -57,6 +57,7 @@
             document.getElementById("nocharts").style.display = "none";
             document.getElementById("top-nav").style.display = "block";
         }
+        return charts;
     }
     function getNrOfCharts() {
         return charts.pairs.length;
