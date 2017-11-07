@@ -228,10 +228,11 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
     border-radius: 5px;
     color: #ecf0f1;
-	  text-decoration: none;
+    text-decoration: none;
+    transition: background-color .3s;
   }
-.btn:hover, .btn:focus {
-  background-color: #27ae60;
+#nocharts a:hover, #nocharts a:focus {
+  background-color: #06c;
 }  
 #inner1 {
   height: 100%;
