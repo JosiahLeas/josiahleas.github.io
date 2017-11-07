@@ -219,7 +219,7 @@
   }
   #nocharts p {
     font-size: 20px;
-	rgb(56, 175, 255)
+	color: rgb(56, 175, 255);
   }
   #nocharts a {
     font-size: 28px;
