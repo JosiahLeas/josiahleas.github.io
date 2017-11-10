@@ -53,7 +53,9 @@
 
   .box {
     box-sizing: border-box;
-    height: calc(100% - 36px);
+    height: calc(100% - 40px);
+    width: 100%;
+    float: left;
   }
 
   .fullscreen {
@@ -90,29 +92,12 @@
     font-size: 12px;
   }
 
-  .box-height-half {
-    height: calc(50% - 16px);
-  }
-  .box-height-third {
-    height: calc(100% / 3 - 11px);
-  }
-
-  .box-width-half {
-    float: left;
-    width: 50%;
-  }
-
-  .box-width-third {
-    float: left;
-    width: calc(100% / 3);
-  }
-
   .number-label {
     margin-right: 4px;
   }
 
   .box-size {
-    width: 2em;
+    width: 3em;
   }
 
   .right {

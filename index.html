@@ -32,8 +32,8 @@
 
 <body style="background: #595959;">
   <div class="topnav" id="top-nav" style="display: none;">
-    <div class="label"><label for="box-width" class="number-label">Width</label><input id="box-width" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="3" /></div>
-    <div class="label"><label for="box-width" class="number-label">Height</label><input id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="3" /></div>
+    <div class="label"><label for="box-width" class="number-label">Width</label><input id="box-width" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="10" /></div>
+    <div class="label"><label for="box-width" class="number-label">Height</label><input id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="10" /></div>
     <button id="theme-toggle" class="theme" onclick="change_theme()">Light theme</button>
     <span id="chart-count">Chart count</span>
     <a class="right" class="button" href="#open-modal">Donate</a>
@@ -95,7 +95,7 @@
           "symbol": (charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"),
           "interval": "60",
           "timezone": "America/Chicago",
-          "theme": (dark === "true" ? "Dark" : "Light"),
+          "theme": (dark === true ? "Dark" : "Light"),
           "style": "1",
           "locale": "en",
           "toolbar_bg": (dark === "true" ? "rgb(27, 32, 48)" : "rgb(227, 232, 248)"),

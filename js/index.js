@@ -2,20 +2,24 @@
 // Stored Variables
     const STORAGE_WIDTH = "table_width";
     const STORAGE_HEIGHT = "table_height";
-    let dark = localStorage.getItem('theme-dark');
+    let dark = null;
+    // Currently we need to read this on startup to give the charts the right theme
+    try {
+        dark = JSON.parse(localStorage.getItem("theme-dark")); // Let booleans be booleans
+        console.log(dark);
+    } catch(e) {
+        //document.body.appendChild(document.createTextNode("This browser doesn't allow localStorage execution, and will therefore not be a good experience for you"));
+    }
     let boxWidth = '';
     let boxHeight = '';
     var charts = { pairs: [] };
 
-    if (dark === "false" || dark === null) {
-        dark = "false";
-    } else {
-        dark = "true";
-    }
-
 // Startup
     function initialiseUI() {
-        boxWidth = localStorage.getItem(STORAGE_WIDTH);
+        boxWidth = 3; // Default width if we don't have anything in local storage
+        try {
+            boxWidth = localStorage.getItem(STORAGE_WIDTH); // Safari doesn't allow localstorage
+        } catch(e) {}
         let boxWidthRange = document.getElementById("box-width");
         if(boxWidth !== null) {
             setWidth(parseInt(boxWidth));
@@ -28,7 +32,10 @@
             setWidth(parseInt(boxWidthRange.value));
         }, true);
 
-        boxHeight = localStorage.getItem(STORAGE_HEIGHT);
+        boxHeight = 1; // Default height if we don't have anything in local storage
+        try {
+            boxHeight = localStorage.getItem(STORAGE_HEIGHT); // Safari doesn't allow localstorage
+        } catch(e) {}
         let boxHeightRange = document.getElementById("box-height");
         if(boxHeight !== null) {
             setHeight(parseInt(boxHeight));
@@ -41,18 +48,19 @@
             setHeight(parseInt(boxHeightRange.value));
         }, true);
 
-        // if(dark === "true") {
-        //     darken();
-        // } else {
-        //     lighten();
-        // }
-        // setTitle();
+        if (dark === null || !dark) {
+            lighten();
+        } else {
+            darken();
+        }
+
+        setTitle();
         setChartCount();
     }
 // HTML called functions
     function setCharts() {
         charts = setChartsByParameters();
-        console.log("Charts ->",charts);
+        //console.log("Charts ->",charts);
         if (charts.pairs.length > 0) {
             document.getElementById("nocharts").style.display = "none";
             document.getElementById("top-nav").style.display = "block";
@@ -67,7 +75,7 @@
 
     // Change Theme Button
     function change_theme() {
-        if (dark === "true") {
+        if (dark === true) {
             lighten();
         } else {
             darken();
@@ -82,8 +90,10 @@
         document.getElementById("box-height").classList.remove("dark");
         document.getElementById("box-width").classList.remove("dark");
         document.body.classList.remove("dark");
-        localStorage.setItem('theme-dark', "false");
-        dark = "false";
+        try {
+            localStorage.setItem("theme-dark", "false");
+        } catch(e) {}
+        dark = false;
     }
 
     // Darken Theme Action
@@ -93,55 +103,38 @@
         document.getElementById("box-height").classList.add("dark");
         document.getElementById("box-width").classList.add("dark");
         document.body.classList.add("dark");
-        localStorage.setItem('theme-dark', "true");
-        dark = "true";
+        try {
+            localStorage.setItem("theme-dark", "true");
+        } catch(e) {}
+        dark = true;
     }
 
     function setHeight(height) {
-        // I avoid having to work with strings that are booleans, so....
-        // Works for me great job btw # p.m.
-        height = JSON.parse(height);
+        try {
+            height = JSON.parse(height);
+        } catch(e) {}
         for(let i = 0; i < charts.pairs.length; i++) {
             let element = document.getElementById("box" + i);
-            switch(height) {
-                case 2:
-                    element.classList.remove("box-height-third");
-                    element.classList.add("box-height-half");
-                    break;
-                case 3:
-                    element.classList.add("box-height-third");
-                    element.classList.remove("box-height-half");
-                    break;
-                default:
-                    element.classList.remove("box-height-third");
-                    element.classList.remove("box-height-half");
-            }
+            element.style.height = "calc((100% / " + (height) + ") - (" + (29/height) + "px)";
         }
-        localStorage.setItem(STORAGE_HEIGHT, height);
+        try {
+            localStorage.setItem(STORAGE_HEIGHT, height);
+        } catch(e) {}
         boxHeight = height;
     }
 
     function setWidth(width) {
-        if(charts.pairs.length > 0) {
-            for(let i = 0; i < charts.pairs.length; i++) {
-                let element = document.getElementById("box" + i);
-                switch(width) {
-                    case 2:
-                        element.classList.remove("box-width-third");
-                        element.classList.add("box-width-half");
-                        break;
-                    case 3:
-                        element.classList.remove("box-width-half");
-                        element.classList.add("box-width-third");
-                        break;
-                    default:
-                        element.classList.remove("box-width-third");
-                        element.classList.remove("box-width-half");
-                }
-            }
+        try {
+            width = JSON.parse(width);
+        } catch(e) {}
+        for(let i = 0; i < charts.pairs.length; i++) {
+            let element = document.getElementById("box" + i);
+            element.style.width = "calc(100% / " + (width) + ")";
+        }
+        try {
             localStorage.setItem(STORAGE_WIDTH, width);
-            boxWidth = width;
-            }
+        } catch(e) {}
+        boxWidth = width;
     }
 
     function setTitle() {
