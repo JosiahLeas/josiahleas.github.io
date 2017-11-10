@@ -21,7 +21,7 @@
 
 /* TopNav */
   .topnav {
-    padding: 5px;
+    padding: 3px;
   }
 
   .topnav a {
@@ -204,8 +204,29 @@
     color: #aaa;
   }
   
-
-
+a {
+	position:right;
+    margin: auto;
+	text-align: center;
+    color: #595959;
+    background: #09f;
+    border: 1px solid #09f;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    border-radius: 3px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background-color .3s;
+	width: 100px;
+  }
+.theme
+{
+	position:right;
+    margin: auto;
+	text-align: center;
+    border-radius: 3px;
+    text-decoration: none;
+	width: 100px;
+}
 
 /* NoCharts Mode */
   #nocharts h1 {
