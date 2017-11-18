@@ -1,128 +1,165 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta name="description" content="View multiple Crypto Coins TradingView graphs at once. Customize graphs or view full screen. Add custom Alt Coins. All for free. 1x1 all the way up to 10x10  one page charts." />
-  <meta name="keywords" content="Crypto, Altcoin, Ethereum, Bitcoin, TradingView, StockCharts, Charts, Candlestick Graph" />
-  <meta name="robots" content="index, follow">
-  <title>MCC - Crypto Charts</title>
-  <!-- TradingView, Free, Charts -->
-  
-  <link rel="shortcut icon" type="image/png" href="images/favicon.png">
-  <link href="css/styles.css" rel="stylesheet">
-  <link href="css/main.css" rel="stylesheet">
-  <!-- <script>
-      document.write('<link href="css/tradingview.css?r='+ (new Date).getTime() +'" rel="stylesheet" type="text/css" />');
-  </script> -->
+	<meta name="description" content="View multiple Crypto Coins TradingView graphs at once. Customize graphs or view full screen. Add custom Alt Coins. All for free. 1x1 all the way up to 10x10  one page charts." />
+	<meta name="keywords" content="Crypto, Altcoin, Ethereum, Bitcoin, TradingView, StockCharts, Charts, Candlestick Graph" />
+	<meta name="robots" content="index, follow">
+	<title>MCC - Crypto Charts</title>
+	
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/baloon.css" rel="stylesheet">
 
-  <!-- Global Site Tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments)};
-    gtag('js', new Date());
-  
-    gtag('config', 'UA-107348406-1');
-  </script>
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments)};
+		gtag('js', new Date());
+	
+		gtag('config', 'UA-107348406-1');
+	</script>
 
-  <script src="https://use.fontawesome.com/a4e3744178.js"></script>
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
+	<script src="https://use.fontawesome.com/a4e3744178.js"></script>
+	<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+	<script type="text/javascript" src="js/cryptocurrencies.js"></script>
+	<script type="text/javascript" src="js/coinigyexchanges.js"></script>
+	<script type="text/javascript" src="js/index.min.js"></script>
 </head>
 
 <body style="background: #595959;">
-  <div class="topnav" id="top-nav" style="display: none;">
-    <div class="label"><label for="box-width" class="number-label">Width</label><input id="box-width" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="10" /></div>
-    <div class="label"><label for="box-width" class="number-label">Height</label><input id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="10" /></div>
-    <button id="theme-toggle" class="theme" onclick="change_theme()">Light theme</button>
-    <span id="chart-count">Chart count</span>
-    <a class="right" class="button" href="#open-modal">Donate</a>
-    <div id="open-modal" class="modal-window">
-      <div>
-        <a href="#modal-close" title="Close" class="modal-close">Close</a>
-        <h1>Eth: </h1>
-        <h6>0xf75e3d6496b32b2896e42644cc2811c07065690f</h6>
-        <br>
-        <h1>Btc: </h1>
-        <h6>168DUnvPvWSR1JEHm4fxqvYFMub56zmyxm</h6>
-        <br>
-        <h1>Ltc: </h1> 
-        <h6>LZkWoYbPb3cCeXqQCsVYrCRZL76AZshpP5</h6>
-        <br>
-        <h1>leasj - </h1> 
-        <h6><a href="https://github.com/JosiahLeas/josiahleas.github.io" style="margin: 0; padding: 0;">Github/JosiahLeas/</a></h6>
-        <br>
-        <h1>forever.scg - </h1> 
-        <h6><a href="http://prettysights.com/" style="margin: 0; padding: 0;">http://PrettySights.com/</a></h6>
-        <br>
-      </div>
-    </div>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-  </div>
-  <div id="nocharts" style="text-align:center;">
-    <br />
-    <br />
-    <h1>
-      Welcome to MultiCoinCharts
-    </h1>
-    <h2>
-      Add crypto currencies from your favorite exchanges.
-    </h2>
-    <p>
-      Change them in the chart widget or the url
-    </p>
-    <h2>
-      Good ol' TradingView Charts
-    </h2>
-    <p>
-      With custom light and dark modes
-    </p>
-    <br />
-    <br />
-    <a href="?chart=coinbase:btcusd&amp;chart=coinbase:ethusd&amp;chart=coinbase:ltcusd&amp;chart=bittrex:omgusdt">Let's Go!</a>
-  </div>
-  <script type="text/javascript">
-    setCharts();
-    for(let i = 0; i < getNrOfCharts(); i++) {
-      let boxElement = document.createElement("div");
-      boxElement.setAttribute("id", "box" + i);
-      boxElement.setAttribute("class", "box");
-      document.body.appendChild(boxElement);
+	<div class="topnav" id="top-nav" style="display: none;">
+		<div class="label"><label for="box-width" class="number-label">Width</label><input id="box-width" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="10" /></div>
+		<div class="label"><label for="box-width" class="number-label">Height</label><input id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="10" /></div>
+		<button id="theme-toggle" class="theme" onclick="change_theme()">Light theme</button>
+		<span id="chart-count">Chart count</span>
+		<button id="addChart" class="theme" onclick="openSingleChartConfig()">Add Chart</button>
+		<button id="configChart" class="theme" onclick="openMultiChartConfig()">Multi-chart Config</button>
+		<button class="btn right" onclick="showModal()">Donate</button>
+		<!-- https://codepen.io/danielgriffiths/pen/AXGOym -->
+		<div class="modal">
+			<div class="modal__box">
+				<style>
+					
+				</style>
+				<input id="tab1" type="radio" name="tabs" checked>
+				<label for="tab1">Donate</label>
+				<input id="tab2" type="radio" name="tabs">
+				<label for="tab2">Change Log</label>
+				<input id="tab3" type="radio" name="tabs">
+				<label for="tab3">Contributors</label>
 
-      new TradingView.widget({
-          "container_id": "box" + i,
-          "autosize": true,
-          "symbol": (charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"),
-          "interval": "60",
-          "timezone": "America/Chicago",
-          "theme": (dark === true ? "Dark" : "Light"),
-          "style": "1",
-          "locale": "en",
-          "toolbar_bg": (dark === true ? "rgb(27, 32, 48)" : "rgb(227, 232, 248)"),
-          "enable_publishing": false,
-          "hide_top_toolbar": false,
-          "hide_side_toolbar": false,
-          "allow_symbol_change": true,
-          "show_popup_button": false,
-          "hideideas": true
-      });
+				<section id="content1">
+					<p>
+						<h1>ETH: </h1><h6>0xf75e3d6496b32b2896e42644cc2811c07065690f</h6><br>
+						<h1>BTC: </h1><h6>168DUnvPvWSR1JEHm4fxqvYFMub56zmyxm</h6><br>
+						<h1>LTC: </h1><h6>LZkWoYbPb3cCeXqQCsVYrCRZL76AZshpP5</h6><br>
+					</p>
+				</section>
+				<section id="content2">
+					<div style='max-height:200px;overflow-y:auto;text-align:left;padding:0 10px;'>
+						<p><b>2017.11.15 (qwerty):</b>
+							<ul><li>Your last list of pairs are retained when visiting main index.html page now (except Safari)</li>
+							<li>Coinigy button added, you can open the chart to Coinigy now</li>
+							<li>Reposition your chart by moving up/down in the Multi-chart Config</li></ul>
+						</p>
+						<p><b>2017.11.13 (qwerty):</b>
+							<ul><li>Main page now have an initial configurable chart pairs</li>
+							<li>Additional Charts Parameter (applies to all chart) can be configured now</li>
+							<li>Multi-chart Config added at top toolbar. User can configure multiple chart pairs in one go now</li></ul>
+						</p>
+						<p><b>2017.11.11 (qwerty):</b> Add Chart implemented to top toolbar, user can add a single chart at the end of the layout</p>
+						<p><b>2017.11.10 (shellstrom):</b> 10x10 grid available, you can have 100 charts on screen! </p>
+						<p><b>2017.09.26 (leasj):</b> Initial build</p>
+					</div>
+				</section>
+				<section id="content3">
+					<h1>leasj </h1><h6><a href="https://github.com/JosiahLeas/josiahleas.github.io" target="_blank" style="margin: 0; padding: 0;">Github/JosiahLeas</a></h6><br>
+					<h1>P-Medicado </h1><h6><a href="https://github.com/P-Medicado" target="_blank" style="margin: 0; padding: 0;">Github/P-Medicado</a></h6><br>
+					<h1>WhiteRavenTechnology </h1><h6><a href="https://github.com/WhiteRavenTechnology" target="_blank" style="margin: 0; padding: 0;">Github/WhiteRavenTechnology</a></h6><br>
+					<h1>shellstrom </h1><h6><a href="https://github.com/shellstrom" target="_blank" style="margin: 0; padding: 0;">Github/shellstrom</a></h6><br>
+					<h1>qwerty </h1><h6><a href="https://github.com/qwerty1891" target="_blank" style="margin: 0; padding: 0;">Github/qwerty1891</a></h6><br>
+					<h1>forever.scg </h1><h6><a href="http://prettysights.com/" target="_blank" style="margin: 0; padding: 0;">http://PrettySights.com/</a></h6><br>
+				</section>
+				<br><br>
+				<button onclick="showModal()">Close</button>
+			</div>
+		</div>
+	</div>
+	<div style="text-align:center;display:block">
+		<div id="nocharts" class="divIntro" style="margin-bottom:20px;border-bottom:1px dashed #999">
+			<h1 style='color:#eee'>Welcome to MultiCoinCharts</h1>
+			<h2>Add crypto currencies from your favorite exchanges.</h2>
+			<p>Change them in the chart widget or the url or add them below</p>
+			<h2>Good ol' TradingView Charts</h2>
+			<p>With custom light and dark modes</p>
+		</div>
+		<div id="addMultiChart" style='width:100%;margin:auto;text-align:center' class="divIntro">
+			<div class="divPairsSetup">
+				<h3 style='color:#eee'>Add in your pairs below to get started (e.g: BITTREX:BTCUSDT):</h3>
+				<input id='pairsInput' type="text" placeholder="Press enter to add the pairs"/>
+				<div style='float:left;margin-top:2px;margin-right:10px'>
+					<a href="javascript:void(0)" class="inputTypeButton" onclick="moveUpOptions(document.getElementById('listPairs'));"><i class="fa fa-arrow-up"></i></a>
+					<br>
+					<a href="javascript:void(0)" class="inputTypeButton" onclick="moveDownOptions(document.getElementById('listPairs'));"><i class="fa fa-arrow-down"></i></a>	
+				</div>
+				<div style='float:left;width:80%'>
+					<select id="listPairs" multiple="multiple" rows=2></select>
+				</div>
+				<input id="btnRemovePairs" type="button" value="Remove Selected Pairs" onclick="btnRemovePairsClick()" />
+			</div>
+			<div class="divPairsSetup" style='margin-left:50px;'>
+				<h3 style='color:#eee'>Additional charts parameters:</h3>
+				<span style='color:#aaa;font-weight:bold'>Timezone</span>
+				<select name="timezone" id="timezone" style="width:150px" onclick="selectClickStoreToLocalStorage(this,STORAGE_TIMEZONE)"><option value="Etc/UTC">UTC</option><option value="exchange">Exchange</option><option value="Pacific/Honolulu">(UTC-10) Honolulu</option><option value="America/Vancouver">(UTC-8) Vancouver</option><option value="America/Los_Angeles">(UTC-8) Los Angeles</option><option value="America/Phoenix">(UTC-7) Phoenix</option><option value="America/El_Salvador">(UTC-6) San Salvador</option><option value="America/Mexico_City">(UTC-6) Mexico City</option><option value="America/Chicago">(UTC-6) Chicago</option><option value="America/Bogota">(UTC-5) Bogota</option><option value="America/Toronto">(UTC-5) Toronto</option><option value="America/New_York">(UTC-5) New York</option><option value="America/Caracas">(UTC-4) Caracas</option><option value="America/Argentina/Buenos_Aires">(UTC-3) Buenos Aires</option><option value="America/Sao_Paulo">(UTC-2) Sao Paulo</option><option value="Europe/London">(UTC) London</option><option value="Europe/Madrid">(UTC+1) Madrid</option><option value="Europe/Paris">(UTC+1) Paris</option><option value="Europe/Rome">(UTC+1) Rome</option><option value="Europe/Belgrade">(UTC+1) Belgrade</option><option value="Europe/Berlin">(UTC+1) Berlin</option><option value="Africa/Cairo">(UTC+2) Cairo</option><option value="Europe/Luxembourg">(UTC+1) Luxembourg</option><option value="Europe/Warsaw">(UTC+1) Warsaw</option><option value="Europe/Zurich">(UTC+1) Zurich</option><option value="Europe/Athens">(UTC+2) Athens</option><option value="Europe/Istanbul">(UTC+3) Istanbul</option><option value="Asia/Jerusalem">(UTC+2) Jerusalem</option><option value="Asia/Kuwait">(UTC+3) Kuwait</option><option value="Europe/Moscow">(UTC+3) Moscow</option><option value="Asia/Riyadh">(UTC+3) Riyadh</option><option value="Asia/Qatar">(UTC+3) Qatar</option><option value="Asia/Tehran">(UTC+3:30) Tehran</option><option value="Asia/Dubai">(UTC+4) Dubai</option><option value="Asia/Muscat">(UTC+4) Muscat</option><option value="Asia/Ashkhabad">(UTC+5) Ashkhabad</option><option value="Asia/Kolkata">(UTC+5:30) Kolkata</option><option value="Asia/Almaty">(UTC+6) Almaty</option><option value="Asia/Bangkok">(UTC+7) Bangkok</option><option value="Asia/Taipei">(UTC+8) Taipei</option><option value="Asia/Singapore" selected="selected">(UTC+8) Singapore</option><option value="Asia/Shanghai">(UTC+8) Shanghai</option><option value="Asia/Chongqing">(UTC+8) Chongqing</option><option value="Asia/Hong_Kong">(UTC+8) Hong Kong</option><option value="Asia/Seoul">(UTC+9) Seoul</option><option value="Asia/Tokyo">(UTC+9) Tokyo</option><option value="Australia/Brisbane">(UTC+10) Brisbane</option><option value="Australia/Adelaide">(UTC+10:30) Adelaide</option><option value="Australia/Sydney">(UTC+11) Sydney</option><option value="Pacific/Auckland">(UTC+13) New Zealand</option><option value="Pacific/Fakaofo">(UTC+13) Tokelau</option><option value="Pacific/Chatham">(UTC+13:45) Chatham Islands</option></select>
+				<br>
+				<span style='color:#aaa;font-weight:bold'>Default Interval</span>
+				<select name="interval" id="interval" style="width:60px" onclick="selectClickStoreToLocalStorage(this,STORAGE_INTERVAL)">
+					<option value="1">1m</option>
+					<option value="3">3m</option>
+					<option value="5">5m</option>
+					<option value="15">15m</option>
+					<option value="30">30m</option>
+					<option value="60" selected="selected">1h</option>
+					<option value="120">2h</option>
+					<option value="180">3h</option>
+					<option value="240">4h</option>
+					<option value="D">1d</option>
+					<option value="W">1w</option>
+				</select>
+				<br>
+				<span for="details" style='color:#aaa;font-weight:bold'>Show Details</span> <input id="details" type="checkbox" name="details" checked onclick="checkboxClickStoreToLocalStorage(this,STORAGE_SHOWDETAILS)">
+				<br>
+				<span for="withdateranges" style='color:#aaa;font-weight:bold'>Show Bottom Toolbar</span><input id="withdateranges" type="checkbox" name="withdateranges" checked onclick="checkboxClickStoreToLocalStorage(this,STORAGE_SHOWBOTTOMTOOLBAR)">
+				<br>
+				<span for="allow_symbol_change" style='color:#aaa;font-weight:bold'>Allow Symbol Change <span data-balloon-length="fit" data-balloon="Due to limitation of TradingView widget, if you tick this option you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup." data-balloon-pos="up" style="font-weight:bold;border-bottom:1px dotted #eee">(?)</span></span><input id="allow_symbol_change" type="checkbox" name="allow_symbol_change"  onclick="checkboxClickStoreToLocalStorage(this,STORAGE_ALLOWSYMBOLCHANGE)">
+				<br>
+				<span for="usesmallbutton" style='color:#aaa;font-weight:bold'>Use Small Buttons <span data-balloon-length="fit" data-balloon="Use smaller button size, applies to the following buttons: Open in Coinigy, Show in Fullscreen, Remove this Chart" data-balloon-pos="up" style="font-weight:bold;border-bottom:1px dotted #eee">(?)</span></span><input id="usesmallbutton" type="checkbox" name="usesmallbutton" onclick="useSmallButtonClick(this)">
+			</div>
+		</div>
+		<div id="divRefreshChart" class="divPairsSetup" style="display:none;margin-top:0px">
+			<input id="btnMultiRefreshCharts" type="button" value="Apply Changes" onclick="btnMultiRefreshChartsClick()" />
+		</div>
+		<div id="divLetsGo" class="divIntro" style='clear:both;margin-top:40px;'>
+			<a id='LetsGo' href="javascript:void(0)" onclick="letsGo()">Let's Go!</a>
+		</div>
+	</div>
+	<div id="addSingleChart" style="text-align:center;display:none">
+		<div class="divPairsSetup">
+			<h3 style='color:#eee'>Add in your pairs below to get started (e.g: BITTREX:BTCUSDT):</h3>
+			<input id='SinglepairsInput' type="text" placeholder="Press enter to add the pairs"/>
+		</div>
+	</div>
 
-        let topButtonContainerElement = document.createElement("div");
-        topButtonContainerElement.setAttribute("class", "box-button-container");
+	<script type="text/javascript">
+		document.addEventListener('contextmenu', event => event.preventDefault());
 
-        let fullScreenButtonElement = document.createElement("a");
-        fullScreenButtonElement.setAttribute("class", "button-fullscreen");
-        fullScreenButtonElement.setAttribute("href", "#");
-        fullScreenButtonElement.addEventListener("click", toggleFullscreenChart.bind(null, "box"+i));
-
-        let italicsElement = document.createElement("i");
-        italicsElement.setAttribute("class", "fa fa-expand");
-
-        fullScreenButtonElement.appendChild(italicsElement);
-        topButtonContainerElement.appendChild(fullScreenButtonElement);
-        boxElement.appendChild(topButtonContainerElement);
-    }
-    initialiseUI();
-  </script>
+		//https://gist.github.com/dciccale/4087856
+		var DOMReady = function(a,b,c){b=document,c='addEventListener';b[c]?b[c]('DOMContentLoaded',a):window.attachEvent('onload',a)}
+		DOMReady(function () {
+			initializePage();
+			startPage();
+		});
+	</script>
 </body>
 </html>
