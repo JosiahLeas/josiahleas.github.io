@@ -1,6 +1,6 @@
 // Pinche Medicado - Josiah Leas :: PrettySights.com
 // Stored Variables
-const DEBUGMODE = true; //change to false when deploying
+const DEBUGMODE = false; //change to false when deploying
 
 const STORAGE_USEDARKTHEME = "useDarkTheme";
 const STORAGE_WIDTH = "table_width";
