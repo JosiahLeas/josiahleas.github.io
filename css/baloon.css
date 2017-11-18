@@ -119,3 +119,7 @@
 	white-space: normal;
 	width: 400px;
 }
+[data-balloon][data-balloon-length='small']:after {
+	white-space: nowrap;
+	width: auto;
+}
