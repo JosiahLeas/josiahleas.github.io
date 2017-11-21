@@ -11,6 +11,7 @@ html,
 	font-size: 14px;
 	color: slategray;
 }
+body{background: #595959;}
 
 a {
 	color: inherit;

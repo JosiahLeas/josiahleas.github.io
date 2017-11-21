@@ -93,7 +93,6 @@ function initializePage() {
 	try {
 		selectOptionValue = localStorage.getItem(STORAGE_TIMEZONE);
 	} catch(e) {}
-	if (selectOptionValue == null || selectOptionValue == "") selectOptionValue = "Etc/UTC";
 	document.getElementById("timezone").value = selectOptionValue;
 	if (DEBUGMODE) console.log("\t"+STORAGE_TIMEZONE+": ", selectOptionValue);
 	selectClickStoreToLocalStorage(document.getElementById("timezone"), STORAGE_TIMEZONE);
@@ -102,7 +101,6 @@ function initializePage() {
 	try {
 		selectOptionValue = localStorage.getItem(STORAGE_INTERVAL);
 	} catch(e) {}
-	if (selectOptionValue == null || selectOptionValue == "") selectOptionValue = "60";
 	document.getElementById("interval").value = selectOptionValue;
 	if (DEBUGMODE) console.log("\t"+STORAGE_INTERVAL+": ", selectOptionValue);
 	selectClickStoreToLocalStorage(document.getElementById("interval"), STORAGE_INTERVAL);
@@ -263,47 +261,35 @@ function createChart(chartTicker) {
 	let topButtonContainerElement = document.createElement("div");
 	topButtonContainerElement.setAttribute("class", "box-button-container");
 
-	//Open in Coinigy button
-	let btnEl = document.createElement("a");
-	btnEl.innerHTML = "<img src='images/coinigy.png' class='"+ usesmallbutton2 + "'/>";
-	btnEl.setAttribute("href", "javascript:void(0)");
-	btnEl.setAttribute("title", "Open in Coinigy");
-	btnEl.setAttribute("data-balloon-length", "small");
-	btnEl.setAttribute("data-balloon", "Open in Coinigy");
-	btnEl.setAttribute("data-balloon-pos", "left");
-	btnEl.addEventListener("click", openCoinigy.bind(null,chartTicker));
+	let coinigyButtonElement = document.createElement("a");
+	coinigyButtonElement.innerHTML = "<img src='images/coinigy.png' alt='Open in Coinigy' class='"+ usesmallbutton2 + "'/>";
+	coinigyButtonElement.setAttribute("href", "javascript:void(0)");
+	coinigyButtonElement.setAttribute("title", "Open in Coinigy");
+	coinigyButtonElement.addEventListener("click", openCoinigy.bind(null,chartTicker));
 
-	topButtonContainerElement.appendChild(btnEl);
+	topButtonContainerElement.appendChild(coinigyButtonElement);
 
-	//Show in Fullscreen button
-	btnEl = document.createElement("a");
-	btnEl.setAttribute("class", usesmallbutton);
-	btnEl.setAttribute("href", "javascript:void(0)");
-	btnEl.setAttribute("title", "Show in Fullscreen");
-	btnEl.setAttribute("data-balloon-length", "small");
-	btnEl.setAttribute("data-balloon", "Show in Fullscreen");
-	btnEl.setAttribute("data-balloon-pos", "left");
-	btnEl.addEventListener("click", toggleFullscreenChart.bind(null, "box"+i));
+	let fullScreenButtonElement = document.createElement("a");
+	fullScreenButtonElement.setAttribute("class", usesmallbutton);
+	fullScreenButtonElement.setAttribute("href", "javascript:void(0)");
+	fullScreenButtonElement.setAttribute("title", "Show in Fullscreen");
+	fullScreenButtonElement.addEventListener("click", toggleFullscreenChart.bind(null, "box"+i));
 	let italicsElement = document.createElement("i");
 	italicsElement.setAttribute("class", "fa fa-expand");
-	btnEl.appendChild(italicsElement);
+	fullScreenButtonElement.appendChild(italicsElement);
 
-	topButtonContainerElement.appendChild(btnEl);
+	topButtonContainerElement.appendChild(fullScreenButtonElement);
 
-	//Remove this Chart button
-	btnEl = document.createElement("a");
-	btnEl.setAttribute("class", usesmallbutton);
-	btnEl.setAttribute("href", "javascript:void(0)");
-	btnEl.setAttribute("title", "Remove this Chart");
-	btnEl.setAttribute("data-balloon-length", "small");
-	btnEl.setAttribute("data-balloon", "Remove this Chart");
-	btnEl.setAttribute("data-balloon-pos", "left");
-	btnEl.addEventListener("click", removeChart.bind(null, boxElement, chartTicker));
+	let removeChartButtonElement = document.createElement("a");
+	removeChartButtonElement.setAttribute("class", usesmallbutton);
+	removeChartButtonElement.setAttribute("href", "javascript:void(0)");
+	removeChartButtonElement.setAttribute("title", "Remove this Chart");
+	removeChartButtonElement.addEventListener("click", removeChart.bind(null, boxElement, chartTicker));
 	italicsElement = document.createElement("i");
 	italicsElement.setAttribute("class", "fa fa-times");
-	btnEl.appendChild(italicsElement);
+	removeChartButtonElement.appendChild(italicsElement);
 
-	topButtonContainerElement.appendChild(btnEl);
+	topButtonContainerElement.appendChild(removeChartButtonElement);
 
 	boxElement.appendChild(topButtonContainerElement);
 }
@@ -483,25 +469,6 @@ function toggleFullscreenChart(elementId) {
 	} else {
 		box.classList.add("fullscreen");
 	}
-}
-
-function removeChart(boxElement, chartPairs) {
-	boxElement.parentNode.removeChild(boxElement);
-	if (DEBUGMODE) console.log("removeChart(): " + boxElement.id + " " + chartPairs);
-	
-	//find the ticker index and remove it from the array
-	charts.pairs.splice(charts.pairs.findIndex(x=>x==chartPairs), 1);
-	
-	//reset url
-	var urlStr = window.top.location.href.substr(0, top.location.href.lastIndexOf("?") + 1);
-	for(let i = 0; i < getNrOfCharts(); i++) {
-		if (i!=0) urlStr += "&";
-		urlStr += "chart=" + charts.pairs[i];
-	}
-	history.replaceState(null, document.title, urlStr);
-
-	if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + charts.pairs);
-	setChartCount();
 }
 
 function openCoinigy(chartTicker) {
@@ -713,4 +680,23 @@ function useSmallButtonClick(el) {
 	while (elementArray.length) {
 		elementArray[0].className = toClass2;
 	}
+}
+
+function removeChart(boxElement, chartPairs) {
+	boxElement.parentNode.removeChild(boxElement);
+	if (DEBUGMODE) console.log("removeChart(): " + boxElement.id + " " + chartPairs);
+	
+	//find the ticker index and remove it from the array
+	charts.pairs.splice(charts.pairs.findIndex(x=>x==chartPairs), 1);
+	
+	//reset url
+	var urlStr = window.top.location.href.substr(0, top.location.href.lastIndexOf("?") + 1);
+	for(let i = 0; i < getNrOfCharts(); i++) {
+		if (i!=0) urlStr += "&";
+		urlStr += "chart=" + charts.pairs[i];
+	}
+	history.replaceState(null, document.title, urlStr);
+
+	if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + charts.pairs);
+	setChartCount();
 }
