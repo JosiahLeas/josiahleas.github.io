@@ -89,7 +89,7 @@
         }
     }
 // NOcharts view js callable functions
-    function pairsInput(element) {
+    function inputPairs(element) {
         console.log(event,element);
         event.preventDefault();
         if (event.keyCode === 13) {
