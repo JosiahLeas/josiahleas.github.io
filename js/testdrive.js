@@ -538,21 +538,21 @@
 // MISC
     // bind button inputs
         function bindInputKeyUp() {
-            document.getElementById("pairsInput")
-            .addEventListener("keyup", function(event) {
-                event.preventDefault();
-                if (event.keyCode === 13) {
-                    chartTicker = this.value.toUpperCase();
-                    if (charts.pairs.indexOf(chartTicker)>=0) {
-                        alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-                    } else {
-                        listPairs = document.getElementById('listPairs');
-                        listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-                    }
-                    this.value = "";
-                    document.getElementById("pairsInput").focus();
-                }
-            });
+            // document.getElementById("pairsInput")
+            // .addEventListener("keyup", function(event) {
+            //     event.preventDefault();
+            //     if (event.keyCode === 13) {
+            //         chartTicker = this.value.toUpperCase();
+            //         if (charts.pairs.indexOf(chartTicker)>=0) {
+            //             alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
+            //         } else {
+            //             listPairs = document.getElementById('listPairs');
+            //             listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
+            //         }
+            //         this.value = "";
+            //         document.getElementById("pairsInput").focus();
+            //     }
+            // });
         
             document.getElementById("SinglepairsInput")
                 .addEventListener("keyup", function(event) {
