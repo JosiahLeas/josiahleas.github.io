@@ -90,7 +90,7 @@
     }
 // NOcharts view js callable functions
     function pairsInput(element) {
-        // console.log(event,element);
+        console.log(event,element);
         event.preventDefault();
         if (event.keyCode === 13) {
             chartTicker = element.value.toUpperCase();
@@ -365,6 +365,7 @@
             }
         }
         function removeOptions(elOption, removeSelectedOptions) {
+            console.log(elOption, removeSelectedOptions)
             var i = elOption.length;
             while (i--) {
                 var current = elOption[i];
