@@ -1,6 +1,7 @@
 // Pinche Medicado - Josiah Leas :: PrettySights.com
 // stored variables
     const DEBUGMODE = true; //change to false outside testdrive
+    const BOOL_ISSTORAGEUSABLE = true;
     const STORAGE_USEDARKTHEME = "useDarkTheme";
     const STORAGE_WIDTH = "table_width";
     const STORAGE_HEIGHT = "table_height";
@@ -10,6 +11,7 @@
     const STORAGE_INTERVAL = "interval";
     const STORAGE_SHOWDETAILS = "showDetails";
     const STORAGE_SHOWBOTTOMTOOLBAR = "showBottomToolbar";
+    const STORAGE_SHOWTOPTOOLBAR = "showTopToolbar";
     const STORAGE_ALLOWSYMBOLCHANGE = "allowSymbolChange";
     const STORAGE_USESMALLBUTTON = "useSmallButton";
     const STORAGE_CHARTSPAIRS = "charts.pairs";
@@ -21,9 +23,56 @@
     var charts = {
         pairs: []
     };
-
-
 // setup the UI / charts layout
+    function initPage() {
+        bindInputKeyUp();
+        setChartsByParameters();
+        loadChartParameters();
+        initCharts();
+    }
+    function bindInputKeyUp() {
+        document.getElementById("pairsInput")
+        .addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                chartTicker = this.value.toUpperCase();
+                if (charts.pairs.indexOf(chartTicker)>=0) {
+                    alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
+                } else {
+                    listPairs = document.getElementById('listPairs');
+                    listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
+                }
+                this.value = "";
+                document.getElementById("pairsInput").focus();
+            }
+        });
+    
+        document.getElementById("SinglepairsInput")
+            .addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    chartTicker = this.value.toUpperCase();
+                    var i = Math.round((new Date()).getTime() / 1000);
+                    if (charts.pairs.indexOf(chartTicker)>=0) {
+                        this.value = "";
+                        document.getElementById("SinglepairsInput").focus();
+                        alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
+                    } else {
+                        listPairs = document.getElementById('listPairs');
+                        listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
+                        charts.pairs.push(chartTicker);
+                        if (DEBUGMODE) console.log("addChart(): " + chartTicker);
+                        if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + charts.pairs);
+                        history.replaceState(null, document.title, window.top.location.href + "&chart=" + chartTicker);
+    
+                        createChart(chartTicker);
+                        setupUI();
+                        this.value = "";
+                        openSingleChartConfig();
+                    }
+                }
+        });
+    }
     function setupUI() {
         boxWidth = DEFAULT_LAYOUT_WIDTH; // Default width if we don't have anything in local storage
         try {
@@ -65,79 +114,18 @@
 
         setChartCount();
     }
-    function initializePage() {
-        bindInputKeyUp();
-    
-        if (DEBUGMODE) console.log("initializePage()");
-        
-        //get charts pairs in the url if any
-        setChartsByParameters();
-        try {
-            localStorage.setItem(STORAGE_CHARTSPAIRS, charts.pairs);
-        } catch(e) {}
-        if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": ", charts.pairs);
-        
-        // Currently we need to read this on startup to give the charts the right theme
-        try {
-            dark = JSON.parse(localStorage.getItem(STORAGE_USEDARKTHEME)); // Let booleans be booleans
-        } catch (e) {
-            //https://stackoverflow.com/a/11214467
-            //document.body.appendChild(document.createTextNode("This browser doesn't allow localStorage execution, and will therefore not be a good experience for you"));
+    function openSingleChartConfig() {
+        document.getElementById("addMultiChart").style.display = "none";
+        document.getElementById("divRefreshChart").style.display = "none";
+        var configDiv = document.getElementById("addSingleChart");
+        if (configDiv.style.display == "block") {
+            configDiv.style.display = "none";
+            return;
         }
-        if (DEBUGMODE) console.log("\t"+STORAGE_USEDARKTHEME+": " + dark);
-    
-        //get additional chart parameters value from localstorage
-        var selectOptionValue = "";
-        try {
-            selectOptionValue = localStorage.getItem(STORAGE_TIMEZONE);
-        } catch(e) {}
-        if (selectOptionValue == null || selectOptionValue == "") selectOptionValue = "Etc/UTC";
-        document.getElementById("timezone").value = selectOptionValue;
-        if (DEBUGMODE) console.log("\t"+STORAGE_TIMEZONE+": ", selectOptionValue);
-        selectClickStoreToLocalStorage(document.getElementById("timezone"), STORAGE_TIMEZONE);
-    
-        selectOptionValue = "";
-        try {
-            selectOptionValue = localStorage.getItem(STORAGE_INTERVAL);
-        } catch(e) {}
-        if (selectOptionValue == null || selectOptionValue == "") selectOptionValue = "60";
-        document.getElementById("interval").value = selectOptionValue;
-        if (DEBUGMODE) console.log("\t"+STORAGE_INTERVAL+": ", selectOptionValue);
-        selectClickStoreToLocalStorage(document.getElementById("interval"), STORAGE_INTERVAL);
-    
-        var checkboxState = false;
-        try {
-            checkboxState = localStorage.getItem(STORAGE_SHOWDETAILS);
-        } catch(e) {}
-        document.getElementById("details").checked = (checkboxState === 'true');
-        if (DEBUGMODE) console.log("\t"+STORAGE_SHOWDETAILS+": ", checkboxState);
-        checkboxClickStoreToLocalStorage(document.getElementById("details"), STORAGE_SHOWDETAILS);
-    
-        checkboxState = false;
-        try {
-            checkboxState = localStorage.getItem(STORAGE_SHOWBOTTOMTOOLBAR);
-        } catch(e) {}
-        document.getElementById("withdateranges").checked = (checkboxState === 'true');
-        if (DEBUGMODE) console.log("\t"+STORAGE_SHOWBOTTOMTOOLBAR+": ", checkboxState);
-        checkboxClickStoreToLocalStorage(document.getElementById("withdateranges"), STORAGE_SHOWBOTTOMTOOLBAR);
-        
-        checkboxState = false;
-        try {
-            checkboxState = localStorage.getItem(STORAGE_ALLOWSYMBOLCHANGE);
-        } catch(e) {}
-        document.getElementById("allow_symbol_change").checked = (checkboxState === 'true');
-        if (DEBUGMODE) console.log("\t"+STORAGE_ALLOWSYMBOLCHANGE+": ", checkboxState);
-        checkboxClickStoreToLocalStorage(document.getElementById("allow_symbol_change"), STORAGE_ALLOWSYMBOLCHANGE);
-        
-        checkboxState = false;
-        try {
-            checkboxState = localStorage.getItem(STORAGE_USESMALLBUTTON);
-        } catch(e) {}
-        document.getElementById("usesmallbutton").checked = (checkboxState === 'true');
-        if (DEBUGMODE) console.log("\t"+STORAGE_USESMALLBUTTON+": ", checkboxState);
-        checkboxClickStoreToLocalStorage(document.getElementById("usesmallbutton"), STORAGE_USESMALLBUTTON);
+        configDiv.style.display = "block";
+        document.getElementById("SinglepairsInput").focus();
     }
-    function startPage() {
+    function initCharts() {
         if (document.getElementById("nocharts").style.display == "block" || document.getElementById("nocharts").style.display == "") {
             //main index.html -> no chart parameters, read the charts.pairs, already setup during initializePage()
             var listPairs = document.getElementById('listPairs');
@@ -343,17 +331,6 @@
                 select.appendChild(opt);
             }
         }
-        function openSingleChartConfig() {
-            document.getElementById("addMultiChart").style.display = "none";
-            document.getElementById("divRefreshChart").style.display = "none";
-            var configDiv = document.getElementById("addSingleChart");
-            if (configDiv.style.display == "block") {
-                configDiv.style.display = "none";
-                return;
-            }
-            configDiv.style.display = "block";
-            document.getElementById("SinglepairsInput").focus();
-        }
         function change_theme() {
             if (dark === true) {
                     lighten();
@@ -397,16 +374,6 @@
             setupUI();
             history.replaceState(null, document.title, urlStr);
             document.getElementById("pairsInput").focus();
-        }
-        function checkboxClickStoreToLocalStorage(el, localStorageVar) {
-            try {
-                localStorage.setItem(localStorageVar, el.checked);
-            } catch(e) {}
-        }
-        function selectClickStoreToLocalStorage(el, localStorageVar) {
-            try {
-                localStorage.setItem(localStorageVar, el.options[el.selectedIndex].value);
-            } catch(e) {}
         }
         function useSmallButtonClick(el) {
             try {
@@ -519,7 +486,7 @@
             }
             return (false);
         }
-    // set charts bny parameters
+    // set charts by parameters
         function setChartsByParameters(url) {
             url = window.location.href;
             let expression = /[?&]chart(=([^&#]*)|&|#|$)/g;
@@ -532,11 +499,11 @@
             if (charts.pairs.length == 0) {
                 //if there are no chart= parameter in URL, attempt to read from previous session via localstorage
                 try {
-                    chartsPairsCSV = localStorage.getItem(STORAGE_CHARTSPAIRS); // Safari doesn't allow localstorage
+                    chartsPairsCSV = localStorage.getItem(STORAGE_CHARTSPAIRS); // iOS 10 Safari Private doesn't allow localstorage
                 } catch (e) {
                     //https://stackoverflow.com/questions/11214404/how-to-detect-if-browser-supports-html5-local-storage
                     //https://stackoverflow.com/a/11214467
-                    //document.body.appendChild(document.createTextNode("This browser doesn't allow localStorage execution, and will therefore not be a good experience for you"));
+                    document.body.appendChild(document.createTextNode("This browser doesn't is compatible (if you're in iPhone/iPad try non-private browsing). <3"));
                 }
                 var listPairs = document.getElementById('listPairs');
                 if (chartsPairsCSV != null && chartsPairsCSV != "") {
@@ -559,54 +526,53 @@
                 for (i = 0; i < elements.length; i++) {
                     elements[i].style.display = "none";
                 }
-                document.getElementById("top-nav").style.display = "block";
+                viewDIV("nocharts", false);
+                viewDIV("topnav", true);
             }
         }
-// MISC
-    // bind keys up 
-        function bindInputKeyUp() {
-            document.getElementById("pairsInput")
-            .addEventListener("keyup", function(event) {
-                event.preventDefault();
-                if (event.keyCode === 13) {
-                    chartTicker = this.value.toUpperCase();
-                    if (charts.pairs.indexOf(chartTicker)>=0) {
-                        alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-                    } else {
-                        listPairs = document.getElementById('listPairs');
-                        listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-                    }
-                    this.value = "";
-                    document.getElementById("pairsInput").focus();
-                }
-            });
-        
-            document.getElementById("SinglepairsInput")
-                .addEventListener("keyup", function(event) {
-                    event.preventDefault();
-                    if (event.keyCode === 13) {
-                        chartTicker = this.value.toUpperCase();
-                        var i = Math.round((new Date()).getTime() / 1000);
-                        if (charts.pairs.indexOf(chartTicker)>=0) {
-                            this.value = "";
-                            document.getElementById("SinglepairsInput").focus();
-                            alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-                        } else {
-                            listPairs = document.getElementById('listPairs');
-                            listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-                            charts.pairs.push(chartTicker);
-                            if (DEBUGMODE) console.log("addChart(): " + chartTicker);
-                            if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + charts.pairs);
-                            history.replaceState(null, document.title, window.top.location.href + "&chart=" + chartTicker);
-        
-                            createChart(chartTicker);
-                            setupUI();
-                            this.value = "";
-                            openSingleChartConfig();
-                        }
-                    }
-            });
+    // load chart parameters 
+        function loadChartParameters() {
+            storeMAN(true, STORAGE_CHARTSPAIRS, charts.pairs)
+            dark = JSON.parse(storeMAN(false, STORAGE_USEDARKTHEME));
+            usrSelct = storeMAN(false, STORAGE_TIMEZONE);
+            document.getElementById("timezone").value = (usrSelct) ? usrSelct : "Etc/UTC";
+            // TODO :: REDUCE FUNC
+            // selectClickStoreToLocalStorage(document.getElementById("timezone"), STORAGE_TIMEZONE);
+            usrSelct = storeMAN(false, STORAGE_INTERVAL);
+            document.getElementById("interval").value = (usrSelct) ? usrSelct : "60";
+            usrSelct = storeMAN(false, STORAGE_SHOWDETAILS);
+            document.getElementById("details").checked = (usrSelct === 'true');
+            // TODO :: ELIM
+            // checkboxClickStoreToLocalStorage(document.getElementById("details"), STORAGE_SHOWDETAILS);
+            usrSelct = storeMAN(false, STORAGE_SHOWBOTTOMTOOLBAR);
+            document.getElementById("withdateranges").checked = (usrSelct === 'true');
+            // TODO :: ELIM
+            // checkboxClickStoreToLocalStorage(document.getElementById("withdateranges"), STORAGE_SHOWBOTTOMTOOLBAR);
+            usrSelct = storeMAN(false, STORAGE_ALLOWSYMBOLCHANGE);
+            document.getElementById("allow_symbol_change").checked = (usrSelct === 'true');
+            // TODO :: ELIM
+            // checkboxClickStoreToLocalStorage(document.getElementById("allow_symbol_change"), STORAGE_ALLOWSYMBOLCHANGE);
+            usrSelct = storeMAN(false, STORAGE_USESMALLBUTTON);
+            document.getElementById("usesmallbutton").checked = (usrSelct === 'true');
+            // TODO :: ELIM
+            // checkboxClickStoreToLocalStorage(document.getElementById("usesmallbutton"), STORAGE_USESMALLBUTTON);
+            if(DEBUGMODE) {
+                doLOG(STORAGE_CHARTSPAIRS, charts.pairs);
+                doLOG(STORAGE_USEDARKTHEME, dark);
+                // // TODO :: REDUCE FUNC
+                // selectClickStoreToLocalStorage(document.getElementById("interval"), STORAGE_INTERVAL);
+                //     doLOG(STORAGE_TIMEZONE, storeMAN(true, STORAGE_INTERVAL, 
+                //             document.getElementById("interval")
+                //                 .options[document.getElementById("interval")].value));
+                doLOG(STORAGE_INTERVAL, );
+                doLOG(STORAGE_SHOWDETAILS, );
+                // if (DEBUGMODE) console.log("\t"+STORAGE_SHOWBOTTOMTOOLBAR+": ", checkboxState);
+                // if (DEBUGMODE) console.log("\t"+STORAGE_ALLOWSYMBOLCHANGE+": ", checkboxState);
+                // if (DEBUGMODE) console.log("\t"+STORAGE_USESMALLBUTTON+": ", checkboxState);
+            }
+    
         }
+// MISC
     // show modal 
         //http://freefrontend.com/css-modal-windows/
         //https://codepen.io/danielgriffiths/pen/AXGOym
@@ -698,3 +664,40 @@
 
             rebuildChartsPairsArray();
         }
+
+// NUEVAS :: NEW 
+    //
+        function viewDIV(viewStr = "", showView = true) {
+            showView = (showView) ? "block" : "none";
+            document.getElementById(viewStr)
+                .style.display = showView;
+        }
+        function storeMAN(add_sub = true, itemName = "", itemValu = "") {
+            if(BOOL_ISSTORAGEUSABLE)
+            {
+                try {
+                    if(add_sub) localStorage.setItem(itemName, itemValu);
+                    else return localStorage.getItem(itemName);
+                    return true;
+                } catch (error) {
+                    BOOL_ISSTORAGEUSABLE = false;
+                }
+            }
+            return false;
+        }
+        function doLOG(title = "", obj = "") {
+            console.log("\t"+title+": ", obj);
+        }
+// VIEJA Y MUERTO :: DEPRECATED
+    //
+        // function checkboxClickStoreToLocalStorage(el, localStorageVar) {
+        //     try {
+        //         localStorage.setItem(localStorageVar, el.checked);
+        //     } catch(e) {}
+        // }
+        // function selectClickStoreToLocalStorage(el, localStorageVar) {
+        //     try {
+        //         localStorage.setItem(localStorageVar, el.options[el.selectedIndex].value);
+        //     } catch(e) {}
+        // }
+        
