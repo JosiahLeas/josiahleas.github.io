@@ -6,7 +6,7 @@
 	/>
 	<META name="keywords" content="Crypto, Altcoin, Ethereum, Bitcoin, TradingView, StockCharts, Charts, Candlestick Graph" />
 	<META name="robots" content="index, follow">
-	<TITLE>MCC - Crypto Charts</TITLE>
+	<TITLE>Multi Coin Charts - Home</TITLE>
 
 	<LINK rel="shortcut icon" type="image/png" href="images/favicon.png">
 	<LINK href="css/main.css" rel="stylesheet">
@@ -35,10 +35,13 @@
             <H1><SPAN>MultiCoinCharts</SPAN></H1>
             <DIV class="info">
                 <DIV>
-                    <H4>Watch cryptos from your favorite exchanges.</H4>
-                    <H4>Change them in the chart widget or the url or add them below</H4>
-                    <H4>Good ol' TradingView Charts</H4>
-                    <H4>Discover more! (free, dark mode, open source)</H4>
+                    <H4>Watch crypto currencies</H4>
+                    <H4>Many exchanges</H4>
+                    <H4>Manage charts easily - How you want to</H4>
+                    <H4>Simple to Share &amp; Save</H4>
+                    <H4>Autoload past visits</H4>
+                    <H4>Built with TradingView Charts</H4>
+                    <H4>FREE, dark mode, OPEN SOURCE, always more!</H4>
                 </DIV>
                 <DIV>
                     &nbsp;
@@ -50,19 +53,24 @@
             <H2><SPAN>Use it!</SPAN></H2>
             <DIV id="addMultiChart" class="cornflower-box">
                 <DIV class="divPairsSetup">
-                    <H3 style='color:#eee'>Add in your pairs below to get started (e.g: BITTREX:BTCUSDT):</H3>
-                    <INPUT id='pairsInput' type="text" placeholder="Press enter to add the pairs" />
+                    <H3 style='color:#eee'>Type an exchange &amp; currency pair (e.g:&nbsp;BITTREX:BTCUSDT)</H3>
+                    <INPUT id='pairsInput' type="text" onkeyup="pairsInput(this)" placeholder="Press enter to add the pairs" />
                     <DIV style='float:left;margin-top:2px;margin-right:10px'>
-                        <a href="javascript:void(0)" class="inputTypeButton" onclick="moveUpOptions(document.getElementById('listPairs'));">
+                        <A href="javascript:void(0)" class="inputTypeButton" onclick="moveUpOptions(document.getElementById('listPairs'));">
                             <i class="fa fa-arrow-up"></i>
-                        </a>
+                        </A>
                         <BR>
-                        <a href="javascript:void(0)" class="inputTypeButton" onclick="moveDownOptions(document.getElementById('listPairs'));">
+                        <A href="javascript:void(0)" class="inputTypeButton" onclick="moveDownOptions(document.getElementById('listPairs'));">
                             <i class="fa fa-arrow-down"></i>
-                        </a>
+                        </A>
                     </DIV>
                     <DIV style='float:left;width:80%'>
-                        <SELECT id="listPairs" multiple="multiple" rows=2></SELECT>
+                        <SELECT id="listPairs" multiple="multiple" rows=2>
+                            <OPTION value="BITTREX:BTCUSDT">BITTREX:BTCUSDT</OPTION>
+                            <OPTION value="BITTREX:ETHUSDT">BITTREX:ETHUSDT</OPTION>
+                            <OPTION value="BITTREX:OMGBTC">BITTREX:OMGBTC</OPTION>
+                            <OPTION value="BITTREX:LTCBTC">BITTREX:LTCBTC</OPTION>
+                        </SELECT>
                     </DIV>
                     <input id="btnRemovePairs" type="button" value="Remove Selected Pairs" onclick="btnRemovePairsClick()" />
                 </DIV>
@@ -160,7 +168,7 @@
                 </DIV>
             </DIV>
 		    <DIV id="divLetsGo" style='height: 80px;'>
-                <a id='LetsGo' href="javascript:void(0)" onclick="letsGo()">Start Charting</a>
+                <A id='LetsGo' href="javascript:void(0)" onclick="letsGo()">Start Charting</A>
             </DIV>
         </DIV>
 		<!-- <DIV id="divRefreshChart" class="divPairsSetup" style="display:block;margin-top:0px">

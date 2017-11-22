@@ -89,15 +89,30 @@
         }
     }
 // NOcharts view js callable functions
+    function pairsInput(element) {
+        // console.log(event,element);
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            chartTicker = element.value.toUpperCase();
+            if (charts.pairs.indexOf(chartTicker)>=0) {
+                alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
+            } else {
+                listPairs = document.getElementById('listPairs');
+                listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
+            }
+            element.value = "";
+            document.getElementById("pairsInput").focus();
+        }
+    }
     function letsGo() {
         var listPairs = document.getElementById('listPairs');
         var options = listPairs.options;
         var optl = options.length;
         if (optl == 0) {
-            alert("Please input at least 1 pairs to get started");
+            alert("At least one exchange & chart pair are needed to get started.");
             return;
         }
-        var urlStr = "?"
+        var urlStr = "https://www.multicoincharts.com/testdrive.html?"
         for (var i=0; i<optl; i++) {
             if (i!=0) urlStr += "&";
             urlStr += "chart=" + options[i].value;
