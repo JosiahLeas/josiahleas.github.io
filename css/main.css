@@ -18,6 +18,7 @@
 		height: calc(100% - 28px) !important;
 		width: 100% !important;
 		z-index: 10;
+		transition: linear .2s;
 	}
 /* Themed */
 	body { background: #595959; }
@@ -417,7 +418,6 @@
 		height: calc(100% - 40px);
 		width: 100%;
 		float: left;
-		transition: linear .2s;
 	}
 	.box-button-container {
 		position: absolute;
