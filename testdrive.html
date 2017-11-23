@@ -42,9 +42,9 @@
 			 min="1" max="10" />
 		</DIV>
 		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">Light theme</BUTTON>
-		<SPAN id="chart-count">Chart count</SPAN>
+		<!-- <SPAN id="chart-count">Chart count</SPAN> -->
 		<!-- <BUTTON id="addChart" class="theme" onclick="openSingleChartConfig()">Add Chart</BUTTON> -->
-		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">Change Charts</BUTTON>
+		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">Edit Charts</BUTTON>
 		<BUTTON class="btn right" onclick="showModal()">Donate</BUTTON>
 		<!-- https://codepen.io/danielgriffiths/pen/AXGOym -->
 		<DIV class="modalConfig">
@@ -167,6 +167,7 @@
 					</DIV>
 					<DIV id="divLetsGo" style='height: 80px; text-align: center;'>
 						<A id='LetsGo' href="javascript:void(0)" onclick="letsGo()">Done</A>
+						<A href="javascript:void(0)" onclick="showMultiConfig()">Cancel</A>
 					</DIV>
 				</DIV>
 		</DIV>

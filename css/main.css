@@ -417,6 +417,7 @@
 		height: calc(100% - 40px);
 		width: 100%;
 		float: left;
+		transition: linear .2s;
 	}
 	.box-button-container {
 		position: absolute;

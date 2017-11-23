@@ -409,7 +409,7 @@
         }
     // set chart count
         function setChartCount() {
-            document.getElementById("chart-count").innerHTML = charts.pairs.length + " charts";
+            document.getElementById("configChart").innerHTML = "Edit Charts (" + charts.pairs.length + ")";
         }
     // get num of charts active
         function getNrOfCharts() {
