@@ -1,7 +1,6 @@
 // Pinche Medicado - Josiah Leas :: PrettySights.com
 // stored variables
     const DEBUGMODE = true; //change to false outside testdrive
-    const BOOL_ISSTORAGEUSABLE = true;
     const STORAGE_USEDARKTHEME = "useDarkTheme";
     const STORAGE_WIDTH = "table_width";
     const STORAGE_HEIGHT = "table_height";
@@ -20,6 +19,7 @@
     let gbl_dark = null;
     let gbl_boxWidth = '';
     let gbl_boxHeight = '';
+    var gbl_isStorageUsable = true;
 
     var charts = {
         pairs: []
@@ -677,14 +677,14 @@
                 .style.display = showView;
         }
         function storeMAN(add_sub = true, itemName = "", itemValu = "") {
-            if(BOOL_ISSTORAGEUSABLE)
+            if(gbl_isStorageUsable)
             {
                 try {
                     if(add_sub) localStorage.setItem(itemName, itemValu);
                     else return localStorage.getItem(itemName);
                     return true;
                 } catch (error) {
-                    BOOL_ISSTORAGEUSABLE = false;
+                    gbl_isStorageUsable = false;
                 }
             }
             return false;

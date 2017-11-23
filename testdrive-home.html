@@ -5,15 +5,17 @@
 	<META name="description" content="View multiple Crypto Coins TradingView graphs at once. Customize graphs or view full screen. Add custom Alt Coins. All for free. 1x1 all the way up to 10x10  one page charts." />
 	<META name="keywords" content="Crypto, Altcoin, Ethereum, Bitcoin, TradingView, StockCharts, Charts, Candlestick Graph" />
     <META name="robots" content="index, follow">
-    <META http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <META http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
 	<TITLE>Multi Coin Charts - Home</TITLE>
 
 	<LINK rel="shortcut icon" type="image/png" href="images/favicon.png">
 	<LINK href="css/main.css" rel="stylesheet">
 	<LINK href="css/baloon.css" rel="stylesheet">
 
-	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <!--[if !IE]><!--><SCRIPT src="js/testdrive.js"></SCRIPT><!--<![endif]-->
+        
 	<SCRIPT async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></SCRIPT>
+    <SCRIPT src="js/testdrive.js"></SCRIPT> 
 	<SCRIPT>
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments) };
@@ -27,8 +29,7 @@
 	<!-- <SCRIPT type="text/javascript" src="js/coinigyexchanges.js"></SCRIPT> -->
 </HEAD>
 
-<BODY style="background: #363843;">     
-    <SCRIPT src="js/testdrive.js"></SCRIPT>   
+<BODY style="background: #363843;">       
 	<DIV id="nocharts" style="text-align: center; display: block;">
 		<DIV class="hero">
             <H1><SPAN>MultiCoinCharts</SPAN></H1>
