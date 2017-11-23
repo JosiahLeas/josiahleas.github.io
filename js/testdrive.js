@@ -26,10 +26,28 @@
     };
 // setup the UI / charts layout
     function initPage() {
-        bindInputKeyUp();
-        setChartsByParameters();
-        loadChartParameters();
+        bindInputKeyUp(); // TODO :: REMOVE
+        loadCharts(); // PASADO :: PASSED
+        loadChartParameters(); // TRABAJANDO :: WORKING
         initCharts();
+        prepareCharts();
+        setChartCount();
+    }
+    function initCharts() {
+        // DEPRECATED
+        // if (!document.getElementById("nocharts").style.display == "none") {
+        //     var listPairs = document.getElementById('listPairs');
+        //     for (var i=0; i<getNrOfCharts(); i++) {
+        //         listPairs.options[listPairs.options.length] = new Option(charts.pairs[i], charts.pairs[i]);
+        //     }
+        // } else {
+        //     //index.html?chart=....&chart=....
+        //     //Parse the charts.pairs and create/display it 
+        console.log(getNrOfCharts());
+        for(let i = 0; i < getNrOfCharts(); i++) {
+            createChart((charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"));
+        }
+        // }
     }
     function prepareCharts() {
         var element, tmp;
@@ -59,8 +77,6 @@
         } else {
             darken();
         }
-
-        setChartCount();
     }
     function openSingleChartConfig() {
         document.getElementById("addMultiChart").style.display = "none";
@@ -72,21 +88,6 @@
         }
         configDiv.style.display = "block";
         document.getElementById("SinglepairsInput").focus();
-    }
-    function initCharts() {
-        if (!document.getElementById("nocharts").style.display == "none") {
-            var listPairs = document.getElementById('listPairs');
-            for (var i=0; i<getNrOfCharts(); i++) {
-                listPairs.options[listPairs.options.length] = new Option(charts.pairs[i], charts.pairs[i]);
-            }
-        } else {
-            //index.html?chart=....&chart=....
-            //Parse the charts.pairs and create/display it 
-            for(let i = 0; i < getNrOfCharts(); i++) {
-                createChart((charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"));
-            }
-            prepareCharts();
-        }
     }
 // NOcharts view js callable functions
     function inputPairs(element) {
@@ -449,8 +450,8 @@
             }
             return (false);
         }
-    // set charts by parameters TODO :: REMOVE FUNC
-        function setChartsByParameters(url) {
+    // load charts
+        function loadCharts(url) {
             url = window.location.href;
             let expression = /[?&]chart(=([^&#]*)|&|#|$)/g;
             let match;
@@ -461,17 +462,12 @@
             }
             if (charts.pairs.length == 0) {
                 //if there are no chart= parameter in URL, attempt to read from previous session via localstorage
-                try {
-                    chartsPairsCSV = localStorage.getItem(STORAGE_CHARTSPAIRS); // iOS 10 Safari Private doesn't allow localstorage
-                } catch (e) {
-                    //https://stackoverflow.com/questions/11214404/how-to-detect-if-browser-supports-html5-local-storage
-                    //https://stackoverflow.com/a/11214467
-                    document.body.appendChild(document.createTextNode("This browser doesn't is compatible (if you're in iPhone/iPad try non-private browsing). <3"));
-                }
+                var chartPairs = storeMAN(false, STORAGE_CHARTSPAIRS);
+                console.log(chartPairs);
                 var listPairs = document.getElementById('listPairs');
-                if (chartsPairsCSV != null && chartsPairsCSV != "") {
+                if (chartPairs) {
                     //if there are any charts in previous localstorage, restore them
-                    var chartsPairsArr = chartsPairsCSV.split(",");
+                    var chartsPairsArr = chartPairs.split(",");
                     for (i=0; i<chartsPairsArr.length; i++) {
                         charts.pairs.push(chartsPairsArr[i]);
                     }
@@ -480,24 +476,27 @@
                     charts.pairs.push("COINBASE:BTCUSD");
                     charts.pairs.push("COINBASE:ETHUSD");
                     charts.pairs.push("BITTREX:OMGBTC");
+                    charts.pairs.push("BITTREX:BTGBTC");
                 }
             }
 
-            if (url.indexOf("chart")>0) {
-                //if there are chart= parameters, hide the intro display
-                var elements = document.getElementsByClassName("divIntro");
-                for (i = 0; i < elements.length; i++) {
-                    elements[i].style.display = "none";
-                }
-                viewDIV("nocharts", false);
-                viewDIV("topnav", true);
-            }
+            // DEPRECATED
+            // if (url.indexOf("chart")>0) {
+            //     //if there are chart= parameters, hide the intro display
+            //     var elements = document.getElementsByClassName("divIntro");
+            //     for (i = 0; i < elements.length; i++) {
+            //         elements[i].style.display = "none";
+            //     }
+            //     viewDIV("nocharts", false);
+            //     viewDIV("topnav", true);
+            // }
         }
     // load chart parameters 
         function loadChartParameters() {
             storeMAN(true, STORAGE_CHARTSPAIRS, charts.pairs)
             gbl_dark = JSON.parse(storeMAN(false, STORAGE_USEDARKTHEME));
             usrSelct = storeMAN(false, STORAGE_TIMEZONE);
+            console.log("timezone",document.getElementById("timezone"));
             document.getElementById("timezone").value = (usrSelct) ? usrSelct : "Etc/UTC";
             // TODO :: REDUCE FUNC
             // selectClickStoreToLocalStorage(document.getElementById("timezone"), STORAGE_TIMEZONE);
@@ -583,8 +582,18 @@
     // show modal 
         //http://freefrontend.com/css-modal-windows/
         //https://codepen.io/danielgriffiths/pen/AXGOym
-        function showModal() {
-            var mdl = document.getElementsByClassName("modal");
+        function showInfo() {
+            var mdl = document.getElementsByClassName("modalInfo");
+            if (mdl[0].style.visibility == "hidden" || mdl[0].style.visibility == "") {
+                mdl[0].style.visibility = "visible";
+                mdl[0].style.opacity = 1;
+            } else {
+                mdl[0].style.visibility = "hidden";
+                mdl[0].style.opacity = 0;
+            }
+        }
+        function showMultiConfig() {
+            var mdl = document.getElementsByClassName("modalConfig");
             if (mdl[0].style.visibility == "hidden" || mdl[0].style.visibility == "") {
                 mdl[0].style.visibility = "visible";
                 mdl[0].style.opacity = 1;

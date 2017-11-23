@@ -93,7 +93,7 @@ function initCharts() {
 // NOcharts view js callable functions
 function inputPairs(element) {
     console.log(event, element);
-    event.preventDefault();
+    // event.preventDefault();
     if (event.keyCode === 13) {
         chartTicker = element.value.toUpperCase();
         if (charts.pairs.indexOf(chartTicker) >= 0) {
