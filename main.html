@@ -18,13 +18,15 @@
 		function gtag() { dataLayer.push(arguments) };
 		gtag('js', new Date());
 		gtag('config', 'UA-107348406-1');
+        if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+            document.write('<script src="js/index.ie.js"><\/script>');
 	</SCRIPT>
 
 	<SCRIPT src="https://use.fontawesome.com/a4e3744178.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/cryptocurrencies.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/coinigyexchanges.js"></SCRIPT>
-	<SCRIPT type="text/javascript" src="js/testdrive.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="js/index.js"></SCRIPT>
 </HEAD>
 
 <BODY style="background: #363843;">

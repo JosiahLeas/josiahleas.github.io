@@ -18,6 +18,8 @@
 		function gtag() { dataLayer.push(arguments) };
 		gtag('js', new Date());
 		gtag('config', 'UA-107348406-1');
+        if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+            document.write('<script src="js/testdrive.ie.js"><\/script>');
 	</SCRIPT>
 
 	<SCRIPT src="https://use.fontawesome.com/a4e3744178.js"></SCRIPT>
