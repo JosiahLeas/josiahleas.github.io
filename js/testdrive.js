@@ -409,7 +409,7 @@
         }
     // set chart count
         function setChartCount() {
-            document.getElementById("configChart").innerHTML = "Edit Charts (" + charts.pairs.length + ")";
+            document.getElementById("configChart").innerHTML = "ADD CHART (" + charts.pairs.length + ")";
         }
     // get num of charts active
         function getNrOfCharts() {
@@ -417,7 +417,7 @@
         }
     // lighten theme action
         function lighten() {
-            document.getElementById("theme-toggle").innerHTML = "Light";
+            document.getElementById("theme-toggle").innerHTML = "LIGHT";
             document.getElementById("box-height").classList.remove("dark");
             document.getElementById("box-width").classList.remove("dark");
             document.body.classList.remove("dark");
@@ -429,7 +429,7 @@
 
     // darken theme Action
         function darken() {
-            document.getElementById("theme-toggle").innerHTML = "Dark";
+            document.getElementById("theme-toggle").innerHTML = "DARK";
             document.getElementById("box-height").classList.add("dark");
             document.getElementById("box-width").classList.add("dark");
             document.body.classList.add("dark");

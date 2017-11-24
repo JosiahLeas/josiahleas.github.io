@@ -18,7 +18,7 @@
 		height: calc(100% - 28px) !important;
 		width: 100% !important;
 		z-index: 10;
-		transition: linear .2s;
+		/* transition: linear .2s; */
 	}
 /* Themed */
 	body { background: #595959; }
@@ -270,74 +270,60 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: rgba(0, 0, 0, 0.7);
+		background: rgba(0, 0, 8, 0.84);
 		-webkit-transition: 0.3s ease-in-out;
 		transition: 0.3s ease-in-out;
 		z-index: 999999;
 	}
-	.modal__box {
-		padding: 1em;
-		background: #fff;
-		box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-		text-align: center;
-		-webkit-transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.5);
-		transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.5);
-		-webkit-transform: rotate(5deg) translate(-1em, 1em);
-		transform: rotate(5deg) translate(-1em, 1em);
-		border-top: 5px solid #da513d;
-		border-bottom: 5px solid #ddd;
-		width: 40%;
-		min-width: 320px;
+	.modalInfo {
+		display: block;
+		color: #ccccd7;
 	}
-	.modal__box h1,
-	.modal__box h6 {
-		display: inline
+	.modalInfo h2 {
+		letter-spacing: 4px;
+		text-align: left;
 	}
-	.modalInfo .modal__box {
-		-webkit-transform: rotate(0deg) translate(0, 0);
-		transform: rotate(0deg) translate(0, 0);
-	}
-
-	/* Tabbed Modal */
-	/* https://codepen.io/oknoblich/pen/tfjFl */
-	.modal__box section {
-		display: none;
-		padding: 20px 0 0;
-		border-top: 1px solid #ddd;
-	}
-
-	.modal__box input {
-		display: none;
-	}
-	.modal__box label {
-		display: inline-block;
-		margin: 0 0 -1px;
-		padding: 15px 25px;
-		font-weight: 600;
-		text-align: center;
+	.modalInfo h4 {
 		color: #bbb;
-		border: 1px solid transparent;
+		text-align: center; 
 	}
-
-	.modal__box label:before {
-		font-family: fontawesome;
-		font-weight: normal;
-		margin-right: 10px;
+	.modalInfo > div {
+		height: 60%;
+		width: 80%;
+		margin: 20% 10%;
 	}
-	.modal__box label:hover {
-		color: #888;
-		cursor: pointer;
+	.modalInfo div div:first-child {
+		display: flex;
 	}
-
-	.modal__box input:checked + label {
-		color: #555;
-		border: 1px solid #ddd;
-		border-top: 2px solid orange;
-		border-bottom: 1px solid #fff;
+	.modalInfo div div:last-child {
+		text-align: center;
 	}
-
-
-
+	.modalInfo div div div {
+		display: block;
+		width: 50%;
+		word-break: break-all;
+	}
+	.modalInfo div div div:first-child {
+		display: block;
+		height: 100%;
+	}	
+	.modalInfo p {
+		background: rgba(32, 48, 80, .7);
+		margin-top: 16%;
+		color: #ccc;
+		padding: 8px;
+		width: 80%;
+		white-space:normal; 
+		word-break:normal;
+	}
+	.modalInfo b {
+		color: #fff;
+	}
+	.modalInfo a {
+		color: #dd4;
+	}
+	.modalInfo button {
+	}
 /* Pairs Setup */
 	div.divPairsSetup {
 		position: relative;
@@ -386,7 +372,6 @@
 	div.divPairsSetup input[type="button"]:hover {
 		background: #2EBC99;
 	}
-
 /* Unorg */
 	.inputTypeButton {
 		display: block;
@@ -396,11 +381,6 @@
 		font-size: 20px;
 		font-weight: 600;
 		line-height: 18px;
-	}
-	#tab1:checked ~ #content1,
-	#tab2:checked ~ #content2,
-	#tab3:checked ~ #content3 {
-		display: block;
 	}
 	.number-label {
 		margin-right: 4px;
