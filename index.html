@@ -50,7 +50,11 @@
 					<DIV id="addMultiChart" class="cornflower-box">
 						<DIV class="divPairsSetup">
 							<H3 style='color:#eee; background: rgba(32, 48, 80, .7); padding: 4px 8px 6px 8px;'>Type an exchange &amp; currency pair (e.g:&nbsp;BITTREX:BTCUSDT)</H3>
-							<INPUT id='pairsInput' type="text" onkeyup="inputPairs(this)" placeholder="Press enter to add the pairs" />
+							<INPUT id='pairsInput' type="text" onkeyup="inputPairs(this)" placeholder="Press enter to add the pairs" style="text-transform: uppercase;" />
+							<!-- TODO :: Needs js function and css work -->
+							<!-- <A href="javascript:void(0)" class="inputTypeButton" onclick="moveUpOptions(document.getElementById('listPairs'));">
+								<i class="fa fa-plus"></i>
+							</A> -->
 							<DIV style='float:left;margin-top:2px;margin-right:10px'>
 								<A href="javascript:void(0)" class="inputTypeButton" onclick="moveUpOptions(document.getElementById('listPairs'));">
 									<i class="fa fa-arrow-up"></i>
@@ -62,13 +66,13 @@
 							</DIV>
 							<DIV style='float:left;width:80%'>
 								<SELECT id="listPairs" multiple="multiple" rows=2>
-									<OPTION value="BITTREX:BTCUSDT">BITTREX:BTCUSDT</OPTION>
+									<!-- <OPTION value="BITTREX:BTCUSDT">BITTREX:BTCUSDT</OPTION>
 									<OPTION value="BITTREX:ETHUSDT">BITTREX:ETHUSDT</OPTION>
 									<OPTION value="BITTREX:OMGBTC">BITTREX:OMGBTC</OPTION>
-									<OPTION value="BITTREX:LTCBTC">BITTREX:LTCBTC</OPTION>
+									<OPTION value="BITTREX:LTCBTC">BITTREX:LTCBTC</OPTION> -->
 								</SELECT>
 							</DIV>
-							<!-- <INPUT id="btnRemovePairs" type="button" value="Remove Selected Pairs" onclick="btnRemovePairsClick()" /> -->
+							<INPUT id="btnRemovePairs" type="button" value="Remove Selected Pairs" onclick="btnRemovePairsClick()" />
 						</DIV>
 						<DIV style="width: 100px; display: inline-block;">&nbsp;</DIV>
 						<DIV class="divPairsSetup" style="text-align: left;">

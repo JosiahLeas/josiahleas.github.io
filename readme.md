@@ -13,5 +13,4 @@ After many new changes, more issues with browser support are showing and usabili
 
 ### New Contibutors
 [shellstorm](Github/shellstrom)
-[qwerty](Github/qwerty1891)
 [WhiteRavenTechnology](Github/WhiteRavenTechnology)

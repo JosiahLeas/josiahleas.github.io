@@ -43,9 +43,17 @@
         // } else {
         //     //index.html?chart=....&chart=....
         //     //Parse the charts.pairs and create/display it 
+
+        try {
+            listPairs = document.getElementById('listPairs');
+        }
+        catch(e) {
+            console.log("listPairs Err: ", e);
+        }
         console.log(getNrOfCharts());
         for(let i = 0; i < getNrOfCharts(); i++) {
             createChart((charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"));
+            if(listPairs) listPairs.options[listPairs.options.length] = new Option(charts.pairs[i], charts.pairs[i]);
         }
         // }
     }
@@ -95,12 +103,12 @@
         event.preventDefault();
         if (event.keyCode === 13) {
             chartTicker = element.value.toUpperCase();
-            if (charts.pairs.indexOf(chartTicker)>=0) {
-                alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-            } else {
-                listPairs = document.getElementById('listPairs');
-                listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-            }
+            // if (charts.pairs.indexOf(chartTicker)>=0) {
+            //     alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
+            // } else {
+            listPairs = document.getElementById('listPairs');
+            listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
+            // }
             element.value = "";
             document.getElementById("pairsInput").focus();
         }
@@ -537,6 +545,8 @@
 // MISC
     // bind button inputs
         function bindInputKeyUp() {
+
+            // DEPRECATED
             // document.getElementById("pairsInput")
             // .addEventListener("keyup", function(event) {
             //     event.preventDefault();
