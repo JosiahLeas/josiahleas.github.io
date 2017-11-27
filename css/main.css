@@ -59,7 +59,7 @@
 		cursor: pointer;
 		padding: 4px 8px;
 		border: 1px solid #dadde0;
-		background: #5CB888;
+		background: #5CB888a9;
 		color: #fff;
 		font-size: 20px;
 		font-weight: 600;
@@ -80,6 +80,7 @@
 	}
 	.button-coinigy {
 		width:34px; 
+		opacity: .75;
 		height:34px; 
 		cursor:pointer;
 	}
@@ -87,6 +88,7 @@
 		width:24px; 
 		height:24px; 
 		cursor:pointer;
+		opacity: .75;
 		margin-left:10px;
 		margin-bottom:-2px
 	}
