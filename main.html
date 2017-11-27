@@ -19,14 +19,14 @@
 		gtag('js', new Date());
 		gtag('config', 'UA-107348406-1');
         if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
-            document.write('<script src="js/testdrive.ie.js"><\/script>');
+            document.write('<script src="js/index.ie.js"><\/script>');
 	</SCRIPT>
 
 	<SCRIPT src="https://use.fontawesome.com/a4e3744178.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/cryptocurrencies.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/coinigyexchanges.js"></SCRIPT>
-	<SCRIPT type="text/javascript" src="js/testdrive.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="js/index.js"></SCRIPT>
 </HEAD>
 
 <BODY style="background: #363843;">
@@ -42,37 +42,36 @@
 			<INPUT id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height"
 			 min="1" max="10" />
 		</DIV>
-		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">Light theme</BUTTON>
-		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">ADD CHARTS</BUTTON>
+		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">browser incompatible</BUTTON>
+		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">javascript crashed</BUTTON>
 		<BUTTON class="btn right" onclick="showInfo()">INFO / HELP</BUTTON>
 		<DIV class="modalConfig">
 			<DIV class="hero">
 					<DIV id="addMultiChart" class="cornflower-box">
 						<DIV class="divPairsSetup">
 							<H3 style='color:#eee; background: rgba(32, 48, 80, .7); padding: 4px 8px 6px 8px;'>Type an exchange &amp; currency pair (e.g:&nbsp;BITTREX:BTCUSDT)</H3>
-							<INPUT id='pairsInput' type="text" onkeyup="inputPairs(this)" placeholder="Press enter to add the pairs" style="text-transform: uppercase;" />
-							<!-- TODO :: Needs js function and css work -->
-							<!-- <A href="javascript:void(0)" class="inputTypeButton" onclick="moveUpOptions(document.getElementById('listPairs'));">
-								<i class="fa fa-plus"></i>
-							</A> -->
-							<DIV style='float:left;margin-top:2px;margin-right:10px'>
-								<A href="javascript:void(0)" class="inputTypeButton" onclick="moveUpOptions(document.getElementById('listPairs'));">
-									<i class="fa fa-arrow-up"></i>
+							<A href="javascript:void(0)" style="text-align: center; float: right; margin-bottom: 8px; width: 35.5px; height: 35.5px;" class="inputTypeButton" onclick="inputPairs(null);">
+								<i style="padding-top: 6px;" class="fa fa-plus"></i>
+							</A>
+							<INPUT id='pairsInput' style="width: 85%;" type="text" onkeyup="inputPairs(this)" placeholder="Press enter to add the pairs" style="text-transform: uppercase;" />
+							<DIV style='float:left; margin-right:10px;'>
+								<A href="javascript:void(0)" style="margin-bottom: 10px;" class="inputTypeButton" onclick="moveUpOptions(document.getElementById('listPairs'));">
+									<i style="padding-top: 5px;" class="fa fa-arrow-up"></i>
 								</A>
-								<BR>
 								<A href="javascript:void(0)" class="inputTypeButton" onclick="moveDownOptions(document.getElementById('listPairs'));">
-									<i class="fa fa-arrow-down"></i>
+									<i style="padding-top: 5px;" class="fa fa-arrow-down"></i>
 								</A>
 							</DIV>
-							<DIV style='float:left;width:80%'>
+							<DIV style='float:left;width: 86.3%;'>
 								<SELECT id="listPairs" multiple="multiple" rows=2>
-									<!-- <OPTION value="BITTREX:BTCUSDT">BITTREX:BTCUSDT</OPTION>
+									<!-- Test options dev use
+									<OPTION value="BITTREX:BTCUSDT">BITTREX:BTCUSDT</OPTION>
 									<OPTION value="BITTREX:ETHUSDT">BITTREX:ETHUSDT</OPTION>
 									<OPTION value="BITTREX:OMGBTC">BITTREX:OMGBTC</OPTION>
 									<OPTION value="BITTREX:LTCBTC">BITTREX:LTCBTC</OPTION> -->
 								</SELECT>
 							</DIV>
-							<INPUT id="btnRemovePairs" type="button" value="Remove Selected Pairs" onclick="btnRemovePairsClick()" />
+							<INPUT id="btnRemovePairs" style="background: #d14343; border: none; width: 100%;" type="button" value="Remove Selected Pairs" onclick="btnRemovePairsClick()" />
 						</DIV>
 						<DIV style="width: 100px; display: inline-block;">&nbsp;</DIV>
 						<DIV class="divPairsSetup" style="text-align: left;">

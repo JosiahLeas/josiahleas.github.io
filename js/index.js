@@ -1,6 +1,6 @@
 // Pinche Medicado - Josiah Leas :: PrettySights.com vx
 // stored variables
-const DEBUGMODE = true; //change to false outside testdrive
+const DEBUGMODE = false; //change to false outside testdrive
 const STORAGE_USEDARKTHEME = "useDarkTheme";
 const STORAGE_WIDTH = "table_width";
 const STORAGE_HEIGHT = "table_height";
@@ -34,28 +34,10 @@ function initPage() {
     setChartCount();
 }
 function initCharts() {
-    // DEPRECATED
-    // if (!document.getElementById("nocharts").style.display == "none") {
-    //     var listPairs = document.getElementById('listPairs');
-    //     for (var i=0; i<getNrOfCharts(); i++) {
-    //         listPairs.options[listPairs.options.length] = new Option(charts.pairs[i], charts.pairs[i]);
-    //     }
-    // } else {
-    //     //index.html?chart=....&chart=....
-    //     //Parse the charts.pairs and create/display it 
-
-    try {
-        listPairs = document.getElementById('listPairs');
-    }
-    catch(e) {
-        console.log("listPairs Err: ", e);
-    }
     console.log(getNrOfCharts());
     for(let i = 0; i < getNrOfCharts(); i++) {
         createChart((charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"));
-        if(listPairs) listPairs.options[listPairs.options.length] = new Option(charts.pairs[i], charts.pairs[i]);
     }
-    // }
 }
 function prepareCharts() {
     var element, tmp;
@@ -98,17 +80,27 @@ function openSingleChartConfig() {
     document.getElementById("SinglepairsInput").focus();
 }
 // NOcharts view js callable functions
+function loadPairs() {
+    listPairs = document.getElementById('listPairs');
+    listPairs.options.length = 0;
+    for(let i = 0; i < getNrOfCharts(); i++) {
+        if(listPairs) listPairs.options[listPairs.options.length] = new Option(charts.pairs[i], charts.pairs[i]);
+    }
+}
 function inputPairs(element) {
-    console.log(event,element);
-    event.preventDefault();
-    if (event.keyCode === 13) {
+    var isEnter = false;
+    if(!element) {
+        element = document.getElementById('pairsInput');
+        isEnter = true;
+    }
+    else if(event.keyCode === 13) { 
+        isEnter = true;
+        event.preventDefault();
+    }
+    if (isEnter) {
         chartTicker = element.value.toUpperCase();
-        // if (charts.pairs.indexOf(chartTicker)>=0) {
-        //     alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-        // } else {
         listPairs = document.getElementById('listPairs');
         listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-        // }
         element.value = "";
         document.getElementById("pairsInput").focus();
     }
@@ -121,7 +113,7 @@ function letsGo() {
         alert("At least one exchange & chart pair are needed to get started.");
         return;
     }
-    var urlStr = "https://www.multicoincharts.com/testdrive.html?"
+    var urlStr = "https://www.multicoincharts.com/?"
     for (var i=0; i<optl; i++) {
         if (i!=0) urlStr += "&";
         urlStr += "chart=" + options[i].value;
@@ -425,7 +417,7 @@ function letsGo() {
     }
 // lighten theme action
     function lighten() {
-        document.getElementById("theme-toggle").innerHTML = "LIGHT";
+        document.getElementById("theme-toggle").innerHTML = "DARK";
         document.getElementById("box-height").classList.remove("dark");
         document.getElementById("box-width").classList.remove("dark");
         document.body.classList.remove("dark");
@@ -437,7 +429,7 @@ function letsGo() {
 
 // darken theme Action
     function darken() {
-        document.getElementById("theme-toggle").innerHTML = "DARK";
+        document.getElementById("theme-toggle").innerHTML = "LIGHT";
         document.getElementById("box-height").classList.add("dark");
         document.getElementById("box-width").classList.add("dark");
         document.body.classList.add("dark");
@@ -519,27 +511,31 @@ function letsGo() {
         // TODO :: ELIM
         // checkboxClickStoreToLocalStorage(document.getElementById("withdateranges"), STORAGE_SHOWBOTTOMTOOLBAR);
         usrSelct = storeMAN(false, STORAGE_ALLOWSYMBOLCHANGE);
-        document.getElementById("allow_symbol_change").checked = (usrSelct === 'true');
+        console.log(usrSelct);
+        // usrSelct = 'true';
+        console.log(usrSelct !== 'false');
+        console.log(document.getElementById("allow_symbol_change").checked);
+        document.getElementById("allow_symbol_change").checked = (usrSelct !== 'false');
         // TODO :: ELIM
         // checkboxClickStoreToLocalStorage(document.getElementById("allow_symbol_change"), STORAGE_ALLOWSYMBOLCHANGE);
         usrSelct = storeMAN(false, STORAGE_USESMALLBUTTON);
         document.getElementById("usesmallbutton").checked = (usrSelct === 'true');
         // TODO :: ELIM
         // checkboxClickStoreToLocalStorage(document.getElementById("usesmallbutton"), STORAGE_USESMALLBUTTON);
-        if(DEBUGMODE) {
-            doLOG(STORAGE_CHARTSPAIRS, charts.pairs);
-            doLOG(STORAGE_USEDARKTHEME, gbl_dark);
-            // // TODO :: REDUCE FUNC
-            // selectClickStoreToLocalStorage(document.getElementById("interval"), STORAGE_INTERVAL);
-            //     doLOG(STORAGE_TIMEZONE, storeMAN(true, STORAGE_INTERVAL, 
-            //             document.getElementById("interval")
-            //                 .options[document.getElementById("interval")].value));
-            doLOG(STORAGE_INTERVAL, );
-            doLOG(STORAGE_SHOWDETAILS, );
-            // if (DEBUGMODE) console.log("\t"+STORAGE_SHOWBOTTOMTOOLBAR+": ", checkboxState);
-            // if (DEBUGMODE) console.log("\t"+STORAGE_ALLOWSYMBOLCHANGE+": ", checkboxState);
-            // if (DEBUGMODE) console.log("\t"+STORAGE_USESMALLBUTTON+": ", checkboxState);
-        }
+        // if(DEBUGMODE) {
+        //     doLOG(STORAGE_CHARTSPAIRS, charts.pairs);
+        //     doLOG(STORAGE_USEDARKTHEME, gbl_dark);
+        //     // // TODO :: REDUCE FUNC
+        //     // selectClickStoreToLocalStorage(document.getElementById("interval"), STORAGE_INTERVAL);
+        //     //     doLOG(STORAGE_TIMEZONE, storeMAN(true, STORAGE_INTERVAL, 
+        //     //             document.getElementById("interval")
+        //     //                 .options[document.getElementById("interval")].value));
+        //     doLOG(STORAGE_INTERVAL, );
+        //     doLOG(STORAGE_SHOWDETAILS, );
+        //     // if (DEBUGMODE) console.log("\t"+STORAGE_SHOWBOTTOMTOOLBAR+": ", checkboxState);
+        //     // if (DEBUGMODE) console.log("\t"+STORAGE_ALLOWSYMBOLCHANGE+": ", checkboxState);
+        //     // if (DEBUGMODE) console.log("\t"+STORAGE_USESMALLBUTTON+": ", checkboxState);
+        // }
 
     }
 // MISC
@@ -611,6 +607,7 @@ function letsGo() {
             mdl[0].style.visibility = "hidden";
             mdl[0].style.opacity = 0;
         }
+        loadPairs();
     }
 // rebuild chart pairs
     function rebuildChartsPairsArray() {
