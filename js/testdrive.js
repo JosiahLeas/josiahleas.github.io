@@ -88,16 +88,19 @@
         }
     }
     function inputPairs(element) {
-        console.log(event,element);
-        event.preventDefault();
-        if (event.keyCode === 13) {
+        var isEnter = false;
+        if(!element) {
+            element = document.getElementById('pairsInput');
+            isEnter = true;
+        }
+        else if(event.keyCode === 13) { 
+            isEnter = true;
+            event.preventDefault();
+        }
+        if (isEnter) {
             chartTicker = element.value.toUpperCase();
-            // if (charts.pairs.indexOf(chartTicker)>=0) {
-            //     alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-            // } else {
             listPairs = document.getElementById('listPairs');
             listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-            // }
             element.value = "";
             document.getElementById("pairsInput").focus();
         }
@@ -414,7 +417,7 @@
         }
     // lighten theme action
         function lighten() {
-            document.getElementById("theme-toggle").innerHTML = "LIGHT";
+            document.getElementById("theme-toggle").innerHTML = "DARK";
             document.getElementById("box-height").classList.remove("dark");
             document.getElementById("box-width").classList.remove("dark");
             document.body.classList.remove("dark");
@@ -426,7 +429,7 @@
 
     // darken theme Action
         function darken() {
-            document.getElementById("theme-toggle").innerHTML = "DARK";
+            document.getElementById("theme-toggle").innerHTML = "LIGHT";
             document.getElementById("box-height").classList.add("dark");
             document.getElementById("box-width").classList.add("dark");
             document.body.classList.add("dark");
