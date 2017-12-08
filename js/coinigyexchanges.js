@@ -2,6 +2,7 @@
 var coinigyexchanges = 
 {
   BITTREX: 'BTRX',
+  BINANCE: 'BINA',
   BLEUTRADE: 'BLEU',
   'BTC MARKETS': 'BTCM',
   'C-CEX': 'CCEX',
