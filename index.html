@@ -44,7 +44,7 @@
 		</DIV>
 		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">browser incompatible</BUTTON>
 		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">javascript crashed</BUTTON>
-		<BUTTON class="btn right" onclick="showInfo()">INFO / HELP</BUTTON>
+		<BUTTON class="btn right" onclick="showInfo()">HELP / DONATE</BUTTON>
 		<DIV class="modalConfig">
 			<DIV class="hero">
 					<DIV id="addMultiChart" class="cornflower-box">
@@ -248,16 +248,9 @@
 	</DIV>
 
 	<DIV id="charts"></DIV>
-		<!-- OnLoad funcs -->
-			<SCRIPT type="text/javascript">
-				// document.addEventListener('contextmenu', event => event.preventDefault());
-				//https://gist.github.com/dciccale/4087856
-				// var DOMReady = function (a, b, c) { b = document, c = 'addEventListener'; b[c] ? b[c]('DOMContentLoaded', a) : window.attachEvent('onload', a) }
-				// DOMReady(function () {
-					initPage();
-				// });
-			</SCRIPT>
-	<!-- </DIV>	 -->
+		<SCRIPT type="text/javascript">
+				initPage();
+		</SCRIPT>
 </BODY>
 
 </HTML>

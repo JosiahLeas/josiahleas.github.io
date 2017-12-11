@@ -59,7 +59,7 @@
 		cursor: pointer;
 		padding: 4px 8px;
 		border: 1px solid #dadde0;
-		background: #5CB888a9;
+		background: #5CB888;
 		color: #fff;
 		font-size: 20px;
 		font-weight: 600;
@@ -70,7 +70,7 @@
 		cursor: pointer;
 		padding: 2px 4px;
 		border: 1px solid #dadde0;
-		background: #5CB888;
+		background: rgba(92, 184, 136, .4);
 		color: #fff;
 		font-size: 16px;
 		font-weight: 600;
