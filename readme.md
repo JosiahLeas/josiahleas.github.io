@@ -12,5 +12,5 @@ After many new changes, more issues with browser support are showing and usabili
 ```1srt``` Auto load ```id="nocharts"```
 
 ### New Contibutors
-[shellstorm](Github/shellstrom)
+[shellstrom](Github/shellstrom)
 [WhiteRavenTechnology](Github/WhiteRavenTechnology)
