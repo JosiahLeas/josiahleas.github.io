@@ -208,7 +208,10 @@ function letsGo() {
         var timezoneSelect = document.getElementById("timezone");
         var timezoneValue = timezoneSelect.options[timezoneSelect.selectedIndex].value;
         var intervalSelect = document.getElementById("interval");
-        var intervalValue = intervalSelect.options[intervalSelect.selectedIndex].value;
+		var intervalValue = "1h";
+        try {
+			intervalValue = intervalSelect.options[intervalSelect.selectedIndex].value;
+		} catch(e) {}
         var detailsChk = document.getElementById('details');
         var details = (detailsChk.checked ? true : false);
         var withdaterangesChk = document.getElementById('withdateranges');
