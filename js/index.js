@@ -24,11 +24,8 @@ var gbl_isStorageUsable = true;
 var charts = {
     pairs: []
 };
-let interval = 60;
-let availableIntervals;
 // setup the UI / charts layout
 function initPage() {
-    initValues();
     bindInputKeyUp(); // TODO :: REMOVE
     loadCharts(); // PASADO :: PASSED
     loadChartParameters(); // TRABAJANDO :: WORKING
@@ -36,15 +33,6 @@ function initPage() {
     prepareCharts();
     setChartCount();
 }
-
-function initValues() {
-	availableIntervals = [];
-	let dropDownIntervalElement = document.getElementById("interval");
-	for (let i = 0; i < dropDownIntervalElement.options.length; i++) {
-		availableIntervals[i] = dropDownIntervalElement.options[i].value;
-	}
-}
-
 function initCharts() {
     console.log(getNrOfCharts());
     for(let i = 0; i < getNrOfCharts(); i++) {
@@ -118,22 +106,18 @@ function inputPairs(element) {
     }
 }
 function letsGo() {
-    let listIntervals = document.getElementById('interval');
-    let listPairs = document.getElementById('listPairs');
-    let options = listPairs.options;
-    let optl = options.length;
+    var listPairs = document.getElementById('listPairs');
+    var options = listPairs.options;
+    var optl = options.length;
     if (optl == 0) {
         alert("At least one exchange & chart pair are needed to get started.");
         return;
     }
-    let urlStr = window.location.pathname + "?"
-    for (let i=0; i<optl; i++) {
+    var urlStr = "https://www.multicoincharts.com/?"
+    for (var i=0; i<optl; i++) {
         if (i!=0) urlStr += "&";
         urlStr += "chart=" + options[i].value;
     }
-    urlStr += "&interval=" + listIntervals.options[listIntervals.selectedIndex].value;
-
-    console.log(urlStr);
     window.top.location.href = urlStr;
 }
 // charts view js callable functions
@@ -467,8 +451,8 @@ function letsGo() {
         return (false);
     }
 // load charts
-    function loadCharts() {
-        let url = window.location.href;
+    function loadCharts(url) {
+        url = window.location.href;
         let expression = /[?&]chart(=([^&#]*)|&|#|$)/g;
         let match;
         let i = 0;
@@ -476,7 +460,7 @@ function letsGo() {
             charts.pairs.push(match[2].replace(/\+/g, " "));
             i++;
         }
-        if (charts.pairs.length === 0) {
+        if (charts.pairs.length == 0) {
             //if there are no chart= parameter in URL, attempt to read from previous session via localstorage
             var chartPairs = storeMAN(false, STORAGE_CHARTSPAIRS);
             console.log(chartPairs);
@@ -509,30 +493,15 @@ function letsGo() {
     }
 // load chart parameters 
     function loadChartParameters() {
-		let url = window.location.href;
-		let expression = /[?&]interval(=([^&#]*)|&|#|$)/g;
-		let match;
         storeMAN(true, STORAGE_CHARTSPAIRS, charts.pairs)
         gbl_dark = JSON.parse(storeMAN(false, STORAGE_USEDARKTHEME));
-        let usrSelct = storeMAN(false, STORAGE_TIMEZONE);
+        usrSelct = storeMAN(false, STORAGE_TIMEZONE);
         console.log("timezone",document.getElementById("timezone"));
         document.getElementById("timezone").value = (usrSelct) ? usrSelct : "Etc/UTC";
         // TODO :: REDUCE FUNC
         // selectClickStoreToLocalStorage(document.getElementById("timezone"), STORAGE_TIMEZONE);
-		if(expression.test(url)) {
-		    // because we're using global regex matching, we need to rewind the lastIndex pointer
-		    expression.lastIndex = 0;
-			while (match = expression.exec(url)) {
-				interval = match[2].replace(/\+/g, " ");
-				if(availableIntervals.indexOf(interval) === -1) {
-                    interval = "60";
-				}
-			}
-		} else {
-			interval = storeMAN(false, STORAGE_INTERVAL);
-        }
-        //usrSelct = storeMAN(false, STORAGE_INTERVAL);
-        document.getElementById("interval").value = interval;
+        usrSelct = storeMAN(false, STORAGE_INTERVAL);
+        document.getElementById("interval").value = (usrSelct) ? usrSelct : "60";
         usrSelct = storeMAN(false, STORAGE_SHOWDETAILS);
         document.getElementById("details").checked = (usrSelct === 'true');
         // TODO :: ELIM
