@@ -28,6 +28,7 @@ var charts = {
 function initPage() {
     bindInputKeyUp(); // TODO :: REMOVE
     loadCharts(); // PASADO :: PASSED
+	loadUrlParameters();
     loadChartParameters(); // TRABAJANDO :: WORKING
     initCharts();
     prepareCharts();
@@ -192,10 +193,7 @@ function letsGo() {
         var timezoneSelect = document.getElementById("timezone");
         var timezoneValue = timezoneSelect.options[timezoneSelect.selectedIndex].value;
         var intervalSelect = document.getElementById("interval");
-		var intervalValue = "1h";
-        try {
-			intervalValue = intervalSelect.options[intervalSelect.selectedIndex].value;
-		} catch(e) {}
+		var intervalValue = intervalSelect.options[intervalSelect.selectedIndex].value;
         var detailsChk = document.getElementById('details');
         var details = (detailsChk.checked ? true : false);
         var withdaterangesChk = document.getElementById('withdateranges');
@@ -466,7 +464,6 @@ function letsGo() {
         if (charts.pairs.length == 0) {
             //if there are no chart= parameter in URL, attempt to read from previous session via localstorage
             var chartPairs = storeMAN(false, STORAGE_CHARTSPAIRS);
-            console.log(chartPairs);
             var listPairs = document.getElementById('listPairs');
             if (chartPairs) {
                 //if there are any charts in previous localstorage, restore them
@@ -494,26 +491,93 @@ function letsGo() {
         //     viewDIV("topnav", true);
         // }
     }
+
+/**
+ * Parses and loads URL parameter values. These will override any settings previously set by configuration screen
+ * or localStorage
+ */
+function loadUrlParameters() {
+	url = window.location.href;
+
+	// Interval
+	let expression = /[?&]interval(=([^&#]*)|&|#|$)/g;
+	let match;
+	// Assign a default value for later conditional
+	charts.interval = undefined;
+	// Could be made more explicit only matching one occurrence instead of all
+	while (match = expression.exec(url)) {
+		charts.interval = (match[2].replace(/\+/g, " "));
+	}
+
+	// Details
+	expression = /[?&]details(=([^&#]*)|&|#|$)/g;
+	// Assign a default value for later conditional
+	charts.details = undefined;
+	// Could be made more explicit only matching one occurrence instead of all
+	while (match = expression.exec(url)) {
+		charts.details = (match[2].replace(/\+/g, " "));
+	}
+
+	// Timezone
+	expression = /[?&]timezone(=([^&#]*)|&|#|$)/g;
+	// Assign a default value for later conditional
+	charts.timezone = undefined;
+	// Could be made more explicit only matching one occurrence instead of all
+	while (match = expression.exec(url)) {
+		charts.timezone = (match[2].replace(/\+/g, " "));
+	}
+
+	// Page title
+	expression = /[?&]title(=([^&#]*)|&|#|$)/g;
+	// Assign a default value for later conditional
+	charts.title = undefined;
+	// Could be made more explicit only matching one occurrence instead of all
+	while (match = expression.exec(url)) {
+		charts.title = (match[2].replace(/\+/g, " "));
+	}
+}
+
 // load chart parameters 
     function loadChartParameters() {
         storeMAN(true, STORAGE_CHARTSPAIRS, charts.pairs)
         gbl_dark = JSON.parse(storeMAN(false, STORAGE_USEDARKTHEME));
-        usrSelct = storeMAN(false, STORAGE_TIMEZONE);
-        console.log("timezone",document.getElementById("timezone"));
+
+        // If timezone is provided by URL parameter, override personal settings
+		if(charts.timezone !== undefined) {
+			usrSelct = charts.timezone;
+		} else {
+			usrSelct = storeMAN(false, STORAGE_TIMEZONE);
+		}
+        //console.log("timezone",document.getElementById("timezone"));
         document.getElementById("timezone").value = (usrSelct) ? usrSelct : "Etc/UTC";
-        // TODO :: REDUCE FUNC
+
+		// TODO :: REDUCE FUNC
         // selectClickStoreToLocalStorage(document.getElementById("timezone"), STORAGE_TIMEZONE);
-        usrSelct = storeMAN(false, STORAGE_INTERVAL);
+
+		// If interval is provided by URL parameter, override personal settings
+		if(charts.interval !== undefined) {
+			usrSelct = charts.interval;
+		} else {
+			usrSelct = storeMAN(false, STORAGE_INTERVAL);
+		}
         document.getElementById("interval").value = (usrSelct) ? usrSelct : "60";
-        usrSelct = storeMAN(false, STORAGE_SHOWDETAILS);
+
+		// If details is provided by URL parameter, override personal settings
+		if(charts.details !== undefined) {
+			usrSelct = charts.details;
+		} else {
+			usrSelct = storeMAN(false, STORAGE_SHOWDETAILS);
+		}
         document.getElementById("details").checked = (usrSelct === 'true');
         // TODO :: ELIM
         // checkboxClickStoreToLocalStorage(document.getElementById("details"), STORAGE_SHOWDETAILS);
-        usrSelct = storeMAN(false, STORAGE_SHOWBOTTOMTOOLBAR);
+
+		usrSelct = storeMAN(false, STORAGE_SHOWBOTTOMTOOLBAR);
         document.getElementById("withdateranges").checked = (usrSelct === 'true');
         // TODO :: ELIM
         // checkboxClickStoreToLocalStorage(document.getElementById("withdateranges"), STORAGE_SHOWBOTTOMTOOLBAR);
-        usrSelct = storeMAN(false, STORAGE_ALLOWSYMBOLCHANGE);
+
+		usrSelct = storeMAN(false, STORAGE_ALLOWSYMBOLCHANGE);
         console.log(usrSelct);
         // usrSelct = 'true';
         console.log(usrSelct !== 'false');
@@ -521,7 +585,8 @@ function letsGo() {
         document.getElementById("allow_symbol_change").checked = (usrSelct !== 'false');
         // TODO :: ELIM
         // checkboxClickStoreToLocalStorage(document.getElementById("allow_symbol_change"), STORAGE_ALLOWSYMBOLCHANGE);
-        usrSelct = storeMAN(false, STORAGE_USESMALLBUTTON);
+
+		usrSelct = storeMAN(false, STORAGE_USESMALLBUTTON);
         document.getElementById("usesmallbutton").checked = (usrSelct === 'true');
         // TODO :: ELIM
         // checkboxClickStoreToLocalStorage(document.getElementById("usesmallbutton"), STORAGE_USESMALLBUTTON);
@@ -540,6 +605,10 @@ function letsGo() {
         //     // if (DEBUGMODE) console.log("\t"+STORAGE_USESMALLBUTTON+": ", checkboxState);
         // }
 
+		// If title is provided by URL parameter, set it
+		if(charts.title !== undefined) {
+			document.title = charts.title;
+		}
     }
 // MISC
 // bind button inputs
