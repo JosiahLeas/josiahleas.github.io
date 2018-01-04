@@ -550,7 +550,6 @@ function loadUrlParameters() {
 		}
         //console.log("timezone",document.getElementById("timezone"));
         document.getElementById("timezone").value = (usrSelct) ? usrSelct : "Etc/UTC";
-
 		// TODO :: REDUCE FUNC
         // selectClickStoreToLocalStorage(document.getElementById("timezone"), STORAGE_TIMEZONE);
 
