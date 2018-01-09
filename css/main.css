@@ -292,7 +292,7 @@
 	.modalInfo > div {
 		min-height: 60%;
 		width: 80%;
-		margin: 8% 10%;
+		margin: 2.5% 10%;
 	}
 	.modalInfo div div:first-child {
 		display: flex;
