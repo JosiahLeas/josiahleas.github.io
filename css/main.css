@@ -290,9 +290,9 @@
 		text-align: center; 
 	}
 	.modalInfo > div {
-		height: 60%;
+		min-height: 60%;
 		width: 80%;
-		margin: 20% 10%;
+		margin: 8% 10%;
 	}
 	.modalInfo div div:first-child {
 		display: flex;

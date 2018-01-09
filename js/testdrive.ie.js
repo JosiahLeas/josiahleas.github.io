@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 // Pinche Medicado - Josiah Leas :: PrettySights.com vx
 // stored variables
