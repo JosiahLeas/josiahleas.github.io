@@ -65,6 +65,7 @@
 		font-weight: 600;
 		line-height: 18px;
 		opacity: .5;
+		background: #006d00;
 	}
 	.button-fullscreen-small {
 	display: block;
@@ -78,6 +79,7 @@
     width: 12px;
     margin-left: 12px;
     opacity: .5;
+	background: #006d00;
 	}
 	.button-coinigy {
 		width:34px; 
@@ -93,6 +95,7 @@
     opacity: .5;
     margin-left: 12px;
     margin-bottom: -2px;
+
 	}
 	.button {
 		display: block;
