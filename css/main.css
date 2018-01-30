@@ -59,44 +59,46 @@
 		cursor: pointer;
 		padding: 4px 8px;
 		border: 1px solid #dadde0;
-		background: #5CB888;
+	
 		color: #fff;
 		font-size: 20px;
 		font-weight: 600;
 		line-height: 18px;
+		opacity: .5;
 	}
 	.button-fullscreen-small {
-		display: block;
-		cursor: pointer;
-		padding: 2px 4px;
-		border: 1px solid #dadde0;
-		background: rgba(92, 184, 136, .4);
-		color: #fff;
-		font-size: 16px;
-		font-weight: 600;
-		line-height: 14px;
-		width:12px;
-		margin-left: 12px;
+	display: block;
+    cursor: pointer;
+    padding: 2px 4px;
+    border: .1px solid #dadde0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 14px;
+    width: 12px;
+    margin-left: 12px;
+    opacity: .5;
 	}
 	.button-coinigy {
 		width:34px; 
 		opacity: .75;
 		height:34px; 
 		cursor:pointer;
+		opacity: .5;
 	}
 	.button-coinigy-small {
-		width:24px; 
-		height:24px; 
-		cursor:pointer;
-		opacity: .75;
-		margin-left:10px;
-		margin-bottom:-2px
+    width: 20px;
+    height: 20px;
+    cursor: pointer;s
+    opacity: .5;
+    margin-left: 12px;
+    margin-bottom: -2px;
 	}
 	.button {
 		display: block;
 		cursor: default;
 		padding: 7px 12px;
-		border: 1px solid #dadde0;
+		border: .1px solid #dadde0;
 		background: #fff;
 		height: 14px;
 		color: #555;
