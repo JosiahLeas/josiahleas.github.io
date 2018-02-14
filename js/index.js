@@ -24,13 +24,11 @@
     let chartPairs = new Array;
 // setup the UI / charts layout
     function initPage() {
-        loadPairs(); // PASADO :: PASSED
-        loadParameters(); // TRABAJANDO :: WORKING
+        loadPairs();
+        loadParameters();
 
-        for(let i = 0; i < chartPairs.length; i++) {
-            createChart((chartPairs[i] !== null ? 
-                chartPairs[i] : "COINBASE:BTCUSD"));
-        }
+        for(let i = 0; i < chartPairs.length; i++)
+            createChart(chartPairs[i]);
 
         colorWidthHeight();
         setChartCount();
@@ -68,7 +66,7 @@
             darken();
         }
     }
-    function openSingleChartConfig() {
+    function toglAddChart() {
         document.getElementById("addMultiChart").style.display = "none";
         document.getElementById("divRefreshChart").style.display = "none";
         var configDiv = document.getElementById("addSingleChart");
@@ -106,7 +104,7 @@
             alert("At least one exchange & chart pair are needed to get started.");
             return;
         }
-        var urlStr = "https://www.multicoincharts.com/?"
+        var urlStr = "?"
         for (var i=0; i<optl; i++) {
             if (i!=0) urlStr += "&";
             urlStr += "chart=" + options[i].value;
@@ -124,12 +122,12 @@
                 box.classList.add("fullscreen");
             }
         }
-        function removeChart(boxElement, chartPairs) {
+        function removeChart(boxElement, pairsCSV) {
             boxElement.parentNode.removeChild(boxElement);
-            if (DEBUGMODE) console.log("removeChart(): " + boxElement.id + " " + chartPairs);
+            if (DEBUGMODE) console.log("removeChart(): " + boxElement.id + " " + pairsCSV);
             
             //find the ticker index and remove it from the array
-            chartPairs.splice(chartPairs.findIndex(x=>x==chartPairs), 1);
+            chartPairs.splice(chartPairs.findIndex(x=>x==pairsCSV), 1);
             
             //reset url
             var urlStr = window.top.location.href.substr(0, top.location.href.lastIndexOf("?") + 1);
@@ -139,7 +137,7 @@
             }
             history.replaceState(null, document.title, urlStr);
         
-            if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + chartPairs);
+            if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + pairsCSV);
             setChartCount();
         }
         function openCoinigy(chartTicker) {
@@ -176,12 +174,13 @@
             keyEvent.preventDefault();
             if (keyEvent.keyCode === 13) {
                 chartTicker = this.value.toUpperCase();
-                var i = Math.round((new Date()).getTime() / 1000);
-                if (chartPairs.indexOf(chartTicker)>=0) {
-                    this.value = "";
-                    document.getElementById("SinglepairsInput").focus();
-                    alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-                } else {
+                // var i = Math.round((new Date()).getTime() / 1000);
+                // if (chartPairs.indexOf(chartTicker)>=0) {
+                //     this.value = "";
+                //     document.getElementById("SinglepairsInput").focus();
+                //     alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
+                // } 
+                // else {
                     listPairs = document.getElementById('listPairs');
                     listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
                     chartPairs.push(chartTicker);
@@ -192,8 +191,8 @@
                     createChart(chartTicker);
                     colorWidthHeight();
                     this.value = "";
-                    openSingleChartConfig();
-                }
+                    toglAddChart();
+                // }
             }
         }
         function createChart(chartTicker) {
@@ -487,45 +486,19 @@
             usrSelct = storeMAN(false, STORAGE_TIMEZONE);
             console.log("timezone",document.getElementById("timezone"));
             document.getElementById("timezone").value = (usrSelct) ? usrSelct : "Etc/UTC";
-            // TODO :: REDUCE FUNC
-            // selectClickStoreToLocalStorage(document.getElementById("timezone"), STORAGE_TIMEZONE);
             usrSelct = storeMAN(false, STORAGE_INTERVAL);
             document.getElementById("interval").value = (usrSelct) ? usrSelct : "60";
             usrSelct = storeMAN(false, STORAGE_SHOWDETAILS);
             document.getElementById("details").checked = (usrSelct === 'true');
-            // TODO :: ELIM
-            // checkboxClickStoreToLocalStorage(document.getElementById("details"), STORAGE_SHOWDETAILS);
             usrSelct = storeMAN(false, STORAGE_SHOWBOTTOMTOOLBAR);
             document.getElementById("withdateranges").checked = (usrSelct === 'true');
-            // TODO :: ELIM
-            // checkboxClickStoreToLocalStorage(document.getElementById("withdateranges"), STORAGE_SHOWBOTTOMTOOLBAR);
             usrSelct = storeMAN(false, STORAGE_ALLOWSYMBOLCHANGE);
             console.log(usrSelct);
-            // usrSelct = 'true';
             console.log(usrSelct !== 'false');
             console.log(document.getElementById("allow_symbol_change").checked);
             document.getElementById("allow_symbol_change").checked = (usrSelct !== 'false');
-            // TODO :: ELIM
-            // checkboxClickStoreToLocalStorage(document.getElementById("allow_symbol_change"), STORAGE_ALLOWSYMBOLCHANGE);
             usrSelct = storeMAN(false, STORAGE_USESMALLBUTTON);
             document.getElementById("usesmallbutton").checked = (usrSelct === 'true');
-            // TODO :: ELIM
-            // checkboxClickStoreToLocalStorage(document.getElementById("usesmallbutton"), STORAGE_USESMALLBUTTON);
-            // if(DEBUGMODE) {
-            //     doLOG(STORAGE_CHARTSPAIRS, chartPairs);
-            //     doLOG(STORAGE_USEDARKTHEME, gbl_dark);
-            //     // // TODO :: REDUCE FUNC
-            //     // selectClickStoreToLocalStorage(document.getElementById("interval"), STORAGE_INTERVAL);
-            //     //     doLOG(STORAGE_TIMEZONE, storeMAN(true, STORAGE_INTERVAL, 
-            //     //             document.getElementById("interval")
-            //     //                 .options[document.getElementById("interval")].value));
-            //     doLOG(STORAGE_INTERVAL, );
-            //     doLOG(STORAGE_SHOWDETAILS, );
-            //     // if (DEBUGMODE) console.log("\t"+STORAGE_SHOWBOTTOMTOOLBAR+": ", checkboxState);
-            //     // if (DEBUGMODE) console.log("\t"+STORAGE_ALLOWSYMBOLCHANGE+": ", checkboxState);
-            //     // if (DEBUGMODE) console.log("\t"+STORAGE_USESMALLBUTTON+": ", checkboxState);
-            // }
-
         }
 // MISC
     // show modal 
@@ -571,7 +544,7 @@
             var x = document.getElementById('listPairs');
             x.options.add(x.selectedOptions[0], up_down ? 
                 x.selectedIndex - 1 : x.selectedIndex + 2);
-            rebuildChartsPairsArray();
+            storeMAN(STORAGE_CHARTSPAIRS, chartPairs);
         }
 
 // tools

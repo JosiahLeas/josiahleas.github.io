@@ -160,6 +160,10 @@
 		text-align: center;
 		border-radius: 3px;
 		text-decoration: none;
+		border: 1px solid #696b76;
+		box-shadow: 0 0 10px #000;
+		background: #363843;
+		color: #fff;
 		/*width: 100px;*/
 	}
 /* NoCharts Mode */
@@ -193,13 +197,20 @@
 		font-size: 20px;
 		color: rgb(56, 175, 255);
 	}
-	#divLetsGo a {
+	.divLetsGo {
+		height: 0;
+		position: relative;
+		padding-top: 40px;
+		margin: auto;
+		width: 260px;
+		display: flex;
+	}
+	.divLetsGo a, .closeBtn {
 		font-size: 28px;
 		padding: 12px 14px;
-		color: #595959;
-		background: #09f;
+		margin: auto;
+		background: rgba(32, 48, 80, .7);
 		border: 1px solid #09f;
-		box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
 		border-radius: 5px;
 		color: #ecf0f1;
 		text-decoration: none;
@@ -318,13 +329,13 @@
 		height: 100%;
 	}	
 	.modalInfo p {
-		background: rgba(32, 48, 80, .7);
+		background: rgba(16, 24, 40, .7);
 		margin-top: 16%;
-		color: #ccc;
-		padding: 8px;
+		color: #ddd;
+		padding: 16px;
 		width: 80%;
-		white-space:normal; 
-		word-break:normal;
+		white-space: normal;
+		word-break: normal;
 	}
 	.modalInfo b {
 		color: #fff;
@@ -394,10 +405,16 @@
 		line-height: 18px;
 	}
 	.number-label {
-		margin-right: 4px;
+		margin-left: 4px;
 	}
 	.box-size {
-		width: 3em;
+		border: 1px solid #696b76;
+		width: 20px;
+		box-shadow: 0 0 10px #000;
+		background: #363843;
+		color: #eff;
+		margin: 0 2px;
+		padding: 2px 0 2px 4px;
 	}
 	.label {
 		display: inline;

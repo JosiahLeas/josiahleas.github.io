@@ -2,8 +2,7 @@
 <HTML>
 
 <HEAD>
-	<META name="description" content="View multiple Crypto Coins TradingView graphs at once. Customize graphs or view full screen. Add custom Alt Coins. All for free. 1x1 all the way up to 10x10  one page charts."
-	/>
+	<META name="description" content="View multiple Crypto Coins TradingView graphs at once. Customize graphs or view full screen. Add custom Alt Coins. All for free. 1x1 all the way up to 10x10  one page charts."/>
 	<META name="keywords" content="Crypto, Altcoin, Ethereum, Bitcoin, TradingView, StockCharts, Charts, Candlestick Graph" />
 	<META name="robots" content="index, follow">
 	<TITLE>MCC - Crypto Charts</TITLE>
@@ -55,7 +54,7 @@
 							</A>
 							<INPUT id='pairsInput' style="width: 85%;" type="text" onkeyup="inputPairs(this)" placeholder="Press enter to add the pairs" style="text-transform: uppercase;" />
 							<DIV style='float:left; margin-right:10px;'>
-								<A href="javascript:void(0)" style="margin-bottom: 10px;" class="inputTypeButton" onclick="arrangeChartListItem(true);">
+								<A href="javascript:void(0)" style="margin-bottom: 14px;" class="inputTypeButton" onclick="arrangeChartListItem(true);">
 									<i style="padding-top: 5px;" class="fa fa-arrow-up"></i>
 								</A>
 								<A href="javascript:void(0)" class="inputTypeButton" onclick="arrangeChartListItem(false);">
@@ -166,7 +165,7 @@
 							<INPUT id="usesmallbutton" type="checkbox" name="usesmallbutton" onclick="useSmallButtonClick(this)">
 						</DIV>
 					</DIV>
-					<DIV id="divLetsGo" style='height: 80px; text-align: center;'>
+					<DIV class="divLetsGo">
 						<A id='LetsGo' href="javascript:void(0)" onclick="letsGo()">Done</A>
 						<A href="javascript:void(0)" onclick="showMultiConfig()">Cancel</A>
 					</DIV>
@@ -202,8 +201,8 @@
 					</DIV>
 					
 				</DIV>
-				<div >
-				<button onclick="showInfo()" style="border-radius: 3px;">Close</button>
+				<div>
+				<button class="closeBtn" onclick="showInfo()">Close</button>
 				<div>
 				<!-- <section id="content3">
 					<H1>leasj </H1>
