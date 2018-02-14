@@ -1,4 +1,4 @@
-// Pinche Medicado - Josiah Leas :: PrettySights.com vx
+// Pinche Medicado - Josiah Leas :: PrettySights.com v
 // stored variables
     const DEBUGMODE = false; //change to false outside testdrive
     const STORAGE_USEDARKTHEME = "useDarkTheme";
