@@ -332,8 +332,7 @@
 	.modalInfo a {
 		color: #dd4;
 	}
-	.modalInfo button {
-	}
+	.modalInfo button {	font: inherit; }
 /* Pairs Setup */
 	div.divPairsSetup {
 		position: relative;
@@ -349,6 +348,7 @@
 		-moz-transition: all 0.30s ease-in-out;
 		-ms-transition: all 0.30s ease-in-out;
 		-o-transition: all 0.30s ease-in-out;
+		transition: all 0.30s ease-in-out;
 		outline: none;
 		box-sizing: border-box;
 		-webkit-box-sizing: border-box;

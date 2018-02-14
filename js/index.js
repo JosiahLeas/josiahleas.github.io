@@ -26,7 +26,7 @@
     };
 // setup the UI / charts layout
     function initPage() {
-        bindInputKeyUp(); // TODO :: REMOVE
+        // bindInputKeyUp(); // TODO :: REMOVE
         loadCharts(); // PASADO :: PASSED
         loadChartParameters(); // TRABAJANDO :: WORKING
         initCharts();
@@ -179,6 +179,30 @@
             }
         }
     // topbar funcs
+        function addChartToList(keyEvent) {
+            keyEvent.preventDefault();
+            if (keyEvent.keyCode === 13) {
+                chartTicker = this.value.toUpperCase();
+                var i = Math.round((new Date()).getTime() / 1000);
+                if (charts.pairs.indexOf(chartTicker)>=0) {
+                    this.value = "";
+                    document.getElementById("SinglepairsInput").focus();
+                    alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
+                } else {
+                    listPairs = document.getElementById('listPairs');
+                    listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
+                    charts.pairs.push(chartTicker);
+                    if (DEBUGMODE) console.log("addChart(): " + chartTicker);
+                    if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + charts.pairs);
+                    history.replaceState(null, document.title, window.top.location.href + "&chart=" + chartTicker);
+
+                    createChart(chartTicker);
+                    prepareCharts();
+                    this.value = "";
+                    openSingleChartConfig();
+                }
+            }
+        }
         function createChart(chartTicker) {
             let boxElement = document.createElement("div");
             //use unique id based on milliseconds
@@ -539,52 +563,53 @@
 
         }
 // MISC
-    // bind button inputs
-        function bindInputKeyUp() {
+    // bind button inputs DEPRECATED
+        // function bindInputKeyUp() {
 
-            // DEPRECATED
-            // document.getElementById("pairsInput")
-            // .addEventListener("keyup", function(event) {
-            //     event.preventDefault();
-            //     if (event.keyCode === 13) {
-            //         chartTicker = this.value.toUpperCase();
-            //         if (charts.pairs.indexOf(chartTicker)>=0) {
-            //             alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-            //         } else {
-            //             listPairs = document.getElementById('listPairs');
-            //             listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-            //         }
-            //         this.value = "";
-            //         document.getElementById("pairsInput").focus();
-            //     }
-            // });
+        //     // DEPRECATED
+        //     // document.getElementById("pairsInput")
+        //     // .addEventListener("keyup", function(event) {
+        //     //     event.preventDefault();
+        //     //     if (event.keyCode === 13) {
+        //     //         chartTicker = this.value.toUpperCase();
+        //     //         if (charts.pairs.indexOf(chartTicker)>=0) {
+        //     //             alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
+        //     //         } else {
+        //     //             listPairs = document.getElementById('listPairs');
+        //     //             listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
+        //     //         }
+        //     //         this.value = "";
+        //     //         document.getElementById("pairsInput").focus();
+        //     //     }
+        //     // });
+            
+        //     // DEPRECATED
+        //     // document.getElementById("SinglepairsInput")
+        //     //     .addEventListener("keyup", function(event) {
+        //     //         event.preventDefault();
+        //     //         if (event.keyCode === 13) {
+        //     //             chartTicker = this.value.toUpperCase();
+        //     //             var i = Math.round((new Date()).getTime() / 1000);
+        //     //             if (charts.pairs.indexOf(chartTicker)>=0) {
+        //     //                 this.value = "";
+        //     //                 document.getElementById("SinglepairsInput").focus();
+        //     //                 alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
+        //     //             } else {
+        //     //                 listPairs = document.getElementById('listPairs');
+        //     //                 listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
+        //     //                 charts.pairs.push(chartTicker);
+        //     //                 if (DEBUGMODE) console.log("addChart(): " + chartTicker);
+        //     //                 if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + charts.pairs);
+        //     //                 history.replaceState(null, document.title, window.top.location.href + "&chart=" + chartTicker);
         
-            document.getElementById("SinglepairsInput")
-                .addEventListener("keyup", function(event) {
-                    event.preventDefault();
-                    if (event.keyCode === 13) {
-                        chartTicker = this.value.toUpperCase();
-                        var i = Math.round((new Date()).getTime() / 1000);
-                        if (charts.pairs.indexOf(chartTicker)>=0) {
-                            this.value = "";
-                            document.getElementById("SinglepairsInput").focus();
-                            alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-                        } else {
-                            listPairs = document.getElementById('listPairs');
-                            listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-                            charts.pairs.push(chartTicker);
-                            if (DEBUGMODE) console.log("addChart(): " + chartTicker);
-                            if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + charts.pairs);
-                            history.replaceState(null, document.title, window.top.location.href + "&chart=" + chartTicker);
-        
-                            createChart(chartTicker);
-                            prepareCharts();
-                            this.value = "";
-                            openSingleChartConfig();
-                        }
-                    }
-            });
-        }
+        //     //                 createChart(chartTicker);
+        //     //                 prepareCharts();
+        //     //                 this.value = "";
+        //     //                 openSingleChartConfig();
+        //     //             }
+        //     //         }
+        //     // });
+        // }
     // show modal 
         //http://freefrontend.com/css-modal-windows/
         //https://codepen.io/danielgriffiths/pen/AXGOym
