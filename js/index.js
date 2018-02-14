@@ -26,7 +26,6 @@
     };
 // setup the UI / charts layout
     function initPage() {
-        // bindInputKeyUp(); // TODO :: REMOVE
         loadCharts(); // PASADO :: PASSED
         loadChartParameters(); // TRABAJANDO :: WORKING
         initCharts();
@@ -563,53 +562,6 @@
 
         }
 // MISC
-    // bind button inputs DEPRECATED
-        // function bindInputKeyUp() {
-
-        //     // DEPRECATED
-        //     // document.getElementById("pairsInput")
-        //     // .addEventListener("keyup", function(event) {
-        //     //     event.preventDefault();
-        //     //     if (event.keyCode === 13) {
-        //     //         chartTicker = this.value.toUpperCase();
-        //     //         if (charts.pairs.indexOf(chartTicker)>=0) {
-        //     //             alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-        //     //         } else {
-        //     //             listPairs = document.getElementById('listPairs');
-        //     //             listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-        //     //         }
-        //     //         this.value = "";
-        //     //         document.getElementById("pairsInput").focus();
-        //     //     }
-        //     // });
-            
-        //     // DEPRECATED
-        //     // document.getElementById("SinglepairsInput")
-        //     //     .addEventListener("keyup", function(event) {
-        //     //         event.preventDefault();
-        //     //         if (event.keyCode === 13) {
-        //     //             chartTicker = this.value.toUpperCase();
-        //     //             var i = Math.round((new Date()).getTime() / 1000);
-        //     //             if (charts.pairs.indexOf(chartTicker)>=0) {
-        //     //                 this.value = "";
-        //     //                 document.getElementById("SinglepairsInput").focus();
-        //     //                 alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-        //     //             } else {
-        //     //                 listPairs = document.getElementById('listPairs');
-        //     //                 listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-        //     //                 charts.pairs.push(chartTicker);
-        //     //                 if (DEBUGMODE) console.log("addChart(): " + chartTicker);
-        //     //                 if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + charts.pairs);
-        //     //                 history.replaceState(null, document.title, window.top.location.href + "&chart=" + chartTicker);
-        
-        //     //                 createChart(chartTicker);
-        //     //                 prepareCharts();
-        //     //                 this.value = "";
-        //     //                 openSingleChartConfig();
-        //     //             }
-        //     //         }
-        //     // });
-        // }
     // show modal 
         //http://freefrontend.com/css-modal-windows/
         //https://codepen.io/danielgriffiths/pen/AXGOym
@@ -646,73 +598,81 @@
         }
 
     // move ops
-        function moveUpOptions(elOption){
-            var options = elOption && elOption.options;
-            var selected = [];
-
-            for (var i = 0, iLen = options.length; i < iLen; i++) {
-                    if (options[i].selected) {
-                            selected.push(options[i]);
-                    }
-            }
-
-            for (i = 0, iLen = selected.length; i < iLen; i++) {
-                    var index = selected[i].index;
-
-                    if(index == 0){
-                            break;
-                    }
-
-                    var temp = selected[i].text;
-                    selected[i].text = options[index - 1].text;
-                    options[index - 1].text = temp;
-
-                    temp = selected[i].value;
-                    selected[i].value = options[index - 1].value;
-                    options[index - 1].value = temp;
-
-                    selected[i].selected = false;
-                    options[index - 1].selected = true;
-            }
-
+        function arrangeChartListItem(up_down) {
+            var x = document.getElementById('listPairs');
+            x.options.add(x.selectedOptions[0], up_down ? 
+                x.selectedIndex - 1 : x.selectedIndex + 2);
             rebuildChartsPairsArray();
         }
 
-        function moveDownOptions(elOption){
-            var options = elOption && elOption.options;
-            var selected = [];
+        // DEPRECATED
+        // function moveUpOptions(elOption){
+        //     var options = elOption && elOption.options;
+        //     var selected = [];
 
-            for (var i = 0, iLen = options.length; i < iLen; i++) {
-                    if (options[i].selected) {
-                            selected.push(options[i]);
-                    }
-            }
+        //     for (var i = 0, iLen = options.length; i < iLen; i++) {
+        //             if (options[i].selected) {
+        //                     selected.push(options[i]);
+        //             }
+        //     }
 
-            for (i = selected.length - 1, iLen = 0; i >= iLen; i--) {
-                    var index = selected[i].index;
+        //     for (i = 0, iLen = selected.length; i < iLen; i++) {
+        //             var index = selected[i].index;
 
-                    if(index == (options.length - 1)){
-                            break;
-                    }
+        //             if(index == 0){
+        //                     break;
+        //             }
 
-                    var temp = selected[i].text;
-                    selected[i].text = options[index + 1].text;
-                    options[index + 1].text = temp;
+        //             var temp = selected[i].text;
+        //             selected[i].text = options[index - 1].text;
+        //             options[index - 1].text = temp;
 
-                    temp = selected[i].value;
-                    selected[i].value = options[index + 1].value;
-                    options[index + 1].value = temp;
+        //             temp = selected[i].value;
+        //             selected[i].value = options[index - 1].value;
+        //             options[index - 1].value = temp;
 
-                    selected[i].selected = false;
-                    options[index + 1].selected = true;
-            }
+        //             selected[i].selected = false;
+        //             options[index - 1].selected = true;
+        //     }
 
-            rebuildChartsPairsArray();
-        }
+        //     rebuildChartsPairsArray();
+        // }
+
+        // function moveDownOptions(elOption){
+        //     var options = elOption && elOption.options;
+        //     var selected = [];
+
+        //     for (var i = 0, iLen = options.length; i < iLen; i++) {
+        //             if (options[i].selected) {
+        //                     selected.push(options[i]);
+        //             }
+        //     }
+
+        //     for (i = selected.length - 1, iLen = 0; i >= iLen; i--) {
+        //             var index = selected[i].index;
+
+        //             if(index == (options.length - 1)){
+        //                     break;
+        //             }
+
+        //             var temp = selected[i].text;
+        //             selected[i].text = options[index + 1].text;
+        //             options[index + 1].text = temp;
+
+        //             temp = selected[i].value;
+        //             selected[i].value = options[index + 1].value;
+        //             options[index + 1].value = temp;
+
+        //             selected[i].selected = false;
+        //             options[index + 1].selected = true;
+        //     }
+
+        //     rebuildChartsPairsArray();
+        // }
 
 // NUEVAS :: NEW 
 //
-    function viewDIV(viewStr = "", showView = true) {
+    function toglVIS(viewStr = "", showView = true) {
         showView = (showView) ? "block" : "none";
         document.getElementById(viewStr)
             .style.display = showView;
@@ -733,16 +693,6 @@
     function doLOG(title = "", obj = "") {
         console.log("\t"+title+": ", obj);
     }
-// VIEJA Y MUERTO :: DEPRECATED
-//
-    // function checkboxClickStoreToLocalStorage(el, localStorageVar) {
-    //     try {
-    //         localStorage.setItem(localStorageVar, el.checked);
-    //     } catch(e) {}
-    // }
-    // function selectClickStoreToLocalStorage(el, localStorageVar) {
-    //     try {
-    //         localStorage.setItem(localStorageVar, el.options[el.selectedIndex].value);
-    //     } catch(e) {}
-    // }
-    
+    Array.prototype.move = function (from, to) {
+        this.splice(to, 0, this.splice(from, 1)[0]);
+      };
