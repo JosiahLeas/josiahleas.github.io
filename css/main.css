@@ -26,6 +26,9 @@
 	#open-modal, #topnav {
 		background-color: #262833;
 	}
+	.dark .box-button-container a {
+		background: none;
+	}
 /* TopNav */
 	.topnav {
 		padding: 3px;
