@@ -80,13 +80,6 @@
         document.getElementById("SinglepairsInput").focus();
     }
 // NOcharts view js callable functions
-    function loadPairs() {
-        listPairs = document.getElementById('listPairs');
-        listPairs.options.length = 0;
-        for(let i = 0; i < chartPairs.length; i++) {
-            if(listPairs) listPairs.options[listPairs.options.length] = new Option(chartPairs[i], chartPairs[i]);
-        }
-    }
     function inputPairs(element) {
         var isEnter = false;
         if(!element) {
@@ -468,16 +461,15 @@
                 chartPairs.push(match[2].replace(/\+/g, " "));
                 i++;
             }
-            if (!chartPairs || chartPairs.length == 0) {
+            if (chartPairs.length == 0) {
                 //if there are no chart= parameter in URL, attempt to read from previous session via localstorage
-                var chartPairs = storeMAN(false, STORAGE_CHARTSPAIRS);
-                console.log(chartPairs);
+                var pairsCSV = storeMAN(false, STORAGE_CHARTSPAIRS);
                 var listPairs = document.getElementById('listPairs');
                 if (chartPairs) {
                     //if there are any charts in previous localstorage, restore them
-                    var chartsPairsArr = chartPairs.split(",");
-                    for (i=0; i<chartsPairsArr.length; i++) {
-                        chartPairs.push(chartsPairsArr[i]);
+                    var pairsARR = pairsCSV.split(",");
+                    for (i=0; i<pairsARR.length; i++) {
+                        chartPairs.push(pairsARR[i]);
                     }
                 } else {
                     //if there are nothing in the localstorage, use some default value
@@ -558,7 +550,11 @@
                 mdl[0].style.visibility = "hidden";
                 mdl[0].style.opacity = 0;
             }
-            loadPairs();
+            listPairs = document.getElementById('listPairs');
+            listPairs.options.length = 0;
+            for(let i = 0; i < chartPairs.length; i++) {
+                if(listPairs) listPairs.options[listPairs.options.length] = new Option(chartPairs[i], chartPairs[i]);
+            }
         }
     // rebuild chart pairs
         function rebuildChartsPairsArray() {
