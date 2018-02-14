@@ -461,18 +461,18 @@
             } catch(e) {}
             gbl_dark = true;
         }
-    // get query variables
-        function getQueryVariable(variable) {
-            let query = window.location.search.substring(1);
-            let vars = query.split("&");
-            for (let i = 0; i < vars.length; i++) {
-                let pair = vars[i].split("=");
-                if (pair[0] === variable) {
-                    return pair[1];
-                }
-            }
-            return (false);
-        }
+    // DEPRECATED
+        // function getQueryVariable(variable) {
+        //     let query = window.location.search.substring(1);
+        //     let vars = query.split("&");
+        //     for (let i = 0; i < vars.length; i++) {
+        //         let pair = vars[i].split("=");
+        //         if (pair[0] === variable) {
+        //             return pair[1];
+        //         }
+        //     }
+        //     return (false);
+        // }
     // load charts
         function loadCharts(url) {
             url = window.location.href;
@@ -596,7 +596,6 @@
             }
             storeMAN(STORAGE_CHARTSPAIRS, charts.pairs);
         }
-
     // move ops
         function arrangeChartListItem(up_down) {
             var x = document.getElementById('listPairs');
@@ -605,81 +604,14 @@
             rebuildChartsPairsArray();
         }
 
-        // DEPRECATED
-        // function moveUpOptions(elOption){
-        //     var options = elOption && elOption.options;
-        //     var selected = [];
-
-        //     for (var i = 0, iLen = options.length; i < iLen; i++) {
-        //             if (options[i].selected) {
-        //                     selected.push(options[i]);
-        //             }
-        //     }
-
-        //     for (i = 0, iLen = selected.length; i < iLen; i++) {
-        //             var index = selected[i].index;
-
-        //             if(index == 0){
-        //                     break;
-        //             }
-
-        //             var temp = selected[i].text;
-        //             selected[i].text = options[index - 1].text;
-        //             options[index - 1].text = temp;
-
-        //             temp = selected[i].value;
-        //             selected[i].value = options[index - 1].value;
-        //             options[index - 1].value = temp;
-
-        //             selected[i].selected = false;
-        //             options[index - 1].selected = true;
-        //     }
-
-        //     rebuildChartsPairsArray();
-        // }
-
-        // function moveDownOptions(elOption){
-        //     var options = elOption && elOption.options;
-        //     var selected = [];
-
-        //     for (var i = 0, iLen = options.length; i < iLen; i++) {
-        //             if (options[i].selected) {
-        //                     selected.push(options[i]);
-        //             }
-        //     }
-
-        //     for (i = selected.length - 1, iLen = 0; i >= iLen; i--) {
-        //             var index = selected[i].index;
-
-        //             if(index == (options.length - 1)){
-        //                     break;
-        //             }
-
-        //             var temp = selected[i].text;
-        //             selected[i].text = options[index + 1].text;
-        //             options[index + 1].text = temp;
-
-        //             temp = selected[i].value;
-        //             selected[i].value = options[index + 1].value;
-        //             options[index + 1].value = temp;
-
-        //             selected[i].selected = false;
-        //             options[index + 1].selected = true;
-        //     }
-
-        //     rebuildChartsPairsArray();
-        // }
-
-// NUEVAS :: NEW 
-//
+// tools
     function toglVIS(viewStr = "", showView = true) {
         showView = (showView) ? "block" : "none";
         document.getElementById(viewStr)
             .style.display = showView;
     }
     function storeMAN(add_sub = true, itemName = "", itemValu = "") {
-        if(gbl_isStorageUsable)
-        {
+        if(gbl_isStorageUsable) {
             try {
                 if(add_sub) localStorage.setItem(itemName, itemValu);
                 else return localStorage.getItem(itemName);
@@ -690,9 +622,5 @@
         }
         return false;
     }
-    function doLOG(title = "", obj = "") {
-        console.log("\t"+title+": ", obj);
-    }
-    Array.prototype.move = function (from, to) {
-        this.splice(to, 0, this.splice(from, 1)[0]);
-      };
+    function doLOG(title = "", obj = "")
+        { console.log("\t"+title+": ", obj); }
