@@ -13,7 +13,7 @@
     const STORAGE_SHOWTOPTOOLBAR = "showTopToolbar";
     const STORAGE_ALLOWSYMBOLCHANGE = "allowSymbolChange";
     const STORAGE_USESMALLBUTTON = "useSmallButton";
-    const STORAGE_CHARTSPAIRS = "charts.pairs";
+    const STORAGE_CHARTSPAIRS = "chartPairs";
     const BASEURL_COINIGY = "https://www.coinigy.com/main/markets";
 
     let gbl_dark = null;
@@ -21,24 +21,25 @@
     let gbl_boxHeight = '';
     var gbl_isStorageUsable = true;
 
-    var charts = {
-        pairs: []
-    };
+    let chartPairs = new Array;
 // setup the UI / charts layout
     function initPage() {
-        loadCharts(); // PASADO :: PASSED
-        loadChartParameters(); // TRABAJANDO :: WORKING
-        initCharts();
-        prepareCharts();
+        loadPairs(); // PASADO :: PASSED
+        loadParameters(); // TRABAJANDO :: WORKING
+
+        for(let i = 0; i < chartPairs.length; i++) {
+            createChart((chartPairs[i] !== null ? 
+                chartPairs[i] : "COINBASE:BTCUSD"));
+        }
+
+        colorWidthHeight();
         setChartCount();
     }
     function initCharts() {
-        console.log(getNrOfCharts());
-        for(let i = 0; i < getNrOfCharts(); i++) {
-            createChart((charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"));
-        }
+        console.log(chartPairs.length);
+        
     }
-    function prepareCharts() {
+    function colorWidthHeight() {
         var element, tmp;
         
         tmp = storeMAN(false, STORAGE_WIDTH);
@@ -82,8 +83,8 @@
     function loadPairs() {
         listPairs = document.getElementById('listPairs');
         listPairs.options.length = 0;
-        for(let i = 0; i < getNrOfCharts(); i++) {
-            if(listPairs) listPairs.options[listPairs.options.length] = new Option(charts.pairs[i], charts.pairs[i]);
+        for(let i = 0; i < chartPairs.length; i++) {
+            if(listPairs) listPairs.options[listPairs.options.length] = new Option(chartPairs[i], chartPairs[i]);
         }
     }
     function inputPairs(element) {
@@ -135,17 +136,17 @@
             if (DEBUGMODE) console.log("removeChart(): " + boxElement.id + " " + chartPairs);
             
             //find the ticker index and remove it from the array
-            charts.pairs.splice(charts.pairs.findIndex(x=>x==chartPairs), 1);
+            chartPairs.splice(chartPairs.findIndex(x=>x==chartPairs), 1);
             
             //reset url
             var urlStr = window.top.location.href.substr(0, top.location.href.lastIndexOf("?") + 1);
-            for(let i = 0; i < getNrOfCharts(); i++) {
+            for(let i = 0; i < chartPairs.length; i++) {
                 if (i!=0) urlStr += "&";
-                urlStr += "chart=" + charts.pairs[i];
+                urlStr += "chart=" + chartPairs[i];
             }
             history.replaceState(null, document.title, urlStr);
         
-            if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + charts.pairs);
+            if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + chartPairs);
             setChartCount();
         }
         function openCoinigy(chartTicker) {
@@ -183,20 +184,20 @@
             if (keyEvent.keyCode === 13) {
                 chartTicker = this.value.toUpperCase();
                 var i = Math.round((new Date()).getTime() / 1000);
-                if (charts.pairs.indexOf(chartTicker)>=0) {
+                if (chartPairs.indexOf(chartTicker)>=0) {
                     this.value = "";
                     document.getElementById("SinglepairsInput").focus();
                     alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
                 } else {
                     listPairs = document.getElementById('listPairs');
                     listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
-                    charts.pairs.push(chartTicker);
+                    chartPairs.push(chartTicker);
                     if (DEBUGMODE) console.log("addChart(): " + chartTicker);
-                    if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + charts.pairs);
+                    if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + chartPairs);
                     history.replaceState(null, document.title, window.top.location.href + "&chart=" + chartTicker);
 
                     createChart(chartTicker);
-                    prepareCharts();
+                    colorWidthHeight();
                     this.value = "";
                     openSingleChartConfig();
                 }
@@ -310,10 +311,10 @@
 
             //add all the charts to the listbox
             var	select = document.getElementById('listPairs');
-            for(var i = 0; i < getNrOfCharts(); i++) {
+            for(var i = 0; i < chartPairs.length; i++) {
                 var opt = document.createElement('option');
-                opt.value = charts.pairs[i];
-                opt.innerHTML = charts.pairs[i];
+                opt.value = chartPairs[i];
+                opt.innerHTML = chartPairs[i];
                 select.appendChild(opt);
             }
         }
@@ -332,10 +333,10 @@
             }
 
             //recreate the charts
-            for(let i = 0; i < getNrOfCharts(); i++) {
-                createChart((charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"));
+            for(let i = 0; i < chartPairs.length; i++) {
+                createChart((chartPairs[i] !== null ? chartPairs[i] : "COINBASE:BTCUSD"));
             }
-            prepareCharts();
+            colorWidthHeight();
         }
         function btnRemovePairsClick() {
             removeOptions(document.getElementById('listPairs').options, true);
@@ -352,12 +353,12 @@
 
             //recreate the charts
             var urlStr = window.top.location.href.substr(0, top.location.href.lastIndexOf("?") + 1);
-            for(let i = 0; i < getNrOfCharts(); i++) {
-                createChart((charts.pairs[i] !== null ? charts.pairs[i] : "COINBASE:BTCUSD"));
+            for(let i = 0; i < chartPairs.length; i++) {
+                createChart((chartPairs[i] !== null ? chartPairs[i] : "COINBASE:BTCUSD"));
                 if (i!=0) urlStr += "&";
-                urlStr += "chart=" + charts.pairs[i];
+                urlStr += "chart=" + chartPairs[i];
             }
-            prepareCharts();
+            colorWidthHeight();
             history.replaceState(null, document.title, urlStr);
             document.getElementById("pairsInput").focus();
         }
@@ -432,11 +433,7 @@
         }
     // set chart count
         function setChartCount() {
-            document.getElementById("configChart").innerHTML = "ADD CHART (" + charts.pairs.length + ")";
-        }
-    // get num of charts active
-        function getNrOfCharts() {
-            return charts.pairs.length;
+            document.getElementById("configChart").innerHTML = "ADD CHART (" + chartPairs.length + ")";
         }
     // lighten theme action
         function lighten() {
@@ -461,29 +458,17 @@
             } catch(e) {}
             gbl_dark = true;
         }
-    // DEPRECATED
-        // function getQueryVariable(variable) {
-        //     let query = window.location.search.substring(1);
-        //     let vars = query.split("&");
-        //     for (let i = 0; i < vars.length; i++) {
-        //         let pair = vars[i].split("=");
-        //         if (pair[0] === variable) {
-        //             return pair[1];
-        //         }
-        //     }
-        //     return (false);
-        // }
     // load charts
-        function loadCharts(url) {
+        function loadPairs(url) {
             url = window.location.href;
             let expression = /[?&]chart(=([^&#]*)|&|#|$)/g;
             let match;
             let i = 0;
             while (match = expression.exec(url)) {
-                charts.pairs.push(match[2].replace(/\+/g, " "));
+                chartPairs.push(match[2].replace(/\+/g, " "));
                 i++;
             }
-            if (charts.pairs.length == 0) {
+            if (!chartPairs || chartPairs.length == 0) {
                 //if there are no chart= parameter in URL, attempt to read from previous session via localstorage
                 var chartPairs = storeMAN(false, STORAGE_CHARTSPAIRS);
                 console.log(chartPairs);
@@ -492,31 +477,20 @@
                     //if there are any charts in previous localstorage, restore them
                     var chartsPairsArr = chartPairs.split(",");
                     for (i=0; i<chartsPairsArr.length; i++) {
-                        charts.pairs.push(chartsPairsArr[i]);
+                        chartPairs.push(chartsPairsArr[i]);
                     }
                 } else {
                     //if there are nothing in the localstorage, use some default value
-                    charts.pairs.push("COINBASE:BTCUSD");
-                    charts.pairs.push("COINBASE:ETHUSD");
-                    charts.pairs.push("BITTREX:OMGBTC");
-                    charts.pairs.push("BITTREX:BTGBTC");
+                    chartPairs.push("COINBASE:BTCUSD");
+                    chartPairs.push("COINBASE:ETHUSD");
+                    chartPairs.push("BITTREX:OMGBTC");
+                    chartPairs.push("BITTREX:BTGBTC");
                 }
             }
-
-            // DEPRECATED
-            // if (url.indexOf("chart")>0) {
-            //     //if there are chart= parameters, hide the intro display
-            //     var elements = document.getElementsByClassName("divIntro");
-            //     for (i = 0; i < elements.length; i++) {
-            //         elements[i].style.display = "none";
-            //     }
-            //     viewDIV("nocharts", false);
-            //     viewDIV("topnav", true);
-            // }
         }
     // load chart parameters 
-        function loadChartParameters() {
-            storeMAN(true, STORAGE_CHARTSPAIRS, charts.pairs)
+        function loadParameters() {
+            storeMAN(true, STORAGE_CHARTSPAIRS, chartPairs)
             gbl_dark = JSON.parse(storeMAN(false, STORAGE_USEDARKTHEME));
             usrSelct = storeMAN(false, STORAGE_TIMEZONE);
             console.log("timezone",document.getElementById("timezone"));
@@ -546,7 +520,7 @@
             // TODO :: ELIM
             // checkboxClickStoreToLocalStorage(document.getElementById("usesmallbutton"), STORAGE_USESMALLBUTTON);
             // if(DEBUGMODE) {
-            //     doLOG(STORAGE_CHARTSPAIRS, charts.pairs);
+            //     doLOG(STORAGE_CHARTSPAIRS, chartPairs);
             //     doLOG(STORAGE_USEDARKTHEME, gbl_dark);
             //     // // TODO :: REDUCE FUNC
             //     // selectClickStoreToLocalStorage(document.getElementById("interval"), STORAGE_INTERVAL);
@@ -588,13 +562,13 @@
         }
     // rebuild chart pairs
         function rebuildChartsPairsArray() {
-            charts.pairs.length = 0;
+            chartPairs.length = 0;
             var listPairs = document.getElementById('listPairs');
             var options = listPairs.options;
             for (var i=0; i<options.length; i++) {
-                charts.pairs.push(options[i].value);
+                chartPairs.push(options[i].value);
             }
-            storeMAN(STORAGE_CHARTSPAIRS, charts.pairs);
+            storeMAN(STORAGE_CHARTSPAIRS, chartPairs);
         }
     // move ops
         function arrangeChartListItem(up_down) {
