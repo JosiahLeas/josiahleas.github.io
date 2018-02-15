@@ -2,8 +2,7 @@
 <HTML>
 
 <HEAD>
-	<META name="description" content="View multiple Crypto Coins TradingView graphs at once. Customize graphs or view full screen. Add custom Alt Coins. All for free. 1x1 all the way up to 10x10  one page charts."
-	/>
+	<META name="description" content="View multiple Crypto Coins TradingView graphs at once. Customize graphs or view full screen. Add custom Alt Coins. All for free. 1x1 all the way up to 10x10  one page charts."/>
 	<META name="keywords" content="Crypto, Altcoin, Ethereum, Bitcoin, TradingView, StockCharts, Charts, Candlestick Graph" />
 	<META name="robots" content="index, follow">
 	<TITLE>MCC - Crypto Charts</TITLE>
@@ -19,14 +18,14 @@
 		gtag('js', new Date());
 		gtag('config', 'UA-107348406-1');
         if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
-            document.write('<script src="js/testdrive.ie.js"><\/script>');
+            document.write('<script src="js/index.ie.js"><\/script>');
 	</SCRIPT>
 
 	<SCRIPT src="https://use.fontawesome.com/a4e3744178.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/cryptocurrencies.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/coinigyexchanges.js"></SCRIPT>
-	<SCRIPT type="text/javascript" src="js/testdrive.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="js/index.js"></SCRIPT>
 </HEAD>
 
 <BODY style="background: #363843;">
@@ -35,15 +34,15 @@
 		<DIV class="label">
 			<LABEL for="box-width" class="number-label">Width</LABEL>
 			<INPUT id="box-width" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1"
-			 max="10" />
+			 max="20" />
 		</DIV>
 		<DIV class="label">
 			<LABEL for="box-width" class="number-label">Height</LABEL>
 			<INPUT id="box-height" class="box-size" title="Adjust the chart height" type="number" name="box-height"
-			 min="1" max="10" />
+			 min="1" max="20" />
 		</DIV>
-		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">LIGHT</BUTTON>
-		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">ADD CHARTS</BUTTON>
+		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">browser incompatible</BUTTON>
+		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">javascript crashed</BUTTON>
 		<BUTTON class="btn right" onclick="showInfo()">HELP / DONATE</BUTTON>
 		<DIV class="modalConfig">
 			<DIV class="hero">
@@ -55,10 +54,10 @@
 							</A>
 							<INPUT id='pairsInput' style="width: 85%;" type="text" onkeyup="inputPairs(this)" placeholder="Press enter to add the pairs" style="text-transform: uppercase;" />
 							<DIV style='float:left; margin-right:10px;'>
-								<A href="javascript:void(0)" style="margin-bottom: 10px;" class="inputTypeButton" onclick="moveUpOptions(document.getElementById('listPairs'));">
+								<A href="javascript:void(0)" style="margin-bottom: 14px;" class="inputTypeButton" onclick="arrangeChartListItem(true);">
 									<i style="padding-top: 5px;" class="fa fa-arrow-up"></i>
 								</A>
-								<A href="javascript:void(0)" class="inputTypeButton" onclick="moveDownOptions(document.getElementById('listPairs'));">
+								<A href="javascript:void(0)" class="inputTypeButton" onclick="arrangeChartListItem(false);">
 									<i style="padding-top: 5px;" class="fa fa-arrow-down"></i>
 								</A>
 							</DIV>
@@ -166,7 +165,7 @@
 							<INPUT id="usesmallbutton" type="checkbox" name="usesmallbutton" onclick="useSmallButtonClick(this)">
 						</DIV>
 					</DIV>
-					<DIV id="divLetsGo" style='height: 80px; text-align: center;'>
+					<DIV class="divLetsGo">
 						<A id='LetsGo' href="javascript:void(0)" onclick="letsGo()">Done</A>
 						<A href="javascript:void(0)" onclick="showMultiConfig()">Cancel</A>
 					</DIV>
@@ -174,7 +173,7 @@
 		</DIV>
 		<DIV class="modalInfo">
 			<DIV>
-				<DIV>
+				<DIV style="display:flex; padding-top:15%;">
 					<DIV>
 						<!-- <H3 style="color: #fff;">Make MCC Better!</H3> -->
 						<P>
@@ -200,7 +199,11 @@
 						<H2>LTC: </H2>
 						<H4>LZkWoYbPb3cCeXqQCsVYrCRZL76AZshpP5</H4>
 					</DIV>
+					
 				</DIV>
+				<div>
+				<button class="closeBtn" onclick="showInfo()">Close</button>
+				<div>
 				<!-- <section id="content3">
 					<H1>leasj </H1>
 					<H6>
@@ -234,7 +237,7 @@
 					<BR>
 				</section> -->
 				<DIV>
-					<BUTTON onclick="showInfo()">Close</BUTTON>
+					
 				</DIV>
 			</DIV>
 		</DIV>
@@ -243,21 +246,14 @@
 	<DIV id="addSingleChart" style="text-align: center; display: none;">
 		<DIV class="divPairsSetup">
 			<H3 style='color:#eee'>Add in your pairs below to get started (e.g: BITTREX:BTCUSDT):</H3>
-			<INPUT id='SinglepairsInput' type="text" placeholder="Press enter to add the pairs" />
+			<INPUT id='SinglepairsInput' onkeydown="addChartToList()" type="text" placeholder="Press enter to add the pairs" />
 		</DIV>
 	</DIV>
 
 	<DIV id="charts"></DIV>
-		<!-- OnLoad funcs -->
-			<SCRIPT type="text/javascript">
-				// document.addEventListener('contextmenu', event => event.preventDefault());
-				//https://gist.github.com/dciccale/4087856
-				// var DOMReady = function (a, b, c) { b = document, c = 'addEventListener'; b[c] ? b[c]('DOMContentLoaded', a) : window.attachEvent('onload', a) }
-				// DOMReady(function () {
-					initPage();
-				// });
-			</SCRIPT>
-	<!-- </DIV>	 -->
+		<SCRIPT type="text/javascript">
+				initPage();
+		</SCRIPT>
 </BODY>
 
 </HTML>
