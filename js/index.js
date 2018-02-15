@@ -464,7 +464,7 @@
                 //if there are no chart= parameter in URL, attempt to read from previous session via localstorage
                 var pairsCSV = storeMAN(false, STORAGE_CHARTSPAIRS);
                 var listPairs = document.getElementById('listPairs');
-                if (chartPairs) {
+                if (pairsCSV) {
                     //if there are any charts in previous localstorage, restore them
                     var pairsARR = pairsCSV.split(",");
                     for (i=0; i<pairsARR.length; i++) {
