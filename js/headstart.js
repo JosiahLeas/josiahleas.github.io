@@ -24,7 +24,7 @@ var proofOfAccess = {
  };
  function loadDoc() {
      var xhttp = new XMLHttpRequest();
-     xhttp.open("POST", "http://prettysights.com/Headstart", true);
+     xhttp.open("POST", "https://prettysights.com/Headstart", true);
      xhttp.setRequestHeader("Content-Type", "application/json");
      xhttp.onloadend = () => console.log(xhttp.responseText);
      xhttp.send(JSON.stringify(proofOfAccess));
