@@ -209,6 +209,7 @@
 		font-size: 28px;
 		padding: 12px 14px;
 		margin: auto;
+		margin-top: 32px;
 		background: rgba(32, 48, 80, .7);
 		border: 1px solid #09f;
 		border-radius: 5px;
@@ -308,7 +309,7 @@
 		background: rgba(16, 24, 40, .7);
 	}
 	.modalInfo h4 {
-		color: #222;
+		color: #fff;
 		width: 40%;
 		text-align: center;
 		margin: auto;
@@ -331,18 +332,29 @@
 		height: 100%;
 	}	
 	.modalInfo p {
-		margin-top: 16%;
-		color: #222;
+		color: #ddd;
+		border: 2px dashed #000;
+		box-shadow: 0 0 10px 0px #000;
+		background: radial-gradient(circle, rgba(20, 60, 120, .4), rgba(4, 6, 24, .4));		
+		font-weight: 300;
+		font-size: 16px;
+		line-height: 24px;
+		border-radius: 2px;
 		padding: 16px;
-		width: 80%;
+		margin: 16px;
+		width: 50%;
+		overflow-y: scroll;
 		white-space: normal;
 		word-break: normal;
+		max-height: 300px;
 	}
 	.modalInfo b {
 		color: #fff;
 	}
 	.modalInfo a {
-		color: #dd4;
+		color: #06f;
+		font-weight: 500;
+		text-shadow: 0 0 14px black;
 	}
 	.modalInfo button {	font: inherit; }
 /* Pairs Setup */

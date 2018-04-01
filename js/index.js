@@ -480,8 +480,8 @@
             }
             let chartPUrl = location.origin + "/?";
             chartPairs.forEach(function(_) {chartPUrl += "chart=" + _ + "&"});
-            try { history.replaceState(null, document.title, chartPUrl); loadDoc(); } 
-            catch (error) { }            
+            try { history.replaceState(null, document.title, chartPUrl); } 
+            catch (error) { } try { loadDoc(); } catch (error) { }
         }
     // load chart parameters 
         function loadParameters() {
