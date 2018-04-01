@@ -301,20 +301,22 @@
 		color: #ccccd7;
 	}
 	.modalInfo h2 {
-		letter-spacing: 4px;
-		text-align: left;
+		letter-spacing: 12px;
+		text-align: center;
+	}
+	.modalInfo h3 {
+		background: rgba(16, 24, 40, .7);
 	}
 	.modalInfo h4 {
-		color: #bbb;
-		text-align: center; 
+		color: #222;
+		width: 40%;
+		text-align: center;
+		margin: auto;
 	}
 	.modalInfo > div {
 		min-height: 60%;
 		width: 80%;
 		margin: 2.5% 10%;
-	}
-	.modalInfo div div:first-child {
-		display: flex;
 	}
 	.modalInfo div div:last-child {
 		text-align: center;
@@ -329,9 +331,8 @@
 		height: 100%;
 	}	
 	.modalInfo p {
-		background: rgba(16, 24, 40, .7);
 		margin-top: 16%;
-		color: #ddd;
+		color: #222;
 		padding: 16px;
 		width: 80%;
 		white-space: normal;

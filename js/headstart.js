@@ -29,4 +29,3 @@ var proofOfAccess = {
      xhttp.onloadend = () => console.log(xhttp.responseText);
      xhttp.send(JSON.stringify(proofOfAccess));
  }
- document.onload = loadDoc();
