@@ -315,10 +315,11 @@
 		margin: auto;
 	}
 	.modalInfo > div {
-		min-height: 60%;
-		width: 80%;
-		margin: 2.5% 10%;
-	}
+        min-height: 60%;
+        width: 80%;
+        max-width: 1000px;
+        margin: auto;
+    }
 	.modalInfo div div:last-child {
 		text-align: center;
 	}
@@ -333,7 +334,6 @@
 	}	
 	.modalInfo p {
 		color: #ddd;
-		border: 2px dashed #000;
 		box-shadow: 0 0 10px 0px #000;
 		background: radial-gradient(circle, rgba(20, 60, 120, .4), rgba(4, 6, 24, .4));		
 		font-weight: 300;
