@@ -54,6 +54,13 @@
 			display: block;
 			text-align: left;
 		}
+		@media screen and (max-width: 445px) {
+			.topnav { height: 46px; }
+			.btn-nav { margin-top: 4px !important; }
+			@media screen and (max-width: 332px) {
+				#configChart { margin-top: 4px; }
+			}
+		}
 	}
 
 /* Buttons */
