@@ -67,15 +67,14 @@
 	.button-fullscreen {
 		display: block;
 		cursor: pointer;
-		padding: 4px 8px;
+		padding: 4px 8px 6px 8px;
 		border: 1px solid #dadde0;
-	
+		text-decoration: none;
 		color: #fff;
 		font-size: 20px;
 		font-weight: 600;
 		line-height: 18px;
-		opacity: .5;
-		background: #006d00;
+		background: rgba(0,106,0,.5);
 	}
 	.button-fullscreen-small {
 	display: block;

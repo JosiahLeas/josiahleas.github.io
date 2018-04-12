@@ -263,9 +263,10 @@
             btnEl.setAttribute("data-balloon", "Show in Fullscreen");
             btnEl.setAttribute("data-balloon-pos", "left");
             btnEl.addEventListener("click", toggleFullscreenChart.bind(null, "box"+i));
-            let italicsElement = document.createElement("i");
-            italicsElement.setAttribute("class", "fa fa-expand");
-            btnEl.appendChild(italicsElement);
+            // let italicsElement = document.createElement("i");
+            // italicsElement.setAttribute("class", "fa fa-expand");
+            btnEl.innerHTML = "&#10064;";
+            // btnEl.appendChild(italicsElement);
 
             topButtonContainerElement.appendChild(btnEl);
 
@@ -278,9 +279,7 @@
             btnEl.setAttribute("data-balloon", "Remove this Chart");
             btnEl.setAttribute("data-balloon-pos", "left");
             btnEl.addEventListener("click", removeChart.bind(null, boxElement, chartTicker));
-            italicsElement = document.createElement("i");
-            italicsElement.setAttribute("class", "fa fa-times");
-            btnEl.appendChild(italicsElement);
+            btnEl.innerHTML = "&#10005;";
 
             topButtonContainerElement.appendChild(btnEl);
 
