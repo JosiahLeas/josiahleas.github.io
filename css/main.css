@@ -55,9 +55,12 @@
 			text-align: left;
 		}
 		.box > div:first-child {
-			transform: translate(-10%, -10%) scale(.80) !important;
+			/* transform: translate(-10%, -10%) scale(.80) !important;
 			width: 125% !important;
-			height: 125% !important;
+			height: 125% !important; */
+			transform: translate(-20%, -20%) scale(.60) !important;
+			width: 167% !important;
+			height: 167% !important;
 		}
 		@media screen and (max-width: 445px) {
 			.topnav { height: 46px; }
