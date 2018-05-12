@@ -19,7 +19,8 @@
     let gbl_dark = null;
     let gbl_boxWidth = '';
     let gbl_boxHeight = '';
-    var gbl_isStorageUsable = true;
+    let gbl_isStorageUsable = true;
+    let gbl_inputPairId = -1;
 
     let chartPairs = new Array;
 // setup the UI / charts layout
@@ -79,21 +80,73 @@
     }
 // NOcharts view js callable functions
     function inputPairs(element) {
-        var isEnter = false;
-        if(!element) {
-            element = document.getElementById('pairsInput');
-            isEnter = true;
-        }
-        else if(event.keyCode === 13) { 
-            isEnter = true;
-            event.preventDefault();
-        }
-        if (isEnter) {
-            chartTicker = element.value.toUpperCase();
+        var autolist = document.getElementById("pairsInputautocomplete-list");
+        if(!element) { 
+            element = document.getElementById('pairsInput'); 
             listPairs = document.getElementById('listPairs');
-            listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
+            listPairs.options[listPairs.options.length] = new Option(element.value.toUpperCase(), element.value.toUpperCase());
             element.value = "";
             document.getElementById("pairsInput").focus();
+        }
+        else {
+            if(event.which === 13) {
+                event.preventDefault();
+                if(gbl_inputPairId < 0) chartTicker = element.value.toUpperCase();
+                else chartTicker = autolist.children[gbl_inputPairId].innerText;
+                inputPairsClose();
+                listPairs = document.getElementById('listPairs');
+                listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
+                element.value = "";
+                document.getElementById("pairsInput").focus();
+            }
+            else if(event.which === 38 || event.which === 40) {
+                if(gbl_inputPairId >= 0) autolist.children[gbl_inputPairId].classList = "";
+                gbl_inputPairId += (event.which === 38 ? -1 : 1);
+                if(gbl_inputPairId >= 0) autolist.children[gbl_inputPairId].classList = "autocomplete-active";  
+            }
+            else {
+                inputPairsClose();
+                a = document.createElement("DIV");
+                a.setAttribute("id", element.id + "autocomplete-list");
+                a.setAttribute("class", "autocomplete-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                element.parentNode.appendChild(a);
+
+                for (i = 0; i < COINS.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    if (COINS[i].substr(0, element.value.length).toUpperCase() == element.value.toUpperCase()) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = "<strong>" + COINS[i].substr(0, element.value.length) + "</strong>";
+                    b.innerHTML += COINS[i].substr(element.value.length);
+                    /*insert a input field that will hold the current COINSay item's value:*/
+                    b.innerHTML += "<input type='hidden' value='" + COINS[i] + "'>";
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                    b.addEventListener("click", function(e) {
+                        /*insert the value for the autocomplete text field:*/
+                        element.value = e.target.innerText;// element.getElementsByTagName("input")[0].value;
+                        inputPairs(null);
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        //   closeAllLists();
+                    });
+                    a.appendChild(b);
+                    }
+                }
+            }
+        }
+        if(element.value.length < 1) inputPairsClose();
+    }
+    function inputPairsClose() {
+        /*close all autocomplete lists in the document,
+        except the one passed as an argument:*/
+        gbl_inputPairId = -1;
+        var x = document.getElementsByClassName("autocomplete-items");
+        for (var i = 0; i < x.length; i++) {
+            // if (elmnt != x[i] && elmnt != inp) {
+                x[i].parentNode.removeChild(x[i]);
+            // }
         }
     }
     function letsGo() {

@@ -372,12 +372,17 @@
 	}
 	.modalInfo button {	font: inherit; }
 /* Pairs Setup */
+	#pairsInput {
+		width: 85%;
+		margin-left: 6px;
+		border-radius: 3px;
+		background: #383838;
+		color: #fcfcfc;
+	}
 	div.divPairsSetup {
 		position: relative;
-		max-width: 300px;
-		margin: 5px auto;
-		margin-bottom: 20px;
-		display: inline-block;
+		max-width: 420px;
+		padding-bottom: 20px;
 		vertical-align: top;
 	}
 	div.divPairsSetup input[type="text"],
@@ -399,8 +404,7 @@
 		color: #555;
 		font: 95% Arial, Helvetica, sans-serif;
 	}
-	div.divPairsSetup input[type="text"]:focus,
-	div.divPairsSetup select:focus {
+	div.divPairsSetup input[type="text"]:focus {
 		box-shadow: 0 0 5px #43D1AF;
 		padding: 3%;
 		border: 1px solid #43D1AF;
@@ -410,15 +414,37 @@
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		padding: 3%;
-		background: #43D1AF;
-		border-bottom: 2px solid #30C29E;
+		box-shadow: 0 0 8px -2px #000;
 		border-top-style: none;
 		border-right-style: none;
 		border-left-style: none;
-		color: #fff;
+		width: 85%;
+		margin-left: 6px;
+		border-radius: 3px;
+		background: #343434;
+		color: #f3f3f3;
 	}
 	div.divPairsSetup input[type="button"]:hover {
 		background: #2EBC99;
+	}
+	div.divPairsSetup h3 {
+		color: #000;
+		background: rgb(200, 168, 226);
+		padding: 8px;
+		font-weight: 500;
+		text-align: center;
+		border-bottom: 6px solid rgb(160,128,186);
+		margin: 0 0 18px 0;
+	}
+	div.divPairsSetup a.inputTypeButton {
+		text-align: center;
+		font-size: 24px;
+		float: right;
+		margin: 6px;
+		width: 35.5px;
+		border-radius: 50%;
+		height: 35.5px;
+		text-decoration: none;
 	}
 /* Unorg */
 	.inputTypeButton {
