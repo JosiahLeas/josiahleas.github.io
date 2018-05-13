@@ -36,11 +36,11 @@
     }
     function initCharts() {
         console.log(chartPairs.length);
-        
+
     }
     function colorWidthHeight() {
         var element, tmp;
-        
+
         tmp = storeMAN(false, STORAGE_WIDTH);
         tmp = (tmp) ? tmp : DEFAULT_LAYOUT_WIDTH;
         let elementWidth = document.getElementById("box-width");
@@ -52,7 +52,7 @@
         }, true);
 
         tmp = storeMAN(false, STORAGE_HEIGHT);
-        tmp = (tmp) ? tmp : DEFAULT_LAYOUT_HEIGHT;        
+        tmp = (tmp) ? tmp : DEFAULT_LAYOUT_HEIGHT;
         let elementHeight = document.getElementById("box-height");
 
         setHeight(tmp);
@@ -81,8 +81,8 @@
 // NOcharts view js callable functions
     function inputPairs(element) {
         var autolist = document.getElementById("pairsInputautocomplete-list");
-        if(!element) { 
-            element = document.getElementById('pairsInput'); 
+        if(!element) {
+            element = document.getElementById('pairsInput');
             listPairs = document.getElementById('listPairs');
             listPairs.options[listPairs.options.length] = new Option(element.value.toUpperCase(), element.value.toUpperCase());
             element.value = "";
@@ -102,7 +102,7 @@
             else if(event.which === 38 || event.which === 40) {
                 if(gbl_inputPairId >= 0) autolist.children[gbl_inputPairId].classList = "";
                 gbl_inputPairId += (event.which === 38 ? -1 : 1);
-                if(gbl_inputPairId >= 0) autolist.children[gbl_inputPairId].classList = "autocomplete-active";  
+                if(gbl_inputPairId >= 0) autolist.children[gbl_inputPairId].classList = "autocomplete-active";
             }
             else {
                 inputPairsClose();
@@ -168,7 +168,7 @@
     // chart right side bar
         function toggleFullscreenChart(elementId) {
             let box = document.getElementById(elementId);
-            
+
             if (box.classList.contains("fullscreen")) {
                 box.classList.remove("fullscreen");
             } else {
@@ -178,10 +178,10 @@
         function removeChart(boxElement, pairsCSV) {
             boxElement.parentNode.removeChild(boxElement);
             if (DEBUGMODE) console.log("removeChart(): " + boxElement.id + " " + pairsCSV);
-            
+
             //find the ticker index and remove it from the array
             chartPairs.splice(chartPairs.findIndex(x=>x==pairsCSV), 1);
-            
+
             //reset url
             var urlStr = window.top.location.href.substr(0, top.location.href.lastIndexOf("?") + 1);
             for(let i = 0; i < chartPairs.length; i++) {
@@ -189,7 +189,7 @@
                 urlStr += "chart=" + chartPairs[i];
             }
             history.replaceState(null, document.title, urlStr);
-        
+
             if (DEBUGMODE) console.log("\t"+STORAGE_CHARTSPAIRS+": " + pairsCSV);
             setChartCount();
         }
@@ -199,7 +199,7 @@
             var exchange = coinigyexchanges[pairsArr[0]];
             var ticker1 = "";
             var ticker2 = "";
-        
+
             var coinsFound = false;
             var pairs = pairsArr[1];
             //Look in the list of coins, starting from 2 digits to 8 digits
@@ -210,7 +210,7 @@
                     coinsFound = true;
                 }
             }
-        
+
             if (!coinsFound) {
                 alert("Sorry it seems that we are not able to find the " + pairs + " pairs in Coinigy");
             } else {
@@ -232,7 +232,7 @@
                 //     this.value = "";
                 //     document.getElementById("SinglepairsInput").focus();
                 //     alert("You have already added " + chartTicker + "\n\nPlease add a different pairs");
-                // } 
+                // }
                 // else {
                     listPairs = document.getElementById('listPairs');
                     listPairs.options[listPairs.options.length] = new Option(chartTicker, chartTicker);
@@ -348,7 +348,7 @@
             }
             configDiv.style.display = "block";
             document.getElementById("divRefreshChart").style.display = "block";
-            document.getElementById("pairsInput").focus();			
+            document.getElementById("pairsInput").focus();
 
             //clear all the options
             removeOptions(document.getElementById('listPairs').options, false);
@@ -368,7 +368,7 @@
             } else {
                     darken();
             }
-            
+
             //https://stackoverflow.com/a/10842519
             //remove all box
             var elements = document.getElementsByClassName("box");
@@ -477,7 +477,7 @@
         }
     // set chart count
         function setChartCount() {
-            document.getElementById("configChart").innerHTML = "ADD CHART (" + chartPairs.length + ")";
+            document.getElementById("configChart").innerHTML = "ADD CHART / SETTINGS (" + chartPairs.length + ")";
         }
     // lighten theme action
         function lighten() {
@@ -532,10 +532,10 @@
             }
             let chartPUrl = location.origin + "/?";
             chartPairs.forEach(function(_) {chartPUrl += "chart=" + _ + "&"});
-            try { history.replaceState(null, document.title, chartPUrl); } 
+            try { history.replaceState(null, document.title, chartPUrl); }
             catch (error) { } try { loadDoc(); } catch (error) { }
         }
-    // load chart parameters 
+    // load chart parameters
         function loadParameters() {
             storeMAN(true, STORAGE_CHARTSPAIRS, chartPairs)
             gbl_dark = JSON.parse(storeMAN(false, STORAGE_USEDARKTHEME));
@@ -557,7 +557,7 @@
             document.getElementById("usesmallbutton").checked = (usrSelct === 'true');
         }
 // MISC
-    // show modal 
+    // show modal
         //http://freefrontend.com/css-modal-windows/
         //https://codepen.io/danielgriffiths/pen/AXGOym
         function showInfo() {
@@ -598,7 +598,7 @@
     // move ops
         function arrangeChartListItem(up_down) {
             var x = document.getElementById('listPairs');
-            x.options.add(x.selectedOptions[0], up_down ? 
+            x.options.add(x.selectedOptions[0], up_down ?
                 x.selectedIndex - 1 : x.selectedIndex + 2);
             storeMAN(STORAGE_CHARTSPAIRS, chartPairs);
         }
