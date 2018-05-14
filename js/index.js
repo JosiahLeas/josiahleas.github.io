@@ -570,6 +570,16 @@
                 mdl[0].style.opacity = 0;
             }
         }
+        function showAd() {
+            var mdl = document.getElementsByClassName("modalAd");
+            if (mdl[0].style.visibility == "hidden" || mdl[0].style.visibility == "") {
+                mdl[0].style.visibility = "visible";
+                mdl[0].style.opacity = 1;
+            } else {
+                mdl[0].style.visibility = "hidden";
+                mdl[0].style.opacity = 0;
+            }
+        }
         function showMultiConfig() {
             var mdl = document.getElementsByClassName("modalConfig");
             if (mdl[0].style.visibility == "hidden" || mdl[0].style.visibility == "") {

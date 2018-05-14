@@ -83,7 +83,7 @@
 		</DIV>
 		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">Browser Incompatible</BUTTON>
 		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">Javascript Crashed</BUTTON>
-		<A href="https://prettysights.com/" target="_blank" style="padding-left: 4px; font-weight: 400; font-size: 11px; color: lightblue;">Dev Site</A>
+		<BUTTON class="ad" onclick="showAd()">Advertise Here</BUTTON>
 		<BUTTON class="btn btn-nav right" onclick="showInfo()">DONATE / INFO</BUTTON>
 		<DIV class="modalConfig" style="-webkit-backdrop-filter: blur(6px);">
 			<DIV class="hero" style="overflow-y: auto; max-height: 100vh;">
@@ -239,8 +239,7 @@
 						<br/>
 						<br/>
 					</P>
-					<DIV style="padding-left: 8px;
-					padding-bottom: 16px;">
+					<DIV style="padding-left: 8px; padding-bottom: 16px;">
 						<H2>&nbsp;ETH</H2>
 						<H4>0xf75e3d6496b32b2896e42644cc2811c07065690f</H4>
 						<H2>&nbsp;BTC</H2>
@@ -252,7 +251,7 @@
 				</DIV>
 				<DIV>
 					<button class="closeBtn" onclick="showInfo()">Close</button>
-					<DIV>
+
 					<!-- <section id="content3">
 						<H1>leasj </H1>
 						<H6>
@@ -285,12 +284,9 @@
 						</H6>
 						<BR>
 					</section> -->
-						<DIV>
-
-						</DIV>
-					</DIV>
 				</DIV>
 			</DIV>
+    </DIV>
 			<DIV id="addSingleChart" style="text-align: center; display: none;">
 				<DIV class="divPairsSetup">
 					<H3 style='color:#eee'>Add in your pairs below to get started (e.g: BITTREX:BTCUSDT):</H3>
@@ -299,6 +295,19 @@
 			</DIV>
 			<DIV id="charts"></DIV>
 		</DIV>
+
+		<DIV class="modalAd">
+			<DIV>
+				<DIV style="border-radius: 5px; background-color:white; border: 4px dashed black;
+				    background: radial-gradient(circle, rgba(20, 60, 120, .4), rgba(4, 6, 24, .4));">
+					<DIV style="padding:75px; color:#fff;">
+					<H1> Interested in advertising on MCC? <br><br> Contact us here: <a target="blank" href="mailto:forever.scg@outlook.com">forever.scg@outlook.com</a>  </H1>
+					</DIV>
+
+				</DIV>
+	     <DIV style="text-align: center; cursor:pointer;"
+					<button class="closeBtn" onclick="showAd()">Close</button>
+				</DIV>
 			<SCRIPT type="text/javascript">
 				initPage();
 			</SCRIPT>

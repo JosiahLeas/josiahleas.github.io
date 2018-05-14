@@ -99,9 +99,9 @@
 	background: #006d00;
 	}
 	.button-coinigy {
-		width:34px; 
+		width:34px;
 		opacity: .75;
-		height:34px; 
+		height:34px;
 		cursor:pointer;
 		opacity: .5;
 	}
@@ -166,7 +166,7 @@
 		color: #ecf0f1;
 		text-decoration: none;
 		transition: background-color .3s;
-		
+
 	}
 	.theme {
 		position: right;
@@ -181,20 +181,20 @@
 		/*width: 100px;*/
 	}
 /* NoCharts Mode */
-	#nocharts h1 { 
-		background: #464853; 
+	#nocharts h1 {
+		background: #464853;
 		padding: 20px 0 22px 0;
 		margin: 0;
 	}
 	#nocharts h1 span {
 		font-size: 48px;
-		color:#eee; 
+		color:#eee;
 		background: #262833;
 		padding: 8px 22px 12px 22px;
 	}
 	#nocharts h2 span {
 		font-size: 36px;
-		color:#eee; 
+		color:#eee;
 		background: #262833;
 		padding: 8px 22px 12px 22px;
 	}
@@ -220,17 +220,18 @@
 		display: flex;
 	}
 	.divLetsGo a, .closeBtn {
-		font-size: 28px;
-		padding: 12px 14px;
-		margin: auto;
-		margin-top: 32px;
-		background: rgba(32, 48, 80, .7);
-		border: 1px solid #09f;
-		border-radius: 5px;
-		color: #ecf0f1;
-		text-decoration: none;
-		transition: background-color .3s;
-	}
+    font-size: 25px;
+    padding: 5px;
+    margin: auto;
+    margin-top: 32px;
+    background: rgba(32, 48, 80, .7);
+    border: 1px solid #09f;
+    border-radius: 5px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background-color .3s;
+    width: 69px;
+}
 	#nocharts .hero {
 		margin-bottom: 44px;
 		border-bottom: 22px dashed #9698a3;
@@ -277,7 +278,6 @@
 		font-family: Lato, sans-serif;
 		background: #09f;
 		color: #fff;
-		border: 1px solid #fff;
 		outline: 0;
 		text-transform: uppercase;
 		cursor: pointer;
@@ -289,7 +289,7 @@
 		background: #fff;
 		color: #da513d;
 	}
-	.modalInfo, .modalConfig {
+	.modalInfo, .modalConfig, .modalAd {
 		opacity: 0;
 		visibility: hidden;
 		display: -webkit-box;
@@ -345,11 +345,11 @@
 	.modalInfo div div div:first-child {
 		display: block;
 		height: 100%;
-	}	
+	}
 	.modalInfo p {
 		color: #ddd;
 		box-shadow: 0 0 10px 0px #000;
-		background: radial-gradient(circle, rgba(20, 60, 120, .4), rgba(4, 6, 24, .4));		
+		background: radial-gradient(circle, rgba(20, 60, 120, .4), rgba(4, 6, 24, .4));
 		font-weight: 300;
 		font-size: 16px;
 		line-height: 24px;
@@ -486,3 +486,23 @@
 		right: 5px;
 		z-index: 5;
 	}
+
+	.ad{
+		margin-left: 25px;
+		border: 5px;
+		box-shadow: 0 0 10px #000;
+		text-align: center;
+		border-radius: 3px;
+		text-decoration: none;
+		padding-left: 9px;
+		padding-right: 9px;
+	font-family: Lato, sans-serif;
+	background: #09fc;
+	color: #fff;
+	}
+.ad:hover{
+
+		background: #fff;
+		color: #da513d;
+	
+}
