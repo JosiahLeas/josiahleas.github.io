@@ -622,17 +622,13 @@
             // window.location.href = `${window.location.href}&chart=BINANCE:XLMBTC`;
             let notif = document.getElementById('notif');
             let time = (new Date).getTime();
-            let chartTicker = 'BINANCE:XLMBTC';
+            let chartTicker = COINS[Math.floor(Math.random()*COINS.length)];
+            // let chartTicker = 'BINANCE:XLMBTC';
             let boxElement = chartSetUpBox(time);
             document.body.insertBefore(boxElement,notif);
-            let newChart = chartSetWidget('BINANCE:XLMBTC',boxElement,time);
+            let newChart = chartSetWidget(chartTicker,boxElement,time);
             boxElement.appendChild(newChart);
-
             history.replaceState(null, document.title, window.top.location.href + "&chart=" + chartTicker);
-            // boxElement.appendChild(topButtonContainerElement);
-
-            //document.body.childNodes[document.body.childNodes.length - 2]);
-            
             colorWidthHeight();
         }
     // rebuild chart pairs
