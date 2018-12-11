@@ -1,6 +1,6 @@
 // Pinche Medicado - Josiah Leas :: PrettySights.com v
 // stored variables
-    var DEBUGMODE = true; //change to false outside testdrive
+    var DEBUGMODE = false; //change to false outside testdrive
     const STORAGE_USEDARKTHEME = "useDarkTheme";
     const STORAGE_WIDTH = "table_width";
     const STORAGE_HEIGHT = "table_height";
