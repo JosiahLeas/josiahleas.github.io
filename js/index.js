@@ -1,6 +1,6 @@
 // Pinche Medicado - Josiah Leas :: PrettySights.com v
 // stored variables
-    var DEBUGMODE = false; //change to false outside testdrive
+    var DEBUGMODE = true; //change to false outside testdrive
     const STORAGE_USEDARKTHEME = "useDarkTheme";
     const STORAGE_WIDTH = "table_width";
     const STORAGE_HEIGHT = "table_height";
@@ -184,10 +184,11 @@
             if (DEBUGMODE) console.log("removeChart(): " + boxElement.id + " " + pairsCSV);
 
             //find the ticker index and remove it from the array
-            chartPairs.splice(chartPairs.findIndex(x=>x==pairsCSV), 1);
+            let index = chartPairs.lastIndexOf(x=>x==pairsCSV);
+            if(index > -1) chartPairs.splice(index, 1);
 
             //reset url
-            var urlStr = window.top.location.href.substr(0, top.location.href.lastIndexOf("?") + 1);
+            var urlStr = window.top.location.href.substr(0, top.location.href.indexOf("?") + 1);
             for(let i = 0; i < chartPairs.length; i++) {
                 if (i!=0) urlStr += "&";
                 urlStr += "chart=" + chartPairs[i];
@@ -619,16 +620,20 @@
             }
         }
         function insertChart() {
-            // window.location.href = `${window.location.href}&chart=BINANCE:XLMBTC`;
             let notif = document.getElementById('notif');
             let time = (new Date).getTime();
             let chartTicker = COINS[Math.floor(Math.random()*COINS.length)];
-            // let chartTicker = 'BINANCE:XLMBTC';
             let boxElement = chartSetUpBox(time);
+
             document.body.insertBefore(boxElement,notif);
+
             let newChart = chartSetWidget(chartTicker,boxElement,time);
+
             boxElement.appendChild(newChart);
+            
+            chartPairs.push(chartTicker);
             history.replaceState(null, document.title, window.top.location.href + "&chart=" + chartTicker);
+            
             colorWidthHeight();
         }
     // rebuild chart pairs
