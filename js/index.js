@@ -189,7 +189,7 @@
             if (DEBUGMODE) console.log("removeChart(): " + boxElement.id + " " + pairsCSV + index);
 
             //reset url
-            var urlStr = `${location.protocol}${location.host}`;
+            var urlStr = `${location.protocol}//${location.host}`;
             for(let i = 0; i < chartPairs.length; i++) {
                 if (i!=0) urlStr += "&";
                 urlStr += "chart=" + chartPairs[i];
