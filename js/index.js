@@ -21,15 +21,19 @@
     let gbl_boxHeight = '';
     let gbl_isStorageUsable = true;
     let gbl_inputPairId = -1;
+    // let gbl_charts_group = HTMLElement;
 
     let chartPairs = new Array;
 // setup the UI / charts layout
     function initPage() {
+        // gbl_charts_group = document.getElementById("charts_group");
+
         loadPairs();
         loadParameters();
 
         for(let i = 0; i < chartPairs.length; i++)
             createChart(chartPairs[i]);
+        // createNewsletter()
 
         colorWidthHeight();
         setChartCount();
@@ -40,11 +44,11 @@
     }
     function colorWidthHeight() {
         var element, tmp;
-
+        
         tmp = storeMAN(false, STORAGE_WIDTH);
         tmp = (tmp) ? tmp : DEFAULT_LAYOUT_WIDTH;
         let elementWidth = document.getElementById("box-width");
-
+        
         setWidth(tmp);
         elementWidth.value = tmp;
         elementWidth.addEventListener("change", function () {
@@ -249,12 +253,23 @@
             }
         }
         function createChart(chartTicker) {
+            let time = (new Date).getTime();
+
+            let boxElement = chartSetUpBox(time);
+            document.body.appendChild(boxElement);
+
+            let topButtonContainerElement = chartSetWidget(chartTicker, boxElement, time);
+            boxElement.appendChild(topButtonContainerElement);
+        }
+        function chartSetUpBox(time) {
             let boxElement = document.createElement("div");
             //use unique id based on milliseconds
-            var i = (new Date).getTime();
-            boxElement.setAttribute("id", "box" + i);
+            boxElement.setAttribute("id", "box" + time);
             boxElement.setAttribute("class", "box");
-            document.body.appendChild(boxElement);
+            // gbl_charts_group.appendChild(boxElement);
+            return boxElement;
+        }
+        function chartSetWidget(chartTicker, boxElement, time) {
             var theme = (gbl_dark === true ? "Dark" : "Light");
             var toolbarbg = (gbl_dark === true ? "rgb(27, 32, 48)" : "rgb(227, 232, 248)");
 
@@ -273,7 +288,7 @@
             var usesmallbutton2 = (usesmallbuttonChk.checked ? "button-coinigy-small" : "button-coinigy");
 
             new TradingView.widget({
-                "container_id": "box" + i,
+                "container_id": "box" + time,
                 "autosize": true,
                 "symbol": chartTicker,
                 "interval": intervalValue,
@@ -315,7 +330,7 @@
             btnEl.setAttribute("data-balloon-length", "small");
             btnEl.setAttribute("data-balloon", "Show in Fullscreen");
             btnEl.setAttribute("data-balloon-pos", "left");
-            btnEl.addEventListener("click", toggleFullscreenChart.bind(null, "box"+i));
+            btnEl.addEventListener("click", toggleFullscreenChart.bind(null, "box"+time));
             // let italicsElement = document.createElement("i");
             // italicsElement.setAttribute("class", "fa fa-expand");
             btnEl.innerHTML = "&#10064;";
@@ -335,9 +350,16 @@
             btnEl.innerHTML = "&#10005;";
 
             topButtonContainerElement.appendChild(btnEl);
-
-            boxElement.appendChild(topButtonContainerElement);
+            return topButtonContainerElement;
         }
+        // function createNewsletter() {
+        //     let boxElement = document.createElement("div");
+        //     //use unique id based on milliseconds
+        //     var i = (new Date).getTime();
+        //     boxElement.setAttribute("id", "box" + i);
+        //     boxElement.setAttribute("class", "box newsletter");
+        //     document.body.appendChild(boxElement);
+        // }
         function openMultiChartConfig() {
             document.getElementById("addSingleChart").style.display = "none";
             var configDiv = document.getElementById("addMultiChart");
@@ -526,8 +548,7 @@
                     //if there are nothing in the localstorage, use some default value
                     chartPairs.push("COINBASE:BTCUSD");
                     chartPairs.push("COINBASE:ETHUSD");
-                    chartPairs.push("BITTREX:OMGBTC");
-                    chartPairs.push("BITTREX:BTGBTC");
+                    chartPairs.push("BINANCE:OMGBTC");
                 }
             }
             let chartPUrl = location.origin + "/?";
@@ -594,6 +615,21 @@
             for(let i = 0; i < chartPairs.length; i++) {
                 if(listPairs) listPairs.options[listPairs.options.length] = new Option(chartPairs[i], chartPairs[i]);
             }
+        }
+        function insertChart() {
+            // window.location.href = `${window.location.href}&chart=BINANCE:XLMBTC`;
+            let notif = document.getElementById('notif');
+            let time = (new Date).getTime();
+            let chartTicker = 'BINANCE:XLMBTC';
+            let boxElement = chartSetUpBox(time);
+            document.body.insertBefore(boxElement,notif);
+            let newChart = chartSetWidget('BINANCE:XLMBTC',boxElement,time);
+            boxElement.appendChild(newChart);
+            // boxElement.appendChild(topButtonContainerElement);
+
+            //document.body.childNodes[document.body.childNodes.length - 2]);
+            
+            colorWidthHeight();
         }
     // rebuild chart pairs
         function rebuildChartsPairsArray() {

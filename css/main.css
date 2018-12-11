@@ -486,7 +486,17 @@
 		right: 5px;
 		z-index: 5;
 	}
-
+	.newsletter {
+		text-align: center;
+		background: rgb(19,23,34);
+		height: 100%;
+		/* border: 4px solid rgb(227,232,247); */
+		border: 4px solid rgb(33,37,52);
+		overflow-y: auto;
+	}
+	.tvRed { color: rgb(233,83,83); }
+	.tvGreen { color: rgb(46,165,154); }
+	.black-serif { font-family: 'Times New Roman', Times, serif; }
 	.ad{
 		margin-left: 25px;
 		border: 5px;

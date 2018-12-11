@@ -70,7 +70,6 @@
 </HEAD>
 
 <BODY style="background: #363843;">
-
 	<DIV class="topnav" id="topnav">
 		<DIV class="label">
 			<LABEL for="box-width" class="number-label">Width</LABEL>
@@ -83,8 +82,9 @@
 		</DIV>
 		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">Browser Incompatible</BUTTON>
 		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">Javascript Crashed</BUTTON>
-		<BUTTON class="ad" onclick="showAd()">ADVERTISE HERE</BUTTON>
-		<BUTTON class="btn btn-nav right" onclick="showInfo()">DONATE / INFO</BUTTON>
+		<!-- <BUTTON class="ad" onclick="showAd()">ADVERTISE HERE</BUTTON> -->
+		<!-- <BUTTON class="btn btn-nav right" onclick="showInfo()">twitter.com/forever_scg</BUTTON> -->
+		<A href="https://twitter.com/forever_scg" class="btn btn-nav right" style="font-size: 10px; padding: 2px;">us on twitter</A>
 		<DIV class="modalConfig" style="-webkit-backdrop-filter: blur(6px);">
 			<DIV class="hero" style="overflow-y: auto; max-height: 100vh;">
 				<DIV id="addMultiChart" style="background: #fff9fc; border-radius: 2px;" class="cornflower-box">
@@ -286,31 +286,47 @@
 					</section> -->
 				</DIV>
 			</DIV>
+		</DIV>
     </DIV>
-			<DIV id="addSingleChart" style="text-align: center; display: none;">
-				<DIV class="divPairsSetup">
-					<H3 style='color:#eee'>Add in your pairs below to get started (e.g: BITTREX:BTCUSDT):</H3>
-					<INPUT id='SinglepairsInput' onkeydown="addChartToList()" type="text" placeholder="Press enter to add the pairs" />
+	<DIV id="addSingleChart" style="text-align: center; display: none;">
+		<DIV class="divPairsSetup">
+			<H3 style='color:#eee'>Add in your pairs below to get started (e.g: BITTREX:BTCUSDT):</H3>
+			<INPUT id='SinglepairsInput' onkeydown="addChartToList()" type="text" placeholder="Press enter to add the pairs" />
+		</DIV>
+	</DIV>
+	<DIV id="charts_group">
+	</DIV>
+	<DIV class="modalAd">
+		<DIV>
+			<DIV style="border-radius: 5px; background-color:white; border: 4px dashed black;
+				background: radial-gradient(circle, rgba(20, 60, 120, .4), rgba(4, 6, 24, .4));">
+				<DIV style="padding:75px; color:#fff;">
+				<H1> Interested in advertising on MCC? <br><br> Contact us here: <a target="blank" href="mailto:forever.scg@outlook.com">forever.scg@outlook.com</a>  </H1>
 				</DIV>
 			</DIV>
-			<DIV id="charts"></DIV>
+			<DIV style="text-align: center; cursor:pointer;">
+				<button class="closeBtn" onclick="showAd()">Close</button>
+			</DIV>
 		</DIV>
-
-		<DIV class="modalAd">
-			<DIV>
-				<DIV style="border-radius: 5px; background-color:white; border: 4px dashed black;
-				    background: radial-gradient(circle, rgba(20, 60, 120, .4), rgba(4, 6, 24, .4));">
-					<DIV style="padding:75px; color:#fff;">
-					<H1> Interested in advertising on MCC? <br><br> Contact us here: <a target="blank" href="mailto:forever.scg@outlook.com">forever.scg@outlook.com</a>  </H1>
-					</DIV>
-
-				</DIV>
-	     <DIV style="text-align: center; cursor:pointer;"
-					<button class="closeBtn" onclick="showAd()">Close</button>
-				</DIV>
-			<SCRIPT type="text/javascript">
-				initPage();
-			</SCRIPT>
+	</DIV>
+	<SCRIPT type="text/javascript">
+		initPage();
+	</SCRIPT>
+	<DIV id="notif" class="newsletter" style="float: left; position: relative; box-sizing: border-box; width: calc(50%); position: relative; height: calc(50% - 14.5px);">
+		<P href="#" onclick="insertChart()" style="position: absolute; top: 8px; cursor: pointer; right: 8px; width: 32px; height: 32px; background: rgb(33,37,52); text-decoration: none; color: #fff; border-radius: 50%; line-height: 32px; font-size: 12px;">X</P>
+		<H4 style="padding: 8% 0 20% 0;">
+			<!-- <BR><BR> -->
+			<SPAN class="tvRed" style="font-size: 24px;">MCC (@leasj &amp; forever.scg)</SPAN> <BR><BR>
+			<SPAN class="tvGreen">Crypto Analysis Monthly Report</SPAN>
+		</H4>
+		<BUTTON class="button" style="margin: auto; height: unset; font-family: 'Times New Roman', Times, serif; font-size: 18px; background: rgb(62,137,236); color: white;">
+			<A href="https://www.getrevue.co/profile/leasj/members" style="text-decoration: none;">
+				Start getting crypto reports.
+			</A>
+		</BUTTON>
+		<P class="black-serif" style="padding-top: 20%;">
+			- 5 USD weekly; request coins to grade - 
+		</P>
+	</DIV>
 </BODY>
-
 </HTML>
