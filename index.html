@@ -25,19 +25,16 @@
             left: 0;
             right: 0;
         }
-
         .autocomplete-items div {
             padding: 8px 14px;
             cursor: pointer;
             background-color: #222;
 			border-bottom: 1px solid #4d4d4d;
         }
-
         .autocomplete-items div:hover {
             /*when hovering an item:*/
             background-color: #777;
         }
-
         .autocomplete-active {
             /*when navigating through the items using the arrow keys:*/
             background-color: DodgerBlue !important;
@@ -81,10 +78,10 @@
 			/>
 		</DIV>
 		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">Browser Incompatible</BUTTON>
-		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">Javascript Crashed</BUTTON>
+		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">Network Error</BUTTON>
 		<!-- <BUTTON class="ad" onclick="showAd()">ADVERTISE HERE</BUTTON> -->
 		<!-- <BUTTON class="btn btn-nav right" onclick="showInfo()">twitter.com/forever_scg</BUTTON> -->
-		<A href="https://twitter.com/forever_scg" class="btn btn-nav right" style="font-size: 10px; padding: 2px;">us on twitter</A>
+		<A target="_blank" href="https://twitter.com/forever_scg" class="btn btn-nav right" style="font-size: 10px; padding: 2px;">us on twitter</A>
 		<DIV class="modalConfig" style="-webkit-backdrop-filter: blur(6px);">
 			<DIV class="hero" style="overflow-y: auto; max-height: 100vh;">
 				<DIV id="addMultiChart" style="background: #fff9fc; border-radius: 2px;" class="cornflower-box">
@@ -205,7 +202,7 @@
 							<SPAN data-balloon-length="fit" data-balloon="Use smaller button size, applies to the following buttons: Open in Coinigy, Show in Fullscreen, Remove this Chart"
 							 data-balloon-pos="up" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
 						</SPAN>
-						<INPUT id="usesmallbutton" type="checkbox" name="usesmallbutton" onclick="useSmallButtonClick(this)"><br /><br />
+						<INPUT id="usesmallbutton" type="checkbox" name="usesmallbutton" onclick="useSmallButtonClick(this)"><BR /><BR />
 						<SPAN>
 							<A id='LetsGo' href="javascript:void(0)" onclick="letsGo()">Done</A>
 							&nbsp;&nbsp; &nbsp;&nbsp;
@@ -220,24 +217,24 @@
 				<DIV style="display:flex; margin-top:20vh; border-radius: 14px; border: 4px dashed black;
 				background: radial-gradient(circle, rgba(105, 190, 250, .5), rgba(5, 90, 150, .1));">
 					<P>
-						<b>MultiCoinCharts!</b>
-						<br/>
-						<br/>
-						<b>New Features:</b>
-						<br/> Address bar always has your charts so you can copy and paste them easier.
-						<br/> New Experimental Design of this area.
-						<br/> Base support for chart alerts!
-						<br/>
-						<br/>
-						<A target="blank" href="https://twitter.com/forever_scg">Bugs, Crashes, or Features! Live support on twitter!</A>
-						<br/>
-						<br/>
-						<A target="blank" href="mailto:forever.scg@outlook.com">Email us for other ideas, business, or to support MultiCoinCharts</A>
-						<br/>
-						<br/>
-						<A target="blank" href="https://github.com/JosiahLeas/josiahleas.github.io">You can help us develop this site if you like it a lot!</A>
-						<br/>
-						<br/>
+						<B>MultiCoinCharts!</b>
+						<BR/>
+						<BR/>
+						<B>New Features:</b>
+						<BR/> Address bar always has your charts so you can copy and paste them easier.
+						<BR/> New Experimental Design of this area.
+						<BR/> Base support for chart alerts!
+						<BR/>
+						<BR/>
+						<A target="_blank" href="https://twitter.com/forever_scg">Bugs, Crashes, or Features! Live support on twitter!</A>
+						<BR/>
+						<BR/>
+						<A target="_blank" href="mailto:forever.scg@outlook.com">Email us for other ideas, business, or to support MultiCoinCharts</A>
+						<BR/>
+						<BR/>
+						<A target="_blank" href="https://github.com/JosiahLeas/josiahleas.github.io">You can help us develop this site if you like it a lot!</A>
+						<BR/>
+						<BR/>
 					</P>
 					<DIV style="padding-left: 8px; padding-bottom: 16px;">
 						<H2>&nbsp;ETH</H2>
@@ -250,7 +247,7 @@
 
 				</DIV>
 				<DIV>
-					<button class="closeBtn" onclick="showInfo()">Close</button>
+					<BUTTON class="closeBtn" onclick="showInfo()">Close</BUTTON>
 
 					<!-- <section id="content3">
 						<H1>leasj </H1>
@@ -301,11 +298,11 @@
 			<DIV style="border-radius: 5px; background-color:white; border: 4px dashed black;
 				background: radial-gradient(circle, rgba(20, 60, 120, .4), rgba(4, 6, 24, .4));">
 				<DIV style="padding:75px; color:#fff;">
-				<H1> Interested in advertising on MCC? <br><br> Contact us here: <a target="blank" href="mailto:forever.scg@outlook.com">forever.scg@outlook.com</a>  </H1>
+				<H1> Interested in advertising on MCC? <BR><BR> Contact us here: <a target="_blank" href="mailto:forever.scg@outlook.com">forever.scg@outlook.com</a>  </H1>
 				</DIV>
 			</DIV>
 			<DIV style="text-align: center; cursor:pointer;">
-				<button class="closeBtn" onclick="showAd()">Close</button>
+				<Button class="closeBtn" onclick="showAd()">Close</button>
 			</DIV>
 		</DIV>
 	</DIV>
@@ -320,11 +317,11 @@
 			<SPAN class="tvGreen">Crypto Analysis Monthly Report</SPAN>
 		</H4>
 		<BUTTON class="button" style="margin: auto; height: unset; font-family: 'Times New Roman', Times, serif; font-size: 18px; background: rgb(62,137,236); color: white;">
-			<A href="https://www.getrevue.co/profile/leasj/members" style="text-decoration: none;">
+			<A target="_blank" href="https://www.getrevue.co/profile/leasj/members" style="text-decoration: none;">
 				Start getting crypto reports.
 			</A>
 		</BUTTON>
-		<P class="black-serif" style="padding-top: 20%;">
+		<P class="black-serif" style="padding-top: 0%;">
 			- 5 USD weekly; request coins to grade - 
 		</P>
 	</DIV>
