@@ -254,9 +254,11 @@
         }
         function createChart(chartTicker) {
             let time = (new Date).getTime();
-
+            let notif = document.getElementById('notif');
             let boxElement = chartSetUpBox(time);
-            document.body.appendChild(boxElement);
+
+            document.body.insertBefore(boxElement,notif);
+            // document.body.appendChild(boxElement);
 
             let topButtonContainerElement = chartSetWidget(chartTicker, boxElement, time);
             boxElement.appendChild(topButtonContainerElement);
