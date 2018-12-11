@@ -181,14 +181,15 @@
         }
         function removeChart(boxElement, pairsCSV) {
             boxElement.parentNode.removeChild(boxElement);
-            if (DEBUGMODE) console.log("removeChart(): " + boxElement.id + " " + pairsCSV);
 
             //find the ticker index and remove it from the array
-            let index = chartPairs.lastIndexOf(x=>x==pairsCSV);
+            let index = chartPairs.indexOf(pairsCSV);
             if(index > -1) chartPairs.splice(index, 1);
 
+            if (DEBUGMODE) console.log("removeChart(): " + boxElement.id + " " + pairsCSV + index);
+
             //reset url
-            var urlStr = window.top.location.href.substr(0, top.location.href.indexOf("?") + 1);
+            var urlStr = `${location.protocol}${location.host}`;
             for(let i = 0; i < chartPairs.length; i++) {
                 if (i!=0) urlStr += "&";
                 urlStr += "chart=" + chartPairs[i];
