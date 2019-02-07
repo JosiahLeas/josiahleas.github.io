@@ -311,7 +311,7 @@
 		transition: 0.3s ease-in-out;
 		z-index: 999999;
 	}
-	.modalInfo {
+	/* .modalInfo {
 		display: block;
 		color: #ccccd7;
 	}
@@ -370,14 +370,16 @@
 		font-weight: 500;
 		text-shadow: 0 0 14px black;
 	}
-	.modalInfo button {	font: inherit; }
+	.modalInfo button {	font: inherit; } */
 /* Pairs Setup */
-	#pairsInput {
+	#pairsInput, .inputLists {
 		width: 85%;
 		margin-left: 6px;
 		border-radius: 3px;
 		background: #383838;
-		color: #fcfcfc;
+		color: #aaa;
+		border: 1px solid #ccc;
+
 	}
 	div.divPairsSetup {
 		position: relative;
@@ -429,11 +431,11 @@
 	}
 	div.divPairsSetup h3 {
 		color: #000;
-		background: rgb(200, 168, 226);
+		background: #eee;
 		padding: 8px;
 		font-weight: 500;
 		text-align: center;
-		border-bottom: 6px solid rgb(160,128,186);
+		border-bottom: 6px solid #bbb;
 		margin: 0 0 18px 0;
 	}
 	div.divPairsSetup a.inputTypeButton {
