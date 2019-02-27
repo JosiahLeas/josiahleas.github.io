@@ -172,38 +172,6 @@ margin-bottom: -2px;
 		background: #363843;
 		color: #fff;
 	}
-/* NoCharts #region */
-	/* #nocharts h1 {
-		background: #464853;
-		padding: 20px 0 22px 0;
-		margin: 0;
-	}
-	#nocharts h1 span {
-		font-size: 48px;
-		color:#eee;
-		background: #262833;
-		padding: 8px 22px 12px 22px;
-	}
-	#nocharts h2 span {
-		font-size: 36px;
-		color:#eee;
-		background: #262833;
-		padding: 8px 22px 12px 22px;
-	}
-	#nocharts h2 {
-		color: #bbb;
-		font-weight: 500;
-		font-size: 36px;
-	}
-	#nocharts h4 {
-		font-size: 16px;
-		font-weight: 400;
-	}
-	#nocharts p {
-		font-size: 20px;
-		color: rgb(56, 175, 255);
-	} */
-/* #endregion */
 .divLetsGo {
 	height: 0;
 	position: relative;
@@ -225,45 +193,6 @@ margin-bottom: -2px;
 	transition: background-color .3s;
 	width: 69px;
 }
-/* Nocharts #region */
-/* #nocharts .hero {
-	margin-bottom: 44px;
-	border-bottom: 22px dashed #9698a3;
-}
-#nocharts .info {
-	width: 70vw;
-	margin: 36px auto;
-	padding: 2px 18px;
-	min-height: 50vh;
-	word-spacing: 2px;
-	letter-spacing: .8px;
-	background: #051016;
-	box-shadow: 0 36px 48px -4px #051016;
-	border: 8px dotted #102036;
-	display: flex;
-}
-#nocharts .info div:first-child {
-	color: #dde;
-	text-align: left;
-	height: auto;
-	margin: auto;
-	padding: 0 20px;
-	width: 50%;
-}
-#nocharts .info div:last-child {
-	background: #051016 url('../images/mcc-capture.png') center / contain no-repeat;
-	width: 50%;
-}
-#nocharts .cornflower-box {
-	width: 80vw;
-	box-shadow: 0 18px 36px 2px #041828;
-	border: 8px dotted #7395b5;
-	margin: 42px auto;
-	text-align: center;
-	background: rgba(20,20,20,.5); 
-	border-radius: 2px; 
-} */
-/* #endregion */
 #divLetsGo a:hover, #divLetsGo a:focus {
 	background-color: #06c;
 }
