@@ -447,4 +447,36 @@ div.divPairsSetup div.dSelect select {
 	background: #fff;
 	color: #da513d;
 }
+::-webkit-scrollbar {width: 7px;background: transparent;}
+::-webkit-scrollbar-track {border-radius: 25px;}
+::-webkit-scrollbar-thumb {background: rgba(0,0,0,.8);border-radius: 25px;}
+::-webkit-scrollbar-thumb:hover {background: rgba(0,0,0,.5);}
+
+.autocomplete {
+	/*the container must be positioned relative:*/
+	position: relative;
+	display: inline-block;
+}
+.autocomplete-items {
+	position: absolute;
+	z-index: 2;
+	top: 100%;
+	left: 0;
+	right: 0;
+}
+.autocomplete-items div {
+	padding: 8px 14px;
+	cursor: pointer;
+	background-color: #222;
+	border-bottom: 1px solid #4d4d4d;
+}
+.autocomplete-items div:hover {
+	/*when hovering an item:*/
+	background-color: #777;
+}
+.autocomplete-active {
+	/*when navigating through the items using the arrow keys:*/
+	background-color: DodgerBlue !important;
+	color: #ffffff;
+}
 /* #endregion */
