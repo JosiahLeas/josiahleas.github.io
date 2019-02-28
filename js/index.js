@@ -27,7 +27,7 @@
 // setup the UI / charts layout
     function initPage() {
         gbl_charts_group = document.getElementById("charts_group");
-
+        window.location.href = "#topnav";
         loadPairs();
         loadParameters();
 
@@ -637,7 +637,7 @@
             let chartTicker = COINS[Math.floor(Math.random()*COINS.length)];
             let boxElement = chartSetUpBox(time);
 
-            document.body.insertBefore(boxElement,notif);
+            gbl_charts_group.insertBefore(boxElement,notif);
 
             let newChart = chartSetWidget(chartTicker,boxElement,time);
 
