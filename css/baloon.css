@@ -139,7 +139,7 @@
 }
 [data-balloon][data-balloon-length='fit']:after {
 	white-space: normal;
-	width: 400px;
+	width: 250px;
 }
 [data-balloon][data-balloon-length='small']:after {
 	white-space: nowrap;

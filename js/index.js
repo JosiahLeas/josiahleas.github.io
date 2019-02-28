@@ -597,13 +597,22 @@
         }
         function showAd() {
             var mdl = document.getElementsByClassName("modalAd");
+            var url = document.getElementById("url");
             if (mdl[0].style.visibility == "hidden" || mdl[0].style.visibility == "") {
                 mdl[0].style.visibility = "visible";
                 mdl[0].style.opacity = 1;
+                url.value = location.href;
             } else {
                 mdl[0].style.visibility = "hidden";
                 mdl[0].style.opacity = 0;
             }
+        }
+        function copyUrl() {
+            // only works with <input>
+            var url = document.getElementById("url");
+            url.select();
+            document.execCommand("copy");
+            url.value = "Link Copied."
         }
         function showMultiConfig() {
             var mdl = document.getElementsByClassName("modalConfig");

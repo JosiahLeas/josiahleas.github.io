@@ -76,6 +76,7 @@
 		</DIV>
 		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">Browser Incompatible</BUTTON>
 		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">Javascript Error</BUTTON>
+		<BUTTON id="" class="theme" onclick="showAd()">SHARE CHARTS</BUTTON>
 		<DIV style="margin-left: -45px">
 			<DIV style="margin-top: 6px;">
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -203,16 +204,16 @@
 			<DIV class="hero" style="overflow-y: auto; max-height: 100vh;">
 				<DIV style="min-width: 380px;" class="cornflower-box">
 					<DIV class="divPairsSetup">
-						<H3>Features From Febuary 7th</H3>
+						<H3>Features From Febuary 28th</H3>
 						<DIV style="padding: 4px;">
 							<P class="inputLists">
 								Adds random new chart<BR>
-								Unifies design (reduces loading times)<BR>
-								Creates forum for our users<BR>
+								Adds Blog<BR>
+								Adds Share Charts Box<BR>
 							</P>
 						</DIV>
 					</DIV>
-					<DIV class="divPairsSetup" class="t-center">
+					<DIV class="divPairsSetup t-center">
 						<H3>Features To Fund</H3>
 						<P class="cWhite fwBold">
 							1. Chart settings bookmarkable<BR>
@@ -241,21 +242,26 @@
 	</DIV>
 	<!-- TODO :: REIMPLIMENT MODALAD -->
 	<DIV class="modalAd">
-		<DIV>
+		<DIV class="hero">
 			<DIV class="bgWhite mAd">
-				<DIV class="cWhite" style="padding:75px;">
-				<H1> Interested in advertising on MCC? <BR><BR> Contact us here: <a target="_blank" href="mailto:forever.scg@outlook.com">forever.scg@outlook.com</a>  </H1>
+				<DIV class="cWhite" style="padding: 8vw;">
+					<H1>Share Charts:</H1>
+					<INPUT id="url" />
+				<!-- <H1> Interested in advertising on MCC? <BR><BR> Contact us here: <a target="_blank" href="mailto:forever.scg@outlook.com">forever.scg@outlook.com</a>  </H1> -->
 				</DIV>
 			</DIV>
+			<BR><BR>
 			<DIV class="t-center">
-				<Button class="closeBtn" onclick="showAd()">Close</button>
+				<a onclick="copyUrl()" href="javascript:void(0)" class="cLBlue" style="font-size: 18px;">Copy Link</a>
+				&nbsp;&nbsp; &nbsp;&nbsp;
+				<a onclick="showAd()" href="javascript:void(0)" style="font-size: 18px;">Close</a>
 			</DIV>
 		</DIV>
 	</DIV>
 	<DIV id="notif" class="box newsletter left">
 		<P href="#" onclick="insertChart()">X new chart!</P>
 		<DIV style="position: relative;">
-			<DIV style="margin-left: -26vw;">
+			<DIV>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<!-- ChartBoxRectAd -->
 				<ins class="adsbygoogle"
@@ -267,10 +273,11 @@
 				</script>
 			</DIV>
 		</DIV>
-		<DIV>	
+		<DIV style="transform: scale(.8);">	
 			<H4 style="padding: 8% 0 20% 0;">
 				<!-- <BR><BR> -->
-				<A class="tvRed" href="about.html" style="font-size: 24px;">MultiCoinCharts.com</A> <BR><BR>
+				<A class="tvRed" href="about.html" style="font-size: 24px;">MultiCoinCharts.com</A> 
+				<BR><BR><BR><BR>
 				<SPAN class="tvGreen">Crypto Analysis Monthly Report &nbsp;|&nbsp; <A href="https://www.getrevue.co/profile/leasj/archive/156379">(Jan 27)</A></SPAN><BR>
 				<SPAN class="tvGreen">Developer Site &amp; Requests &nbsp;|&nbsp; <A href="https://prettysights.com">Hire Us</A></SPAN><BR>
 			</H4>
@@ -279,6 +286,7 @@
 					Add New Site Features
 				</A>
 			</BUTTON>
+			<BR><BR>
 		</DIV>
 	</DIV>
 	<SCRIPT type="text/javascript">

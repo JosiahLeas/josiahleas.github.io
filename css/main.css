@@ -172,6 +172,15 @@ margin-bottom: -2px;
 		background: #363843;
 		color: #fff;
 	}
+	button.theme {
+		-webkit-transition: 0.3s ease;
+		transition: 0.3s ease;
+		-webkit-appearance: none;
+	}
+	button.theme:hover {
+		background: #fff !important;
+		color: #da513d !important;
+	}
 .divLetsGo {
 	height: 0;
 	position: relative;
@@ -232,15 +241,21 @@ margin-bottom: -2px;
 	-webkit-transition: 0.3s ease-in-out;
 	transition: 0.3s ease-in-out;
 	z-index: 999999;
+	backdrop-filter: blur(6px); 
+	-webkit-backdrop-filter: blur(6px);
 }
 .mAd {
 	border-radius: 5px; 
-	border: 4px dashed black;
+	border: 2px solid black;
 	background: radial-gradient(circle, rgba(20, 60, 120, .4), rgba(4, 6, 24, .4));
 }
-.modalConfig {
-	backdrop-filter: blur(6px); 
-	-webkit-backdrop-filter: blur(6px);
+.mAd #url {
+	width: 50vw;
+	word-wrap: break-word;
+	background: transparent;
+	border: none;
+	color: white;
+	font-size: 16px;
 }
 div.modalConfig>div.hero {
 	overflow-y: auto; 
