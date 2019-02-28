@@ -21,12 +21,12 @@
     let gbl_boxHeight = '';
     let gbl_isStorageUsable = true;
     let gbl_inputPairId = -1;
-    // let gbl_charts_group = HTMLElement;
+    let gbl_charts_group = HTMLElement;
 
     let chartPairs = new Array;
 // setup the UI / charts layout
     function initPage() {
-        // gbl_charts_group = document.getElementById("charts_group");
+        gbl_charts_group = document.getElementById("charts_group");
 
         loadPairs();
         loadParameters();
@@ -259,7 +259,9 @@
             let notif = document.getElementById('notif');
             let boxElement = chartSetUpBox(time);
 
-            document.body.insertBefore(boxElement,notif);
+            gbl_charts_group.insertBefore(boxElement,notif);
+            // gbl_charts_group.appendChild(boxElement);
+            // document.body.insertBefore(boxElement,notif);
             // document.body.appendChild(boxElement);
 
             let topButtonContainerElement = chartSetWidget(chartTicker, boxElement, time);
@@ -480,7 +482,7 @@
             } catch (e) {}
             var elements = document.getElementsByClassName("box");
             for (var i = 0, len = elements.length; i < len; i++) {
-                elements[i].style.height = "calc((100% / " + (height) + ") - (" + (29 / height) + "px)";
+                elements[i].style.height = "calc((100vh / " + (height) + ") - (" + (29 / height) + "px)";
             }
             try {
                 localStorage.setItem(STORAGE_HEIGHT, height);
