@@ -34,7 +34,7 @@
         for(let i = 0; i < chartPairs.length; i++)
             createChart(chartPairs[i]);
         // createNewsletter()
-        document.body.scrollTop = 90;
+        document.body.scrollTop = 98;
         colorWidthHeight();
         setChartCount();
     }
