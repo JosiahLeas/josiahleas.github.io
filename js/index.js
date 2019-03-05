@@ -29,7 +29,7 @@
         gbl_charts_group = document.getElementById("charts_group");
         window.location.hash = "#topnav";
         document.body.scrollTop = 98;
-        
+
         loadPairs();
         loadParameters();
 
@@ -38,6 +38,10 @@
         // createNewsletter()
         colorWidthHeight();
         setChartCount();
+        window.location.hash = "#topnav";
+        document.body.scrollTop = 98;
+		const topnavX = document.getElementById("topnav")
+		topnavX.scrollIntoView()
     }
     function initCharts() {
         console.log(chartPairs.length);

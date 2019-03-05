@@ -62,7 +62,7 @@
 	<SCRIPT type="text/javascript" src="js/headstart.js?v3"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/coinigyexchanges.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/cryptocoins.js"></SCRIPT>
-	<SCRIPT type="text/javascript" src="js/index.js?v2.51"></SCRIPT>
+	<SCRIPT type="text/javascript" src="js/index.js?v2.54"></SCRIPT>
 </HEAD>
 <BODY style="background: #363843;">
 	<DIV style="max-height: 90px; overflow-y: auto; text-align: center; border-top: 4px solid rgb(33,37,52); background: rgb(19,23,34); border-bottom: 4px solid rgb(33,37,52);">
@@ -304,7 +304,9 @@
 	<SCRIPT type="text/javascript">
 		initPage();
 		window.location.hash = "#topnav";
-        document.body.scrollTop = 98;
+		document.body.scrollTop = 98;
+		const topnavX = document.getElementById("topnav")
+		topnavX.scrollIntoView()
 	</SCRIPT>
 </BODY>
 </HTML>
