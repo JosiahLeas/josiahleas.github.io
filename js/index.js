@@ -34,7 +34,7 @@
         for(let i = 0; i < chartPairs.length; i++)
             createChart(chartPairs[i]);
         // createNewsletter()
-
+        window.location.hash = "#topnav";
         colorWidthHeight();
         setChartCount();
     }
