@@ -39,7 +39,7 @@
         colorWidthHeight();
         setChartCount();
         window.location.hash = "#topnav";
-        document.body.scrollTop = 98;
+        // document.body.scrollTop = 98;
 		const topnavX = document.getElementById("topnav")
 		topnavX.scrollIntoView()
     }
