@@ -27,7 +27,7 @@
 // setup the UI / charts layout
     function initPage() {
         gbl_charts_group = document.getElementById("charts_group");
-        window.location.href = "#topnav";
+        window.location.hash = "#topnav";
         loadPairs();
         loadParameters();
 
