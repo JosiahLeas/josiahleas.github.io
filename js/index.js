@@ -28,13 +28,14 @@
     function initPage() {
         gbl_charts_group = document.getElementById("charts_group");
         window.location.hash = "#topnav";
+        document.body.scrollTop = 98;
+        
         loadPairs();
         loadParameters();
 
         for(let i = 0; i < chartPairs.length; i++)
             createChart(chartPairs[i]);
         // createNewsletter()
-        document.body.scrollTop = 98;
         colorWidthHeight();
         setChartCount();
     }
