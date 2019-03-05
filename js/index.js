@@ -27,8 +27,6 @@
 // setup the UI / charts layout
     function initPage() {
         gbl_charts_group = document.getElementById("charts_group");
-        window.location.hash = "#topnav";
-        // document.body.scrollTop = 98;
 
         loadPairs();
         loadParameters();
