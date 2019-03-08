@@ -21,7 +21,7 @@ button, .button { cursor: pointer }
 	height: calc(100% - 28px) !important;
 	width: 100% !important;
 	z-index: 10;
-	transition: linear .2s;
+	/* transition: linear .2s; */
 }
 /* Themed */
 body { background: #595959; }
@@ -351,7 +351,7 @@ div.divPairsSetup div.dSelect select {
 }
 #notif>p {
 	position: absolute; 
-	z-index: 999; 
+	z-index: 9; 
 	top: -2px; 
 	padding: 0 12px; 
 	cursor: pointer; 
@@ -398,6 +398,7 @@ div.divPairsSetup div.dSelect select {
 	height: calc(100% - 40px);
 	width: 100%;
 	float: left;
+	/* transition: linear 2s; */
 }
 .box-button-container {
 	position: absolute;
