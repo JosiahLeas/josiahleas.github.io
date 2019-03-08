@@ -16,7 +16,7 @@
     const STORAGE_CHARTSPAIRS = "chartPairs";
     const BASEURL_COINIGY = "https://www.coinigy.com/main/markets";
 
-    let gbl_dark = null;
+    let gbl_dark = true;
     let gbl_boxWidth = '';
     let gbl_boxHeight = '';
     let gbl_isStorageUsable = true;
@@ -44,7 +44,6 @@
     }
     function initCharts() {
         console.log(chartPairs.length);
-
     }
     function colorWidthHeight() {
         var element, tmp;
@@ -68,8 +67,7 @@
         elementHeight.addEventListener("change", function () {
             setHeight(parseInt(elementHeight.value));
         }, true);
-
-        if (gbl_dark === null || !gbl_dark) {
+        if (!gbl_dark) {
             lighten();
         } else {
             darken();
@@ -481,12 +479,13 @@
 // charts internal js functions
     //set height
         function setHeight(height) {
+            let navHeight = document.getElementById("topnav").scrollHeight;
             try {
                 height = JSON.parse(height);
             } catch (e) {}
             var elements = document.getElementsByClassName("box");
             for (var i = 0, len = elements.length; i < len; i++) {
-                elements[i].style.height = "calc((100vh / " + (height) + ") - (" + (29 / height) + "px)";
+                elements[i].style.height = "calc((100vh / " + (height) + ") - (" + (navHeight / height) + "px)";
             }
             try {
                 localStorage.setItem(STORAGE_HEIGHT, height);
