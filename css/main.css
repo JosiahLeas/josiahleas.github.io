@@ -345,7 +345,7 @@ div.divPairsSetup div.dSelect select {
 /* #endregion */
 /* #region */
 #notif {
-	overflow-x: hidden; 
+	overflow: hidden; 
 	position: relative; 
 	box-sizing: border-box; 
 }
