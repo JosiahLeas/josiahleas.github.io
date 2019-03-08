@@ -30,8 +30,8 @@ body.dark { background-color: #333; }
 .cSuperLight { color:rgb(253, 246, 246); }
 .cL { color: #eee; }
 .cLBlue { color: #09f; }
-.tvRed { color: rgb(233,83,83); }
-.tvGreen { color: rgb(46,165,154); }
+.tvRed { color: rgb(255,68,166); }
+.tvGreen { color: rgb(15,116,255); }
 .fwBold { font-weight: bold; }
 #open-modal, #topnav {
 	background-color: #262833;
