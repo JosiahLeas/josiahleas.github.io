@@ -2,8 +2,8 @@
 #### Josiah Leas & [PrettySights](https://prettysights.com)
 
 ### IMPORTANT 
-Uses TradingView widgets to show many cryptocurrencies, stocks, and foreign exchange markets.
-[Example Using Stocks](https://www.multicoincharts.com/?chart=M&chart=F&chart=HMC&chart=INTC&chart=JBLU&chart=SNAP&chart=TSLA&chart=WDC)
+Uses TradingView widgets to show many cryptocurrencies, stocks, and foreign exchange markets.  
+[Example Using Stocks](https://www.multicoincharts.com/?chart=M&chart=F&chart=HMC&chart=INTC&chart=JBLU&chart=SNAP&chart=TSLA&chart=WDC)  
 [Example Using Crypto](https://www.multicoincharts.com/?chart=BITFINEX:BTCUSD&chart=BITSTAMP:BTCUSD&chart=BITFLYER:BTCJPY&chart=BITFINEX:ETHUSD&chart=BITFINEX:XRPUSD&chart=BITFINEX:LTCUSD&chart=BITFINEX:EOSUSD&chart=BITFINEX:BTCUSDLONGS&chart=BITFINEX:BTCUSDSHORTS)
 
 ### Key features
