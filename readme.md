@@ -1,16 +1,21 @@
 # MultiCoinCharts - Crypto/Stocks Graph Open Source
-#### Josiah Leas & [PrettySights](http://prettysights.com)
+#### Josiah Leas & [PrettySights](https://prettysights.com)
 
 ### IMPORTANT 
-After many new changes, more issues with browser support are showing and usability. We are introducing /testdrive.html to make your changes to before pushing to our patient users having to deal with current issues. Also we are resetting the push access, we still will work to add your amazing features as soon as possible!
+Uses TradingView widgets to show many cryptocurrencies, stocks, and foreign exchange markets.
+[Example Using Stocks](https://www.multicoincharts.com/?chart=M&chart=F&chart=HMC&chart=INTC&chart=JBLU&chart=SNAP&chart=TSLA&chart=WDC)
+[Example Using Crypto](https://www.multicoincharts.com/?chart=BITFINEX:BTCUSD&chart=BITSTAMP:BTCUSD&chart=BITFLYER:BTCJPY&chart=BITFINEX:ETHUSD&chart=BITFINEX:XRPUSD&chart=BITFINEX:LTCUSD&chart=BITFINEX:EOSUSD&chart=BITFINEX:BTCUSDLONGS&chart=BITFINEX:BTCUSDSHORTS)
 
-
-### Current Additions
-```2nd``` Rearrange ```id="topbar"```
+### Key features
+Adding alert support with web notifications.
+Adding more url param types without breaking current syntax.
+Chart tap on mobile to maximize.
+Chart enhance for mobile.
 
 ### Bugs / Issues
-```1srt``` Auto load ```id="nocharts"```
+No reproducable issues.
 
-### New Contibutors
+### Respected Contibutors
+[forever.scg](Github/P-Medicado)
 [shellstorm](Github/shellstrom)
 [WhiteRavenTechnology](Github/WhiteRavenTechnology)
