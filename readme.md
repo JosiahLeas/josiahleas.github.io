@@ -8,15 +8,15 @@ Uses TradingView widgets to show many cryptocurrencies, stocks, and foreign exch
 [Example Using Crypto](https://www.multicoincharts.com/?chart=BITFINEX:BTCUSD&chart=BITSTAMP:BTCUSD&chart=BITFLYER:BTCJPY&chart=BITFINEX:ETHUSD&chart=BITFINEX:XRPUSD&chart=BITFINEX:LTCUSD&chart=BITFINEX:EOSUSD&chart=BITFINEX:BTCUSDLONGS&chart=BITFINEX:BTCUSDSHORTS)
 
 ### Key features
-Adding alert support with web notifications.
-Adding more url param types without breaking current syntax.
-Chart tap on mobile to maximize.
-Chart enhance for mobile.
+Adding alert support with web notifications.  
+Adding more url param types without breaking current syntax.  
+Chart tap on mobile to maximize.  
+Chart enhance for mobile.  
 
 ### Bugs / Issues
 No reproducable issues.
 
 ### Respected Contibutors
-[forever.scg](Github/P-Medicado)
-[shellstorm](Github/shellstrom)
-[WhiteRavenTechnology](Github/WhiteRavenTechnology)
+[forever.scg](Github/P-Medicado)  
+[shellstorm](Github/shellstrom)  
+[WhiteRavenTechnology](Github/WhiteRavenTechnology)  
