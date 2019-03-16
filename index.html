@@ -62,7 +62,7 @@
 	<SCRIPT type="text/javascript" src="js/headstart.js?v3"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/coinigyexchanges.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/cryptocoins.js"></SCRIPT>
-	<SCRIPT type="text/javascript" src="js/index.js?v2.6"></SCRIPT>
+	<SCRIPT type="text/javascript" src="js/copypasta.min.js"></SCRIPT>
 </HEAD>
 <BODY style="background: #363843;">
 	<!-- <DIV style="max-height: 90px; overflow-y: auto; text-align: center; border-top: 4px solid rgb(33,37,52); background: rgb(19,23,34); border-bottom: 4px solid rgb(33,37,52);"> -->
@@ -78,18 +78,18 @@
 		(adsbygoogle = window.adsbygoogle || []).push({});
 		</script> -->
 	<!-- </DIV> -->
-	<DIV class="topnav" id="topnav" style="max-width: 100vw; overflow-x: hidden; padding-right: 90px; position: relative;">
+	<DIV class="topnav" id="nav" style="max-width: 100vw; overflow-x: hidden; padding-right: 90px; position: relative;">
 		<DIV class="label">
-			<LABEL for="box-width" class="number-label">Width</LABEL>
-			<INPUT id="box-width" class="box-size theme" title="Adjusts the chart width" type="number" name="box-width" min="1" max="20" />
+			<LABEL for="width" class="number-label">Width</LABEL>
+			<INPUT id="width" class="box-size theme" title="Adjusts the chart width" type="number" name="box-width" min="1" max="20" />
 		</DIV>
 		<DIV class="label">
-			<LABEL for="box-width" class="number-label">Height</LABEL>
-			<INPUT id="box-height" class="box-size theme" title="Adjust the chart height" type="number" name="box-height" min="1" max="20" />
+			<LABEL for="width" class="number-label">Height</LABEL>
+			<INPUT id="height" class="box-size theme" title="Adjust the chart height" type="number" name="box-height" min="1" max="20" />
 		</DIV>
-		<BUTTON id="theme-toggle" class="theme" onclick="change_theme()">Browser Incompatible</BUTTON>
-		<BUTTON id="configChart" class="theme" onclick="showMultiConfig()">Javascript Error</BUTTON>
-		<BUTTON id="" class="theme" onclick="showAd()">SHARE CHARTS</BUTTON>
+		<!-- <BUTTON id="theme-toggle" class="theme" onclick="X_theme()">Browser Incompatible</BUTTON> -->
+		<BUTTON id="config_reveal" class="theme" onclick="X_show('modalConfig')">Javascript Error</BUTTON>
+		<BUTTON id="share_reveal" class="theme" onclick="X_show('modalAd')">SHARE CHARTS</BUTTON>
 		<!-- <DIV style="margin-left: -45px;"> -->
 			<!-- <DIV style="margin-top: 6px;"> -->
 				<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
@@ -104,39 +104,34 @@
 				<!-- <P ">&nbsp;</P> -->
 			<!-- </DIV> -->
 		<!-- </DIV> -->
-		<A target="_blank" href="https://twitter.com/forever_scg" class="btn btn-nav theme right" style="font-size: 10px; padding: 2px; position: absolute; right: 4px; top: 4px;">us on twitter</A>
-		<DIV class="modalConfig">
+		<A target="_blank" href="https://twitter.com/forever_scg" class="btn btn-nav theme right" style="font-size: 10px; padding: 2px; position: absolute; right: 4px; top: 4px;">&nbsp;tweet to me&nbsp;</A>
+		<DIV id="modalConfig" class="modalConfig hide">
 			<DIV class="hero">
-				<DIV id="addMultiChart" class="cornflower-box">
-					<DIV class="divPairsSetup">
+				<DIV class="cornflower-box">
+					<!-- <DIV class="divPairsSetup">
 						<H3>Type an exchange &amp; currency pair. Example&nbsp;BITTREX:BTCUSDT</H3>
-						<A href="javascript:void(0)" style="padding-top: 6px; float: right;" class="inputTypeButton" onclick="inputPairs(null);">
+						<A href="javascript:void(0)" style="padding-top: 6px; float: right;" class="inputTypeButton" onclick="W_inputPairs(null);">
 							+
 						</A>
-						<INPUT id="pairsInput" type="text" onkeyup="inputPairs(this)" placeholder="Press enter to add the pairs" />
+						<INPUT id="chart_name" type="text" onkeyup="W_inputPairs(this)" placeholder="Press enter to add the pairs" />
 						<DIV class="right">
-							<A href="javascript:void(0)" class="inputTypeButton" onclick="arrangeChartListItem(true);">
-								⇧
+							<A href="javascript:void(0)" style="transform: rotateX(180deg);" class="inputTypeButton" onclick="W_arrangeChartListItem(true);">
+								&#8681;
 							</A>
-							<A href="javascript:void(0)" style="transform: rotateX(180deg);" class="inputTypeButton" onclick="arrangeChartListItem(false);">
-								⇧
+							<A href="javascript:void(0)" class="inputTypeButton" onclick="W_arrangeChartListItem(false);">
+								&#8681;
 							</A>
 						</DIV>
 						<DIV class="dSelect">
-							<SELECT id="listPairs" multiple="multiple" rows=2>
-								<!-- 
-									<OPTION value="BITTREX:BTCUSDT">BITTREX:BTCUSDT</OPTION>
-									<OPTION value="BITTREX:ETHUSDT">BITTREX:ETHUSDT</OPTION>
-									<OPTION value="BITTREX:OMGBTC">BITTREX:OMGBTC</OPTION> 
-								-->
+							<SELECT id="chart_names" multiple="multiple" rows=2>
 							</SELECT>
 						</DIV>
-						<INPUT id="btnRemovePairs" type="button" value="Remove Selected Pairs" onclick="btnRemovePairsClick()" />
-					</DIV>
+						<INPUT type="button" value="Remove Selected Pairs" onclick="btnRemovePairsClick()" />
+					</DIV> -->
 					<DIV class="divPairsSetup t-center">
-						<H3>Additional charts parameters:</H3>
+						<H3>Settings</H3>
 						<SPAN class="cWhite fwBold">Timezone</SPAN>
-						<SELECT name="timezone" id="timezone" style="width:150px" onclick="storeMAN(true, STORAGE_TIMEZONE, this.options[this.selectedIndex].value)">
+						<SELECT name="timezone" id="timezone" style="width:150px" onclick="storeMAN(true, this.id, this.options[this.selectedIndex].value)">
 							<OPTION value="Etc/UTC">UTC</OPTION>
 							<OPTION value="exchange">Exchange</OPTION>
 							<OPTION value="Pacific/Honolulu">(UTC-10) Honolulu</OPTION>
@@ -174,7 +169,7 @@
 						</SELECT>
 						<BR>
 						<SPAN class="cWhite fwBold">Default Interval</SPAN>
-						<SELECT name="interval" id="interval" style="width:68px" onclick="storeMAN(true, STORAGE_INTERVAL, this.options[this.selectedIndex].value)">
+						<SELECT name="interval" id="interval" style="width:68px" onclick="storeMAN(true, this.id, this.options[this.selectedIndex].value)">
 							<OPTION value="1">1m</OPTION>
 							<OPTION value="3">3m</OPTION>
 							<OPTION value="5">5m</OPTION>
@@ -189,32 +184,44 @@
 						</SELECT>
 						<BR>
 						<SPAN for="details" class="cWhite fwBold">Show Details</SPAN>
-						<INPUT id="details" type="checkbox" name="details" checked onclick="storeMAN(true, STORAGE_SHOWDETAILS, this.checked)">
+						<INPUT id="details" type="checkbox" name="details" checked onclick="storeMAN(true, this.id, this.checked)">
 						<BR>
 						<SPAN for="withdateranges" class="cSuperLight fwBold">Show Bottom Toolbar</SPAN>
-						<INPUT id="withdateranges" type="checkbox" name="withdateranges" checked onclick="storeMAN(true, STORAGE_SHOWBOTTOMTOOLBAR, this.checked)">
+						<INPUT id="withdateranges" type="checkbox" name="withdateranges" checked onclick="storeMAN(true, this.id, this.checked)">
 						<BR>
-						<SPAN for="allow_symbol_change" class="cWhite fwBold">Allow Symbol Change
+						<SPAN for="allow_symbol_change" class="cWhite fwBold">Show Top Toolbar
 							<SPAN data-balloon-length="fit" data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
 							 data-balloon-pos="up" class="medBallon" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
 						</SPAN>
-						<INPUT id="allow_symbol_change" type="checkbox" name="allow_symbol_change" onclick="storeMAN(true, STORAGE_ALLOWSYMBOLCHANGE, this.checked)">
+						<INPUT id="allow_symbol_change" type="checkbox" name="allow_symbol_change" onclick="storeMAN(true, this.id, this.checked)">
+						<BR>
+						<SPAN for="hide_legend" class="cWhite fwBold">Show Legend
+							<SPAN data-balloon-length="fit" data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
+							 data-balloon-pos="up" class="medBallon" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+						</SPAN>
+						<INPUT id="hide_legend" type="checkbox" name="hide_legend" onclick="storeMAN(true, this.id, this.checked)">
+						<BR>
+						<SPAN for="hide_side_toolbar" class="cWhite fwBold">Show Side Toolbar
+							<SPAN data-balloon-length="fit" data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
+							 data-balloon-pos="up" class="medBallon" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+						</SPAN>
+						<INPUT id="hide_side_toolbar" type="checkbox" name="hide_side_toolbar" onclick="storeMAN(true, this.id, this.checked)">
 						<BR>
 						<SPAN for="usesmallbutton"  class="cWhite fwBold">Use Small Buttons
 							<SPAN data-balloon-length="fit" data-balloon="Use smaller button size, applies to the following buttons: Open in Coinigy, Show in Fullscreen, Remove this Chart"
 							 data-balloon-pos="up" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
 						</SPAN>
-						<INPUT id="usesmallbutton" type="checkbox" name="usesmallbutton" onclick="useSmallButtonClick(this)"><BR /><BR />
+						<INPUT id="usesmallbutton" type="checkbox" name="usesmallbutton" onclick="storeMAN(true, this.id, this.checked)"><BR /><BR />
 						<SPAN>
-							<A id='LetsGo' href="javascript:void(0)" onclick="letsGo()">Done</A>
+							<A id='LetsGo' href="javascript:void(0)" onclick="layout.refresh(); X_show('modalConfig')">Done</A>
 							&nbsp;&nbsp; &nbsp;&nbsp;
-							<A href="javascript:void(0)" onclick="showMultiConfig()">Cancel</A>
+							<A href="javascript:void(0)" onclick="X_show('modalConfig')">Cancel</A>
 						</SPAN>
 					</DIV>
 				</DIV>
 			</DIV>
 		</DIV>
-		<DIV class="modalInfo">
+		<DIV id="modalInfo" class="modalInfo hide">
 			<DIV class="hero" style="overflow-y: auto; max-height: 100vh;">
 				<DIV style="min-width: 380px;" class="cornflower-box">
 					<DIV class="divPairsSetup">
@@ -237,7 +244,7 @@
 						tweet at us @forever_scg for more features.
 						<BR>
 						<SPAN>
-							<A href="javascript:void(0)" onclick="showInfo()">Close</A>
+							<A href="javascript:void(0)" onclick="X_show('modalInfo')">Close</A>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<A href="https://twitter.com/forever_scg" class="cLBlue">Tweet</A>
 						</SPAN>
@@ -245,7 +252,7 @@
 				</DIV>
 			</DIV>
 		</DIV>
-		<DIV class="modalAd">
+		<DIV id="modalAd" class="modalAd hide">
 			<DIV class="hero">
 				<DIV class="bgWhite mAd">
 					<DIV class="cWhite" style="padding: 8vw;">
@@ -256,27 +263,39 @@
 				</DIV>
 				<BR><BR>
 				<DIV class="t-center">
-					<a onclick="copyUrl()" href="javascript:void(0)" class="cLBlue" style="font-size: 18px;">Copy Link</a>
+					<a onclick="Z_copy()" href="javascript:void(0)" class="cLBlue" style="font-size: 18px;">Copy Link</a>
 					&nbsp;&nbsp; &nbsp;&nbsp;
-					<a onclick="showAd()" href="javascript:void(0)" style="font-size: 18px;">Close</a>
+					<a onclick="X_show('modalAd')" href="javascript:void(0)" style="font-size: 18px;">Close</a>
 				</DIV>
 			</DIV>
 		</DIV>
 	</DIV>
-	<DIV id="charts_group">
-		<DIV id="notif" class="box newsletter left">
-			<P href="#" onclick="insertChart()">X new chart!</P>
-			<DIV style="transform: scale(.8);">	
+	<DIV id="charts">
+		<DIV id="notif" class="box newsletter left options">
+			<P href="javascript:void(0)" onclick="X_chart_random()">X</P>
+			<DIV style="transform: scale(.8); display: none;">	
 				<H4 style="padding: 4% 0 0 0;">
 					<A class="tvRed" target="_blank" href="about.html" style="font-size: 24px;">MultiCoinCharts.com</A> 
 					<BR><BR>
-					<A target="_blank" class="tvGreen" href="javascript:void(0)" onclick="showInfo()">
+					<A target="_blank" class="tvGreen" href="javascript:void(0)" onclick="X_show('modalInfo')">
 						Add New Site Features
 					</A>
 					<!-- <SPAN class="tvGreen">Developer Site &amp; Requests &nbsp;|&nbsp; <A href="https://prettysights.com">Hire Us</A></SPAN><BR> -->
 				</H4>
 			</DIV>
-			<DIV style="position: relative; text-align: center; margin-top: 0px;">
+			<!-- <DIV class="options"> -->
+				<H2>Your Charts (Drag to reorder)</H2>
+				<UL>
+					<INPUT id="chart_add" onkeyup="V_add(this, event)" style="border: 1px rgba(155,255,155,.4) solid; font-size: 14px; padding: 4% 0; background: rgba(85,185,85,.15); margin-bottom: 6%; width: 100%;" placeholder="New Chart" />
+					<DIV id="chart_options">
+
+					</DIV>
+					<DIV id="charts_order">
+						<LI id="chart_1" draggable="true" ondragend="V_end(this, event)" ondragenter="V_over(this, event)">Browser Failure (please let me know!)</LI>
+					</DIV>
+				</UL>
+			<!-- </DIV> -->
+			<DIV style="position: relative; display: none; text-align: center; margin-top: 0px;">
 				<DIV>
 					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 					<!-- ChartBoxRectAd -->
@@ -291,7 +310,7 @@
 			</DIV>
 		</DIV>
 	</DIV>
-	<!-- <DIV class="t-center">
+	<DIV class="t-center">
 		<P>
 			&nbsp;
 			<BR>
@@ -301,14 +320,10 @@
 			<BR>
 			&nbsp;
 		</P>
-	</DIV> -->
+	</DIV>
 	<SCRIPT type="text/javascript">
 		initPage();
-		// window.location.hash = "#undefined";
-		// window.location.hash = "#topnav";
-		// document.body.scrollTop = 98;
-		// const topnavX = document.getElementById("topnav")
-		// topnavX.scrollIntoView()
 	</SCRIPT>
 </BODY>
+
 </HTML>

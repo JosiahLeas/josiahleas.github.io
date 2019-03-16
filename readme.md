@@ -11,7 +11,10 @@ Uses TradingView widgets to show many cryptocurrencies, stocks, and foreign exch
 Adding alert support with web notifications.  
 Adding more url param types without breaking current syntax.  
 Chart tap on mobile to maximize.  
-Chart enhance for mobile.  
+Chart enhance for mobile. (2/5)  
+Live reordering charts. (5/5)  
+Refresh without browser refresh. (5/5)  
+
 
 ### Bugs / Issues
 No reproducable issues.
