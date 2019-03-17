@@ -58,22 +58,21 @@ body.dark { background-color: #333; }
 /* #endreion */
 /* Buttons #region */
 .button-fullscreen {
-	display: block;
-	cursor: pointer;
-	padding: 4px 8px 6px 8px;
-	border: 1px solid #dadde0;
-	text-decoration: none;
-	color: #fff;
-	font-size: 20px;
-	font-weight: 600;
-	line-height: 18px;
-	background: rgba(0,106,0,.5);
+    display: block;
+    cursor: pointer;
+    padding: 4px 8px 6px 8px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    opacity: .4;
+    font-weight: 600;
+    border-radius: 4px;
+    line-height: 18px;
+    background: rgba(0,106,206,.2);
+    margin: 0 2px 4px 2px;
 }
-.button-fullscreen-small {
-	display: block;
-	cursor: pointer;
+.small .button-fullscreen {
 	padding: 2px 4px;
-	border: .1px solid #dadde0;
 	color: #fff;
 	font-size: 16px;
 	font-weight: 600;
@@ -81,7 +80,6 @@ body.dark { background-color: #333; }
 	width: 12px;
 	margin-left: 12px;
 	opacity: .5;
-	background: #006d00;
 }
 .button-coinigy {
 	width:34px;
@@ -90,14 +88,11 @@ body.dark { background-color: #333; }
 	cursor:pointer;
 	opacity: .5;
 }
-.button-coinigy-small {
-width: 20px;
-height: 20px;
-cursor: pointer;
-opacity: .5;
-margin-left: 12px;
-margin-bottom: -2px;
-
+.small .button-coinigy {
+	width: 20px;
+	height: 20px;
+	margin-left: 7px;
+	margin-bottom: -2px;
 }
 .button {
 	display: block;
@@ -242,17 +237,7 @@ div.modalConfig>div.hero {
 }
 /* #endregion */
 /* PairsSetup #region */
-#pairsInput, .inputLists {
-	width: 85%;
-	margin-left: 6px;
-	border-radius: 3px;
-	background: #383838;
-	color: #aaa;
-	border: 1px solid #ccc;
-}
-#pairsInput {
-	text-transform: uppercase;
-}
+
 .inputLists {
 	margin: 0; 
 	text-transform: uppercase; 
@@ -260,21 +245,21 @@ div.modalConfig>div.hero {
 	padding: 12px; 
 	line-height: 20px;
 }
-#btnRemovePairs {
-	background: #f03333; 
-	border: none; 
-	width: 84%; 
-	border-radius: 2px; 
-	font-size: 16px; 
-	margin: 8px 8%; 
-	color: #000; 
-	font-weight: 500;
-}
 div.divPairsSetup {
 	position: relative;
 	max-width: 420px;
 	padding-bottom: 20px;
 	vertical-align: top;
+}
+div.divPairsSetup > div {
+	display: flex;
+	padding: 2px;
+}
+div.divPairsSetup > div > * {
+	flex: 4;
+}
+div.divPairsSetup > div > input {
+	flex: 1;
 }
 div.divPairsSetup input[type="text"],
 div.divPairsSetup select {
@@ -326,32 +311,6 @@ div.divPairsSetup h3 {
 	text-align: center;
 	border-bottom: 6px solid #bbb;
 	margin: 0 0 18px 0;
-}
-div.divPairsSetup a.inputTypeButton {
-	text-align: center;
-	font-size: 24px;
-	float: right;
-	margin: 6px;
-	width: 35.5px;
-	border-radius: 50%;
-	height: 35.5px;
-	text-decoration: none;
-	padding: 9px 0 0 1px; 
-	font-weight: 100; 
-	float: none;
-}
-div.divPairsSetup div.dSelect {
-	float: left; 
-	width: 85%; 
-	margin-left: 6px; 
-	border-radius: 3px; 
-	margin-bottom: 4%; 
-	background: #535353;
-}
-div.divPairsSetup div.dSelect select {
-	background: #535353; 
-	border: none; 
-	color: #f2f2f2;
 }
 /* #endregion */
 /* Notif #region */
@@ -527,3 +486,34 @@ div.divPairsSetup div.dSelect select {
 }
 /* #endregion */
 /* Responsives #region */
+@media screen and (max-width: 600px) {
+	.topnav.responsive {
+		position: relative;
+	}
+	.topnav.responsive .icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.topnav.responsive a {
+		float: none;
+		display: block;
+		text-align: left;
+	}
+	.box > div:first-child {
+		/* transform: translate(-10%, -10%) scale(.80) !important;
+		width: 125% !important;
+		height: 125% !important; */
+		transform: translate(-20%, -20%) scale(.60) !important;
+		width: 167% !important;
+		height: 167% !important;
+	}
+	@media screen and (max-width: 528px) {
+		.theme { margin-top: 6px; }
+		.btn-nav { margin-top: 4px !important; }
+		@media screen and (max-width: 332px) {
+			#configChart { margin-top: 4px; }
+		}
+	}
+}
+/* #endregion */
