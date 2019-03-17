@@ -111,7 +111,7 @@
 						<H3>Settings</H3>
 						<DIV>
 							<SPAN class="cWhite fwBold">Timezone</SPAN>
-							<SELECT name="timezone" id="timezone" style="width:150px" onclick="storeMAN(true, this.id, this.options[this.selectedIndex].value)">
+							<SELECT name="timezone" id="timezone" style="width:150px" onchange="storeMAN(true, this.id, this.value); glb[this.id] = this.value;">
 								<OPTION value="Etc/UTC">UTC</OPTION>
 								<OPTION value="exchange">Exchange</OPTION>
 								<OPTION value="Pacific/Honolulu">(UTC-10) Honolulu</OPTION>
@@ -150,7 +150,7 @@
 						</DIV>
 						<DIV>
 							<SPAN class="cWhite fwBold">Default Interval</SPAN>
-							<SELECT name="interval" id="interval" style="width:68px" onselect="storeMAN(true, this.id, this.value); glb[this.id] = this.value;">
+							<SELECT name="interval" id="interval" style="width:68px" onchange="storeMAN(true, this.id, this.value); glb[this.id] = this.value;">
 								<OPTION value="1">1m</OPTION>
 								<OPTION value="3">3m</OPTION>
 								<OPTION value="5">5m</OPTION>
