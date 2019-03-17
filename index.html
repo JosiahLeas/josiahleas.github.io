@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <HTML>
 <HEAD>
+	<!-- #region Metas -->
 	<!-- HTML 5 Metas -->
 		<META name="description" content="View multiple Crypto Coins TradingView graphs at once. Customize graphs or view full screen. Add custom Alt Coins. All for free. 1x1 all the way up to 10x10  one page charts.">
 		<META name="keywords" content="Crypto, Altcoin, Ethereum, Bitcoin, TradingView, StockCharts, Charts, Candlestick Graph, Binance">
@@ -50,7 +51,7 @@
 		<META name="og:site_name" content="MultiCoinCharts">
 		<META name="og:locale" content="en_US">
 		<META name="og:type" content="website">	
-
+	<!-- #endregion -->
 	<TITLE>MCC - More Than One TradingView Crypto Chart on One Screen</TITLE>
 
 	<LINK rel="shortcut icon" type="image/png" href="images/favicon.png">
@@ -60,7 +61,7 @@
 	<SCRIPT type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/emocoin.js?v7.0"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	<SCRIPT type="text/javascript" src="js/copypasta.min.js?v1.8"></SCRIPT>
+	<SCRIPT type="text/javascript" src="js/copypasta.min.js?v1.9"></SCRIPT>
 </HEAD>
 <BODY style="background: #363843;">
 	<!-- <DIV style="max-height: 90px; overflow-y: auto; text-align: center; border-top: 4px solid rgb(33,37,52); background: rgb(19,23,34); border-bottom: 4px solid rgb(33,37,52);"> -->
@@ -174,11 +175,11 @@
 								onclick="storeMAN(true, this.id, this.checked)">
 						</DIV>
 						<DIV>
-							<SPAN for="allow_symbol_change" class="cWhite fwBold">Show Top Toolbar (Symbol Change) 
+							<SPAN for="hide_top_toolbar" class="cWhite fwBold">Hide Top Toolbar (Symbol Change) 
 								<SPAN data-balloon-length="fit" data-balloon="If you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
 								data-balloon-pos="up" class="medBallon" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
 							</SPAN>
-							<INPUT id="allow_symbol_change" type="checkbox" name="allow_symbol_change" checked
+							<INPUT id="hide_top_toolbar" type="checkbox" name="hide_top_toolbar"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</DIV>
 						<DIV>
