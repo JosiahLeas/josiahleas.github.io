@@ -27,6 +27,9 @@ button, .button { cursor: pointer }
 	opacity: 0;
 	visibility: hidden;
 }
+.border-none {
+	border: none !important;
+}
 /* #endregion */
 /* Themed #region */
 body { background: #595959; }
@@ -319,6 +322,9 @@ div.divPairsSetup h3 {
 	position: relative; 
 	box-sizing: border-box; 
 
+	width: 100% !important;
+	min-height: 600px;
+
 	background: linear-gradient(#125,#123);
 	background: rgb(19,23,34);
 	color: #fff;
@@ -351,14 +357,8 @@ div.divPairsSetup h3 {
 	/* height: 92%; */
 }
 .options h2 {
-	color: #ccc;
-	/* display: none; */
-	/* text-decoration: underline; */
-	/* background: rgba(0,0,0,.3); */
-	/* border-radius: 50px; */
-	margin: 2% 0 8% 0;
-	padding: 3% 0;
-	border-bottom: 1px #aaa solid;
+	color: rgba(55,255,155,.6);
+	font-size: 16px;
 }
 .options ul {
 	padding: 0;
@@ -369,14 +369,23 @@ div.divPairsSetup h3 {
 	text-align: center;
 	display: block;
 	margin: 6px -1px;
+	font-weight: 300;
 	padding: 6px;
 	border-radius: 3px;
 	border: 1px rgba(155,155,155,.4) solid;
 	color: #ddd;
 }
+#chart_add {
+	border: 1px rgba(255,255,155,.6) solid; 
+	font-size: 16px; padding: .6em 0; 
+	background: rgba(185,185,85,.125); 
+	width: 40%;
+	margin: auto;
+}
 #chart_options {
 	border-radius: 4px;
 	border: 1px #ccc solid;
+	margin: 1.5em auto;
 }
 #chart_options li {
 	margin: 0 -1px;
