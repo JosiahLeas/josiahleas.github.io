@@ -53,10 +53,18 @@ body.dark { background-color: #333; }
 	padding: 3px;
 }
 .topnav a {
-	font-size: 16px;
+	/* font-size: 16px; */
 }
 .topnav .icon {
 	display: none;
+}
+#link_set {
+	/* font-size: 13px;  */
+	color: #ff9; 
+	border-bottom-color: #ff9 !important;
+	text-decoration: none; 
+	padding: 3px 6px;
+	/* border-bottom: 1px solid; */
 }
 /* #endreion */
 /* Buttons #region */
@@ -144,6 +152,8 @@ body.dark { background-color: #333; }
 	border-radius: 3px;
 	text-decoration: none;
 	border: 1px solid #696b76;
+	border-bottom-color: #696b76 !important;
+	font-size: 12px;
 	box-shadow: 0 0 10px #000;
 	background: #363843;
 	color: #fff;
@@ -322,8 +332,10 @@ div.divPairsSetup h3 {
 	position: relative; 
 	box-sizing: border-box; 
 
-	width: 100% !important;
-	min-height: 600px;
+	/* width: 100% !important;
+	height: auto !important;
+	max-height: 600px; */
+
 
 	background: linear-gradient(#125,#123);
 	background: rgb(19,23,34);
@@ -379,7 +391,7 @@ div.divPairsSetup h3 {
 	border: 1px rgba(255,255,155,.6) solid; 
 	font-size: 16px; padding: .6em 0; 
 	background: rgba(185,185,85,.125); 
-	width: 40%;
+	width: auto;
 	margin: auto;
 }
 #chart_options {
@@ -406,20 +418,25 @@ div.divPairsSetup h3 {
 	line-height: 18px;
 }
 .number-label {
-	margin-left: 4px;
+	/* margin-left: 4px */
+	font-size: 13px;
 }
 .box-size {
-	border: 1px solid #696b76;
+	/* border: 1px solid #696b76; */
+	border: none;
 	width: 26px;
-	box-shadow: 0 0 10px #000;
-	background: #363843;
+	/* box-shadow: 0 0 10px #000; */
+	/* background: #363843; */
+	background: transparent;
 	color: #eff;
-	margin: 0 2px;
-	padding: 2px 0 2px 4px;
+	/* margin: 0 2px; */
+	margin-left: 4px;
+	/* padding: 2px 0 2px 4px; */
 }
 .label {
 	display: inline;
 	margin-right: 4px;
+	padding: 3px 0 3px 6px;
 }
 .box {
 	position: relative;

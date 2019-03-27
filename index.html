@@ -55,13 +55,13 @@
 	<TITLE>MCC - More Than One TradingView Crypto Chart on One Screen</TITLE>
 
 	<LINK rel="shortcut icon" type="image/png" href="images/favicon.png">
-	<LINK href="css/main.css?ver=7.7.1" rel="stylesheet">
+	<LINK href="css/main.css?ver=7.8" rel="stylesheet">
 	<LINK href="css/baloon.css" rel="stylesheet">
 
 	<SCRIPT type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/emocoin.js?v7.0"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	<SCRIPT type="text/javascript" src="js/copypasta.min.js?v1.9.9.6"></SCRIPT>
+	<SCRIPT type="text/javascript" src="js/copypasta.min.js?v2.0.0.0"></SCRIPT>
 </HEAD>
 <BODY style="background: #363843;">
 	<!-- <DIV style="max-height: 90px; overflow-y: auto; text-align: center; border-top: 4px solid rgb(33,37,52); background: rgb(19,23,34); border-bottom: 4px solid rgb(33,37,52);"> -->
@@ -78,17 +78,19 @@
 		</script> -->
 	<!-- </DIV> -->
 	<DIV class="topnav" id="nav" style="max-width: 100vw; overflow-x: hidden; padding-right: 90px; position: relative;">
-		<DIV class="label">
+		<DIV class="label theme">
 			<LABEL for="width" class="number-label">Width</LABEL>
-			<INPUT id="width" value="2" class="box-size theme" title="Adjusts the chart width" type="number" name="box-width" min="1" max="20" />
+			<INPUT id="width" value="2" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="20" />
 		</DIV>
-		<DIV class="label">
+		<DIV class="label theme">
 			<LABEL for="width" class="number-label">Height</LABEL>
-			<INPUT id="height" value="2" class="box-size theme" title="Adjust the chart height" type="number" name="box-height" min="1" max="20" />
+			<INPUT id="height" value="2" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="20" />
 		</DIV>
 		<!-- <BUTTON id="theme-toggle" class="theme" onclick="X_theme()">Browser Incompatible</BUTTON> -->
 		<BUTTON id="config_reveal" class="theme" onclick="X_show('modalConfig')">Javascript Error</BUTTON>
-		<BUTTON id="share_reveal" class="theme" onclick="X_show('modalAd');X_share()">SHARE CHARTS</BUTTON>
+		<BUTTON id="share_reveal" class="theme" onclick="X_show('modalAd');X_share()">SHARE</BUTTON>
+		<A id="link_set" target="_blank" class="" style="border-bottom: 1px solid;">SPONSORS</A>
+		<!-- &nbsp;<A id="link_set" href="#"></A>&nbsp; -->
 		<!-- <DIV style="margin-left: -45px;"> -->
 			<!-- <DIV style="margin-top: 6px;"> -->
 				<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
@@ -103,7 +105,9 @@
 				<!-- <P ">&nbsp;</P> -->
 			<!-- </DIV> -->
 		<!-- </DIV> -->
-		<A target="_blank" href="https://twitter.com/forever_scg" class="btn btn-nav theme right" style="font-size: 10px; padding: 2px; position: absolute; right: 4px; top: 4px;">&nbsp;tweet to me&nbsp;</A>
+		<A target="_blank" href="https://twitter.com/forever_scg" class="btn btn-nav theme right" 
+			style="padding: 2px; position: absolute; right: 4px; top: 4px; text-transform: none;"
+			>&nbsp;Tweet to me&nbsp;</A>
 		<DIV id="modalConfig" class="modalConfig hide">
 			<DIV class="hero">
 				<DIV class="cornflower-box">
