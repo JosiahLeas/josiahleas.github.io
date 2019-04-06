@@ -23,6 +23,7 @@ button, .button { cursor: pointer }
 	z-index: 10;
 	/* transition: linear .2s; */
 }
+.none { display: none; }
 .hide {
 	opacity: 0;
 	visibility: hidden;
@@ -446,6 +447,11 @@ div.divPairsSetup h3 {
 	float: left;
 	/* transition: linear 2s; */
 }
+.box.mobil>div {
+	width: 60% !important; /* 55% */
+	height: 60% !important; /* 55% */
+	transform: scale(1.6) translateY(20%); /* 1.8 22% */
+}
 .box-button-container {
 	position: absolute;
 	bottom: 5px;
@@ -527,12 +533,12 @@ div.divPairsSetup h3 {
 		text-align: left;
 	}
 	.box > div:first-child {
-		/* transform: translate(-10%, -10%) scale(.80) !important;
-		width: 125% !important;
-		height: 125% !important; */
-		transform: translate(-20%, -20%) scale(.60) !important;
+		transform: translate(-10%, -10%) scale(.80) !important;
+		width: 122% !important;
+		height: 124% !important;
+		/* transform: translate(-20%, -20%) scale(.60) !important;
 		width: 167% !important;
-		height: 167% !important;
+		height: 167% !important; */
 	}
 	@media screen and (max-width: 528px) {
 		.theme { margin-top: 6px; }
