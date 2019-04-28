@@ -61,8 +61,8 @@ body.dark { background-color: #333; }
 }
 #link_set {
 	/* font-size: 13px;  */
-	color: #ff9; 
-	border-bottom-color: #ff9 !important;
+	color: #f6f; 
+	border-bottom-color: #f9f !important;
 	text-decoration: none; 
 	padding: 3px 6px;
 	/* border-bottom: 1px solid; */
