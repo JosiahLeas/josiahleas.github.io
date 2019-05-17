@@ -342,7 +342,6 @@ div.divPairsSetup h3 {
 	background: rgb(19,23,34);
 	color: #fff;
 	border-radius: 2px;
-	padding: 2% 8%;
 	overflow-y: auto;
 }
 #notif>p {
@@ -375,6 +374,9 @@ div.divPairsSetup h3 {
 }
 .options ul {
 	padding: 0;
+	max-width: 320px;
+	margin: auto;
+}
 }
 .options li, .options input {
 	background: rgba(0,0,0,.6);
