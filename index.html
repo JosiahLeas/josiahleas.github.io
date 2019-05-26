@@ -367,6 +367,13 @@
 			</UL>
 		</DIV>
 	</DIV>
+	<DIV id="loading" style="position: fixed; background: rgba(255,255,255,.95); height: 100vh; top: 0; z-index: 16; width: 100vw; display: grid;">
+		<DIV style="color: #222; margin: auto; font-size: 24px;">
+			<P style="font-size: 32px;">MultiCoinCharts</P>
+			<P>Loading Javascript, Styles, Images...</P>
+			<P>Faster Loading - v2.0.2.0</P>
+		</DIV>
+	</DIV>
 	<!-- <DIV class="t-center">
 		<P>
 			&nbsp;
@@ -380,8 +387,18 @@
 			&nbsp;
 		</P>
 	</DIV> -->
-	<SCRIPT type="text/javascript">
-		initPage();
+	<SCRIPT>
+	fireWhenReady()
+	function fireWhenReady() {
+		if (typeof(initPage)!=='undefined'&&typeof(loadDoc)!=='undefined'&&
+			typeof(TradingView)!=='undefined'&&typeof(COINS)!=='undefined') {
+			document.getElementById("loading").style.display = "none"
+			initPage();
+		}
+	    else {
+			setTimeout(fireWhenReady, 50);
+		}
+	}
 	</SCRIPT>
 </BODY>
 </HTML>
