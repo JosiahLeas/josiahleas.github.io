@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MultiCoinCharts - Features / Tutorials</title>
+</head>
+<style>
+  @keyframes background-flutter {
+    0% {
+      background-position-y: 0;
+    }
+    50% {
+      background-position-y: 4px;
+    }
+    100% {
+      background-position-y: 0;
+    }
+  }
+  @keyframes background-move {
+    0% {
+    background-position-y: 0;
+    }
+    100% {
+    background-position-y: 64px;
+    }
+  }
+  body {
+    /* background: linear-gradient(#000 50%, darkblue 50%, darkblue 75%, black 75%); */
+    /* background: linear-gradient(transparent 50%, darkblue 50%, darkblue 75%, transparent 75%), url("./images/1.png"); */
+    /* background-size: 1px 4px; */
+    /* background-size: 1px 4px, 3px; */
+    background-image: radial-gradient(#090, #444);
+    background: #172b40;
+    margin: 0;
+    color: ghostwhite;
+    text-align: center;
+    min-height: 100vh;
+    /* filter: blur(1px); */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, 
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* animation: background-flutter 10s linear infinite; */
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    /* font-weight: 200; */
+  }
+
+  div {
+    margin: auto;
+    font-size: 1.25em;
+    word-spacing: 0;
+    letter-spacing: .1em;
+    display: grid;
+  }
+
+
+  a {
+    color: red;
+    /* text-decoration: none; */
+    /* text-decoration-style: dashed !important; */
+  }
+  a:visited {
+    color: #888;
+  }
+  a:hover {
+    color: #fff;
+  }
+
+  h1 {
+    margin: auto;
+  }
+  h2 {
+    margin: auto;
+    font-size: 2em;
+  }
+  
+  p {
+    color: #bbb;
+    font-family: Palatino, Georgia, 'Times New Roman', Times, serif;
+    font-size: .75em;
+    letter-spacing: .04em;
+    /* word-spacing: 0.2em; */
+    font-weight: 600;
+  }
+  p i {
+    color: #666;
+    /* letter-spacing: .08em; */
+  }
+  p a {
+    color: inherit;
+  }
+  p span.howto {
+    color: lightskyblue;
+  }
+  p span.using {
+    color: lightgreen;
+  }
+  p span.depth {
+    color: lightcoral;
+  }
+  .super-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25vh;
+    font-family: Palatino;
+    color: #fff;
+    /* background: #a53d3b; */
+    /* color: #222; */
+    /* font-weight: 900 !important; */
+    /* text-shadow: -1px 0 #777, 1px 0 #777, -1px -1px #ccc, 1px -1px #ccc; */
+  }
+  .hero-text {
+    text-align: center;
+    font-size: 6em;
+    font-weight: 900 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 6em;
+    color: ghostwhite;
+    text-shadow: -8px 0 #777;
+    position: relative;
+  }
+  .hero-text>span {
+    font-size: 1rem;
+    top: 16em;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-shadow: none;
+    color: lightgreen;
+  }
+
+  #move-gradient {
+    width: 1024px;
+    margin: -6vh auto 0vh auto;
+    background: 
+      /* linear-gradient(#999 16px, transparent 16px, transparent 32px, #999 32px, #999 48px), */ 
+      /* linear-gradient(to left, transparent 32px, red 33px, transparent 34px, transparent 64px), */ 
+      /* linear-gradient(transparent, transparent); */ 
+      url("../images/taskbar.png");
+    background-size: 1024px 64px, cover;
+    transform: perspective(270) rotateX(62deg) scale(.35);
+    animation: background-move .75s linear infinite;
+    image-rendering: pixelated;
+    /* box-shadow: 0 0 28px 4px #444; */
+  }
+
+  
+  @media screen and (max-width: 719px) {
+    body {
+      font-size: 12px;
+    }
+    body>div>div>div {
+      padding: 2em;
+    }
+  }
+</style>
+
+<body>
+  <div>
+    <h1 class="super-text">
+      MultiCoinCharts <br>
+      <span style="font-size: 1rem;">
+        Features, Secrets, Tutorials
+      </span>
+    </h1>
+    <div style="width: 100vw; height: 100vh; overflow: hidden; display: flex;">
+      <section id="move-gradient">
+      </section>
+    </div>
+    
+    <section style="height: 0vh;">
+      &nbsp;
+    </section>
+    <div style="display: flex; text-align: left;">
+      <div>
+        <h3>
+          some simple tutorials
+        </h3>
+        <p>
+          <i>Beginner</i> <br>
+          <a href="./view_multiple_charts.html">
+            <span class="howto">How To:&nbsp;</span>
+            Have more than one chart per screen <br>
+          </a>
+          <a href="./change_number_charts.html">
+            <span class="howto">How To:&nbsp;</span>
+            Change the number of charts per screen <br>
+          </a>
+          <br>
+
+          <span class="howto">How To:&nbsp;</span>
+          Fullscreen a chart <br>
+          <span class="howto">How To:&nbsp;</span>
+          Remove a chart <br>
+          
+          <br><br>
+          
+          <i>Important</i> <br>
+          <a href="./using_chart_organizer.html">
+            <span class="using">Using:&nbsp;</span>
+            The Chart Organizer <br>
+          </a>
+          <span class="using">Using:&nbsp;</span>
+          The Settings Box <br>
+
+          <br>
+        </p>
+        <h3>
+          the secrets of multicoincharts
+        </h3>
+        <p>
+          <i>Advanced Charting</i> <br>
+          <span class="depth">In Depth:&nbsp;</span>
+          Adding Charts <br>
+          <span class="depth">In Depth:&nbsp;</span>
+          Changing Settings <br>
+
+          <br>
+        </p>
+        <h3>
+          our newest features
+        </h3>
+        <p>
+          <i>May 24th, 2019</i> <br>
+          (Speed) Async Loading <br>
+          (Info) Updated Posts <br>
+          (Fixes) Glitchy Div <br>
+
+          <br><br>
+
+          <i>May 19th, 2019</i> <br>
+          (Use) Version List <br>
+
+          <br><br>
+
+          <i>Older ... </i> <br>
+          See our Github: <br>&nbsp;&nbsp;&nbsp;
+          <a href="https://github.com/JosiahLeas/josiahleas.github.io" target="_blank">josiahleas.github.io</a> <br>
+          Contact on twitter: <br>&nbsp;&nbsp;&nbsp;
+          <a href="https://twitter.com/forever_scg" target="_blank">forever_scg</a> <br>
+
+          <br><br>
+        </p>
+        <p>
+          <a href="https://multicoincharts.com">Take me to MultiCoinCharts!</a>
+        </p>
+      </div>
+    </div>
+    <section style="height: 50vh;">
+      &nbsp;
+    </section>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MultiCoinCharts - How To: Change the number of charts per screen</title>
+</head>
+<style>
+  @keyframes background-flutter {
+    0% {
+      background-position-y: 0;
+    }
+    50% {
+      background-position-y: 4px;
+    }
+    100% {
+      background-position-y: 0;
+    }
+  }
+  @keyframes background-move {
+    0% {
+    background-position-y: 0;
+    }
+    100% {
+    background-position-y: 64px;
+    }
+  }
+  body {
+    /* background: linear-gradient(#000 50%, darkblue 50%, darkblue 75%, black 75%); */
+    /* background: linear-gradient(transparent 50%, darkblue 50%, darkblue 75%, transparent 75%), url("./images/1.png"); */
+    /* background-size: 1px 4px; */
+    /* background-size: 1px 4px, 3px; */
+    background-image: radial-gradient(#090, #444);
+    background: #172b40;
+    margin: 0;
+    color: ghostwhite;
+    text-align: center;
+    min-height: 100vh;
+    /* filter: blur(1px); */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, 
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* animation: background-flutter 10s linear infinite; */
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    /* font-weight: 200; */
+  }
+
+  div {
+    margin: auto;
+    font-size: 1.25em;
+    word-spacing: 0;
+    letter-spacing: .1em;
+    display: grid;
+  }
+
+
+  a {
+    color: red;
+    /* text-decoration: none; */
+    /* text-decoration-style: dashed !important; */
+  }
+  a:visited {
+    color: #888;
+  }
+  a:hover {
+    color: #fff;
+  }
+
+  h1 {
+    margin: auto;
+  }
+  h2 {
+    margin: auto;
+    font-size: 2em;
+  }
+  
+  p {
+    color: #bbb;
+    font-family: Palatino, Georgia, 'Times New Roman', Times, serif;
+    font-size: .75em;
+    letter-spacing: .04em;
+    /* word-spacing: 0.2em; */
+    font-weight: 600;
+  }
+  p i {
+    color: #666;
+    /* letter-spacing: .08em; */
+  }
+  p a {
+    color: red;
+  }
+  p span.howto {
+    color: lightskyblue;
+  }
+  p span.using {
+    color: lightgreen;
+  }
+  p span.depth {
+    color: lightcoral;
+  }
+
+
+  body>div>div>div {
+    max-width: 620px;
+  }
+  .super-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25vh;
+    font-family: Palatino;
+    color: #fff;
+    /* background: #a53d3b; */
+    /* color: #222; */
+    /* font-weight: 900 !important; */
+    /* text-shadow: -1px 0 #777, 1px 0 #777, -1px -1px #ccc, 1px -1px #ccc; */
+  }
+  .hero-text {
+    text-align: center;
+    font-size: 6em;
+    font-weight: 900 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 6em;
+    color: ghostwhite;
+    text-shadow: -8px 0 #777;
+    position: relative;
+  }
+  .hero-text>span {
+    font-size: 1rem;
+    top: 16em;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-shadow: none;
+    color: lightgreen;
+  }
+
+  #move-gradient {
+    width: 1024px;
+    margin: -6vh auto 0vh auto;
+    background: 
+      /* linear-gradient(#999 16px, transparent 16px, transparent 32px, #999 32px, #999 48px), */ 
+      /* linear-gradient(to left, transparent 32px, red 33px, transparent 34px, transparent 64px), */ 
+      /* linear-gradient(transparent, transparent); */ 
+      url("../images/taskbar.png");
+    background-size: 1024px 64px, cover;
+    transform: perspective(270) rotateX(62deg) scale(.35);
+    animation: background-move .75s linear infinite;
+    image-rendering: pixelated;
+    /* box-shadow: 0 0 28px 4px #444; */
+  }
+
+  
+  @media screen and (max-width: 719px) {
+    body {
+      font-size: 12px;
+    }
+    body>div>div>div {
+      padding: 2em;
+      max-width: unset;
+    }
+  }
+</style>
+
+<body>
+  <div>
+    <h1 class="super-text">
+      How To<br>
+      <span style="font-size: 1rem;">
+        See even more charts per screen.
+      </span>
+    </h1>
+    <div style="width: 100vw; height: 100vh; overflow: hidden; display: flex;">
+      <section id="move-gradient">
+      </section>
+    </div>
+    
+    <section style="height: 0vh;">
+      &nbsp;
+    </section>
+    <div style="display: flex; text-align: left;">
+      <div>
+        <h3>
+          Let's start
+        </h3>
+        <p>
+            The number of charts that show on your screen is 
+            structured by rows and columns. We call it width 
+            and height; they start at two (2 columns of charts) 
+            by two (two rows of charts). You can have more or 
+            less of rows or columns. Monitors (screens) size 
+            to landscape, portrait, 4x3, 3x2, 16x9, even more. 
+            You can set width and height individually to match 
+            your screen. At the top of your screen lies "Width" 
+            then "Height" click on the numbers beside them and 
+            type the number of columns or rows respectively.
+          <br>
+        </p>
+        <h3>
+          What else is there?
+        </h3>
+        <p>
+            At the top of your screen are Width, Height, Settings, 
+            and Share. Here's an overview. 
+          <br><br>
+            Width represents the number of columns per screen. 
+            Height is to the number of rows per screen. 
+            For either, type the amount you want; 
+            MultiCoinCharts adjusts automatically. 
+          <br><br>
+            Settings lets you make configurations on all your 
+            charts. If you prefer a specific timezone, timespan, 
+            bar type, theme, level of detail, or even more, 
+            then Settings is your closest ally.
+          <br><br>
+            Share quickly allows you to copy your URL 
+            (list of charts). You can text or post about 
+            the charts you are using or just save it for later.
+          <br>
+        </p>
+        <h3>
+          Looking for more?
+        </h3>
+        <p>
+          <a href="./using_chart_organizer.html">
+            What is the chart organizer?
+          </a> <br><br>
+          <a href="./view_multiple_charts.html">
+            How can I add new charts?
+          </a> <br><br>
+          <a href="./index.html">Home</a> <br><br>
+
+          <br>
+
+        </p>
+      </div>
+    </div>
+    <section style="height: 50vh;">
+      &nbsp;
+    </section>
+  </div>
+</body>
+
+</html>
