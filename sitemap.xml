@@ -9,7 +9,43 @@
 
 <url>
   <loc>https://www.multicoincharts.com/</loc>
-  <lastmod>2019-03-16T22:47:32+00:00</lastmod>
+  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/about/index.html</loc>
+  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/about.html</loc>
+  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/space/superorder/banner/banner_1.html</loc>
+  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/about/view_multiple_charts.html</loc>
+  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/about/change_number_charts.html</loc>
+  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/about/using_chart_organizer.html</loc>
+  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/about/using_tradingview.html</loc>
+  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 
 
