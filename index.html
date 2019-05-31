@@ -61,7 +61,7 @@
 	<SCRIPT async type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/emocoin.js?v7.0"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v2.0.3.2"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v2.0.3.3"></SCRIPT>
 </HEAD>
 <BODY style="background: #161823;">
 	<DIV id="top_space" style="max-height: 90px; overflow-y: auto; text-align: center;
@@ -308,14 +308,14 @@
 			<UL>
 				<DIV id="box_space" style="
 					border: 1px solid white; background: #ffffff33; border-radius: 4px; width: calc(100% - 1em); height: calc(100% - 1em);
-					margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+					margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: block;
 				">
 					<P href="javascript:void(0)" onclick="html.box_space.style.display = 'none'" style="
 						background: white; color: black; border-radius: 50%; position: absolute;
 						width: 32px; height: 32px; line-height: 32px; right: 1px; top: -13px; z-index: 10;
 					">X</P>
 					<A id="box_space_img" target="_blank" href="https://getaurox.com/?utm_source=mcc&utm_medium=cpc" style="
-						display: flex; width: 100%; height: 100%;
+						display: flex; width: 100%; height: 100%; display: none;
 					">
 						<IMG src="./space/getaurox/banner/336x280.gif" style="margin: auto;
 							max-width: 100%; max-height: 100%;
@@ -336,14 +336,14 @@
 							</script>
 						</DIV>
 					</DIV>
-					<DIV id="box_space_google2" style="position: relative; text-align: center; margin-top: 0px; display: block;">
+					<DIV id="box_space_google2" style="position: relative; text-align: center; margin-top: 0px; display: none;">
 						<DIV>
 								<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 								<!-- ChartBoxRectAd -->
 								<ins class="adsbygoogle"
-											style="display:inline-block;width:336px;height:280px"
-											data-ad-client="ca-pub-3023875029405790"
-											data-ad-slot="2283643489"></ins>
+										 style="display:inline-block;width:336px;height:280px"
+										 data-ad-client="ca-pub-3023875029405790"
+										 data-ad-slot="2283643489"></ins>
 								<script>
 								(adsbygoogle = window.adsbygoogle || []).push({});
 								</script>
@@ -363,7 +363,7 @@
 		<DIV style="color: #222; margin: auto; font-size: 24px;">
 			<P style="font-size: 32px;">MultiCoinCharts</P>
 			<P>Loading Javascript, Styles, Images...</P>
-			<P>Faster Loading - v2.0.3.2</P>
+			<P>Faster Loading - v2.0.3.3</P>
 		</DIV>
 	</DIV>
 	<!-- <DIV class="t-center">
@@ -387,7 +387,7 @@
 			document.getElementById("loading").style.display = "none"
 			initPage();
 		}
-			else {
+	    else {
 			setTimeout(fireWhenReady, 50);
 		}
 	}
