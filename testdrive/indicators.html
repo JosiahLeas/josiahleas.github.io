@@ -97,10 +97,18 @@
     }
 </script>
 <script>
-    function box_create () {
+    let number = 1;
+    function box_create() {
         let box = document.createElement("input")
         box.type = "checkbox"
         return box
+    }
+    function p_create(text = "null") {
+        if(text == "null") throw "Did not give function 'p_create' parameter 'text'"
+        
+        let p = document.createElement("p")
+        p.innerText = "fwefds"
+        return p
     }
     function process_indicators(names = indicicators.studies) {
 
@@ -118,8 +126,9 @@
         })
         return shorter_names
     }
-    function add_inds_to_page () {
-        
+    function add_inds_to_page() {
+        let p_tag = p_create()
+        IndGrid.appendChild(p_tag)
     }
 </script>
 </script>
