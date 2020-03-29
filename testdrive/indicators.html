@@ -130,14 +130,23 @@
         return shorter_names
     }
     function add_inds_to_page() {
-        // create p tag with text "josiah is awesome"
-        let p_tag = p_create("josiah is awesome")
+        // create p tag with text "leasj is awesome"
+        let p_tag = p_create("leasj? more like lea-js")
+
+        // this is a temporary spacer
+        let spacer = p_create("")
 
         // add p element to the IndGrid div grid in body
         IndGrid.appendChild(p_tag)
+
+        IndGrid.appendChild(spacer)
     }
     function start() {
 
+        // first fn to call
+        add_inds_to_page()
+
+        // that's it
     }
 
     // calls the function as soon as you load the page
