@@ -6,79 +6,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Indicators Test</title>
 </head>
+<style>
 
-<body>
+    #IndGrid {
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+    }
 
+</style>
+<body>  
+
+    <h1>Indicators List</h1>
+    <p>
+        This is to test JS automagically creating checkboxes of indicicators and getting user input.
+    </p>
+    <div id="IndGrid">
+        <p>
+            Name
+        </p>
+        <p>
+            Checkbox
+        </p>
+    </div>
 </body>
 <script>
     let indicicators = {
-"studies" : [
-"ACCD@tv-basicstudies",
-"studyADR@tv-basicstudies",
-"AROON@tv-basicstudies",
-"ATR@tv-basicstudies",
-"AwesomeOscillator@tv-basicstudies",
-"BB@tv-basicstudies",
-"BollingerBandsR@tv-basicstudies",
-"BollingerBandsWidth@tv-basicstudies",
-"CMF@tv-basicstudies",
-"ChaikinOscillator@tv-basicstudies",
-"chandeMO@tv-basicstudies",
-"ChoppinessIndex@tv-basicstudies",
-"CCI@tv-basicstudies",
-"CRSI@tv-basicstudies",
-"CorrelationCoefficient@tv-basicstudies",
-"DetrendedPriceOscillator@tv-basicstudies",
-"DM@tv-basicstudies",
-"DONCH@tv-basicstudies",
-"DoubleEMA@tv-basicstudies",
-"EaseOfMovement@tv-basicstudies",
-"EFI@tv-basicstudies",
-"ENV@tv-basicstudies",
-"FisherTransform@tv-basicstudies",
-"HV@tv-basicstudies",
-"hullMA@tv-basicstudies",
-"IchimokuCloud@tv-basicstudies",
-"KLTNR@tv-basicstudies",
-"KST@tv-basicstudies",
-"LinearRegression@tv-basicstudies",
-"MACD@tv-basicstudies",
-"MOM@tv-basicstudies",
-"MF@tv-basicstudies",
-"MoonPhases@tv-basicstudies",
-"MASimple@tv-basicstudies",
-"MAExp@tv-basicstudies",
-"MAWeighted@tv-basicstudies",
-"OBV@tv-basicstudies",
-"PSAR@tv-basicstudies",
-"PivotPointsHighLow@tv-basicstudies",
-"PivotPointsStandard@tv-basicstudies",
-"PriceOsc@tv-basicstudies",
-"PriceVolumeTrend@tv-basicstudies",
-"ROC@tv-basicstudies",
-"RSI@tv-basicstudies",
-"VigorIndex@tv-basicstudies",
-"VolatilityIndex@tv-basicstudies",
-"SMIErgodicIndicator@tv-basicstudies",
-"SMIErgodicOscillator@tv-basicstudies",
-"Stochastic@tv-basicstudies",
-"StochasticRSI@tv-basicstudies",
-"TripleEMA@tv-basicstudies",
-"Trix@tv-basicstudies",
-"UltimateOsc@tv-basicstudies",
-"VSTOP@tv-basicstudies",
-"Volume@tv-basicstudies",
-"VWAP@tv-basicstudies",
-"MAVolumeWeighted@tv-basicstudies",
-"WilliamR@tv-basicstudies",
-"WilliamsAlligator@tv-basicstudies",
-"WilliamsFractal@tv-basicstudies",
-"ZigZag@tv-basicstudies"
-  ]
+        "studies": [
+            "ACCD@tv-basicstudies",
+            "studyADR@tv-basicstudies",
+            "AROON@tv-basicstudies",
+            "ATR@tv-basicstudies",
+            "AwesomeOscillator@tv-basicstudies",
+            "BB@tv-basicstudies",
+            "BollingerBandsR@tv-basicstudies",
+            "BollingerBandsWidth@tv-basicstudies",
+            "CMF@tv-basicstudies",
+            "ChaikinOscillator@tv-basicstudies",
+            "chandeMO@tv-basicstudies",
+            "ChoppinessIndex@tv-basicstudies",
+            "CCI@tv-basicstudies",
+            "CRSI@tv-basicstudies",
+            "CorrelationCoefficient@tv-basicstudies",
+            "DetrendedPriceOscillator@tv-basicstudies",
+            "DM@tv-basicstudies",
+            "DONCH@tv-basicstudies",
+            "DoubleEMA@tv-basicstudies",
+            "EaseOfMovement@tv-basicstudies",
+            "EFI@tv-basicstudies",
+            "ENV@tv-basicstudies",
+            "FisherTransform@tv-basicstudies",
+            "HV@tv-basicstudies",
+            "hullMA@tv-basicstudies",
+            "IchimokuCloud@tv-basicstudies",
+            "KLTNR@tv-basicstudies",
+            "KST@tv-basicstudies",
+            "LinearRegression@tv-basicstudies",
+            "MACD@tv-basicstudies",
+            "MOM@tv-basicstudies",
+            "MF@tv-basicstudies",
+            "MoonPhases@tv-basicstudies",
+            "MASimple@tv-basicstudies",
+            "MAExp@tv-basicstudies",
+            "MAWeighted@tv-basicstudies",
+            "OBV@tv-basicstudies",
+            "PSAR@tv-basicstudies",
+            "PivotPointsHighLow@tv-basicstudies",
+            "PivotPointsStandard@tv-basicstudies",
+            "PriceOsc@tv-basicstudies",
+            "PriceVolumeTrend@tv-basicstudies",
+            "ROC@tv-basicstudies",
+            "RSI@tv-basicstudies",
+            "VigorIndex@tv-basicstudies",
+            "VolatilityIndex@tv-basicstudies",
+            "SMIErgodicIndicator@tv-basicstudies",
+            "SMIErgodicOscillator@tv-basicstudies",
+            "Stochastic@tv-basicstudies",
+            "StochasticRSI@tv-basicstudies",
+            "TripleEMA@tv-basicstudies",
+            "Trix@tv-basicstudies",
+            "UltimateOsc@tv-basicstudies",
+            "VSTOP@tv-basicstudies",
+            "Volume@tv-basicstudies",
+            "VWAP@tv-basicstudies",
+            "MAVolumeWeighted@tv-basicstudies",
+            "WilliamR@tv-basicstudies",
+            "WilliamsAlligator@tv-basicstudies",
+            "WilliamsFractal@tv-basicstudies",
+            "ZigZag@tv-basicstudies"
+        ]
     }
-    </script>
-</div>
-<!-- TradingView Widget END -->
+</script>
+<script>
+    function box_create () {
+        let box = document.createElement("input")
+        box.type = "checkbox"
+        return box
+    }
+    function process_indicators(names = indicicators.studies) {
+
+        // makes an empty list to store the short indicators
+        let shorter_names = []
+
+        // loops over the long indicators
+        names.forEach(ind_name => {
+            
+            // removes extra stuff and saves to a variable
+            let new_name = ind_name.replace("@tv-basicstudies", "")
+
+            // adds the new name to the list
+            shorter_names.push(new_name)
+        })
+        return shorter_names
+    }
+    function add_inds_to_page () {
+        
+    }
+</script>
 </script>
 
 </html>
