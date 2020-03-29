@@ -105,9 +105,12 @@
     }
     function p_create(text = "null") {
         if(text == "null") throw "Did not give function 'p_create' parameter 'text'"
-        
+
+        // create p tag directly (with doc.createEl) save to var.
         let p = document.createElement("p")
-        p.innerText = "fwefds"
+
+        // set p tag's text
+        p.innerText = text
         return p
     }
     function process_indicators(names = indicicators.studies) {
@@ -127,9 +130,19 @@
         return shorter_names
     }
     function add_inds_to_page() {
-        let p_tag = p_create()
+        // create p tag with text "josiah is awesome"
+        let p_tag = p_create("josiah is awesome")
+
+        // add p element to the IndGrid div grid in body
         IndGrid.appendChild(p_tag)
     }
+    function start() {
+
+    }
+
+    // calls the function as soon as you load the page
+    // (after all the content y things load)
+    start()
 </script>
 </script>
 
