@@ -8,6 +8,21 @@
 </head>
 <style>
 
+    body {
+        margin: 0;
+        padding: 1em;
+        font-size: 1.25em;
+        font-family: -apple-system, Helvetica, 
+            'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
+            'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    input[type="checkbox"] {
+        background-color: lavender;
+        border: 1px solid #ddd;
+        font-size: 1.2em;
+    }
+
     #IndGrid {
         grid-template-columns: 1fr 1fr;
         display: grid;
@@ -153,7 +168,7 @@
             IndGrid.appendChild(name_element)
 
             let checkbox = box_create()
-            
+            IndGrid.appendChild(checkbox)
         })
 
         // add p element to the IndGrid div grid in body
