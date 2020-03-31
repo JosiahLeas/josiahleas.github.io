@@ -186,9 +186,14 @@
 
     function boxes_pressed() {
         box_ids = process_indicators()
+        checked_list = []
         box_ids.forEach(name => {
-            console.log(window[name].checked)
+            if (!window[name].checked) return
+
+            checked_list.push(window[name].id + "@tv-basicstudies")
         })
+        console.log(checked_list)
+        return checked_list
     }
 
     function start() {
