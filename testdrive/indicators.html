@@ -49,6 +49,7 @@
             Checkbox
         </p>
     </div>
+    <input type="button" value="Go" onclick="boxes_pressed()">
 </body>
 <script>
     let indicicators = {
@@ -122,9 +123,10 @@
     
     
     // make html stuff functions 
-    function box_create() {
+    function box_create(name = "") {
         let box = document.createElement("input")
         box.type = "checkbox"
+        box.id = name
         return box
     }
     function p_create(text = "null") {
@@ -173,7 +175,7 @@
             let name_element = p_create(name)
             IndGrid.appendChild(name_element)
 
-            let checkbox = box_create()
+            let checkbox = box_create(name)
             IndGrid.appendChild(checkbox)
         })
 
@@ -181,6 +183,14 @@
         IndGrid.appendChild(p_tag)
 
     }
+
+    function boxes_pressed() {
+        box_ids = process_indicators()
+        box_ids.forEach(name => {
+            console.log(window[name].checked)
+        })
+    }
+
     function start() {
 
         // first fn to call
