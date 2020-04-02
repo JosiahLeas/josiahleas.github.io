@@ -80,14 +80,18 @@
 	<SCRIPT async type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/emocoin.js?v7.0"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v1"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v2"></SCRIPT>
 </HEAD>
+
 
 <STYLE>
 	.box-button-container > *:hover {
 		opacity: 1;
 		background: #222;
 		transition: .2s;
+	}
+	select:disabled {
+		opacity: .4;
 	}
 </STYLE>
 <BODY style="background: #161823;">
@@ -242,6 +246,11 @@
 						<DIV>
 							<SPAN class="cWhite fwBold">Reset to defaults</SPAN>
 							<INPUT type="button" value="Reset" onclick="localStorage.clear(); location.reload()" />
+						</DIV>
+						<DIV>
+							<SPAN for="range_or_interval" class="cWhite fwBold">Use Default Range instead of Default Interval</SPAN>
+							<INPUT id="range_or_interval" type="checkbox" name="details"
+								onclick="storeMAN(true, this.id, this.checked); X_select_range_enable()">
 						</DIV>
 						<DIV>
 							<SPAN for="details" class="cWhite fwBold">Show Details</SPAN>
@@ -498,7 +507,8 @@
 		<DIV style="color: eee; margin: auto; font-size: 24px;">
 			<P style="font-size: 32px;">MultiCoinCharts</P>
 			<P>Search for a chart ticker or type one and hit enter.</P>
-			<INPUT disabled id="chart_adder" style="font-size: 22px;" />
+			<INPUT id="chart_adder" style="font-size: 22px;" onkeyup="V_add(event)" />
+			<A href="#" onclick="XDirectUI.visibility('chart_add_select');">Done</A>
 			<DIV id="chart_options" class="border-none" style="
 				width: 256px;
 				margin: 32px 0;
