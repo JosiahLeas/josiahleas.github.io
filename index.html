@@ -248,11 +248,6 @@
 							<INPUT type="button" value="Reset" onclick="localStorage.clear(); location.reload()" />
 						</DIV>
 						<DIV>
-							<SPAN for="range_or_interval" class="cWhite fwBold">Use Default Range instead of Default Interval</SPAN>
-							<INPUT id="range_or_interval" type="checkbox" name="details"
-								onclick="storeMAN(true, this.id, this.checked); X_select_range_enable()">
-						</DIV>
-						<DIV>
 							<SPAN for="details" class="cWhite fwBold">Show Details</SPAN>
 							<INPUT id="details" type="checkbox" name="details"
 								onclick="storeMAN(true, this.id, this.checked)">
@@ -349,37 +344,6 @@
 				</DIV>
 			</DIV>
 		</DIV>
-		<!-- <DIV id="modalInfo" class="modalInfo hide">
-			<DIV class="hero" style="overflow-y: auto; max-height: 100vh;">
-				<DIV style="min-width: 380px;" class="cornflower-box">
-					<DIV class="divPairsSetup">
-						<H3>Features From Febuary 28th</H3>
-						<DIV style="padding: 4px;">
-							<P class="inputLists">
-								Adds random new chart<BR>
-								Adds Blog<BR>
-								Adds Share Charts Box<BR>
-							</P>
-						</DIV>
-					</DIV>
-					<DIV class="divPairsSetup t-center">
-						<H3>Features To Fund</H3>
-						<P class="cWhite fwBold">
-							1. Chart settings bookmarkable<BR>
-							2. Custom notifications<BR>
-						</P>
-						<BR>
-						tweet at us @forever_scg for more features.
-						<BR>
-						<SPAN>
-							<A href="javascript:void(0)" onclick="XDirectUI.visibility('modalInfo')">Close</A>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<A href="https://twitter.com/forever_scg" class="cLBlue">Tweet</A>
-						</SPAN>
-					</DIV>
-				</DIV>
-			</DIV>
-		</DIV> -->
 		<DIV id="modalAd" class="modalAd hide">
 			<DIV class="hero">
 				<DIV class="bgWhite mAd">
@@ -468,6 +432,11 @@
 						<!-- </DIV> -->
 					</DIV>
 					<DIV id="box_space_google2" style="position: relative; text-align: center; margin-top: 0px;">
+						<DIV style="z-index: -2; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0;">
+							<H3>
+								<A href="mailto:forever.scg@outlook.com">Advertise, on us.</A>
+							</H3>
+						</DIV>
 						<DIV>
 								<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
 								<!-- ChartBoxRectAd -->
@@ -478,11 +447,6 @@
 								<script>
 								(adsbygoogle = window.adsbygoogle || []).push({});
 								</script>
-						</DIV>
-						<DIV style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0;">
-							<H3>
-								<A href="mailto:forever.scg@outlook.com">Advertise, on us.</A>
-							</H3>
 						</DIV>
 					</DIV>
 				</DIV>
@@ -507,8 +471,7 @@
 		<DIV style="color: eee; margin: auto; font-size: 24px;">
 			<P style="font-size: 32px;">MultiCoinCharts</P>
 			<P>Search for a chart ticker or type one and hit enter.</P>
-			<INPUT id="chart_adder" style="font-size: 22px;" onkeyup="V_add(event)" />
-			<A href="#" onclick="XDirectUI.visibility('chart_add_select');">Done</A>
+			<INPUT disabled id="chart_adder" style="font-size: 22px;" />
 			<DIV id="chart_options" class="border-none" style="
 				width: 256px;
 				margin: 32px 0;
