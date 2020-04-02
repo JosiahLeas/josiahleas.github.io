@@ -1,5 +1,5 @@
 //https://github.com/crypti/cryptocurrencies
-var cryptocurrencies = {
+const cryptocurrencies = {
 '42': '42 Coin',
 '365': '365Coin',
 '404': '404Coin',
@@ -1712,7 +1712,7 @@ VSL: 'vSlice',
 WBTC: 'wBTC'
 }
 //https://www.coinigy.com/bitcoin-exchanges/
-var coinigyexchanges = 
+const coinigyexchanges = 
 {
 BITTREX: 'BTRX',
 BLEUTRADE: 'BLEU',
@@ -3593,4 +3593,7 @@ const COINS = [
     'BINANCE:BATUSDC',
     'BINANCE:BATPAX',
     'BINANCE:BATTUSD'
-];        
+]
+const INDICATORS = [
+    "ACCD","studyADR","AROON","ATR","AwesomeOscillator","BB","BollingerBandsR","BollingerBandsWidth","CMF","ChaikinOscillator","chandeMO","ChoppinessIndex","CCI","CRSI","CorrelationCoefficient","DetrendedPriceOscillator","DM","DONCH","DoubleEMA","EaseOfMovement","EFI","ENV","FisherTransform","HV","hullMA","IchimokuCloud","KLTNR","KST","LinearRegression","MACD","MOM","MF","MoonPhases","MASimple","MAExp","MAWeighted","OBV","PSAR","PivotPointsHighLow","PivotPointsStandard","PriceOsc","PriceVolumeTrend","ROC","RSI","VigorIndex","VolatilityIndex","SMIErgodicIndicator","SMIErgodicOscillator","Stochastic","StochasticRSI","TripleEMA","Trix","UltimateOsc","VSTOP","Volume","VWAP","MAVolumeWeighted","WilliamR","WilliamsAlligator","WilliamsFractal","ZigZag"
+]
