@@ -248,6 +248,11 @@
 							<INPUT type="button" value="Reset" onclick="localStorage.clear(); location.reload()" />
 						</DIV>
 						<DIV>
+							<SPAN for="range_or_interval" class="cWhite fwBold">Use Default Range instead of Default Interval</SPAN>
+							<INPUT id="range_or_interval" type="checkbox" name="details"
+								onclick="storeMAN(true, this.id, this.checked); X_select_range_enable()">
+						</DIV>
+						<DIV>
 							<SPAN for="details" class="cWhite fwBold">Show Details</SPAN>
 							<INPUT id="details" type="checkbox" name="details"
 								onclick="storeMAN(true, this.id, this.checked)">
@@ -432,11 +437,11 @@
 						<!-- </DIV> -->
 					</DIV>
 					<DIV id="box_space_google2" style="position: relative; text-align: center; margin-top: 0px;">
-						<DIV style="z-index: -2; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0;">
+						<!-- <DIV style="z-index: -2; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0;">
 							<H3>
 								<A href="mailto:forever.scg@outlook.com">Advertise, on us.</A>
 							</H3>
-						</DIV>
+						</DIV> -->
 						<DIV>
 								<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
 								<!-- ChartBoxRectAd -->
