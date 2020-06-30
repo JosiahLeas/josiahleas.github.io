@@ -74,15 +74,14 @@
 	<!-- #endregion -->
 
 	<LINK rel="shortcut icon" type="image/png" href="images/favicon.png">
-	<LINK href="css/main.css?ver=8.0.4" rel="stylesheet">
+	<LINK href="css/main.css?ver=8.0.5" rel="stylesheet">
 	<LINK href="css/baloon.css" rel="stylesheet">
 
 	<SCRIPT async type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/emocoin.js?v7.0"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/emocoin.js?v8.0"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v2"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v2.2"></SCRIPT>
 </HEAD>
-
 
 <STYLE>
 	.box-button-container > *:hover {
@@ -139,7 +138,7 @@
 			>SHARE</BUTTON>
 		<BUTTON id="add_chart_reveal" class="theme" 
 			onclick="XDirectUI.visibility('chart_add_select');"
-			>ADD CHART</BUTTON>
+			>+ CHART</BUTTON>
 		<!-- <BUTTON id="storage_clear" class="theme" 
 			onclick="localStorage.clear(); location.reload()"
 			>RESET</BUTTON> -->
@@ -151,8 +150,8 @@
 				<!-- <P ">&nbsp;</P> -->
 			<!-- </DIV> -->
 		<!-- </DIV> -->
-		<A id="features" target="_blank" href="./about/index.html" class="btn btn-nav theme right"
-			style="padding: 2px; background: #f33; color: #000; position: absolute; right: 4px; top: 4px; text-transform: none;"
+		<A id="features" onclick="XDirectUI.visibility('modalUs')" href="javascript:void(0)" class="btn btn-nav theme right"
+			style="padding: 2px; background: #ff3; color: #000; position: absolute; right: 4px; top: 4px; text-transform: none;"
 			>&nbsp;Features&nbsp;</A>
 		<DIV id="modalConfig" class="modalConfig hide">
 			<DIV class="hero">
@@ -305,9 +304,9 @@
 						<DIV>
 							<SPAN>&nbsp;</SPAN>
 							<SPAN class="t-center" style="flex: none;">
-								<A id='LetsGo' href="javascript:void(0)" onclick="XDirectUI.visibility('modalConfig'); location.reload()">Done</A>
+								<A class="ok" id='LetsGo' href="javascript:void(0)" onclick="XDirectUI.visibility('modalConfig'); location.reload()">Done</A>
 								&nbsp;&nbsp; &nbsp;&nbsp;
-								<A href="javascript:void(0)" onclick="XDirectUI.visibility('modalConfig')">Cancel</A>
+								<A class="ok" href="javascript:void(0)" onclick="XDirectUI.visibility('modalConfig')">Cancel</A>
 							</SPAN>
 							<SPAN>&nbsp;</SPAN>
 						</DIV>
@@ -339,9 +338,9 @@
 						<DIV>
 							<SPAN>&nbsp;</SPAN>
 							<SPAN class="t-center" style="flex: none;">
-								<A href="javascript:void(0)" onclick="XDirectUI.choose_indicators(); XDirectUI.visibility('modalIndicators')">Done</A>
+								<A class="ok" href="javascript:void(0)" onclick="XDirectUI.choose_indicators(); XDirectUI.visibility('modalIndicators')">Done</A>
 								&nbsp;&nbsp; &nbsp;&nbsp;
-								<A href="javascript:void(0)" onclick="XDirectUI.visibility('modalIndicators')">Cancel</A>
+								<A class="ok" href="javascript:void(0)" onclick="XDirectUI.visibility('modalIndicators')">Cancel</A>
 							</SPAN>
 							<SPAN>&nbsp;</SPAN>
 						</DIV>
@@ -362,6 +361,77 @@
 					<a onclick="ZDirectUI.clipboard()" href="javascript:void(0)" class="cLBlue" style="font-size: 18px;">Copy Link</a>
 					&nbsp;&nbsp; &nbsp;&nbsp;
 					<a onclick="XDirectUI.visibility('modalAd')" href="javascript:void(0)" style="font-size: 18px;">Close</a>
+				</DIV>
+			</DIV>
+		</DIV>
+		<DIV id="modalUs" class="modalConfig hide">
+			<DIV class="hero">
+				<DIV class="cornflower-box" style="min-width: 300px;">
+					<DIV class="divPairsSetup t-left">
+						<H3>About MultiCoinCharts</H3>
+						<br>
+						<p>
+							This update, we've fixed add chart. It works now. <br>
+							It was broken. Which sucked.
+						</p>
+						<br>
+						<div id="IndGrid" style="
+							display: grid; 
+							grid-template-columns: 1fr auto; 
+							background: #f8f8f8; border-radius: 4px; 
+							max-height: 260px; padding: 0 16px;
+							overflow-y: scroll; color: #222;">
+							<p class="fwBold">
+								Devs
+							</p>
+							<p class="fwBold">
+								Select
+							</p>
+							<p>
+								<a href="https://github.com/JosiahLeas">@leasj - github</a>
+							</p>
+							<p>
+								🥇 crypto dev
+							</p>
+							<p>
+								<a href="https://github.com/P-Medicado">@p.m. y @forever_scg</a>
+							</p>
+							<p>
+								🏠 js dev
+							</p>
+							<p>
+								<a href="https://vybrinx.github.io/Browser-Party-Minigames/">@nekomari - website</a>
+							</p>
+							<p>
+								🍩 html dev
+							</p>
+							<p>
+								<a href="https://twitter.com/forever_scg">@forever_scg - twitter</a>
+							</p>
+							<p>
+								☔️ js dev
+							</p>
+							<p></p><p></p>
+							<p>
+								<a href="https://vsadx.com">our site for JS</a>
+							</p>
+							<p>
+								🎊 
+							</p>
+						</div>
+						<br><br>
+						<DIV>
+							<SPAN>&nbsp;</SPAN>
+							<SPAN class="t-center" style="flex: none;">
+								<!-- 
+									<A href="javascript:void(0)" onclick="XDirectUI.choose_indicators(); XDirectUI.visibility('modalIndicators')">Done</A>
+									&nbsp;&nbsp; &nbsp;&nbsp; 
+								-->
+								<A class="ok" href="javascript:void(0)" onclick="XDirectUI.visibility('modalUs')">Okay</A>
+							</SPAN>
+							<SPAN>&nbsp;</SPAN>
+						</DIV>
+					</DIV>
 				</DIV>
 			</DIV>
 		</DIV>
@@ -472,8 +542,58 @@
 			<A href="javascript:void(0)" style="font-size: .8em;" onclick="localStorage.clear(); location.reload()">Try Refreshing Cache</A>
 		</DIV>
 	</DIV>
-	<DIV id="chart_add_select" class="hide" style="position: fixed; background: rgba(0,0,0,.95); height: 100vh; top: 0; z-index: 16; width: 100vw; display: grid;">
-		<DIV style="color: eee; margin: auto; font-size: 24px;">
+	<DIV id="chart_add_select" class="hide modalConfig" style="position: fixed; background: rgba(0,0,0,.95); height: 100vh; top: 0; z-index: 16; width: 100vw; display: grid;">
+		<DIV class="hero">
+			<DIV class="cornflower-box">
+				<DIV class="divPairsSetup t-left">
+					<H3>MultiCoinCharts</H3>
+					<br>
+					<P>
+						Type at least 4 letters to search for a chart pair. <br>
+						<br>
+						Ex: "BTCU" (BTCUSD) <br>
+						Ex: ":NEO" (NEOUSDT, NEODIA)
+					</P>
+					<INPUT id="chart_adder" placeholder=":USD" style="font-size: 22px; border-radius: .2em;" />
+					<!-- <div id="IndGrid" style="
+						display: grid; 
+						grid-template-columns: 1fr auto; 
+						background: #f8f8f8; border-radius: 4px; 
+						max-height: 260px; padding: 0 16px;
+						overflow-y: scroll; color: #222;">
+						<p class="fwBold">
+							Indicator
+						</p>
+						<p class="fwBold">
+							Select
+						</p>
+						<p>ACCD</p><input type="checkbox" id="ACCD"><p>studyADR</p><input type="checkbox" id="studyADR"><p>AROON</p><input type="checkbox" id="AROON"><p>ATR</p><input type="checkbox" id="ATR"><p>AwesomeOscillator</p><input type="checkbox" id="AwesomeOscillator"><p>BB</p><input type="checkbox" id="BB"><p>BollingerBandsR</p><input type="checkbox" id="BollingerBandsR"><p>BollingerBandsWidth</p><input type="checkbox" id="BollingerBandsWidth"><p>CMF</p><input type="checkbox" id="CMF"><p>ChaikinOscillator</p><input type="checkbox" id="ChaikinOscillator"><p>chandeMO</p><input type="checkbox" id="chandeMO"><p>ChoppinessIndex</p><input type="checkbox" id="ChoppinessIndex"><p>CCI</p><input type="checkbox" id="CCI"><p>CRSI</p><input type="checkbox" id="CRSI"><p>CorrelationCoefficient</p><input type="checkbox" id="CorrelationCoefficient"><p>DetrendedPriceOscillator</p><input type="checkbox" id="DetrendedPriceOscillator"><p>DM</p><input type="checkbox" id="DM"><p>DONCH</p><input type="checkbox" id="DONCH"><p>DoubleEMA</p><input type="checkbox" id="DoubleEMA"><p>EaseOfMovement</p><input type="checkbox" id="EaseOfMovement"><p>EFI</p><input type="checkbox" id="EFI"><p>ENV</p><input type="checkbox" id="ENV"><p>FisherTransform</p><input type="checkbox" id="FisherTransform"><p>HV</p><input type="checkbox" id="HV"><p>hullMA</p><input type="checkbox" id="hullMA"><p>IchimokuCloud</p><input type="checkbox" id="IchimokuCloud"><p>KLTNR</p><input type="checkbox" id="KLTNR"><p>KST</p><input type="checkbox" id="KST"><p>LinearRegression</p><input type="checkbox" id="LinearRegression"><p>MACD</p><input type="checkbox" id="MACD"><p>MOM</p><input type="checkbox" id="MOM"><p>MF</p><input type="checkbox" id="MF"><p>MoonPhases</p><input type="checkbox" id="MoonPhases"><p>MASimple</p><input type="checkbox" id="MASimple"><p>MAExp</p><input type="checkbox" id="MAExp"><p>MAWeighted</p><input type="checkbox" id="MAWeighted"><p>OBV</p><input type="checkbox" id="OBV"><p>PSAR</p><input type="checkbox" id="PSAR"><p>PivotPointsHighLow</p><input type="checkbox" id="PivotPointsHighLow"><p>PivotPointsStandard</p><input type="checkbox" id="PivotPointsStandard"><p>PriceOsc</p><input type="checkbox" id="PriceOsc"><p>PriceVolumeTrend</p><input type="checkbox" id="PriceVolumeTrend"><p>ROC</p><input type="checkbox" id="ROC"><p>RSI</p><input type="checkbox" id="RSI"><p>VigorIndex</p><input type="checkbox" id="VigorIndex"><p>VolatilityIndex</p><input type="checkbox" id="VolatilityIndex"><p>SMIErgodicIndicator</p><input type="checkbox" id="SMIErgodicIndicator"><p>SMIErgodicOscillator</p><input type="checkbox" id="SMIErgodicOscillator"><p>Stochastic</p><input type="checkbox" id="Stochastic"><p>StochasticRSI</p><input type="checkbox" id="StochasticRSI"><p>TripleEMA</p><input type="checkbox" id="TripleEMA"><p>Trix</p><input type="checkbox" id="Trix"><p>UltimateOsc</p><input type="checkbox" id="UltimateOsc"><p>VSTOP</p><input type="checkbox" id="VSTOP"><p>Volume</p><input type="checkbox" id="Volume"><p>VWAP</p><input type="checkbox" id="VWAP"><p>MAVolumeWeighted</p><input type="checkbox" id="MAVolumeWeighted"><p>WilliamR</p><input type="checkbox" id="WilliamR"><p>WilliamsAlligator</p><input type="checkbox" id="WilliamsAlligator"><p>WilliamsFractal</p><input type="checkbox" id="WilliamsFractal"><p>ZigZag</p><input type="checkbox" id="ZigZag">
+					</div> -->
+					<br>
+					<DIV id="chart_options" class="border-none" style="
+						width: 256px;
+						margin: 32px 0;
+						font-size: .8em;
+						list-style: none;
+						overflow-y: scroll;
+						max-height: 320px;
+						background: #ddd;
+						color: #000;
+						display: grid;
+						overflow-x: hidden;
+						padding: 12px;
+					"></DIV>
+					<DIV>
+						<SPAN>&nbsp;</SPAN>
+						<SPAN class="t-center" style="flex: none;">
+							<A class="ok" href="javascript:void(0)" onclick="XDirectUI.visibility('chart_add_select')">Done</A>
+						</SPAN>
+						<SPAN>&nbsp;</SPAN>
+					</DIV>
+				</DIV>
+			</DIV>
+		</DIV>
+		<!-- <DIV style="color: eee; margin: auto; font-size: 24px;">
 			<P style="font-size: 32px;">MultiCoinCharts</P>
 			<P>Search for a chart ticker or type one and hit enter.</P>
 			<INPUT disabled id="chart_adder" style="font-size: 22px;" />
@@ -490,7 +610,7 @@
 				padding: 12px;
 			"></DIV>
 			<DIV style="height: 120px;"></DIV>
-		</DIV>
+		</DIV> -->
 	</DIV>
 	<SCRIPT>
 	let load_counter = 0;
