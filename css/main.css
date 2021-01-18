@@ -31,6 +31,7 @@ button, .button { cursor: pointer }
 }
 .border-none {
 	border: none !important;
+	padding: 0 !important;
 }
 a.ok {
 	background: #6c6;
@@ -261,6 +262,13 @@ div.modalConfig>div.hero {
 	overflow-y: auto; 
 	max-height: 100vh;
 }
+.hero hr {
+	border: none;
+	background: #eee;
+	height: 0.35em;
+	margin: 0.8em 0 1.2em 0;
+	border-radius: 1em;
+}
 /* #endregion */
 /* PairsSetup #region */
 
@@ -280,9 +288,10 @@ div.divPairsSetup {
 div.divPairsSetup > div {
 	display: flex;
 	padding: 2px;
+	align-items: center;
 }
 div.divPairsSetup > div > * {
-	flex: 4;
+	flex: 18;
 }
 div.divPairsSetup > div > input {
 	flex: 1;
@@ -418,6 +427,7 @@ div.divPairsSetup h3 {
 	background: rgba(85,85,85,.24);
 	padding: 0 .4em;
 	font-size: 1.5em;
+	display: block;
 }
 /* #endregion */
 /* Unorg #region */
