@@ -116,56 +116,50 @@
 			" />
 		</A> -->
 		<A style="margin: auto; color: #09f;" href="https://twitter.com/forever_scg" target="_blank">
-			Advertise on multicoincharts.com <BR>
-			<B style="color: #ddd;">Show your ad here. Purchase a slot for 100 USD.</B>
+			Advertise on MCC. Get 250k+ impressions per month <BR>
+			<B style="color: #ddd;">Show your ad here. Purchase your slot today for 100 USD.</B>
 		</A>
 	</DIV>
 	<DIV class="topnav" id="nav" style="max-width: 100vw; overflow-x: hidden; padding-right: 90px; position: relative;">
 		<DIV class="label theme">
 			<LABEL for="width" class="number-label">Width</LABEL>
-			<INPUT id="width" value="2" class="box-size" title="Adjusts the chart width" type="number" name="box-width" min="1" max="20" />
+			<INPUT id="width" value="2" class="box-size" title="Adjusts the chart width" type="number" name="box-width"
+				min="1" max="20" />
 		</DIV>
 		<DIV class="label theme">
 			<LABEL for="width" class="number-label">Height</LABEL>
-			<INPUT id="height" value="2" class="box-size" title="Adjust the chart height" type="number" name="box-height" min="1" max="20" />
+			<INPUT id="height" value="2" class="box-size" title="Adjust the chart height" type="number"
+				name="box-height" min="1" max="20" />
 		</DIV>
 		<!-- <BUTTON id="theme-toggle" class="theme" onclick="X_theme()">Browser Incompatible</BUTTON> -->
-		<BUTTON id="config_reveal" class="theme" 
-			onclick="XDirectUI.visibility('modalConfig')"
-			>Javascript Error</BUTTON>
-		<BUTTON id="indicators_reveal" class="theme" 
-			onclick="XDirectUI.visibility('modalIndicators')"
-			>INDICATORS</BUTTON>
+		<BUTTON id="config_reveal" class="theme" onclick="XDirectUI.visibility('modalConfig')">Javascript Error</BUTTON>
+		<BUTTON id="indicators_reveal" class="theme"
+			onclick="XDirectUI.visibility('modalIndicators')">INDICATORS</BUTTON>
 		<!-- <BUTTON id="random_chart" class="theme" 
 			onclick="XDirectUI.random()"
 			>RANDOM</BUTTON> -->
-		<BUTTON id="share_reveal" class="theme" 
-			onclick="XDirectUI.visibility('modalAd');XDirectUI.count()"
-			>SHARE</BUTTON>
-		<BUTTON id="chart_rearrange" class="theme" 
-			onclick="XDirectUI.toggle_rearrange_mode()"
-			>REARRANGE</BUTTON>
-		<BUTTON id="add_chart_reveal" class="theme" 
-			onclick="XDirectUI.visibility('chart_add_select');"
-			>ADD CHART</BUTTON>
-		<SELECT id="profile_select" class="theme" 
-		style="display: none;">
+		<BUTTON id="share_reveal" class="theme"
+			onclick="XDirectUI.visibility('modalAd');XDirectUI.count()">SHARE</BUTTON>
+		<BUTTON id="chart_rearrange" class="theme" onclick="XDirectUI.toggle_rearrange_mode()">REARRANGE</BUTTON>
+		<BUTTON id="add_chart_reveal" class="theme" onclick="XDirectUI.visibility('chart_add_select');">ADD
+			CHART</BUTTON>
+		<SELECT id="profile_select" class="theme" style="display: none;">
 			<OPTION value="default" selected="true">Default</OPTION>
-		</SELECT> 
+		</SELECT>
 		<!-- <BUTTON id="storage_clear" class="theme" 
 			onclick="localStorage.clear(); location.reload()"
 			>RESET</BUTTON> -->
 		<A id="link_set" target="_blank" class="" style="display: none; border-bottom: 1px solid;">Support Us</A>
 		<!-- &nbsp;<A id="link_set" href="#"></A>&nbsp; -->
 		<!-- <DIV style="margin-left: -45px;"> -->
-			<!-- <DIV style="margin-top: 6px;"> -->
-			
-				<!-- <P ">&nbsp;</P> -->
-			<!-- </DIV> -->
+		<!-- <DIV style="margin-top: 6px;"> -->
+
+		<!-- <P ">&nbsp;</P> -->
 		<!-- </DIV> -->
-		<A id="features" onclick="XDirectUI.visibility('modalUs')" href="javascript:void(0)" class="btn btn-nav theme right"
-			style="padding: 2px; background: rgb(78, 255, 51); color: #000; position: absolute; right: 4px; top: 4px; text-transform: none;"
-			>&nbsp;Changes&nbsp;</A>
+		<!-- </DIV> -->
+		<A id="features" onclick="XDirectUI.visibility('modalUs')" href="javascript:void(0)"
+			class="btn btn-nav theme right"
+			style="padding: 2px; background: rgb(78, 255, 51); color: #000; position: absolute; right: 4px; top: 4px; text-transform: none;">&nbsp;Changes&nbsp;</A>
 		<DIV id="modalConfig" class="modalConfig hide">
 			<DIV class="hero">
 				<DIV class="cornflower-box">
@@ -173,7 +167,8 @@
 						<H3>MultiCoinCharts</H3>
 						<DIV>
 							<SPAN class="cWhite fwBold">Timezone</SPAN>
-							<SELECT name="timezone" id="timezone" style="width:150px" onchange="storeMAN(true, this.id, this.value);">
+							<SELECT name="timezone" id="timezone" style="width:150px"
+								onchange="storeMAN(true, this.id, this.value);">
 								<OPTION value="Etc/UTC">UTC</OPTION>
 								<OPTION value="exchange">Exchange</OPTION>
 								<OPTION value="Pacific/Honolulu">(UTC-10) Honolulu</OPTION>
@@ -212,7 +207,8 @@
 						</DIV>
 						<DIV>
 							<SPAN class="cWhite fwBold">Bar Type</SPAN>
-							<SELECT name="style" id="style" style="width:68px" onchange="storeMAN(true, this.id, this.value);">
+							<SELECT name="style" id="style" style="width:68px"
+								onchange="storeMAN(true, this.id, this.value);">
 								<OPTION value="0">Bars</OPTION>
 								<OPTION value="1">Candles</OPTION>
 								<OPTION value="2">Line</OPTION>
@@ -227,13 +223,15 @@
 						</DIV>
 						<HR>
 						<DIV>
-							<SPAN for="range_or_interval" class="cWhite fwBold">Use Date Range instead of Default Interval</SPAN>
+							<SPAN for="range_or_interval" class="cWhite fwBold">Use Date Range instead of Default
+								Interval</SPAN>
 							<INPUT id="range_or_interval" type="checkbox" name="details"
 								onclick="storeMAN(true, this.id, this.checked); OnLoad.select_range_enable(this.checked)">
 						</DIV>
 						<DIV>
 							<SPAN class="cWhite fwBold">Default Interval</SPAN>
-							<SELECT name="interval" id="interval" style="width:68px" onchange="storeMAN(true, this.id, this.value);">
+							<SELECT name="interval" id="interval" style="width:68px"
+								onchange="storeMAN(true, this.id, this.value);">
 								<OPTION value="1">1m</OPTION>
 								<OPTION value="3">3m</OPTION>
 								<OPTION value="5">5m</OPTION>
@@ -249,7 +247,8 @@
 						</DIV>
 						<DIV>
 							<SPAN class="cWhite fwBold">Date Range</SPAN>
-							<SELECT name="range" id="range" style="width:68px" onchange="storeMAN(true, this.id, this.value);">
+							<SELECT name="range" id="range" style="width:68px"
+								onchange="storeMAN(true, this.id, this.value);">
 								<OPTION value="1d">1 Day</OPTION>
 								<OPTION value="5d">5 Days</OPTION>
 								<OPTION value="1m">1 Month</OPTION>
@@ -279,41 +278,50 @@
 						<HR>
 						<DIV>
 							<SPAN for="hide_top_toolbar" class="cWhite fwBold">Hide Top Toolbar (Symbol Change)
-								<SPAN data-balloon-length="fit" data-balloon="If you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
-								data-balloon-pos="up" class="medBallon" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+								<SPAN data-balloon-length="fit"
+									data-balloon="If you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
+									data-balloon-pos="up" class="medBallon"
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
 							</SPAN>
 							<INPUT id="hide_top_toolbar" type="checkbox" name="hide_top_toolbar"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</DIV>
 						<DIV>
 							<SPAN for="hide_legend" class="cWhite fwBold">Hide Legend
-								<SPAN data-balloon-length="fit" data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
-								data-balloon-pos="up" class="medBallon" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+								<SPAN data-balloon-length="fit"
+									data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
+									data-balloon-pos="up" class="medBallon"
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
 							</SPAN>
 							<INPUT id="hide_legend" type="checkbox" name="hide_legend"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</DIV>
 						<DIV>
 							<SPAN for="hide_side_toolbar" class="cWhite fwBold">Hide Side Toolbar
-								<SPAN data-balloon-length="fit" data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
-								data-balloon-pos="up" class="medBallon" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+								<SPAN data-balloon-length="fit"
+									data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
+									data-balloon-pos="up" class="medBallon"
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
 							</SPAN>
 							<INPUT id="hide_side_toolbar" type="checkbox" name="hide_side_toolbar"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</DIV>
 						<HR>
 						<DIV>
-							<SPAN for="usesmallbutton"  class="cWhite fwBold">Use Small Buttons
-								<SPAN data-balloon-length="fit" data-balloon="Use smaller button size, applies to the following buttons: Open in Coinigy, Show in Fullscreen, Remove this Chart"
-								data-balloon-pos="up" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+							<SPAN for="usesmallbutton" class="cWhite fwBold">Use Small Buttons
+								<SPAN data-balloon-length="fit"
+									data-balloon="Use smaller button size, applies to the following buttons: Open in Coinigy, Show in Fullscreen, Remove this Chart"
+									data-balloon-pos="up"
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
 							</SPAN>
 							<INPUT id="usesmallbutton" type="checkbox" name="usesmallbutton"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</DIV>
 						<DIV>
-							<SPAN for="dark"  class="cWhite fwBold">Use Dark Mode
+							<SPAN for="dark" class="cWhite fwBold">Use Dark Mode
 								<SPAN data-balloon-length="fit" data-balloon="Opens charts in light mode."
-								data-balloon-pos="up" style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+									data-balloon-pos="up"
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
 							</SPAN>
 							<INPUT id="dark" type="checkbox" name="dark"
 								onclick="storeMAN(true, this.id, this.checked)">
@@ -322,11 +330,14 @@
 						<DIV>
 							<!-- <SPAN>&nbsp;</SPAN> -->
 							<SPAN class="t-center" style="flex: none; margin: auto;">
-								<A class="ok" id='LetsGo' href="javascript:void(0)" onclick="XDirectUI.visibility('modalConfig'); location.reload()">Done</A>
+								<A class="ok" id='LetsGo' href="javascript:void(0)"
+									onclick="XDirectUI.visibility('modalConfig'); location.reload()">Done</A>
 								&nbsp;&nbsp; &nbsp;&nbsp;
-								<A class="ok" style="background-color: #999;" href="javascript:void(0)" onclick="XDirectUI.visibility('modalConfig')">Cancel</A>
+								<A class="ok" style="background-color: #999;" href="javascript:void(0)"
+									onclick="XDirectUI.visibility('modalConfig')">Cancel</A>
 								&nbsp;&nbsp; &nbsp;&nbsp;
-								<A class="ok" style="background-color: #f44;" href="javascript:void(0)" onclick="localStorage.clear(); location.reload()">Reset</A>
+								<A class="ok" style="background-color: #f44;" href="javascript:void(0)"
+									onclick="localStorage.clear(); location.reload()">Reset</A>
 							</SPAN>
 							<!-- <SPAN>&nbsp;</SPAN> -->
 						</DIV>
@@ -341,26 +352,86 @@
 						<H3>MultiCoinCharts</H3>
 						<br>
 						<div id="IndGrid" style="
-							display: grid; 
-							grid-template-columns: 1fr auto; 
-							background: #f8f8f8; border-radius: 4px; 
-							max-height: 260px; padding: 0 16px;
-							overflow-y: scroll; color: #222;">
-							<p class="fwBold">
-								Indicator
-							</p>
-							<p class="fwBold">
-								Select
-							</p>
-							<p>ACCD</p><input type="checkbox" id="ACCD"><p>studyADR</p><input type="checkbox" id="studyADR"><p>AROON</p><input type="checkbox" id="AROON"><p>ATR</p><input type="checkbox" id="ATR"><p>AwesomeOscillator</p><input type="checkbox" id="AwesomeOscillator"><p>BB</p><input type="checkbox" id="BB"><p>BollingerBandsR</p><input type="checkbox" id="BollingerBandsR"><p>BollingerBandsWidth</p><input type="checkbox" id="BollingerBandsWidth"><p>CMF</p><input type="checkbox" id="CMF"><p>ChaikinOscillator</p><input type="checkbox" id="ChaikinOscillator"><p>chandeMO</p><input type="checkbox" id="chandeMO"><p>ChoppinessIndex</p><input type="checkbox" id="ChoppinessIndex"><p>CCI</p><input type="checkbox" id="CCI"><p>CRSI</p><input type="checkbox" id="CRSI"><p>CorrelationCoefficient</p><input type="checkbox" id="CorrelationCoefficient"><p>DetrendedPriceOscillator</p><input type="checkbox" id="DetrendedPriceOscillator"><p>DM</p><input type="checkbox" id="DM"><p>DONCH</p><input type="checkbox" id="DONCH"><p>DoubleEMA</p><input type="checkbox" id="DoubleEMA"><p>EaseOfMovement</p><input type="checkbox" id="EaseOfMovement"><p>EFI</p><input type="checkbox" id="EFI"><p>ENV</p><input type="checkbox" id="ENV"><p>FisherTransform</p><input type="checkbox" id="FisherTransform"><p>HV</p><input type="checkbox" id="HV"><p>hullMA</p><input type="checkbox" id="hullMA"><p>IchimokuCloud</p><input type="checkbox" id="IchimokuCloud"><p>KLTNR</p><input type="checkbox" id="KLTNR"><p>KST</p><input type="checkbox" id="KST"><p>LinearRegression</p><input type="checkbox" id="LinearRegression"><p>MACD</p><input type="checkbox" id="MACD"><p>MOM</p><input type="checkbox" id="MOM"><p>MF</p><input type="checkbox" id="MF"><p>MoonPhases</p><input type="checkbox" id="MoonPhases"><p>MASimple</p><input type="checkbox" id="MASimple"><p>MAExp</p><input type="checkbox" id="MAExp"><p>MAWeighted</p><input type="checkbox" id="MAWeighted"><p>OBV</p><input type="checkbox" id="OBV"><p>PSAR</p><input type="checkbox" id="PSAR"><p>PivotPointsHighLow</p><input type="checkbox" id="PivotPointsHighLow"><p>PivotPointsStandard</p><input type="checkbox" id="PivotPointsStandard"><p>PriceOsc</p><input type="checkbox" id="PriceOsc"><p>PriceVolumeTrend</p><input type="checkbox" id="PriceVolumeTrend"><p>ROC</p><input type="checkbox" id="ROC"><p>RSI</p><input type="checkbox" id="RSI"><p>VigorIndex</p><input type="checkbox" id="VigorIndex"><p>VolatilityIndex</p><input type="checkbox" id="VolatilityIndex"><p>SMIErgodicIndicator</p><input type="checkbox" id="SMIErgodicIndicator"><p>SMIErgodicOscillator</p><input type="checkbox" id="SMIErgodicOscillator"><p>Stochastic</p><input type="checkbox" id="Stochastic"><p>StochasticRSI</p><input type="checkbox" id="StochasticRSI"><p>TripleEMA</p><input type="checkbox" id="TripleEMA"><p>Trix</p><input type="checkbox" id="Trix"><p>UltimateOsc</p><input type="checkbox" id="UltimateOsc"><p>VSTOP</p><input type="checkbox" id="VSTOP"><p>Volume</p><input type="checkbox" id="Volume"><p>VWAP</p><input type="checkbox" id="VWAP"><p>MAVolumeWeighted</p><input type="checkbox" id="MAVolumeWeighted"><p>WilliamR</p><input type="checkbox" id="WilliamR"><p>WilliamsAlligator</p><input type="checkbox" id="WilliamsAlligator"><p>WilliamsFractal</p><input type="checkbox" id="WilliamsFractal"><p>ZigZag</p><input type="checkbox" id="ZigZag">
+							display: grid;
+							grid-template-columns: 1fr 1fr 1fr 1fr;
+							background: #f8f8f8;
+							border-radius: 4px;
+							max-height: 260px;
+							padding: 0px 20px;
+							overflow-y: scroll;
+							color: #222;
+							align-self: center;">
+							<p>ACCD</p><input type="checkbox" id="ACCD">
+							<p>studyADR</p><input type="checkbox" id="studyADR">
+							<p>AROON</p><input type="checkbox" id="AROON">
+							<p>ATR</p><input type="checkbox" id="ATR">
+							<p>AwesomeOscillator</p><input type="checkbox" id="AwesomeOscillator">
+							<p>BB</p><input type="checkbox" id="BB">
+							<p>BollingerBandsR</p><input type="checkbox" id="BollingerBandsR">
+							<p>BollingerBandsWidth</p><input type="checkbox" id="BollingerBandsWidth">
+							<p>CMF</p><input type="checkbox" id="CMF">
+							<p>ChaikinOscillator</p><input type="checkbox" id="ChaikinOscillator">
+							<p>chandeMO</p><input type="checkbox" id="chandeMO">
+							<p>ChoppinessIndex</p><input type="checkbox" id="ChoppinessIndex">
+							<p>CCI</p><input type="checkbox" id="CCI">
+							<p>CRSI</p><input type="checkbox" id="CRSI">
+							<p>CorrelationCoefficient</p><input type="checkbox" id="CorrelationCoefficient">
+							<p>DetrendedPriceOscillator</p><input type="checkbox" id="DetrendedPriceOscillator">
+							<p>DM</p><input type="checkbox" id="DM">
+							<p>DONCH</p><input type="checkbox" id="DONCH">
+							<p>DoubleEMA</p><input type="checkbox" id="DoubleEMA">
+							<p>EaseOfMovement</p><input type="checkbox" id="EaseOfMovement">
+							<p>EFI</p><input type="checkbox" id="EFI">
+							<p>ENV</p><input type="checkbox" id="ENV">
+							<p>FisherTransform</p><input type="checkbox" id="FisherTransform">
+							<p>HV</p><input type="checkbox" id="HV">
+							<p>hullMA</p><input type="checkbox" id="hullMA">
+							<p>IchimokuCloud</p><input type="checkbox" id="IchimokuCloud">
+							<p>KLTNR</p><input type="checkbox" id="KLTNR">
+							<p>KST</p><input type="checkbox" id="KST">
+							<p>LinearRegression</p><input type="checkbox" id="LinearRegression">
+							<p>MACD</p><input type="checkbox" id="MACD">
+							<p>MOM</p><input type="checkbox" id="MOM">
+							<p>MF</p><input type="checkbox" id="MF">
+							<p>MoonPhases</p><input type="checkbox" id="MoonPhases">
+							<p>MASimple</p><input type="checkbox" id="MASimple">
+							<p>MAExp</p><input type="checkbox" id="MAExp">
+							<p>MAWeighted</p><input type="checkbox" id="MAWeighted">
+							<p>OBV</p><input type="checkbox" id="OBV">
+							<p>PSAR</p><input type="checkbox" id="PSAR">
+							<p>PivotPointsHighLow</p><input type="checkbox" id="PivotPointsHighLow">
+							<p>PivotPointsStandard</p><input type="checkbox" id="PivotPointsStandard">
+							<p>PriceOsc</p><input type="checkbox" id="PriceOsc">
+							<p>PriceVolumeTrend</p><input type="checkbox" id="PriceVolumeTrend">
+							<p>ROC</p><input type="checkbox" id="ROC">
+							<p>RSI</p><input type="checkbox" id="RSI">
+							<p>VigorIndex</p><input type="checkbox" id="VigorIndex">
+							<p>VolatilityIndex</p><input type="checkbox" id="VolatilityIndex">
+							<p>SMIErgodicIndicator</p><input type="checkbox" id="SMIErgodicIndicator">
+							<p>SMIErgodicOscillator</p><input type="checkbox" id="SMIErgodicOscillator">
+							<p>Stochastic</p><input type="checkbox" id="Stochastic">
+							<p>StochasticRSI</p><input type="checkbox" id="StochasticRSI">
+							<p>TripleEMA</p><input type="checkbox" id="TripleEMA">
+							<p>Trix</p><input type="checkbox" id="Trix">
+							<p>UltimateOsc</p><input type="checkbox" id="UltimateOsc">
+							<p>VSTOP</p><input type="checkbox" id="VSTOP">
+							<p>Volume</p><input type="checkbox" id="Volume">
+							<p>VWAP</p><input type="checkbox" id="VWAP">
+							<p>MAVolumeWeighted</p><input type="checkbox" id="MAVolumeWeighted">
+							<p>WilliamR</p><input type="checkbox" id="WilliamR">
+							<p>WilliamsAlligator</p><input type="checkbox" id="WilliamsAlligator">
+							<p>WilliamsFractal</p><input type="checkbox" id="WilliamsFractal">
+							<p>ZigZag</p><input type="checkbox" id="ZigZag">
 						</div>
 						<br><br>
 						<DIV>
 							<SPAN>&nbsp;</SPAN>
 							<SPAN class="t-center" style="flex: none;">
-								<A class="ok" href="javascript:void(0)" onclick="XDirectUI.choose_indicators(); XDirectUI.visibility('modalIndicators')">Done</A>
+								<A class="ok" href="javascript:void(0)"
+									onclick="XDirectUI.choose_indicators(); XDirectUI.visibility('modalIndicators')">Done</A>
 								&nbsp;&nbsp; &nbsp;&nbsp;
-								<A class="ok" href="javascript:void(0)" onclick="XDirectUI.visibility('modalIndicators')">Cancel</A>
+								<A class="ok" href="javascript:void(0)"
+									onclick="XDirectUI.visibility('modalIndicators')">Cancel</A>
 							</SPAN>
 							<SPAN>&nbsp;</SPAN>
 						</DIV>
@@ -378,9 +449,11 @@
 				</DIV>
 				<BR><BR>
 				<DIV class="t-center">
-					<a onclick="ZDirectUI.clipboard()" href="javascript:void(0)" class="cLBlue" style="font-size: 18px;">Copy Link</a>
+					<a onclick="ZDirectUI.clipboard()" href="javascript:void(0)" class="cLBlue"
+						style="font-size: 18px;">Copy Link</a>
 					&nbsp;&nbsp; &nbsp;&nbsp;
-					<a onclick="XDirectUI.visibility('modalAd')" href="javascript:void(0)" style="font-size: 18px;">Close</a>
+					<a onclick="XDirectUI.visibility('modalAd')" href="javascript:void(0)"
+						style="font-size: 18px;">Close</a>
 				</DIV>
 			</DIV>
 		</DIV>
@@ -392,7 +465,7 @@
 						<br>
 						<p>
 							<B>Jan (2021)</B><BR>
-							In this update, you can search so many tradingview supported exchanges. 
+							In this update, you can search so many tradingview supported exchanges.
 							A lot of bugs are fixed to, but if you find any, report them on our twitter! <br>
 						</p>
 						<br>
@@ -432,12 +505,13 @@
 							<p>
 								☔️ js dev
 							</p>
-							<p></p><p></p>
+							<p></p>
+							<p></p>
 							<p>
 								<a href="https://vsadx.com">our site for JS</a>
 							</p>
 							<p>
-								🎊 
+								🎊
 							</p>
 						</div>
 						<br><br>
@@ -448,7 +522,8 @@
 									<A href="javascript:void(0)" onclick="XDirectUI.choose_indicators(); XDirectUI.visibility('modalIndicators')">Done</A>
 									&nbsp;&nbsp; &nbsp;&nbsp; 
 								-->
-								<A class="ok" href="javascript:void(0)" onclick="XDirectUI.visibility('modalUs')">Okay</A>
+								<A class="ok" href="javascript:void(0)"
+									onclick="XDirectUI.visibility('modalUs')">Okay</A>
 							</SPAN>
 							<SPAN>&nbsp;</SPAN>
 						</DIV>
@@ -480,7 +555,7 @@
 		</DIV> -->
 	</DIV>
 	<DIV id="charts">
-		<DIV id="notif" class="box newsletter left options" >
+		<DIV id="notif" class="box newsletter left options">
 			<P href="javascript:void(0)" onclick="XDirectUI.random()">X</P>
 			<!-- <DIV style="transform: scale(.8); display: none;">
 				<H4 style="padding: 4% 0 0 0;">
@@ -499,7 +574,7 @@
 				">
 					<P href="javascript:void(0)" onclick="html.box_space.style.display = 'none'" style="
 						background: white; color: black; border-radius: 50%; position: absolute;
-						width: 32px; height: 32px; line-height: 32px; right: 1px; top: -13px; z-index: 10;
+						width: 32px; height: 32px; line-height: 32px; right: 1px; top: -13px; z-index: 9;
 					">X</P>
 					<!-- <A id="box_space_img" target="_blank" href="https://getaurox.com/?utm_source=mcc&utm_medium=cpc" style="
 						display: flex; width: 100%; height: 100%; display: none;
@@ -510,14 +585,14 @@
 					</A> -->
 					<DIV id="box_space_google" style="display: flex; display: none; width: 100%; height: 100%;">
 						<!-- <DIV> -->
-							<!-- <A href="javascript:void(0)" onclick="XDirectUI.visibility('modalMCC')">
+						<!-- <A href="javascript:void(0)" onclick="XDirectUI.visibility('modalMCC')">
 								<IMG src="./space/mcc/box/1200x1200.jpeg" style="margin: auto; 
 									max-width: 100%; max-height: 100%;
 								" />
 							</A> -->
-							<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-							<!-- ChartBoxAdTest -->
-							<!-- <ins class="adsbygoogle"
+						<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+						<!-- ChartBoxAdTest -->
+						<!-- <ins class="adsbygoogle"
 										style="display:block"
 										data-ad-client="ca-pub-3023875029405790"
 										data-ad-slot="5199690012"
@@ -537,15 +612,13 @@
 							</DIV>
 						</DIV>
 						<DIV>
-								<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-								<!-- ChartBoxRectAd -->
-								<ins class="adsbygoogle"
-										 style="display:inline-block;width:336px;height:280px"
-										 data-ad-client="ca-pub-3023875029405790"
-										 data-ad-slot="2283643489"></ins>
-								<script>
+							<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+							<!-- ChartBoxRectAd -->
+							<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px"
+								data-ad-client="ca-pub-3023875029405790" data-ad-slot="2283643489"></ins>
+							<script>
 								(adsbygoogle = window.adsbygoogle || []).push({});
-								</script>
+							</script>
 						</DIV>
 					</DIV>
 				</DIV>
@@ -558,27 +631,31 @@
 			</UL>
 		</DIV>
 	</DIV>
-	<DIV id="loading" style="position: fixed; background: rgba(0,0,0,.95); height: 100vh; top: 0; z-index: 16; width: 100vw; display: grid;">
+	<DIV id="loading"
+		style="position: fixed; background: rgba(0,0,0,.95); height: 100vh; top: 0; z-index: 16; width: 100vw; display: grid;">
 		<DIV style="color: eee; margin: auto; font-size: 24px;">
 			<P style="font-size: 32px;">MultiCoinCharts</P>
 			<P>by p.m. &amp; vsads &amp; nekomari &amp; leasj</P>
 			<P id="crash_counter"></P> <br>
-			<A href="javascript:void(0)" style="font-size: .8em;" onclick="localStorage.clear(); location.reload()">Try Refreshing Cache</A>
+			<A href="javascript:void(0)" style="font-size: .8em;" onclick="localStorage.clear(); location.reload()">Try
+				Refreshing Cache</A>
 		</DIV>
 	</DIV>
-	<DIV id="chart_add_select" class="hide modalConfig" style="position: fixed; background: rgba(0,0,0,.95); height: 100vh; top: 0; z-index: 16; width: 100vw; display: grid;">
+	<DIV id="chart_add_select" class="hide modalConfig"
+		style="position: fixed; background: rgba(0,0,0,.95); height: 100vh; top: 0; z-index: 16; width: 100vw; display: grid;">
 		<DIV class="hero">
 			<DIV class="cornflower-box" style="display: grid; column-gap: 1em; grid-template-columns: 1fr 1fr;">
 				<DIV style="display: flex;">
 					<DIV class="divPairsSetup my-inserts" style="max-height: 400px; overflow-y: auto; margin: auto;">
 						<h3>Forex</h3>
 						<style>
-							.my-inserts > div {
+							.my-inserts>div {
 								display: grid !important;
 								column-gap: 1em;
 								row-gap: 1em;
 								grid-template-columns: 1fr 1fr 1fr;
 							}
+
 							summary::marker {
 								font-size: 0;
 							}
@@ -595,7 +672,7 @@
 								<h3 style="text-decoration: underline;">Other Cryto</h3>
 							</summary>
 							<div id="Crypto-Insert-Alts" style="max-width: 310px;">
-			
+
 							</div>
 						</details>
 					</DIV>
@@ -613,8 +690,7 @@
 							border-radius: .2em;
 							border: none;
 							width: 256px;
-							padding: 0.25em 0.6em;"
-							/>
+							padding: 0.25em 0.6em;" />
 						<!-- <div id="IndGrid" style="
 							display: grid; 
 							grid-template-columns: 1fr auto; 
@@ -646,7 +722,8 @@
 						<DIV>
 							<SPAN>&nbsp;</SPAN>
 							<SPAN class="t-center" style="flex: none;">
-								<A class="ok" href="javascript:void(0)" onclick="XDirectUI.visibility('chart_add_select')">Done</A>
+								<A class="ok" href="javascript:void(0)"
+									onclick="XDirectUI.visibility('chart_add_select')">Done</A>
 							</SPAN>
 							<SPAN>&nbsp;</SPAN>
 						</DIV>
@@ -674,17 +751,17 @@
 		</DIV> -->
 	</DIV>
 	<SCRIPT>
-	let load_counter = 0;
-	(function fireWhenReady() {
-		if (  typeof(initPage)!=='undefined'
-			&&typeof(all)!=='undefined'
-			&&typeof(TradingView)!=='undefined') 
-		return initPage()
-		load_counter++
-		if(load_counter > 200) crash_counter.innerText = 
-			"Crashed: still waiting for TradingView for " + ((load_counter / 20) >> 0) + " seconds."
-		setTimeout(fireWhenReady, 50)
-	})()
+		let load_counter = 0;
+		(function fireWhenReady() {
+			if (typeof (initPage) !== 'undefined' &&
+				typeof (all) !== 'undefined' &&
+				typeof (TradingView) !== 'undefined')
+				return initPage()
+			load_counter++
+			if (load_counter > 200) crash_counter.innerText =
+				"Crashed: still waiting for TradingView for " + ((load_counter / 20) >> 0) + " seconds."
+			setTimeout(fireWhenReady, 50)
+		})()
 	</SCRIPT>
 </BODY>
 
