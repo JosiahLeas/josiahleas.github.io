@@ -666,6 +666,10 @@ div.divPairsSetup h3 {
     position: unset;
   }
 
+  #chart-rearrange {
+	  display: none;
+  }
+
   @media screen and (max-width: 528px) {
     .theme {
       margin-top: 6px;
