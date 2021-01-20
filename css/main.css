@@ -539,6 +539,12 @@ div.divPairsSetup h3 {
 	background-color: DodgerBlue !important;
 	color: #ffffff;
 }
+
+.cornflower-box {
+        display: grid;
+        column-gap: 1em;
+        grid-template-columns: 1fr 1fr;
+}
 /* #endregion */
 /* Responsives #region */
 @media screen and (max-width: 600px) {
@@ -562,6 +568,10 @@ div.divPairsSetup h3 {
 		/* transform: translate(-20%, -20%) scale(.60) !important;
 		width: 167% !important;
 		height: 167% !important; */
+	}
+	
+	.cornflower-box {
+        grid-template-columns: 1fr;
 	}
 	@media screen and (max-width: 528px) {
 		.theme { margin-top: 6px; }
