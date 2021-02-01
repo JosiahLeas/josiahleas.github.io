@@ -80,7 +80,7 @@
 	<SCRIPT async type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/emocoin.js?v8.2"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v2.8"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v2.8.0.1"></SCRIPT>
 </HEAD>
 
 <STYLE>
@@ -115,9 +115,9 @@
 				max-width: 100%; max-height: 100%;
 			" />
 		</A> -->
-		<A style="margin: auto; color: #09f;" href="https://twitter.com/forever_scg" target="_blank">
-			Advertise on multicoincharts.com <BR>
-			<B style="color: #ddd;">Show your ad here. Purchase a slot for 100 USD.</B>
+		<A id="ad-text-anchor" style="margin: auto; color: #09f;" href="https://twitter.com/forever_scg" target="_blank">
+			Advertise on MCC. Get 250k+ impressions per month <BR>
+			<B style="color: #ddd;">Show your ad here. Purchase your slot today for 100 USD.</B>
 		</A>
 	</DIV>
 	<DIV class="topnav" id="nav" style="max-width: 100vw; overflow-x: hidden; padding-right: 90px; position: relative;">
@@ -341,17 +341,15 @@
 						<H3>MultiCoinCharts</H3>
 						<br>
 						<div id="IndGrid" style="
-							display: grid; 
-							grid-template-columns: 1fr auto; 
-							background: #f8f8f8; border-radius: 4px; 
-							max-height: 260px; padding: 0 16px;
-							overflow-y: scroll; color: #222;">
-							<p class="fwBold">
-								Indicator
-							</p>
-							<p class="fwBold">
-								Select
-							</p>
+							display: grid;
+							grid-template-columns: 1fr 1fr 1fr 1fr;
+							background: #f8f8f8;
+							border-radius: 4px;
+							max-height: 260px;
+							padding: 0px 20px;
+							overflow-y: scroll;
+							color: #222;
+							align-self: center;">
 							<p>ACCD</p><input type="checkbox" id="ACCD"><p>studyADR</p><input type="checkbox" id="studyADR"><p>AROON</p><input type="checkbox" id="AROON"><p>ATR</p><input type="checkbox" id="ATR"><p>AwesomeOscillator</p><input type="checkbox" id="AwesomeOscillator"><p>BB</p><input type="checkbox" id="BB"><p>BollingerBandsR</p><input type="checkbox" id="BollingerBandsR"><p>BollingerBandsWidth</p><input type="checkbox" id="BollingerBandsWidth"><p>CMF</p><input type="checkbox" id="CMF"><p>ChaikinOscillator</p><input type="checkbox" id="ChaikinOscillator"><p>chandeMO</p><input type="checkbox" id="chandeMO"><p>ChoppinessIndex</p><input type="checkbox" id="ChoppinessIndex"><p>CCI</p><input type="checkbox" id="CCI"><p>CRSI</p><input type="checkbox" id="CRSI"><p>CorrelationCoefficient</p><input type="checkbox" id="CorrelationCoefficient"><p>DetrendedPriceOscillator</p><input type="checkbox" id="DetrendedPriceOscillator"><p>DM</p><input type="checkbox" id="DM"><p>DONCH</p><input type="checkbox" id="DONCH"><p>DoubleEMA</p><input type="checkbox" id="DoubleEMA"><p>EaseOfMovement</p><input type="checkbox" id="EaseOfMovement"><p>EFI</p><input type="checkbox" id="EFI"><p>ENV</p><input type="checkbox" id="ENV"><p>FisherTransform</p><input type="checkbox" id="FisherTransform"><p>HV</p><input type="checkbox" id="HV"><p>hullMA</p><input type="checkbox" id="hullMA"><p>IchimokuCloud</p><input type="checkbox" id="IchimokuCloud"><p>KLTNR</p><input type="checkbox" id="KLTNR"><p>KST</p><input type="checkbox" id="KST"><p>LinearRegression</p><input type="checkbox" id="LinearRegression"><p>MACD</p><input type="checkbox" id="MACD"><p>MOM</p><input type="checkbox" id="MOM"><p>MF</p><input type="checkbox" id="MF"><p>MoonPhases</p><input type="checkbox" id="MoonPhases"><p>MASimple</p><input type="checkbox" id="MASimple"><p>MAExp</p><input type="checkbox" id="MAExp"><p>MAWeighted</p><input type="checkbox" id="MAWeighted"><p>OBV</p><input type="checkbox" id="OBV"><p>PSAR</p><input type="checkbox" id="PSAR"><p>PivotPointsHighLow</p><input type="checkbox" id="PivotPointsHighLow"><p>PivotPointsStandard</p><input type="checkbox" id="PivotPointsStandard"><p>PriceOsc</p><input type="checkbox" id="PriceOsc"><p>PriceVolumeTrend</p><input type="checkbox" id="PriceVolumeTrend"><p>ROC</p><input type="checkbox" id="ROC"><p>RSI</p><input type="checkbox" id="RSI"><p>VigorIndex</p><input type="checkbox" id="VigorIndex"><p>VolatilityIndex</p><input type="checkbox" id="VolatilityIndex"><p>SMIErgodicIndicator</p><input type="checkbox" id="SMIErgodicIndicator"><p>SMIErgodicOscillator</p><input type="checkbox" id="SMIErgodicOscillator"><p>Stochastic</p><input type="checkbox" id="Stochastic"><p>StochasticRSI</p><input type="checkbox" id="StochasticRSI"><p>TripleEMA</p><input type="checkbox" id="TripleEMA"><p>Trix</p><input type="checkbox" id="Trix"><p>UltimateOsc</p><input type="checkbox" id="UltimateOsc"><p>VSTOP</p><input type="checkbox" id="VSTOP"><p>Volume</p><input type="checkbox" id="Volume"><p>VWAP</p><input type="checkbox" id="VWAP"><p>MAVolumeWeighted</p><input type="checkbox" id="MAVolumeWeighted"><p>WilliamR</p><input type="checkbox" id="WilliamR"><p>WilliamsAlligator</p><input type="checkbox" id="WilliamsAlligator"><p>WilliamsFractal</p><input type="checkbox" id="WilliamsFractal"><p>ZigZag</p><input type="checkbox" id="ZigZag">
 						</div>
 						<br><br>
@@ -499,7 +497,7 @@
 				">
 					<P href="javascript:void(0)" onclick="html.box_space.style.display = 'none'" style="
 						background: white; color: black; border-radius: 50%; position: absolute;
-						width: 32px; height: 32px; line-height: 32px; right: 1px; top: -13px; z-index: 10;
+						width: 32px; height: 32px; line-height: 32px; right: 1px; top: -13px; z-index: 9;
 					">X</P>
 					<!-- <A id="box_space_img" target="_blank" href="https://getaurox.com/?utm_source=mcc&utm_medium=cpc" style="
 						display: flex; width: 100%; height: 100%; display: none;
