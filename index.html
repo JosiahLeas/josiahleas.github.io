@@ -3,7 +3,6 @@
 
 <HEAD>
 	<!-- #region Metas -->
-	<TITLE>Live Crypto Graphs | MultiCoinCharts</TITLE>
 	<!-- HTML 5 Metas -->
 	<META name="description"
 		content="View multiple Crypto Coins TradingView graphs at once. Customize graphs or view full screen. Add custom Alt Coins. All for free. 1x1 all the way up to 10x10  one page charts.">
@@ -34,25 +33,16 @@
 	<SCRIPT async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></SCRIPT>
 	<SCRIPT>
 		window.dataLayer = window.dataLayer || [];
-
-		function gtag() {
-			dataLayer.push(arguments)
-		};
+		function gtag() { dataLayer.push(arguments) };
 		gtag('js', new Date());
 		gtag('config', 'UA-107348406-1');
 		(function (w, d, s, l, i) {
-			w[l] = w[l] || [];
-			w[l].push({
-				'gtm.start': new Date().getTime(),
-				event: 'gtm.js'
-			});
-			var f = d.getElementsByTagName(s)[0],
-				j = d.createElement(s),
-				dl = l != 'dataLayer' ? '&l=' + l : '';
-			j.async = true;
-			j.src =
-				'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-			f.parentNode.insertBefore(j, f);
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
 		})(window, document, 'script', 'dataLayer', 'GTM-K6QVJBW');
 	</SCRIPT>
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -72,57 +62,72 @@
 	<META name="og:locale" content="en_US">
 	<META name="og:type" content="website">
 	<!-- #endregion -->
+	<TITLE>MCC - More Than One TradingView Crypto Chart on One Screen</TITLE>
 
 	<LINK rel="shortcut icon" type="image/png" href="images/favicon.png">
-	<LINK href="css/main.css?ver=8.0.7" rel="stylesheet">
+	<LINK href="css/main.css?ver=8.4" rel="stylesheet">
 	<LINK href="css/baloon.css" rel="stylesheet">
 
 	<SCRIPT async type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/emocoin.js?v8.2"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/emocoin.js?v8.0"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v2.8.0.1"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v8.4"></SCRIPT>
+
+	<SCRIPT src="https://cdn.jsdelivr.net/gh/VSADX/scoped-css@main/scoped-css.js" type="module"></SCRIPT>
 </HEAD>
-
-<STYLE>
-	.box-button-container>*:hover {
-		opacity: 1;
-		background: #222;
-		transition: .2s;
-	}
-
-	select:disabled {
-		opacity: .4;
-	}
-</STYLE>
-
 <BODY style="background: #161823;">
-	<DIV id="top_space" style="height: 90px; overflow-y: auto; text-align: center;
-		border-top: 4px solid rgb(33,37,52); background: rgb(19,23,34);
-		border-bottom: 4px solid rgb(33,37,52);
-		display: flex;
-	">
-		<!-- <IFRAME id="top_space_html" src="./space/superorder/banner/banner_1.html" frameborder="0" style="
-			border: none;
-			overflow: hidden;
-			height: 104px;
-			min-width: calc(100vw - 4em);
-			width: auto;
-			max-width: 990px;
-		"></IFRAME> -->
-		<!-- <A id="top_space_img" target="_blank" href="https://twitter.com/Khanfuzed1" style="
-			display: flex; width: 100%; height: 100%;
-		">
-			<IMG src="./images/khan-teach-crypto.png" style="margin: auto;
-				max-width: 100%; max-height: 100%;
-			" />
-		</A> -->
-		<A id="ad-text-anchor" style="margin: auto; color: #09f;" href="https://commerce.coinbase.com/checkout/2478aa7a-5f5e-4da0-8239-736e07d14e4b"
-			target="_blank">
-			Advertise on MCC. Get 1M+ impressions per month <BR>
-			<B style="color: #ddd;">Show your ad here. Purchase your slot today for 250 USD.</B>
-		</A>
+	<DIV id="top_space" css-safe>
+		<STYLE class="scoped">
+			\& {
+				height: 90px;
+				overflow-y: auto;
+				text-align: center;
+				border-top: 4px solid rgb(33, 37, 52);
+				background: rgb(19, 23, 34);
+				border-bottom: 4px solid rgb(33, 37, 52);
+				display: flex;
+			}
+
+			\& a {
+				margin: auto;
+				color: #09f;
+			}
+
+			\& a b {
+				color: #ddd;
+			}
+
+			\& iframe {
+				border: none;
+				overflow: hidden;
+				height: 104px;
+				min-width: calc(100vw - 4em);
+				width: auto;
+				max-width: 990px;
+			}
+		</STYLE>
+		<iframe data-aa="1757628" src="//ad.a-ads.com/1757628?size=728x90" style="width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
 	</DIV>
-	<DIV class="topnav" id="nav" style="max-width: 100vw; overflow-x: hidden; padding-right: 90px; position: relative;">
+	<DIV class="topnav" id="nav">
+		<STYLE class="scoped">
+			\& {
+				max-width: 100vw;
+				overflow-x: hidden;
+				padding-right: 90px;
+				position: relative;
+				padding: 3px;
+			}
+
+			\& .icon {
+				display: none;
+			}
+
+			@media screen and (max-width: 920px) {
+				\& {
+					padding-bottom: 2em;
+				}
+			}
+		</STYLE>
 		<DIV class="label theme">
 			<LABEL for="width" class="number-label">Width</LABEL>
 			<INPUT id="width" value="2" class="box-size" title="Adjusts the chart width" type="number" name="box-width"
@@ -133,35 +138,53 @@
 			<INPUT id="height" value="2" class="box-size" title="Adjust the chart height" type="number"
 				name="box-height" min="1" max="20" />
 		</DIV>
-		<!-- <BUTTON id="theme-toggle" class="theme" onclick="X_theme()">Browser Incompatible</BUTTON> -->
-		<BUTTON id="config_reveal" class="theme" onclick="XDirectUI.visibility('modalConfig')">Javascript Error</BUTTON>
-		<BUTTON id="indicators_reveal" class="theme"
-			onclick="XDirectUI.visibility('modalIndicators')">INDICATORS</BUTTON>
-		<!-- <BUTTON id="random_chart" class="theme" 
-			onclick="XDirectUI.random()"
-			>RANDOM</BUTTON> -->
-		<BUTTON id="share_reveal" class="theme"
-			onclick="XDirectUI.visibility('modalAd');XDirectUI.count()">SHARE</BUTTON>
-		<BUTTON id="chart_rearrange" class="theme" onclick="XDirectUI.toggle_rearrange_mode()">REARRANGE</BUTTON>
-		<BUTTON id="add_chart_reveal" class="theme" onclick="XDirectUI.visibility('chart_add_select');">ADD
-			CHART</BUTTON>
+		<BUTTON id="config_reveal" class="theme" onclick="XDirectUI.visibility('modalConfig')">
+			Javascript Error
+		</BUTTON>
+		<BUTTON id="indicators_reveal" class="theme" onclick="XDirectUI.visibility('modalIndicators')">
+			INDICATORS
+		</BUTTON>
+		<BUTTON id="share_reveal" class="theme" onclick="XDirectUI.visibility('modalAd');XDirectUI.count()">
+			SHARE
+		</BUTTON>
+		<BUTTON id="chart_rearrange" class="theme" onclick="XDirectUI.toggle_rearrange_mode()">
+			REARRANGE
+		</BUTTON>
+		<BUTTON id="add_chart_reveal" class="theme" onclick="XDirectUI.visibility('chart_add_select');">
+			ADD CHART
+		</BUTTON>
+		<!-- TODO: MCC Profiles Feature -->
 		<SELECT id="profile_select" class="theme" style="display: none;">
 			<OPTION value="default" selected="true">Default</OPTION>
 		</SELECT>
-		<!-- <BUTTON id="storage_clear" class="theme" 
-			onclick="localStorage.clear(); location.reload()"
-			>RESET</BUTTON> -->
-		<A id="link_set" target="_blank" class="" style="display: none; border-bottom: 1px solid;">Support Us</A>
-		<!-- &nbsp;<A id="link_set" href="#"></A>&nbsp; -->
-		<!-- <DIV style="margin-left: -45px;"> -->
-		<!-- <DIV style="margin-top: 6px;"> -->
+		<A class="btn btn-nav theme right" href="http://discord.gg/M8Q8Mv5K">
+			<STYLE class="scoped">
+				\& {
+					padding: 2px;
+					background: rgb(55, 161, 210);
+					color: white;
+					position: absolute;
+					right: 4px;
+					top: 4px;
+					text-transform: none;
+				}
+				\& > span {
+					color: #444;
+				}
+				@media screen and (max-width: 920px) {
+					\& {
+						bottom: .25em;
+						top: unset;
+						left: 0;
+						right: 0;
+						margin: auto;
+						max-width: 18em;
+					}
+				}
+			</STYLE>
+			&nbsp;Join us on Discord <span id="features"></span>&nbsp;
+		</A>
 
-		<!-- <P ">&nbsp;</P> -->
-		<!-- </DIV> -->
-		<!-- </DIV> -->
-		<A id="features" onclick="XDirectUI.visibility('modalUs')" href="javascript:void(0)"
-			class="btn btn-nav theme right"
-			style="padding: 2px; background: rgb(78, 255, 51); color: #000; position: absolute; right: 4px; top: 4px; text-transform: none;">&nbsp;Changes&nbsp;</A>
 		<DIV id="modalConfig" class="modalConfig hide">
 			<DIV class="hero">
 				<DIV class="cornflower-box">
@@ -441,91 +464,161 @@
 				</DIV>
 			</DIV>
 		</DIV>
-		<DIV id="modalAd" class="modalAd hide">
-			<DIV class="hero">
-				<DIV class="bgWhite mAd">
-					<DIV class="cWhite" style="padding: 8vw;">
-						<H1>Share Charts:</H1>
+		<DIV id="modalAd" class="hide">
+			<STYLE class="scoped">
+				\& {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					position: fixed;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background: rgba(0, 0, 8, 0.84);
+					transition: 0.3s ease-in-out;
+					z-index: 999;
+				}
+			</STYLE>
+			<DIV>
+				<DIV>
+					<DIV class="cWhite">
+						<H2>Your MultiCoinCharts</H2>
 						<INPUT id="url" />
 					</DIV>
 				</DIV>
 				<BR><BR>
 				<DIV class="t-center">
-					<a onclick="ZDirectUI.clipboard()" href="javascript:void(0)" class="cLBlue"
-						style="font-size: 18px;">Copy Link</a>
-					&nbsp;&nbsp; &nbsp;&nbsp;
-					<a onclick="XDirectUI.visibility('modalAd')" href="javascript:void(0)"
-						style="font-size: 18px;">Close</a>
+					<A onclick="ZDirectUI.clipboard(url)" 
+						href="javascript:void(0)" 
+						class="cLBlue"
+						style="font-size: 18px;">
+						Copy Link
+					</A>
+					&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+					&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+					<A onclick="XDirectUI.visibility('modalAd')" 
+						href="javascript:void(0)" 
+						style="font-size: 18px;">
+						Close
+					</A>
 				</DIV>
 			</DIV>
 		</DIV>
-		<DIV id="modalUs" class="modalConfig hide">
-			<DIV class="hero">
-				<DIV class="cornflower-box" style="min-width: 300px;">
-					<DIV class="divPairsSetup t-left">
-						<H3>About MultiCoinCharts</H3>
-						<br>
-						<p>
-							<B>Jan (2021)</B><BR>
-							In this update, you can search so many tradingview supported exchanges.
-							A lot of bugs are fixed to, but if you find any, report them on our twitter! <br>
-						</p>
-						<br>
-						<div id="IndGrid" style="
-							display: grid; 
-							grid-template-columns: 1fr auto; 
-							background: #f8f8f8; border-radius: 4px; 
-							max-height: 260px; padding: 0 16px;
-							overflow-y: scroll; color: #222;">
-							<p class="fwBold">
-								Devs
-							</p>
-							<p class="fwBold">
-								Select
-							</p>
-							<p>
-								<a href="https://github.com/JosiahLeas">@leasj - github</a>
-							</p>
-							<p>
-								🥇 crypto dev
-							</p>
-							<p>
-								<a href="https://github.com/P-Medicado">@p.m. y @forever_scg</a>
-							</p>
-							<p>
-								🏠 js dev
-							</p>
-							<p>
-								<a href="https://vybrinx.github.io/Browser-Party-Minigames/">@nekomari - website</a>
-							</p>
-							<p>
-								🍩 html dev
-							</p>
-							<p>
-								<a href="https://twitter.com/forever_scg">@forever_scg - twitter</a>
-							</p>
-							<p>
-								☔️ js dev
-							</p>
-							<p></p>
-							<p></p>
-							<p>
-								<a href="https://vsadx.com">our site for JS</a>
-							</p>
-							<p>
-								🎊
-							</p>
-						</div>
-						<br><br>
+		<DIV id="chart_add_select" class="hide">
+			<STYLE class="scoped">
+				\& {
+					position: fixed;
+					background: rgba(0, 0, 0, .85);
+					height: 100vh;
+					top: 0;
+					left: 0;
+
+					justify-content: center;
+					align-content: center;
+
+					z-index: 16;
+					width: 100vw;
+					display: grid;
+				}
+			</STYLE>
+			<DIV>
+				<STYLE class="scoped">
+					\& {
+						display: grid;
+						column-gap: 1em;
+						grid-template-columns: 1fr 1fr;
+					}
+
+					\&>div {
+						display: flex;
+					}
+				</STYLE>
+				<DIV>
+					<DIV class="divPairsSetup">
+						<H3>Forex</H3>
+						<STYLE class="scoped">
+							\& {
+								max-height: 400px;
+								overflow-y: auto;
+								margin: auto;
+							}
+
+							\&>div {
+								display: grid !important;
+								column-gap: 1em;
+								row-gap: 1em;
+								grid-template-columns: 1fr 1fr 1fr;
+							}
+
+							\& summary::marker {
+								font-size: 0;
+							}
+
+							\& details>div {
+								max-width: 310px;
+							}
+						</STYLE>
+						<DIV id="Forex-Insert">
+
+						</DIV>
+						<H3>Crypto</H3>
+						<DIV id="Crypto-Insert">
+
+						</DIV>
+						<DETAILS>
+							<SUMMARY>
+								<H3>Other Cryto (Click to expand)</H3>
+							</SUMMARY>
+							<DIV id="Crypto-Insert-Alts">
+
+							</DIV>
+						</DETAILS>
+					</DIV>
+				</DIV>
+				<DIV>
+					<DIV class="divPairsSetup t-left" style="margin: auto;">
+						<STYLE class="scoped">
+							\& {
+								margin: auto;
+							}
+
+							\&>input {
+								font-size: 22px;
+								border-radius: .2em;
+								border: none;
+								width: 256px;
+								padding: 0.25em 0.6em;
+							}
+
+							\& .\@first {
+								width: 256px;
+								margin: 32px 0;
+								font-size: .8em;
+								list-style: none;
+								overflow-y: scroll;
+								max-height: 280px;
+								background: #ddd;
+								color: #000;
+								display: block;
+								overflow-x: hidden;
+								padding: 12px;
+							}
+						</STYLE>
+						<P>
+							Use the textbox to add specific ticker charts. <BR>
+							Press enter to add it.
+						</P>
+						<INPUT id="chart_adder" placeholder="NASDAQ:AAPL" />
+						<BR>
+						<DIV id="chart_options" class="border-none @first"></DIV>
 						<DIV>
 							<SPAN>&nbsp;</SPAN>
 							<SPAN class="t-center" style="flex: none;">
-								<!-- 
-									<A href="javascript:void(0)" onclick="XDirectUI.choose_indicators(); XDirectUI.visibility('modalIndicators')">Done</A>
-									&nbsp;&nbsp; &nbsp;&nbsp; 
-								-->
 								<A class="ok" href="javascript:void(0)"
-									onclick="XDirectUI.visibility('modalUs')">Okay</A>
+									onclick="XDirectUI.visibility('chart_add_select')">
+									Done
+								</A>
 							</SPAN>
 							<SPAN>&nbsp;</SPAN>
 						</DIV>
@@ -533,84 +626,84 @@
 				</DIV>
 			</DIV>
 		</DIV>
-		<!-- <DIV id="modalMCC" class="modalAd hide">
-			<DIV class="hero">
-				<DIV class="bgWhite mAd">
-					<DIV class="cWhite" style="padding: 8vw;">
-						<H1>Advertise on MCC</H1>
-						<p style="max-width: 480px; color: #ccc;"><b>MultiCoinCharts has been around since 2017.</b>
-							<br><br> For the past 2 years, we have been adding features our community has requested 
-							on our open-source GitHub and Twitter accounts. 
-							<br><br>
-							Our site consistently held over <b>500,000 monthly visits</b> throughout the bear 
-							market of this past year, and has began growing along with the upward trend of the market. 
-							<br><br>
-						</p>
-						<h4 style="color: #bbb;">Contact us for more info:</h4>
-						<p style="color: #aaa;">
-							Twitter: <a href="https://twitter.com/forever_scg">@forever_scg</a> <br>
-							Email: <a href="mailto:forever.scg@outlook.com">mailto:forever.scg </a>
-						</p>
-					</DIV>
-				</DIV>		
-			</DIV>
-		</DIV> -->
+
 	</DIV>
 	<DIV id="charts">
 		<DIV id="notif" class="box newsletter left options">
+			<STYLE class="scoped">
+				\& {
+					overflow: hidden;
+					position: relative;
+					box-sizing: border-box;
+					background: linear-gradient(#125, #123);
+					background: rgb(19, 23, 34);
+					color: #fff;
+					border-radius: 2px;
+					padding: 2% 8%;
+					overflow-y: auto;
+					border: 4px solid rgb(33, 37, 52);
+					text-align: center;
+				}
+
+				\&>ul>div {
+					width: calc(100% - 1em);
+					height: calc(100% - 1em);
+					margin: auto;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					display: block;
+				}
+			</STYLE>
 			<P href="javascript:void(0)" onclick="XDirectUI.random()">X</P>
-			<!-- <DIV style="transform: scale(.8); display: none;">
-				<H4 style="padding: 4% 0 0 0;">
-					<A class="tvRed" target="_blank" href="about.html" style="font-size: 24px;">MultiCoinCharts.com</A>
-					<BR><BR>
-					<A target="_blank" class="tvGreen" href="javascript:void(0)" onclick="XDirectUI.visibility('modalInfo')">
-						Add New Site Features
-					</A>
-				</H4>
-			</DIV> -->
 			<UL>
-				<DIV id="box_space" style="
-					/* background: #ffffff33; border-radius: 4px;  */
-					width: calc(100% - 1em); height: calc(100% - 1em);
-					margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: block;
-				">
-					<P href="javascript:void(0)" onclick="html.box_space.style.display = 'none'" style="
-						background: white; color: black; border-radius: 50%; position: absolute;
-						width: 32px; height: 32px; line-height: 32px; right: 1px; top: -13px; z-index: 9;
-					">X</P>
-					<!-- <A id="box_space_img" target="_blank" href="https://getaurox.com/?utm_source=mcc&utm_medium=cpc" style="
-						display: flex; width: 100%; height: 100%; display: none;
-					">
-						<IMG src="./space/getaurox/banner/336x280.gif" style="margin: auto;
-							max-width: 100%; max-height: 100%;
-						" />
-					</A> -->
-					<DIV id="box_space_google" style="display: flex; display: none; width: 100%; height: 100%;">
-						<!-- <DIV> -->
-						<!-- <A href="javascript:void(0)" onclick="XDirectUI.visibility('modalMCC')">
-								<IMG src="./space/mcc/box/1200x1200.jpeg" style="margin: auto; 
-									max-width: 100%; max-height: 100%;
-								" />
-							</A> -->
-						<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-						<!-- ChartBoxAdTest -->
-						<!-- <ins class="adsbygoogle"
-										style="display:block"
-										data-ad-client="ca-pub-3023875029405790"
-										data-ad-slot="5199690012"
-										data-ad-format="auto"
-										data-full-width-responsive="true"></ins>
-							<script>
-							(adsbygoogle = window.adsbygoogle || []).push({});
-							</script> -->
-						<!-- </DIV> -->
-					</DIV>
-					<DIV id="box_space_google2" style="text-align: center; margin-top: 0px;">
-						<DIV style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0;">
-							<DIV style="display: flex; height: 100%;">
-								<H3 style="margin: auto;">
-									<P><A href="https://commerce.coinbase.com/checkout/2478aa7a-5f5e-4da0-8239-736e07d14e4b" target="_blank">1M+ impressions;
-											Buy ad space with crypto today.<BR></A></P>
+				<DIV id="box_space">
+					<STYLE class="scoped">
+						\&>p {
+							background: white;
+							color: black;
+							border-radius: 50%;
+							position: absolute;
+							width: 32px;
+							height: 32px;
+							line-height: 32px;
+							right: 1px;
+							top: -13px;
+							z-index: 9;
+						}
+
+						\&>div {
+							text-align: center;
+							margin-top: 0px;
+						}
+					</STYLE>
+					<P href="javascript:void(0)" onclick="box_space.style.display = 'none'">X</P>
+					<DIV id="box_space_google2">
+						<DIV>
+							<STYLE class="scoped">
+								\& {
+									position: absolute;
+									top: 0;
+									left: 0;
+									right: 0;
+									bottom: 0;
+									margin: 0;
+								}
+
+								\&>div {
+									display: flex;
+									height: 100%;
+								}
+
+								\& h3 {
+									margin: auto;
+								}
+							</STYLE>
+							<DIV>
+								<H3>
+									<P>Twitter: <BR><BR> @MultiCoinCharts</P>
 								</H3>
 							</DIV>
 						</DIV>
@@ -625,144 +718,56 @@
 						</DIV>
 					</DIV>
 				</DIV>
-				<!-- <INPUT style="display: none;" id="chart_add" onkeyup="V_add(this, event)" placeholder="Type to add chart" /> -->
-				<!-- <DIV id="chart_options" class="border-none"></DIV> -->
-				<!-- <H2 style="display: none;">Drag your charts to reorder</H2>
-				<DIV style="display: none;" id="charts_order">
-					<LI id="chart_1" draggable="true" ondragend="V_end(this, event)" ondragenter="V_over(this, event)">Browser Failure (please let me know!)</LI>
-				</DIV> -->
 			</UL>
 		</DIV>
 	</DIV>
-	<DIV id="loading"
-		style="position: fixed; background: rgba(0,0,0,.95); height: 100vh; top: 0; z-index: 16; width: 100vw; display: grid;">
-		<DIV style="color: eee; margin: auto; font-size: 24px;">
-			<P style="font-size: 32px;">MultiCoinCharts</P>
-			<P>by p.m. &amp; vsads &amp; nekomari &amp; leasj</P>
-			<P id="crash_counter"></P> <br>
-			<A href="javascript:void(0)" style="font-size: .8em;" onclick="localStorage.clear(); location.reload()">Try
-				Refreshing Cache</A>
-		</DIV>
-	</DIV>
-	<DIV id="chart_add_select" class="hide modalConfig"
-		style="position: fixed; background: rgba(0,0,0,.95); height: 100vh; top: 0; z-index: 16; width: 100vw; display: grid;">
-		<DIV class="hero">
-			<DIV class="cornflower-box" style="display: grid; column-gap: 1em; grid-template-columns: 1fr 1fr;">
-				<DIV style="display: flex;">
-					<DIV class="divPairsSetup my-inserts" style="max-height: 400px; overflow-y: auto; margin: auto;">
-						<h3>Forex</h3>
-						<style>
-							.my-inserts>div {
-								display: grid !important;
-								column-gap: 1em;
-								row-gap: 1em;
-								grid-template-columns: 1fr 1fr 1fr;
-							}
+	<DIV id="loading">
+		<STYLE class="scoped">
+			\& {
+				position: fixed;
+				background: rgba(0, 0, 0, .95);
+				height: 100vh;
+				top: 0;
+				z-index: 16;
+				width: 100vw;
+				display: grid;
+				transition: transform .5s;
+			}
 
-							summary::marker {
-								font-size: 0;
-							}
-						</style>
-						<div id="Forex-Insert">
+			\&>div {
+				color: eee;
+				margin: auto;
+				font-size: 24px;
+			}
 
-						</div>
-						<h3>Crypto</h3>
-						<div id="Crypto-Insert">
-
-						</div>
-						<details>
-							<summary>
-								<h3 style="text-decoration: underline;">Other Cryto</h3>
-							</summary>
-							<div id="Crypto-Insert-Alts" style="max-width: 310px;">
-
-							</div>
-						</details>
-					</DIV>
-				</DIV>
-				<DIV style="display: flex;">
-					<DIV class="divPairsSetup t-left" style="margin: auto;">
-						<!-- <H3>MultiCoinCharts</H3> -->
-						<!-- <br> -->
-						<P>
-							Use the textbox to add specific ticker charts. <BR>
-							Press enter to add it.
-						</P>
-						<INPUT id="chart_adder" placeholder="NASDAQ:AAPL" style="
-							font-size: 22px; 
-							border-radius: .2em;
-							border: none;
-							width: 256px;
-							padding: 0.25em 0.6em;" />
-						<!-- <div id="IndGrid" style="
-							display: grid; 
-							grid-template-columns: 1fr auto; 
-							background: #f8f8f8; border-radius: 4px; 
-							max-height: 260px; padding: 0 16px;
-							overflow-y: scroll; color: #222;">
-							<p class="fwBold">
-								Indicator
-							</p>
-							<p class="fwBold">
-								Select
-							</p>
-							<p>ACCD</p><input type="checkbox" id="ACCD"><p>studyADR</p><input type="checkbox" id="studyADR"><p>AROON</p><input type="checkbox" id="AROON"><p>ATR</p><input type="checkbox" id="ATR"><p>AwesomeOscillator</p><input type="checkbox" id="AwesomeOscillator"><p>BB</p><input type="checkbox" id="BB"><p>BollingerBandsR</p><input type="checkbox" id="BollingerBandsR"><p>BollingerBandsWidth</p><input type="checkbox" id="BollingerBandsWidth"><p>CMF</p><input type="checkbox" id="CMF"><p>ChaikinOscillator</p><input type="checkbox" id="ChaikinOscillator"><p>chandeMO</p><input type="checkbox" id="chandeMO"><p>ChoppinessIndex</p><input type="checkbox" id="ChoppinessIndex"><p>CCI</p><input type="checkbox" id="CCI"><p>CRSI</p><input type="checkbox" id="CRSI"><p>CorrelationCoefficient</p><input type="checkbox" id="CorrelationCoefficient"><p>DetrendedPriceOscillator</p><input type="checkbox" id="DetrendedPriceOscillator"><p>DM</p><input type="checkbox" id="DM"><p>DONCH</p><input type="checkbox" id="DONCH"><p>DoubleEMA</p><input type="checkbox" id="DoubleEMA"><p>EaseOfMovement</p><input type="checkbox" id="EaseOfMovement"><p>EFI</p><input type="checkbox" id="EFI"><p>ENV</p><input type="checkbox" id="ENV"><p>FisherTransform</p><input type="checkbox" id="FisherTransform"><p>HV</p><input type="checkbox" id="HV"><p>hullMA</p><input type="checkbox" id="hullMA"><p>IchimokuCloud</p><input type="checkbox" id="IchimokuCloud"><p>KLTNR</p><input type="checkbox" id="KLTNR"><p>KST</p><input type="checkbox" id="KST"><p>LinearRegression</p><input type="checkbox" id="LinearRegression"><p>MACD</p><input type="checkbox" id="MACD"><p>MOM</p><input type="checkbox" id="MOM"><p>MF</p><input type="checkbox" id="MF"><p>MoonPhases</p><input type="checkbox" id="MoonPhases"><p>MASimple</p><input type="checkbox" id="MASimple"><p>MAExp</p><input type="checkbox" id="MAExp"><p>MAWeighted</p><input type="checkbox" id="MAWeighted"><p>OBV</p><input type="checkbox" id="OBV"><p>PSAR</p><input type="checkbox" id="PSAR"><p>PivotPointsHighLow</p><input type="checkbox" id="PivotPointsHighLow"><p>PivotPointsStandard</p><input type="checkbox" id="PivotPointsStandard"><p>PriceOsc</p><input type="checkbox" id="PriceOsc"><p>PriceVolumeTrend</p><input type="checkbox" id="PriceVolumeTrend"><p>ROC</p><input type="checkbox" id="ROC"><p>RSI</p><input type="checkbox" id="RSI"><p>VigorIndex</p><input type="checkbox" id="VigorIndex"><p>VolatilityIndex</p><input type="checkbox" id="VolatilityIndex"><p>SMIErgodicIndicator</p><input type="checkbox" id="SMIErgodicIndicator"><p>SMIErgodicOscillator</p><input type="checkbox" id="SMIErgodicOscillator"><p>Stochastic</p><input type="checkbox" id="Stochastic"><p>StochasticRSI</p><input type="checkbox" id="StochasticRSI"><p>TripleEMA</p><input type="checkbox" id="TripleEMA"><p>Trix</p><input type="checkbox" id="Trix"><p>UltimateOsc</p><input type="checkbox" id="UltimateOsc"><p>VSTOP</p><input type="checkbox" id="VSTOP"><p>Volume</p><input type="checkbox" id="Volume"><p>VWAP</p><input type="checkbox" id="VWAP"><p>MAVolumeWeighted</p><input type="checkbox" id="MAVolumeWeighted"><p>WilliamR</p><input type="checkbox" id="WilliamR"><p>WilliamsAlligator</p><input type="checkbox" id="WilliamsAlligator"><p>WilliamsFractal</p><input type="checkbox" id="WilliamsFractal"><p>ZigZag</p><input type="checkbox" id="ZigZag">
-						</div> -->
-						<br>
-						<DIV id="chart_options" class="border-none" style="
-							width: 256px;
-							margin: 32px 0;
-							font-size: .8em;
-							list-style: none;
-							overflow-y: scroll;
-							max-height: 280px;
-							background: #ddd;
-							color: #000;
-							display: block;
-							overflow-x: hidden;
-							padding: 12px;
-						"></DIV>
-						<DIV>
-							<SPAN>&nbsp;</SPAN>
-							<SPAN class="t-center" style="flex: none;">
-								<A class="ok" href="javascript:void(0)"
-									onclick="XDirectUI.visibility('chart_add_select')">Done</A>
-							</SPAN>
-							<SPAN>&nbsp;</SPAN>
-						</DIV>
-					</DIV>
-				</DIV>
-			</DIV>
-		</DIV>
-		<!-- <DIV style="color: eee; margin: auto; font-size: 24px;">
-			<P style="font-size: 32px;">MultiCoinCharts</P>
-			<P>Search for a chart ticker or type one and hit enter.</P>
-			<INPUT disabled id="chart_adder" style="font-size: 22px;" />
-			<DIV id="chart_options" class="border-none" style="
-				width: 256px;
-				margin: 32px 0;
+			\& a {
 				font-size: .8em;
-				list-style: none;
-				overflow-y: scroll;
-				max-height: 320px;
-				background: #ddd;
-				color: #000;
-				overflow-x: hidden;
-				padding: 12px;
-			"></DIV>
-			<DIV style="height: 120px;"></DIV>
-		</DIV> -->
+			}
+		</STYLE>
+		<DIV>
+			<H1>MultiCoinCharts</H1>
+			<P>by @leasj</P>
+			<P id="pCrashCounter"></P> <BR>
+			<A id="aCrashRefresh" href="javascript:void(0)" style="display: none;"
+				onclick="localStorage.clear(); location.reload()">
+				Click to refresh browser cache
+			</A>
+		</DIV>
 	</DIV>
 	<SCRIPT>
 		let load_counter = 0;
 		(function fireWhenReady() {
-			if (typeof (initPage) !== 'undefined' &&
-				typeof (all) !== 'undefined' &&
-				typeof (TradingView) !== 'undefined')
+			if (typeof (initPage) !== 'undefined'
+				&& typeof (all) !== 'undefined'
+				&& typeof (TradingView) !== 'undefined')
 				return initPage()
 			load_counter++
-			if (load_counter > 200) crash_counter.innerText =
-				"Crashed: still waiting for TradingView for " + ((load_counter / 20) >> 0) + " seconds."
+			if (load_counter > 100) {
+				pCrashCounter.innerText =
+					"Crashed: still waiting for TradingView for " + ((load_counter / 20) >> 0) + " seconds."
+				aCrashRefresh.style.display = "block"
+			}
+
 			setTimeout(fireWhenReady, 50)
 		})()
 	</SCRIPT>
