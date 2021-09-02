@@ -358,21 +358,6 @@ div.divPairsSetup h3 {
 	padding: 2% 8%;
 	overflow-y: auto;
 }
-#notif>p {
-	position: absolute; 
-	z-index: 9; 
-	top: -2px; 
-	padding: 0 12px; 
-	cursor: pointer; 
-	right: 8px; 
-	height: 32px; 
-	background: rgba(0,0,0,.6); 
-	text-decoration: none; 
-	color: #fff; 
-	border-radius: 50px; 
-	line-height: 32px; 
-	font-size: 12px;
-}
 .options {
 	/* margin: 12%; */
 	background: linear-gradient(#9ac,#09f);

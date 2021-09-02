@@ -65,16 +65,17 @@
 	<TITLE>MCC - More Than One TradingView Crypto Chart on One Screen</TITLE>
 
 	<LINK rel="shortcut icon" type="image/png" href="images/favicon.png">
-	<LINK href="css/main.css?ver=8.5" rel="stylesheet">
+	<LINK href="css/main.css?ver=8.7" rel="stylesheet">
 	<LINK href="css/baloon.css" rel="stylesheet">
 
 	<SCRIPT async type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/emocoin.js?v8.0"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v8.5"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v8.7"></SCRIPT>
 
 	<SCRIPT src="https://cdn.jsdelivr.net/gh/VSADX/scoped-css@main/scoped-css.js" type="module"></SCRIPT>
 </HEAD>
+
 <BODY style="background: #161823;">
 	<DIV id="top_space" css-safe>
 		<STYLE class="scoped">
@@ -106,7 +107,8 @@
 				max-width: 990px;
 			}
 		</STYLE>
-		<iframe data-aa="1757628" src="//ad.a-ads.com/1757628?size=728x90" style="width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
+		<iframe data-aa="1757628" src="//ad.a-ads.com/1757628?size=728x90"
+			style="width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;"></iframe>
 	</DIV>
 	<DIV class="topnav" id="nav">
 		<STYLE class="scoped">
@@ -168,9 +170,11 @@
 					top: 4px;
 					text-transform: none;
 				}
-				\& > span {
+
+				\&>span {
 					color: #444;
 				}
+
 				@media screen and (max-width: 920px) {
 					\& {
 						bottom: .25em;
@@ -479,6 +483,12 @@
 					transition: 0.3s ease-in-out;
 					z-index: 999;
 				}
+
+				\& input {
+					padding: 6px;
+					width: 100%;
+					box-sizing: border-box;
+				}
 			</STYLE>
 			<DIV>
 				<DIV>
@@ -488,18 +498,21 @@
 					</DIV>
 				</DIV>
 				<BR><BR>
+				<A id="url-twitter"
+					data-original="https://twitter.com/intent/tweet?text=Checkout%20my%20watchlist!&via=MultiCoinCharts&url="
+					href="" target="_blank">Share on Twitter</A>
+				<A id="url-facebook" data-original="https://www.facebook.com/sharer.php?u=" href=""
+					target="_blank">Share on FaceBook</A>
+				<A id="url-reddit" data-original="https://reddit.com/submit?&title=Checkout%20my%20watchlist!&url="
+					href="" target="_blank">Share on Reddit</A>
 				<DIV class="t-center">
-					<A onclick="ZDirectUI.clipboard(url)" 
-						href="javascript:void(0)" 
-						class="cLBlue"
+					<A onclick="ZDirectUI.clipboard(url)" href="javascript:void(0)" class="cLBlue"
 						style="font-size: 18px;">
 						Copy Link
 					</A>
 					&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 					&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-					<A onclick="XDirectUI.visibility('modalAd')" 
-						href="javascript:void(0)" 
-						style="font-size: 18px;">
+					<A onclick="XDirectUI.visibility('modalAd')" href="javascript:void(0)" style="font-size: 18px;">
 						Close
 					</A>
 				</DIV>
@@ -631,33 +644,42 @@
 	<DIV id="charts">
 		<DIV id="notif" class="box newsletter left options">
 			<STYLE class="scoped">
-				\& {
-					overflow: hidden;
-					position: relative;
-					box-sizing: border-box;
-					background: linear-gradient(#125, #123);
-					background: rgb(19, 23, 34);
-					color: #fff;
-					border-radius: 2px;
-					padding: 2% 8%;
-					overflow-y: auto;
-					border: 4px solid rgb(33, 37, 52);
-					text-align: center;
-				}
-
-				\&>ul>div {
-					width: calc(100% - 1em);
-					height: calc(100% - 1em);
-					margin: auto;
+				\&>p {
 					position: absolute;
+					z-index: 0;
 					top: 0;
+					cursor: pointer;
+					height: 80%;
+					width: 80%;
+					background: rgba(0, 0, 0, .6);
+					text-decoration: none;
+					color: #fff;
+					border-radius: 50px;
+					line-height: 32px;
+					font-size: 12px;
+					margin: auto;
+					bottom: 0;
 					left: 0;
 					right: 0;
-					bottom: 0;
-					display: block;
+					font-size: 15em;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					line-height: 100%;
+					background: transparent;
+					color: #495480;
+				}
+
+				\&>p>span {
+					padding-bottom: 0.2em;
+				}
+
+				\&>div {
+					text-align: center;
+					margin-top: 0px;
 				}
 			</STYLE>
-			<P href="javascript:void(0)" onclick="XDirectUI.random()">X</P>
+			<P href="javascript:void(0)" onclick="XDirectUI.random()"><SPAN>+</SPAN></P>
 			<UL>
 				<DIV id="box_space">
 					<STYLE class="scoped">
@@ -699,6 +721,11 @@
 
 								\& h3 {
 									margin: auto;
+								}
+
+								\& h3>p {
+									background: #131722;
+									padding: 1.6em;
 								}
 							</STYLE>
 							<DIV>
