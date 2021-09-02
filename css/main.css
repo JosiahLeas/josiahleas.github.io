@@ -355,7 +355,7 @@ div.divPairsSetup h3 {
 	background: rgb(19,23,34);
 	color: #fff;
 	border-radius: 2px;
-	padding: 2% 8%;
+	/* padding: 2% 8%; */
 	overflow-y: auto;
 }
 .options {
