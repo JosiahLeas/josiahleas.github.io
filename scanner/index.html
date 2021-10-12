@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MCC Scanner</title>
+    <script type="module">
+        const app = "./app.jsx"
+        start(app)
+
+        async function start(entry_url = "./index.js") {
+
+            const sw = navigator.serviceWorker
+            sw.register("./jsx-compiling-sw.js")
+            const reg = await sw.ready
+            reg.active.postMessage(true)
+            sw.onmessage = () => import(entry_url)
+        }
+    </script>
+</head>
+<body></body>
+</html>
