@@ -1,4 +1,4 @@
-const pings = {}
+let pings = {}
 
 
 
