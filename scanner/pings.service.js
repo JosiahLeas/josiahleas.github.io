@@ -3,6 +3,7 @@ let pings = {}
 
 
 async function start() {
+    pings = {}
     const response = await fetch("https://smpr.online/Eventify?kind=binance_vol&$select=Registry,TextContent")
     const data = await response.json()
     for (const t of data) {
