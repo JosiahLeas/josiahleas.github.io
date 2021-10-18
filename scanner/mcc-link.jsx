@@ -9,7 +9,7 @@ export function MccLink({ $tickers = [] }) {
     for (const t of tickers) {
         symbols.push(`BINANCE:${t.symbol}`)
     }
-    const url = `https://www.multicoincharts.com/?c=${symbols.join(",")}`
+    const url = `https://www.multicoincharts.com/?c=${symbols.join(",")}&p=1`
     
     render(arguments[0], <>
 
