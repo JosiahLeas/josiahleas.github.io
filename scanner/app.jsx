@@ -22,7 +22,7 @@ function MyComponent(self) {
 
   render(self,
     <>
-      <h1>Binance Volume Scanner</h1>
+      <h1>Binance Scanner</h1>
 
       <BackButton/>
 

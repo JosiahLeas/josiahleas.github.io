@@ -10,7 +10,7 @@ export function PingedTicker({ $ticker }) {
     }, 3000)
     render(arguments[0], <>
 
-        <div class={$ticker.count > 4 ? "ping tickers" : "tickers"}>
+        <div class={$ticker.count > 25 ? "ping tickers" : "tickers"}>
             <h1>{$ticker.symbol}</h1>
             <p>{$ticker.count}</p>
 
@@ -35,7 +35,8 @@ const style = css`
   justify-content: center;
   display: grid;
   grid-template-columns: auto auto;
-  border: 1px solid #e6eaef;
+  border: 1px solid #fff4;
+  background-color: #ffffff06;
   padding-bottom: 10px;
   border-radius: 5px;
 }
