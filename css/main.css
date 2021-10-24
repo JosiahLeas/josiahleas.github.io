@@ -19,21 +19,6 @@ body, html, #nocharts {
   }
 a { color: inherit; }
 button, .button { cursor: pointer }
-.close-button {
-	cursor: pointer;
-    right: 17px;
-    top: 17px;
-	outline: none;
-    overflow: visible;
-    position: absolute;
-	background: #0000;
-    border: none;
-    border-radius: 4px;
-    box-sizing: initial;
-    color: #b2b5be;
-    margin: 0;
-    padding: 8px;
-}
 .right { float: right; }
 .left { float: left; }
 .t-center { text-align: center; }

@@ -14,7 +14,7 @@
 	<META name="apple-mobile-web-app-title" content="MultiCoinCharts">
 	<!-- Twitter Metas -->
 	<META name="twitter:card" content="summary">
-	<META name="twitter:site" content="@MultiCoinCharts">
+	<META name="twitter:site" content="@forever_scg">
 	<META name="twitter:title" content="MultiCoinCharts">
 	<META name="twitter:description"
 		content="View lots of Crypto Currency charts from TradingView. All on one screen. Customize your charts with indicators, adjust their position, or view full screen. Bookmark and share your charts just with a link.">
@@ -45,13 +45,13 @@
 					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
 		})(window, document, 'script', 'dataLayer', 'GTM-K6QVJBW');
 	</SCRIPT>
-	<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<script>
 		(adsbygoogle = window.adsbygoogle || []).push({
 			google_ad_client: "ca-pub-3023875029405790",
 			enable_page_level_ads: true
 		});
-	</script> -->
+	</script>
 	<!-- Open Graph Metas -->
 	<META name="og:title" content="MultiCoinCharts">
 	<META name="og:description"
@@ -71,7 +71,7 @@
 	<SCRIPT async type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/emocoin.js?v8.0"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/testdrive.js"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v8.8"></SCRIPT>
 
 	<SCRIPT src="https://cdn.jsdelivr.net/gh/VSADX/scoped-css@main/scoped-css.js" type="module"></SCRIPT>
 </HEAD>
@@ -159,36 +159,7 @@
 		<SELECT id="profile_select" class="theme" style="display: none;">
 			<OPTION value="default" selected="true">Default</OPTION>
 		</SELECT>
-		<A class="btn btn-nav theme" href="https://multicoincharts.com/scanner" target="_blank">
-			<STYLE class="scoped">
-				\& {
-					padding: 2px;
-					background: rgb(55, 161, 210);
-					color: white;
-					justify-content: center;
-					right: 4px;
-					top: 4px;
-					text-transform: none;
-				}
-
-				\&>span {
-					color: #444;
-				}
-
-				@media screen and (max-width: 920px) {
-					\& {
-						bottom: .25em;
-						top: unset;
-						left: 0;
-						right: 0;
-						margin: auto;
-						max-width: 18em;
-					}
-				}
-			</STYLE>
-			&nbsp;MCC Scanner &nbsp;
-		</A>
-	    <A class="btn btn-nav theme right" href="https://discord.gg/EPgHzgSwRz">
+		<A class="btn btn-nav theme right" href="http://discord.gg/M8Q8Mv5K">
 			<STYLE class="scoped">
 				\& {
 					padding: 2px;
@@ -218,196 +189,196 @@
 			&nbsp;Join us on Discord <span id="features"></span>&nbsp;
 		</A>
 
-		<div id="modalConfig" class="modalConfig hide">
-			<div class="hero">
-				<div class="cornflower-box">
-					<div class="divPairsSetup t-left">
-						<h3>MultiCoinCharts</h3>
-						<div>
-							<span class="cWhite fwBold">Timezone</span>
-							<select name="timezone" id="timezone" style="width:150px"
+		<DIV id="modalConfig" class="modalConfig hide">
+			<DIV class="hero">
+				<DIV class="cornflower-box">
+					<DIV class="divPairsSetup t-left">
+						<H3>MultiCoinCharts</H3>
+						<DIV>
+							<SPAN class="cWhite fwBold">Timezone</SPAN>
+							<SELECT name="timezone" id="timezone" style="width:150px"
 								onchange="storeMAN(true, this.id, this.value);">
-								<option value="Etc/UTC">UTC</option>
-								<option value="exchange">Exchange</option>
-								<option value="Pacific/Honolulu">(UTC-10) Honolulu</option>
-								<option value="America/Los_Angeles">(UTC-8) Los Angeles</option>
-								<option value="America/Phoenix">(UTC-7) Phoenix</option>
-								<option value="America/Mexico_City">(UTC-6) Mexico City</option>
-								<option value="America/Bogota">(UTC-5) Bogota</option>
-								<option value="America/New_York">(UTC-5) New York</option>
-								<option value="America/Caracas">(UTC-4) Caracas</option>
-								<option value="America/Argentina/Buenos_Aires">(UTC-3) Buenos Aires</option>
-								<option value="America/Sao_Paulo">(UTC-2) Sao Paulo</option>
-								<option value="Europe/London">(UTC) London</option>
-								<option value="Europe/Rome">(UTC+1) Rome</option>
-								<option value="Asia/Jerusalem">(UTC+2) Jerusalem</option>
-								<option value="Europe/Istanbul">(UTC+3) Istanbul</option>
-								<option value="Asia/Tehran">(UTC+3:30) Tehran</option>
-								<option value="Asia/Dubai">(UTC+4) Dubai</option>
-								<option value="Asia/Ashkhabad">(UTC+5) Ashkhabad</option>
-								<option value="Asia/Kolkata">(UTC+5:30) Kolkata</option>
-								<option value="Asia/Almaty">(UTC+6) Almaty</option>
-								<option value="Asia/Bangkok">(UTC+7) Bangkok</option>
-								<option value="Asia/Taipei">(UTC+8) Taipei</option>
-								<option value="Asia/Singapore" selected="selected">(UTC+8) Singapore</option>
-								<option value="Asia/Shanghai">(UTC+8) Shanghai</option>
-								<option value="Asia/Chongqing">(UTC+8) Chongqing</option>
-								<option value="Asia/Hong_Kong">(UTC+8) Hong Kong</option>
-								<option value="Asia/Seoul">(UTC+9) Seoul</option>
-								<option value="Asia/Tokyo">(UTC+9) Tokyo</option>
-								<option value="Australia/Brisbane">(UTC+10) Brisbane</option>
-								<option value="Australia/Adelaide">(UTC+10:30) Adelaide</option>
-								<option value="Australia/Sydney">(UTC+11) Sydney</option>
-								<option value="Pacific/Auckland">(UTC+13) New Zealand</option>
-								<option value="Pacific/Fakaofo">(UTC+13) Tokelau</option>
-								<option value="Pacific/Chatham">(UTC+13:45) Chatham Islands</option>
-							</select>
-						</div>
-						<div>
-							<span class="cWhite fwBold">Bar Type</span>
-							<select name="style" id="style" style="width:68px"
+								<OPTION value="Etc/UTC">UTC</OPTION>
+								<OPTION value="exchange">Exchange</OPTION>
+								<OPTION value="Pacific/Honolulu">(UTC-10) Honolulu</OPTION>
+								<OPTION value="America/Los_Angeles">(UTC-8) Los Angeles</OPTION>
+								<OPTION value="America/Phoenix">(UTC-7) Phoenix</OPTION>
+								<OPTION value="America/Mexico_City">(UTC-6) Mexico City</OPTION>
+								<OPTION value="America/Bogota">(UTC-5) Bogota</OPTION>
+								<OPTION value="America/New_York">(UTC-5) New York</OPTION>
+								<OPTION value="America/Caracas">(UTC-4) Caracas</OPTION>
+								<OPTION value="America/Argentina/Buenos_Aires">(UTC-3) Buenos Aires</OPTION>
+								<OPTION value="America/Sao_Paulo">(UTC-2) Sao Paulo</OPTION>
+								<OPTION value="Europe/London">(UTC) London</OPTION>
+								<OPTION value="Europe/Rome">(UTC+1) Rome</OPTION>
+								<OPTION value="Asia/Jerusalem">(UTC+2) Jerusalem</OPTION>
+								<OPTION value="Europe/Istanbul">(UTC+3) Istanbul</OPTION>
+								<OPTION value="Asia/Tehran">(UTC+3:30) Tehran</OPTION>
+								<OPTION value="Asia/Dubai">(UTC+4) Dubai</OPTION>
+								<OPTION value="Asia/Ashkhabad">(UTC+5) Ashkhabad</OPTION>
+								<OPTION value="Asia/Kolkata">(UTC+5:30) Kolkata</OPTION>
+								<OPTION value="Asia/Almaty">(UTC+6) Almaty</OPTION>
+								<OPTION value="Asia/Bangkok">(UTC+7) Bangkok</OPTION>
+								<OPTION value="Asia/Taipei">(UTC+8) Taipei</OPTION>
+								<OPTION value="Asia/Singapore" selected="selected">(UTC+8) Singapore</OPTION>
+								<OPTION value="Asia/Shanghai">(UTC+8) Shanghai</OPTION>
+								<OPTION value="Asia/Chongqing">(UTC+8) Chongqing</OPTION>
+								<OPTION value="Asia/Hong_Kong">(UTC+8) Hong Kong</OPTION>
+								<OPTION value="Asia/Seoul">(UTC+9) Seoul</OPTION>
+								<OPTION value="Asia/Tokyo">(UTC+9) Tokyo</OPTION>
+								<OPTION value="Australia/Brisbane">(UTC+10) Brisbane</OPTION>
+								<OPTION value="Australia/Adelaide">(UTC+10:30) Adelaide</OPTION>
+								<OPTION value="Australia/Sydney">(UTC+11) Sydney</OPTION>
+								<OPTION value="Pacific/Auckland">(UTC+13) New Zealand</OPTION>
+								<OPTION value="Pacific/Fakaofo">(UTC+13) Tokelau</OPTION>
+								<OPTION value="Pacific/Chatham">(UTC+13:45) Chatham Islands</OPTION>
+							</SELECT>
+						</DIV>
+						<DIV>
+							<SPAN class="cWhite fwBold">Bar Type</SPAN>
+							<SELECT name="style" id="style" style="width:68px"
 								onchange="storeMAN(true, this.id, this.value);">
-								<option value="0">Bars</option>
-								<option value="1">Candles</option>
-								<option value="2">Line</option>
-								<option value="3">Area</option>
-								<option value="4">Renko</option>
-								<option value="5">Kagi</option>
-								<option value="6">Point and Figure</option>
-								<option value="7">Line Break</option>
-								<option value="8">Heikin Ashi</option>
-								<option value="9">Hollow Candles</option>
-							</select>
-						</div>
-						<hr>
-						<div>
-							<span for="range_or_interval" class="cWhite fwBold">Use Date Range instead of Default
-								Interval</span>
-							<input id="range_or_interval" type="checkbox" name="details"
+								<OPTION value="0">Bars</OPTION>
+								<OPTION value="1">Candles</OPTION>
+								<OPTION value="2">Line</OPTION>
+								<OPTION value="3">Area</OPTION>
+								<OPTION value="4">Renko</OPTION>
+								<OPTION value="5">Kagi</OPTION>
+								<OPTION value="6">Point and Figure</OPTION>
+								<OPTION value="7">Line Break</OPTION>
+								<OPTION value="8">Heikin Ashi</OPTION>
+								<OPTION value="9">Hollow Candles</OPTION>
+							</SELECT>
+						</DIV>
+						<HR>
+						<DIV>
+							<SPAN for="range_or_interval" class="cWhite fwBold">Use Date Range instead of Default
+								Interval</SPAN>
+							<INPUT id="range_or_interval" type="checkbox" name="details"
 								onclick="storeMAN(true, this.id, this.checked); OnLoad.select_range_enable(this.checked)">
-						</div>
-						<div>
-							<span class="cWhite fwBold">Default Interval</span>
-							<select name="interval" id="interval" style="width:68px"
+						</DIV>
+						<DIV>
+							<SPAN class="cWhite fwBold">Default Interval</SPAN>
+							<SELECT name="interval" id="interval" style="width:68px"
 								onchange="storeMAN(true, this.id, this.value);">
-								<option value="1">1m</option>
-								<option value="3">3m</option>
-								<option value="5">5m</option>
-								<option value="15">15m</option>
-								<option value="30">30m</option>
-								<option value="60">1h</option>
-								<option value="120">2h</option>
-								<option value="180">3h</option>
-								<option value="240">4h</option>
-								<option value="D">1d</option>
-								<option value="W">1w</option>
-							</select>
-						</div>
-						<div>
-							<span class="cWhite fwBold">Date Range</span>
-							<select name="range" id="range" style="width:68px"
-								onchange="storeMAN(true, this.id, this.value);" disabled="">
-								<option value="1d">1 Day</option>
-								<option value="5d">5 Days</option>
-								<option value="1M">1 Month</option>
-								<option value="3M">3 Months</option>
-								<option value="6M">6 Months</option>
-								<option value="ytd">Year From Now (YTD)</option>
-								<option value="12M">1 Year</option>
-								<option value="60M">5 Years</option>
-								<option value="all">All Time</option>
-							</select>
-						</div>
-						<hr>
+								<OPTION value="1">1m</OPTION>
+								<OPTION value="3">3m</OPTION>
+								<OPTION value="5">5m</OPTION>
+								<OPTION value="15">15m</OPTION>
+								<OPTION value="30">30m</OPTION>
+								<OPTION value="60">1h</OPTION>
+								<OPTION value="120">2h</OPTION>
+								<OPTION value="180">3h</OPTION>
+								<OPTION value="240">4h</OPTION>
+								<OPTION value="D">1d</OPTION>
+								<OPTION value="W">1w</OPTION>
+							</SELECT>
+						</DIV>
+						<DIV>
+							<SPAN class="cWhite fwBold">Date Range</SPAN>
+							<SELECT name="range" id="range" style="width:68px"
+								onchange="storeMAN(true, this.id, this.value);">
+								<OPTION value="1d">1 Day</OPTION>
+								<OPTION value="5d">5 Days</OPTION>
+								<OPTION value="1m">1 Month</OPTION>
+								<OPTION value="3m">3 Months</OPTION>
+								<OPTION value="6m">6 Months</OPTION>
+								<OPTION value="ytd">Year From Now (YTD)</OPTION>
+								<OPTION value="12m">1 Year</OPTION>
+								<OPTION value="60m">5 Years</OPTION>
+								<OPTION value="all">All Time</OPTION>
+							</SELECT>
+						</DIV>
+						<HR>
 						<!-- <DIV>
 							<SPAN class="cWhite fwBold">Reset to defaults</SPAN>
 							<INPUT type="button" value="Reset" onclick="localStorage.clear(); location.reload()" />
 						</DIV> -->
-						<div>
-							<span for="details" class="cWhite fwBold">Show Details</span>
-							<input id="details" type="checkbox" name="details"
+						<DIV>
+							<SPAN for="details" class="cWhite fwBold">Show Details</SPAN>
+							<INPUT id="details" type="checkbox" name="details"
 								onclick="storeMAN(true, this.id, this.checked)">
-						</div>
-						<div>
-							<span for="withdateranges" class="cSuperLight fwBold">Show Bottom Toolbar</span>
-							<input id="withdateranges" type="checkbox" name="withdateranges"
+						</DIV>
+						<DIV>
+							<SPAN for="withdateranges" class="cSuperLight fwBold">Show Bottom Toolbar</SPAN>
+							<INPUT id="withdateranges" type="checkbox" name="withdateranges"
 								onclick="storeMAN(true, this.id, this.checked)">
-						</div>
-						<hr>
-						<div>
-							<span for="hide_top_toolbar" class="cWhite fwBold">Hide Top Toolbar (Symbol Change)
-								<span data-balloon-length="fit"
+						</DIV>
+						<HR>
+						<DIV>
+							<SPAN for="hide_top_toolbar" class="cWhite fwBold">Hide Top Toolbar (Symbol Change)
+								<SPAN data-balloon-length="fit"
 									data-balloon="If you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
 									data-balloon-pos="up" class="medBallon"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
-							</span>
-							<input id="hide_top_toolbar" type="checkbox" name="hide_top_toolbar"
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+							</SPAN>
+							<INPUT id="hide_top_toolbar" type="checkbox" name="hide_top_toolbar"
 								onclick="storeMAN(true, this.id, this.checked)">
-						</div>
-						<div>
-							<span for="hide_legend" class="cWhite fwBold">Hide Legend
-								<span data-balloon-length="fit"
+						</DIV>
+						<DIV>
+							<SPAN for="hide_legend" class="cWhite fwBold">Hide Legend
+								<SPAN data-balloon-length="fit"
 									data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
 									data-balloon-pos="up" class="medBallon"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
-							</span>
-							<input id="hide_legend" type="checkbox" name="hide_legend"
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+							</SPAN>
+							<INPUT id="hide_legend" type="checkbox" name="hide_legend"
 								onclick="storeMAN(true, this.id, this.checked)">
-						</div>
-						<div>
-							<span for="hide_side_toolbar" class="cWhite fwBold">Hide Side Toolbar
-								<span data-balloon-length="fit"
+						</DIV>
+						<DIV>
+							<SPAN for="hide_side_toolbar" class="cWhite fwBold">Hide Side Toolbar
+								<SPAN data-balloon-length="fit"
 									data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
 									data-balloon-pos="up" class="medBallon"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
-							</span>
-							<input id="hide_side_toolbar" type="checkbox" name="hide_side_toolbar"
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+							</SPAN>
+							<INPUT id="hide_side_toolbar" type="checkbox" name="hide_side_toolbar"
 								onclick="storeMAN(true, this.id, this.checked)">
-						</div>
-						<hr>
-						<div>
-							<span for="usesmallbutton" class="cWhite fwBold">Use Small Buttons
-								<span data-balloon-length="fit"
+						</DIV>
+						<HR>
+						<DIV>
+							<SPAN for="usesmallbutton" class="cWhite fwBold">Use Small Buttons
+								<SPAN data-balloon-length="fit"
 									data-balloon="Use smaller button size, applies to the following buttons: Open in Coinigy, Show in Fullscreen, Remove this Chart"
 									data-balloon-pos="up"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
-							</span>
-							<input id="usesmallbutton" type="checkbox" name="usesmallbutton"
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+							</SPAN>
+							<INPUT id="usesmallbutton" type="checkbox" name="usesmallbutton"
 								onclick="storeMAN(true, this.id, this.checked)">
-						</div>
-						<div>
-							<span for="dark" class="cWhite fwBold">Use Dark Mode
-								<span data-balloon-length="fit" data-balloon="Opens charts in light mode."
+						</DIV>
+						<DIV>
+							<SPAN for="dark" class="cWhite fwBold">Use Dark Mode
+								<SPAN data-balloon-length="fit" data-balloon="Opens charts in light mode."
 									data-balloon-pos="up"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
-							</span>
-							<input id="dark" type="checkbox" name="dark"
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</SPAN>
+							</SPAN>
+							<INPUT id="dark" type="checkbox" name="dark"
 								onclick="storeMAN(true, this.id, this.checked)">
-						</div>
-						<br><br>
-						<div>
+						</DIV>
+						<BR><BR>
+						<DIV>
 							<!-- <SPAN>&nbsp;</SPAN> -->
-							<span class="t-center" style="flex: none; margin: auto;">
-								<a class="ok" id="LetsGo" href="javascript:void(0)"
-									onclick="XDirectUI.visibility('modalConfig'); location.reload()">Done</a>
+							<SPAN class="t-center" style="flex: none; margin: auto;">
+								<A class="ok" id='LetsGo' href="javascript:void(0)"
+									onclick="XDirectUI.visibility('modalConfig'); location.reload()">Done</A>
 								&nbsp;&nbsp; &nbsp;&nbsp;
-								<a class="ok" style="background-color: #999;" href="javascript:void(0)"
-									onclick="XDirectUI.visibility('modalConfig')">Cancel</a>
+								<A class="ok" style="background-color: #999;" href="javascript:void(0)"
+									onclick="XDirectUI.visibility('modalConfig')">Cancel</A>
 								&nbsp;&nbsp; &nbsp;&nbsp;
-								<a class="ok" style="background-color: #f44;" href="javascript:void(0)"
-									onclick="localStorage.clear(); location.reload()">Reset</a>
-							</span>
+								<A class="ok" style="background-color: #f44;" href="javascript:void(0)"
+									onclick="localStorage.clear(); location.reload()">Reset</A>
+							</SPAN>
 							<!-- <SPAN>&nbsp;</SPAN> -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="modalIndicators" class="modalConfig hide">
-			<div class="hero">
-				<div class="cornflower-box">
-					<div class="divPairsSetup t-left">
-						<h3>MultiCoinCharts</h3>
+						</DIV>
+					</DIV>
+				</DIV>
+			</DIV>
+		</DIV>
+		<DIV id="modalIndicators" class="modalConfig hide">
+			<DIV class="hero">
+				<DIV class="cornflower-box">
+					<DIV class="divPairsSetup t-left">
+						<H3>MultiCoinCharts</H3>
 						<br>
 						<div id="IndGrid" style="
 							display: grid;
@@ -482,21 +453,21 @@
 							<p>ZigZag</p><input type="checkbox" id="ZigZag">
 						</div>
 						<br><br>
-						<div>
-							<span>&nbsp;</span>
-							<span class="t-center" style="flex: none;">
-								<a class="ok" href="javascript:void(0)"
-									onclick="XDirectUI.choose_indicators(); XDirectUI.visibility('modalIndicators')">Done</a>
+						<DIV>
+							<SPAN>&nbsp;</SPAN>
+							<SPAN class="t-center" style="flex: none;">
+								<A class="ok" href="javascript:void(0)"
+									onclick="XDirectUI.choose_indicators(); XDirectUI.visibility('modalIndicators')">Done</A>
 								&nbsp;&nbsp; &nbsp;&nbsp;
-								<a class="ok" href="javascript:void(0)"
-									onclick="XDirectUI.visibility('modalIndicators')">Cancel</a>
-							</span>
-							<span>&nbsp;</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+								<A class="ok" href="javascript:void(0)"
+									onclick="XDirectUI.visibility('modalIndicators')">Cancel</A>
+							</SPAN>
+							<SPAN>&nbsp;</SPAN>
+						</DIV>
+					</DIV>
+				</DIV>
+			</DIV>
+		</DIV>
 		<DIV id="modalAd" class="hide">
 			<STYLE class="scoped">
 				\& {
@@ -547,9 +518,9 @@
 				</DIV>
 			</DIV>
 		</DIV>
-		<div id="chart_add_select" class="hide">
-			<style class="scoped">
-				#chart_add_select {
+		<DIV id="chart_add_select" class="hide">
+			<STYLE class="scoped">
+				\& {
 					position: fixed;
 					background: rgba(0, 0, 0, .85);
 					height: 100vh;
@@ -563,77 +534,73 @@
 					width: 100vw;
 					display: grid;
 				}
-			</style>
-			<div id="i1d8796bc">
-				<style class="scoped">
-					#i1d8796bc {
+			</STYLE>
+			<DIV>
+				<STYLE class="scoped">
+					\& {
 						display: grid;
 						column-gap: 1em;
 						grid-template-columns: 1fr 1fr;
 					}
 
-					#i1d8796bc>div {
+					\&>div {
 						display: flex;
 					}
-				</style>
-				<div>
-					<div class="divPairsSetup" id="i17d72448">
-						<h3>Crypto</h3>
-						<div id="Crypto-Insert">
-      <button onclick="exch_fill.go('crypto', 'Binance')">Binance</button><button onclick="exch_fill.go('crypto', 'Coinbase')">Coinbase</button><button onclick="exch_fill.go('crypto', 'Gemini')">Gemini</button><button onclick="exch_fill.go('crypto', 'KuCoin')">KuCoin</button><button onclick="exch_fill.go('crypto', 'Bittrex')">Bittrex</button><button onclick="exch_fill.go('crypto', 'BitMEX')">BitMEX</button><button onclick="exch_fill.go('crypto', 'Bitfinex')">Bitfinex</button>
+				</STYLE>
+				<DIV>
+					<DIV class="divPairsSetup">
+						<H3>Crypto</H3>
+						<DIV id="Crypto-Insert">
 
-      <div style="grid-column: 1 / span 3"></div>
-    </div>
+						</DIV>
 						
-						<style class="scoped">
-							#i17d72448 {
+						<STYLE class="scoped">
+							\& {
 								max-height: 400px;
 								overflow-y: auto;
 								margin: auto;
 							}
 
-							#i17d72448>div {
+							\&>div {
 								display: grid !important;
 								column-gap: 1em;
 								row-gap: 1em;
 								grid-template-columns: 1fr 1fr 1fr;
 							}
 
-							#i17d72448 summary::marker {
+							\& summary::marker {
 								font-size: 0;
 							}
 
-							#i17d72448 details>div {
+							\& details>div {
 								max-width: 310px;
 								padding-bottom: 2em;
 							}
-						</style>
+						</STYLE>
 						
-						<details>
-							<summary>
-								<h3>Other Crypto (Click to expand)</h3>
-							</summary>
-							<div id="Crypto-Insert-Alts">
-      <button onclick="exch_fill.go('crypto', 'CEXio')">CEXio</button><button onclick="exch_fill.go('crypto', 'Mercado')">Mercado</button><button onclick="exch_fill.go('crypto', 'OKCoin')">OKCoin</button><button onclick="exch_fill.go('crypto', 'OKEx')">OKEx</button><button onclick="exch_fill.go('crypto', 'Phemex')">Phemex</button><button onclick="exch_fill.go('crypto', 'Poloniex')">Poloniex</button><button onclick="exch_fill.go('crypto', 'Kraken')">Kraken</button><button onclick="exch_fill.go('crypto', 'Korbit')">Korbit</button><button onclick="exch_fill.go('crypto', 'Huobi')">Huobi</button><button onclick="exch_fill.go('crypto', 'FTX')">FTX</button><button onclick="exch_fill.go('crypto', 'Deribit')">Deribit</button><button onclick="exch_fill.go('crypto', 'CurrencyCom')">CurrencyCom</button><button onclick="exch_fill.go('crypto', 'Coinfloor')">Coinfloor</button><button onclick="exch_fill.go('crypto', 'Bybit')">Bybit</button><button onclick="exch_fill.go('crypto', 'Btse')">Btse</button><button onclick="exch_fill.go('crypto', 'BTCYou')">BTCYou</button><button onclick="exch_fill.go('crypto', 'Bitstamp')">Bitstamp</button><button onclick="exch_fill.go('crypto', 'Bitso')">Bitso</button><button onclick="exch_fill.go('crypto', 'BitMax')">BitMax</button><button onclick="exch_fill.go('crypto', 'BITKUB')">BITKUB</button><button onclick="exch_fill.go('crypto', 'Bithumb')">Bithumb</button><button onclick="exch_fill.go('crypto', 'bitFlyer')">bitFlyer</button><button onclick="exch_fill.go('crypto', 'BitCoke')">BitCoke</button><button onclick="exch_fill.go('crypto', 'BitBay')">BitBay</button><button onclick="exch_fill.go('crypto', 'Bingbon')">Bingbon</button><button onclick="exch_fill.go('crypto', 'UniSwap')">UniSwap</button><button onclick="exch_fill.go('crypto', 'TradeStation')">TradeStation</button>
-    </div>
-						</details>
+						<DETAILS>
+							<SUMMARY>
+								<H3>Other Crypto (Click to expand)</H3>
+							</SUMMARY>
+							<DIV id="Crypto-Insert-Alts">
 
-						<h3>Forex</h3>
-						<div id="Forex-Insert">
-      <button onclick="exch_fill.go('forex', 'ICE')">ICE</button><button onclick="exch_fill.go('forex', 'Saxo')">Saxo</button><button onclick="exch_fill.go('forex', 'Forex.com')">Forex.com</button><button onclick="exch_fill.go('forex', 'OANDA')">OANDA</button><button onclick="exch_fill.go('forex', 'FXCM')">FXCM</button><button onclick="exch_fill.go('forex', 'Global Prime')">Global Prime</button>
+							</DIV>
+						</DETAILS>
 
-      <div style="grid-column: 1 / span 3"></div>
-    </div>
-					</div>
-				</div>
-				<div>
-					<div class="divPairsSetup t-left" style="margin: auto;" id="i1ac88a90">
-						<style class="scoped">
-							#i1ac88a90 {
+						<H3>Forex</H3>
+						<DIV id="Forex-Insert">
+
+						</DIV>
+					</DIV>
+				</DIV>
+				<DIV>
+					<DIV class="divPairsSetup t-left" style="margin: auto;">
+						<STYLE class="scoped">
+							\& {
 								margin: auto;
 							}
 
-							#i1ac88a90>input {
+							\&>input {
 								font-size: 22px;
 								border-radius: .2em;
 								border: none;
@@ -641,7 +608,7 @@
 								padding: 0.25em 0.6em;
 							}
 
-							#i1ac88a90 .\@first {
+							\& .\@first {
 								width: 256px;
 								margin: 32px 0;
 								font-size: .8em;
@@ -654,97 +621,27 @@
 								overflow-x: hidden;
 								padding: 12px;
 							}
-						</style>
-						<p>
-							Use the textbox to add specific ticker charts. <br>
+						</STYLE>
+						<P>
+							Use the textbox to add specific ticker charts. <BR>
 							Press enter to add it.
-						</p>
-						<input id="chart_adder" placeholder="BINANCE:BTCUSDT">
-						<br>
-						<div id="chart_options" class="@first border-none"></div>
-						<div>
-							<span>&nbsp;</span>
-							<span class="t-center" style="flex: none;">
-								<a class="ok" href="javascript:void(0)" onclick="XDirectUI.visibility('chart_add_select')">
+						</P>
+						<INPUT id="chart_adder" placeholder="BINANCE:BTCUSDT" />
+						<BR>
+						<DIV id="chart_options" class="border-none @first"></DIV>
+						<DIV>
+							<SPAN>&nbsp;</SPAN>
+							<SPAN class="t-center" style="flex: none;">
+								<A class="ok" href="javascript:void(0)"
+									onclick="XDirectUI.visibility('chart_add_select')">
 									Done
-								</a>
-							</span>
-							<span>&nbsp;</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<DIV ID="popup" class="modalConfig hide">
-			<STYLE class="scoped">
-				.do-not-show {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					padding-top: 1em;
-				}
-
-
-				.popup-wrapper {
-					background-color: #1e222d;
-					overflow-x: hidden;
-					overflow-y: auto;
-					padding: 40px;
-					position: relative;
-					width: 720px;
-				}
-
-				.pop-main-button {
-					display: block;
-					margin: auto;
-					background-color: #2962ff;
-					color: white;
-					border-radius: 28px;
-					border-width: 1px;
-					height: 56px;
-					outline: none;
-					overflow: visible;
-					padding: 0 31px;
-					position: relative;
-					border-style: none;
-					font-size: 1.2em;
-				}
-
-				\& a {
-					text-decoration: none;
-				}
-
-				\& h1 {
-					color: #d1d4dc;
-					text-align: center;
-					font-size: 36px;
-				}
-
-				\& h2 {
-					color: #d1d4dc;
-					text-align: center;
-					padding-bottom: 1.7em;
-					font-size: 18px;
-				}
-			</STYLE>
-			<div class="popup-wrapper">
-				<button href="javascript:void(0)" onclick="XDirectUI.visibility('popup')" type="button"
-					class="close-button"><span class="close-icon-3unB1Yrw"></span></a><svg
-						xmlns="http://www.w3.org/2000/svg" width="23" height="23">
-						<path stroke="currentColor" stroke-width="1.2" d="M1 1l21 21m0-21L1 22"></path>
-					</svg></span></button>
-				<h1>Introducing MultiCoinCharts Scanner!</h1>
-				<h2>We're proudly launching our very
-					first scanner. Scan for trades faster than ever before. Easily find coins that are on the move.</h2>
-				<div><a href="https://www.multicoincharts.com/scanner" target="_blank"><button
-							class="pop-main-button">Take me to the
-							Scanner!</button></a></div>
-				<div class="do-not-show">
-					<INPUT id="do_not_show" type="checkbox" name="do_not_show"onclick="storeMAN(true, this.id, this.checked)" >
-					<p>Do Not Show Again</p>
-				</div>
-
-			</div>
+								</A>
+							</SPAN>
+							<SPAN>&nbsp;</SPAN>
+						</DIV>
+					</DIV>
+				</DIV>
+			</DIV>
 		</DIV>
 
 	</DIV>
@@ -781,16 +678,16 @@
 					padding-bottom: 0.2em;
 				}
 
-				\&>DIV {
+				\&>div {
 					text-align: center;
 					margin-top: 0px;
 				}
 			</STYLE>
-			<P href="javascript:void(0)" onclick="XDirectUI.visibility('chart_add_select')"><SPAN>+</SPAN></P>
+			<P href="javascript:void(0)" onclick="XDirectUI.random()"><SPAN>+</SPAN></P>
 			<UL>
-				<div id="box_space">
-					<style class="scoped">
-						#box_space>p {
+				<DIV id="box_space">
+					<STYLE class="scoped">
+						\&>p {
 							background: white;
 							color: black;
 							border-radius: 50%;
@@ -802,17 +699,17 @@
 							top: -13px;
 							z-index: 9;
 						}
-	
-						#box_space>div {
+
+						\&>div {
 							text-align: center;
 							margin-top: 0px;
 						}
-					</style>
-					<p href="javascript:void(0)" onclick="box_space.style.display = 'none'">X</p>
-					<div id="box_space_google2">
-						<div id="i2a7fa951">
-							<style class="scoped">
-								#i2a7fa951 {
+					</STYLE>
+					<P href="javascript:void(0)" onclick="box_space.style.display = 'none'">X</P>
+					<DIV id="box_space_google2">
+						<DIV>
+							<STYLE class="scoped">
+								\& {
 									position: absolute;
 									top: 0;
 									left: 0;
@@ -820,37 +717,38 @@
 									bottom: 0;
 									margin: 0;
 								}
-	
-								#i2a7fa951>div {
+
+								\&>div {
 									display: flex;
 									height: 100%;
 								}
-	
-								#i2a7fa951 h3 {
+
+								\& h3 {
 									margin: auto;
 								}
-	
-								#i2a7fa951 h3>p {
+
+								\& h3>p {
 									background: #131722;
 									padding: 1.6em;
 								}
-							</style>
-							<div>
-								<h3>
-									<p>Twitter: <br><br> @MultiCoinCharts</p>
-								</h3>
-							</div>
-						</div>
-						<div>
-						    <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+							</STYLE>
+							<DIV>
+								<H3>
+									<P>Twitter: <BR><BR> @MultiCoinCharts</P>
+								</H3>
+							</DIV>
+						</DIV>
+						<DIV>
+							<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
 							<!-- ChartBoxRectAd -->
-							<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-3023875029405790" data-ad-slot="2283643489" data-adsbygoogle-status="done" data-ad-status="filled"><ins id="aswift_0_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 280px; width: 336px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_0_anchor" style="border: none; height: 280px; width: 336px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:336px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="336" height="280" frameborder="0" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-3023875029405790&amp;output=html&amp;h=280&amp;slotname=2283643489&amp;adk=3793676480&amp;adf=1435460925&amp;pi=t.ma~as.2283643489&amp;w=336&amp;lmt=1634847350&amp;psa=1&amp;format=336x280&amp;url=https%3A%2F%2Fwww.multicoincharts.com%2F&amp;flash=0&amp;wgl=1&amp;uach=WyJXaW5kb3dzIiwiMTAuMC4wIiwieDg2IiwiIiwiOTQuMC45OTIuMzgiLFtdLG51bGwsbnVsbCwiNjQiXQ..&amp;dt=1634939121801&amp;bpp=2&amp;bdt=121&amp;idt=24&amp;shv=r20211020&amp;mjsv=m202110140101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3D8c185e7cf6e93808-227ad0f065c70063%3AT%3D1619789105%3ART%3D1619789105%3AS%3DALNI_MbYZuNE1WJoK5QDQWwNqUNovyGVnw&amp;correlator=832922766632&amp;frm=20&amp;pv=2&amp;ga_vid=1441223206.1619789105&amp;ga_sid=1634939122&amp;ga_hid=427231424&amp;ga_fc=1&amp;u_tz=-300&amp;u_his=29&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;adx=792&amp;ady=180&amp;biw=1920&amp;bih=969&amp;scr_x=0&amp;scr_y=0&amp;eid=31062579%2C31062526&amp;oid=2&amp;pvsid=912525123369834&amp;pem=29&amp;wsm=1&amp;ref=https%3A%2F%2Fwww.multicoincharts.com%2F%3Fc%3DCOINBASE%3ABTCUSD%2CGEMINI%3ABTCUSD%2CGEMINI%3AAMPUSD%2CGEMINI%3AFTMUSD%2CGEMINI%3ADOGEUSD%2CCOINBASE%3ABTCUSD%2CGEMINI%3AAMPUSD%2CKUCOIN%3ABTCUSDT%2CKUCOIN%3AVRAUSDT&amp;eae=0&amp;fc=896&amp;brdim=-1920%2C0%2C-1920%2C0%2C1920%2C0%2C1920%2C1040%2C1920%2C969&amp;vis=1&amp;rsz=%7C%7CpeE%7C&amp;abl=CS&amp;pfx=0&amp;fu=0&amp;bc=31&amp;ifi=1&amp;uci=a!1&amp;fsb=1&amp;xpc=v7HPMhEj8f&amp;p=https%3A//www.multicoincharts.com&amp;dtd=32" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!1" data-google-query-id="CL3U2ez-3vMCFQ5HFQgdVeoFFw" data-load-complete="true"></iframe></ins></ins></ins>
+							<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px"
+								data-ad-client="ca-pub-3023875029405790" data-ad-slot="2283643489"></ins>
 							<script>
 								(adsbygoogle = window.adsbygoogle || []).push({});
 							</script>
-						</div>
-					</div>
-				</div>
+						</DIV>
+					</DIV>
+				</DIV>
 			</UL>
 		</DIV>
 	</DIV>
@@ -867,7 +765,7 @@
 				transition: transform .5s;
 			}
 
-			\&>DIV {
+			\&>div {
 				color: eee;
 				margin: auto;
 				font-size: 24px;
