@@ -357,6 +357,7 @@ div.divPairsSetup h3 {
 	border-radius: 2px;
 	/* padding: 2% 8%; */
 	overflow-y: auto;
+	z-index: 0;
 }
 .options {
 	/* margin: 12%; */
