@@ -7,7 +7,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'UA-107348406-1');
@@ -15,18 +15,25 @@
 
 
 <script type="module">
-    const app = "./app.jsx"
-    start(app)
+  const app = "./app.jsx"
+  start(app)
 
-    async function start(entry_url = "./index.js") {
+  async function start(entry_url = "./index.js") {
 
-        const sw = navigator.serviceWorker
-        sw.register("./jsx-compiling-sw.js")
-        const reg = await sw.ready
-        reg.active.postMessage(true)
-        sw.onmessage = () => import(entry_url)
-    }
+    const sw = navigator.serviceWorker
+    sw.register("./jsx-compiling-sw.js")
+    const reg = await sw.ready
+    reg.active.postMessage(true)
+    sw.onmessage = () => import(entry_url)
+  }
 </script>
 
 <title>MCC Scanner</title>
 <LINK rel="shortcut icon" type="image/png" href="../images/favicon.png">
+
+<div id="main"></div>
+
+<div style="display: flex">
+  <iframe data-aa="1836137" src="//ad.a-ads.com/1836137?size=728x90"
+    style="width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent; margin: auto;"></iframe>
+</div>
