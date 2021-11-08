@@ -25,14 +25,19 @@ async function respondable(request = new Request) {
     return new Response(body, { headers, status, statusText })  
 }
 
+// remember to update ending[0].replace in function jsx()
 const matcher = {
+    "=>({": false,
+    "=>{": false,
+    "({": false,
+    "var{": false,
+    "let{": false,
+    "const{": false,
+    "${": false,
     "{{": "${{",
     "{": "${",
-    "${": false,
     "(<": "( /* from jsx */ html`<",
     ">)": ">` /* from jsx */ )",
-    "=>({": false,
-    "=>{": false
 }
 
 function jsx(string_component = "", should_compile = true, compiler = eval) {
@@ -47,12 +52,12 @@ function jsx(string_component = "", should_compile = true, compiler = eval) {
         const html = ending[0]
         
         ending[0] = html
-            .replace(/(\((\s*?)<|{{|${|{|>(\s*?)\)|=>(\s*?){|=>(\s*?)\((\s*?){)/gm, 
+            .replace(/(\((\s*?)<|\({|{{|var(\s*?){|const(\s*?){|let(\s*?){|${|{|>(\s*?)\)|=>(\s*?){|=>(\s*?)\((\s*?){)/gm, 
                 match => matcher[match.replace(/\s/gm, "")] || match)
             // replace <SomeElement> to <${SomeElement}>
-            .replace(/\<([A-Z][a-zA-Z]+)/g,"<${$1}")
-            // replace </SomeElement> to </${SomeElement}>
-            .replace(/\<\/([A-Z][a-zA-Z]+)/g,"</${$1}")
+            .replace(/\<([A-Z][a-zA-Z.]+)/g,"<${$1}")
+            // replace </SomeElement> to <//>
+            .replace(/\<\/([A-Z][a-zA-Z.]+)/g,"<//")
             // replace $someProp= to .$someProp=
             .replace(/\s(\$[a-zA-Z]+)=/g, " .$1=")
             // replace someProp$= to .someProp=

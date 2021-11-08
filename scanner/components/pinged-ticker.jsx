@@ -1,23 +1,28 @@
-import { render } from '//unpkg.com/uhtml?module'
-import { useState } from '//unpkg.com/hooked-elements?module'
-import { css, define, reactive, html } from './lib/main.js'
-import { timeSince } from './time.service.js'
+import { useResolver, useSignal, css, html } from '../lib/reference-resolver-x.js'
+import { add_style } from '../lib/reference-resolver-x.js'
+import { timeSince } from '../services/time.service.js'
 
-export function PingedTicker({ $ticker }) {
-    const state = reactive({ time: timeSince($ticker.latest) })
-    setTimeout(() => {
-        state.time = timeSince($ticker.latest)
-    }, 3000)
-    render(arguments[0], <>
+export function PingedTicker({ ticker }) {
 
-        <div class={$ticker.count > 25 ? "ping tickers" : "tickers"}>
-            <h1>{$ticker.symbol}</h1>
-            <p>{$ticker.count}</p>
+    const { useCallback } = useResolver(f => eval(f))
+    
+    
+    const latest = useCallback(() => timeSince(ticker.latest))
+    const time = useSignal(latest())
 
-            <p class="x2">{state.time}</p>
+    setTimeout(useCallback(() => time = latest()), 2 * 1000)
+
+
+    return <>
+
+        <div class={ticker.count > 5 ? "ping tickers" : "tickers"}>
+            <h1>{ticker.symbol}</h1>
+            <p>{ticker.count}</p>
+
+            <p class="x2">{time}</p>
         </div>
 
-    </>)
+    </>
 }
 
 const style = css`
@@ -72,5 +77,4 @@ const style = css`
   border-color: #f44336;
 }
 `
-
-define(PingedTicker, "pinged-ticker", style)
+add_style(style)

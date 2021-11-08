@@ -1,45 +1,56 @@
-import { render } from '//unpkg.com/uhtml?module'
-import { useState, useEffect } from '//unpkg.com/hooked-elements?module'
-import handler from '//unpkg.com/reactive-props?module'
-import { css, define, reactive, html } from './lib/main.js'
-import { pingsToArray } from './pings.service.js'
-import { timeSince } from './time.service.js'
-import { PingedTicker } from './pinged-ticker.jsx'
-import { MccLink } from './mcc-link.jsx'
-import { BackButton } from './back-home.jsx'
-import {} from './page-sleep.service.js'
+import { For } from "./lib/solid-js.js"
+import { render } from "./lib/web.js"
+import { html, css, useSignal, useResolver, add_style } from "./lib/reference-resolver-x.js"
+import { Transition, TransitionGroup } from "./lib/transitions.js"
+import { pingsToArray } from "./services/pings.service.js"
 
+import { BackButton } from "./components/back-home.jsx"
+import { HowTo } from "./components/how-to.jsx"
+import { MccLink } from "./components/mcc-link.jsx"
+import { PingedTicker } from "./components/pinged-ticker.jsx"
 
-function MyComponent(self) {
-  const state = reactive({ data: [] })
-  
-  useEffect(async () => {
-    state.data = await pingsToArray()
-    setInterval(async () => {
-      state.data = await pingsToArray()
-    }, 60 * 1000);
-  }, [])
+export function App() {
+  const { useCallback, useMemo, useEffect } = useResolver(f => eval(f))
 
-  render(self,
-    <>
-      <h1>Binance Scanner</h1>
+  const data = useSignal([])
 
-      <BackButton/>
+  const get_new_data = () => pingsToArray().then(useCallback(tickers => data = tickers))
+  get_new_data()
+  setInterval(get_new_data, 60 * 1000)
 
-      <MccLink $tickers={state.data} />
+  return <>
+    <h1>
+      Binance Scanner
+    </h1>
 
-      <div class="t-grid">
-        {state.data.map(ticker => (
+    <BackButton />
 
-          <PingedTicker $ticker={ticker}/>
+    <HowTo />
 
-        ))}
-      </div>
+    <MccLink tickers={() => data} />
 
-    </>
-  )
+    <div class="t-grid">
+      <For each={data}>
+        {ticker => (
+          <PingedTicker ticker={ticker} />
+        )}
+      </For>
+    </div>
+    <div style="display: flex">
+    <iframe data-aa="1836137" src="//ad.a-ads.com/1836137?size=728x90" style="width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent; margin: auto;" ></iframe>
+    </div>
+    
+  </>
+
 }
 
+f: {/* <div class="t-grid">
+<For each={data}>
+    {ticker => (
+        <PingedTicker ticker={ticker} />
+    )}
+</For>
+</div> */}
 const style = css`
 body {
   font-family: --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -61,7 +72,5 @@ html {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 `
-
-define(MyComponent, "my-component", style)
-
-document.body.append(document.createElement("my-component"))
+add_style(style)
+render(App, document.body)
