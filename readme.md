@@ -1,1 +1,1 @@
-# MultiCoinCharts - Crypto/Stocks Graph Open Source
+# MultiCoinCharts - Crypto/Stocks Graph
