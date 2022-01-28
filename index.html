@@ -73,7 +73,7 @@
 	<SCRIPT async type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/emocoin.js?v8.0"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v5.0.5" defer></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/headstart.js?v5.1" defer></SCRIPT>
 
 	<SCRIPT src="https://cdn.jsdelivr.net/gh/VSADX/scoped-css@main/scoped-css.js" type="module"></SCRIPT>
 </HEAD>
@@ -786,6 +786,8 @@
 
 			</div>
 		</DIV> -->
+		<DIV hidden ID="popup"> </DIV>
+		<INPUT hidden id="do_not_show" type="checkbox" name="do_not_show"onclick="storeMAN(true, this.id, this.checked)" >
 
 	</DIV>
 	<DIV id="charts">
@@ -877,7 +879,9 @@
 							</style>
 							<div>
 								<h3>
-									<ins class="618c288ebd273d0013d88288" style="display:inline-block;width:336px;height:280px;"></ins><script>!function(e,n,c,t,o,r){!function e(n,c,t,o,r,m,s,a){s=c.getElementsByTagName(t)[0],(a=c.createElement(t)).async=!0,a.src="https://"+r[m]+"/js/"+o+".js",a.onerror=function(){a.remove(),(m+=1)>=r.length||e(n,c,t,o,r,m)},s.parentNode.insertBefore(a,s)}(window,document,"script","618c288ebd273d0013d88288",["cdn.bmcdn2.com"],0)}();</script>
+									<ins class="618c288ebd273d0013d88288"
+										style="display:inline-block;width:336px;height:280px;"></ins>
+									<script>!function (e, n, c, t, o, r) { !function e(n, c, t, o, r, m, s, a) { s = c.getElementsByTagName(t)[0], (a = c.createElement(t)).async = !0, a.src = "https://" + r[m] + "/js/" + o + ".js", a.onerror = function () { a.remove(), (m += 1) >= r.length || e(n, c, t, o, r, m) }, s.parentNode.insertBefore(a, s) }(window, document, "script", "618c288ebd273d0013d88288", ["cdn.bmcdn2.com"], 0) }();</script>
 									<!-- <ins style="display:inline-block;width:336px;height:280px;"><a href="https://GemBites.com" target="blank_" ><img src="./images/GemBites.gif" alt="Ad"></ins></a> -->
 									<!-- <p>Twitter: <br><br> @MultiCoinCharts</p> -->
 								</h3>
@@ -890,7 +894,7 @@
 							<script>
 								(adsbygoogle = window.adsbygoogle || []).push({});
 							</script> -->
-							
+
 						</div>
 					</div>
 				</div>
@@ -925,26 +929,29 @@
 			<P>by @leasj</P>
 			<P id="pCrashCounter"></P> <BR>
 			<A id="aCrashRefresh" href="javascript:void(0)" style="display: none;"
-				onclick="localStorage.clear(); location.reload()">
+				onclick="localStorage.clear(); location.href= location.href.includes('?') ? location.href + `&p=1`:location.href + '?p=1' ">
 				Click to refresh browser cache
 			</A>
 		</DIV>
 	</DIV>
 	<SCRIPT>
 		let load_counter = 0;
-		(function fireWhenReady() {
-			if (typeof (initPage) !== 'undefined'
-				&& typeof (all) !== 'undefined'
-				&& typeof (TradingView) !== 'undefined')
-				return initPage()
-			load_counter++
-			if (load_counter > 100) {
-				pCrashCounter.innerText =
-					"Crashed: still waiting for TradingView for " + ((load_counter / 20) >> 0) + " seconds."
-				aCrashRefresh.style.display = "block"
-			}
+		onerror = function (_,_,_,_,err) {return !err}
+		void (function fireWhenReady() {
+			try {
+				eval("initPage;all;TradingView")
+			} catch (error) {
+				load_counter++
+				if (load_counter >= 6) {
+					pCrashCounter.innerText =
+						"Crashed: still waiting for TradingView for " + ((load_counter / 2) >> 0) + " seconds."
+					aCrashRefresh.style.display = "block"
+				}
 
-			setTimeout(fireWhenReady, 50)
+				setTimeout(fireWhenReady, 500)
+				throw undefined
+			}
+			return initPage()
 		})()
 	</SCRIPT>
 </BODY>
