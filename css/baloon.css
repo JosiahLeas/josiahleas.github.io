@@ -1,8 +1,8 @@
 /*https://kazzkiq.github.io/balloon.css/*/
 [data-balloon] {
 	overflow: visible;
-    	position: fixed;
-    	cursor: pointer;
+	position: relative;
+	cursor: pointer;
 }
 [data-balloon]:after {
 	filter: alpha(opacity=0);
@@ -145,3 +145,14 @@
 	white-space: nowrap;
 	width: auto;
 }
+
+/* Overrides */
+[data-balloon][data-balloon-pos='up']:after {
+	transform: none !important;
+}
+
+[data-balloon][data-balloon-pos="up"]:hover:after,
+[data-balloon][data-balloon-pos="up"][data-balloon-visible]:after{
+	transform: none !important;
+}
+
