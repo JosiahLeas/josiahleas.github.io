@@ -32,28 +32,7 @@
 	<META name="fo-verify" content="210b05bb-bce5-49f0-a5fc-7494b6362a69">
 	<META name="coinzilla" content="3b3a0956d217d754c20eaf951132d265" />
 	<!-- Google Metas -->
-	<SCRIPT async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></SCRIPT>
-	<SCRIPT>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments) };
-		gtag('js', new Date());
-		gtag('config', 'UA-107348406-1');
-		(function (w, d, s, l, i) {
-			w[l] = w[l] || []; w[l].push({
-				'gtm.start':
-					new Date().getTime(), event: 'gtm.js'
-			}); var f = d.getElementsByTagName(s)[0],
-				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-		})(window, document, 'script', 'dataLayer', 'GTM-K6QVJBW');
-	</SCRIPT>
-	<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<script>
-		(adsbygoogle = window.adsbygoogle || []).push({
-			google_ad_client: "ca-pub-3023875029405790",
-			enable_page_level_ads: true
-		});
-	</script> -->
+	
 	<!-- Open Graph Metas -->
 	<META name="og:title" content="MultiCoinCharts">
 	<META name="og:description"
@@ -337,51 +316,51 @@
 						</div>
 						<hr>
 						<div>
-							<span for="hide_top_toolbar" class="cWhite fwBold">Hide Top Toolbar (Symbol Change)
+							<span for="hide_top_toolbar" class="cWhite fwBold">
 								<span data-balloon-length="fit"
-									data-balloon="If you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
+								data-balloon="If you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved upon reload. Use 'ADD CHART' or '+' button to save configuration"
 									data-balloon-pos="up" class="medBallon"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>&nbsp;Hide Top Toolbar (Symbol Change)
 							</span>
 							<input id="hide_top_toolbar" type="checkbox" name="hide_top_toolbar"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</div>
 						<div>
-							<span for="hide_legend" class="cWhite fwBold">Hide Legend
+							<span for="hide_legend" class="cWhite fwBold">
 								<span data-balloon-length="fit"
-									data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
+									data-balloon="Hide coin info and OHLC that is shown on top left of chart"
 									data-balloon-pos="up" class="medBallon"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>&nbsp;Hide Coin Info/OHLC
 							</span>
 							<input id="hide_legend" type="checkbox" name="hide_legend"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</div>
 						<div>
-							<span for="hide_side_toolbar" class="cWhite fwBold">Hide Side Toolbar
+							<span for="hide_side_toolbar" class="cWhite fwBold">
 								<span data-balloon-length="fit"
-									data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
+									data-balloon="Hides Drawing tools shown on left of chart"
 									data-balloon-pos="up" class="medBallon"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>&nbsp;Hide Side Toolbar
 							</span>
 							<input id="hide_side_toolbar" type="checkbox" name="hide_side_toolbar"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</div>
 						<hr>
 						<div>
-							<span for="usesmallbutton" class="cWhite fwBold">Use Small Buttons
+							<span for="usesmallbutton" class="cWhite fwBold">
 								<span data-balloon-length="fit"
-									data-balloon="Use smaller button size, applies to the following buttons: Open in Coinigy, Show in Fullscreen, Remove this Chart"
+									data-balloon="Use smaller button size, applies to the following buttons: Show in Fullscreen, Remove this Chart"
 									data-balloon-pos="up"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>&nbsp;Use Small Buttons
 							</span>
 							<input id="usesmallbutton" type="checkbox" name="usesmallbutton"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</div>
 						<div>
-							<span for="dark" class="cWhite fwBold">Use Dark Mode
+							<span for="dark" class="cWhite fwBold">
 								<span data-balloon-length="fit" data-balloon="Opens charts in light mode."
 									data-balloon-pos="up"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>&nbsp;Use Dark Mode
 							</span>
 							<input id="dark" type="checkbox" name="dark"
 								onclick="storeMAN(true, this.id, this.checked)">
@@ -945,7 +924,22 @@
 			</A>
 		</DIV>
 	</DIV>
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v5.2.2"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?5.2.2"></SCRIPT>
+	<SCRIPT async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></SCRIPT>
+	<SCRIPT>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments) };
+		gtag('js', new Date());
+		gtag('config', 'UA-107348406-1');
+		(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-K6QVJBW');
+	</SCRIPT>
 	<SCRIPT>
 		let load_counter = 0;
 		onerror = function (_,_,_,_,err) {return !err}
