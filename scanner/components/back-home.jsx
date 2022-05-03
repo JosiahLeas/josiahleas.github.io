@@ -3,7 +3,7 @@ import { useResolver, useSignal, css, html } from '../lib/reference-resolver-x.j
 
 
 export function BackButton(){
-  const url = "https://www.multicoincharts.com"
+  const url = "https://www.multicoincharts.com?c="
     
     return <>
       <div class="back-button">

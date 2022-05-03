@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<head>
+    <META name="description"
+        content="View multiple Crypto Coins TradingView graphs at once. Customize graphs or view full screen. Add custom Alt Coins. All for free. 1x1 all the way up to 10x10  one page charts.">
+    <META name="keywords"
+        content="Crypto, Altcoin, Ethereum, Bitcoin, TradingView, StockCharts, Charts, Candlestick Graph, Binance">
+    <META name="robots" content="index, follow">
+    <META name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <META name="apple-mobile-web-app-title" content="MultiCoinCharts">
+    <!-- Twitter Metas -->
+    <META name="twitter:card" content="summary">
+    <META name="twitter:site" content="@MultiCoinCharts">
+    <META name="twitter:title" content="MultiCoinCharts">
+    <META name="twitter:description"
+        content="View lots of Crypto Currency charts from TradingView. All on one screen. Customize your charts with indicators, adjust their position, or view full screen. Bookmark and share your charts just with a link.">
+    <META name="twitter:image" content="https://www.multicoincharts.com/images/mcc-capture.png">
+    <META name="twitter:image:alt" content="MultiCoinCharts Custom Chart Layout">
+    <!-- Facebook Metas -->
+    <META name="description"
+        content="View lots of Crypto Currency charts from TradingView. All on one screen. Customize your charts with indicators, adjust their position, or view full screen. Bookmark and share your charts just with a link.">
+    <META name="image" content="https://www.multicoincharts.com/images/mcc-capture.png">
+    <!-- Schema.org Metas -->
+    <META itemprop="name" content="MultiCoinCharts">
+    <META itemprop="description"
+        content="View lots of Crypto Currency charts from TradingView. All on one screen. Customize your charts with indicators, adjust their position, or view full screen. Bookmark and share your charts just with a link.">
+    <META itemprop="image" content="https://www.multicoincharts.com/images/mcc-capture.png">
+    <META name="fo-verify" content="210b05bb-bce5-49f0-a5fc-7494b6362a69">
+    <META name="coinzilla" content="3b3a0956d217d754c20eaf951132d265" />
+    <!-- Open Graph Metas -->
+    <META name="og:title" content="MultiCoinCharts">
+    <META name="og:description"
+        content="View lots of Crypto Currency charts from TradingView. All on one screen. Customize your charts with indicators, adjust their position, or view full screen. Bookmark and share your charts just with a link.">
+    <META name="og:image" content="https://www.multicoincharts.com/images/mcc-capture.png">
+    <META name="og:url" content="https://www.multicoincharts.com">
+    <META name="og:site_name" content="MultiCoinCharts">
+    <META name="og:locale" content="en_US">
+    <META name="og:type" content="website">
+    <!-- #endregion -->
+    <TITLE>MCC - More Than One TradingView Crypto Chart on One Screen</TITLE>
+    <LINK rel="shortcut icon" type="image/png" href="../images/favicon.png">
+    <script src="https://cdn.jsdelivr.net/gh/VSADX/scoped-css@main/scoped-css.js" type="module"></script>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --w: 60vw;
+            background-color: #00081d;
+            /* background-color: #1e222d; */
+            /* background-color: #0d0d0d; */
+        }
+    </style>
+</head>
+
+<body>
+    <div "notify-area">
+        <style class="scoped">
+            \& {
+                background-color: purple;
+                padding: 1.25em;
+                text-align: center;
+                color: white;
+            }
+        </style>
+        Introducing the MultiCoinCharts Advanced Scanner
+        <a style="color: white;" target="_blank" href="../adv-scanner.html"><b><u>Check it out</u></b></a>
+    </div>
+    <main "hero-image-y-text">
+        <nav "overlay-nav">
+            <style class="scoped">
+                \& {
+                    position: absolute;
+                    /* background-color: white; */
+                    color: white;
+                    padding: 3em 4em;
+                    left: 0;
+                    right: 0;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                \& h2 {
+                    font-size: 5.6vw;
+                    color: black;
+                }
+
+                \& .glow {
+                    color: #426DFB;
+                    text-shadow: 0 0 3vw #2356FF;
+                    text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
+                    color: #28D7FE;
+                }
+
+                @media screen and (max-width: 1026px) {
+                    \& h2 {
+                        font-size: 7.8vw;
+                    }
+
+                    \& {
+                        padding: 3em 2em;
+                    }
+                }
+            </style>
+            <div "logo">
+                <h2 class="glow">
+                    MultiCoinCharts
+                </h2>
+            </div>
+
+        </nav>
+        <style class="scoped">
+            \& {
+                display: grid;
+                min-height: 103vh;
+                grid-template-columns: 1fr 1fr;
+                position: relative;
+            }
+
+            \& aside {
+                background-color: black;
+                color: white;
+                padding: 0 6vw;
+                padding-top: 40%;
+                padding-bottom: 15%;
+            }
+
+            \& h1 {
+                font-size: 4vw;
+            }
+
+            \& .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            \& .dropdown>button {
+                background-color: purple;
+            }
+
+            \& .dropdown-content {
+                display: none;
+                position: absolute;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                overflow: auto;
+                border-radius: .25em;
+            }
+
+            \& .dropdown-content a {
+                font-size: 15px;
+                color: #d463d4;
+                padding: 1.8em 2em;
+                text-decoration: none;
+                display: block;
+                background: #fff1;
+                backdrop-filter: blur(15px);
+            }
+
+            \& .dropdown-content a:hover {
+                background-color: #fff3;
+            }
+
+            \& .dropdown:hover .dropdown-content {
+                display: block;
+                width: 100%;
+            }
+
+            \& button {
+                margin: 0 !important;
+                background: #fff1;
+                backdrop-filter: blur(15px);
+                width: 100%;
+                color: #b67db6;
+                border-radius: .25em;
+                overflow: auto;
+                border-radius: .25em;
+                border: none;
+                font-weight: bold;
+                padding: .6em 1em;
+                min-width: 12em;
+                font-size: 1.1vw;
+                color: white;
+                transition: filter .25s;
+            }
+
+            \& button:hover {
+                filter: brightness(.75);
+            }
+
+            \& button:active {
+                filter: brightness(1.25);
+            }
+
+            \& .img {
+                filter: brightness(50%);
+                background-image: url(../images/hero.png);
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                background-position-x: center;
+                background-size: cover;
+            }
+
+            \& aside h3 {
+                padding-bottom: 2em;
+                padding-left: .4em;
+            }
+
+            \& .main-txt>div {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                width: 80%;
+            }
+
+
+
+            @media screen and (max-width: 1026px) {
+                \& {
+                    grid-template-columns: 1fr;
+                    min-height: 90vh;
+                }
+
+                \& h1 {
+                    font-size: 4.4em;
+                }
+
+                \& aside {
+                    background: linear-gradient(180deg, #000000a6 88%, transparent);
+                }
+
+                \& .img {
+                    min-height: 100vh;
+                    position: absolute;
+                }
+
+                \& .main-txt>div {
+                    grid-column: auto;
+                    width: unset;
+                    padding-top: 5em;
+                    justify-items: center;
+                }
+
+                \& button {
+                    font-size: 3vw;
+                    margin-bottom: 1em;
+                    width: 80%;
+                }
+
+                /* \& .dropdown-content a {
+                        font-size: 15px;
+                    } */
+
+                @media screen and (max-width: 769px) {
+                    \& .main-txt>div {
+                        padding-top: 0em;
+                    }
+
+                    \& .dropdown-content a {
+                        padding: 1em .5em;
+                        font-size: 10px;
+                    }
+                }
+            }
+
+            /* \& h1 {
+                    font-size: 9em;
+                }
+
+                \& p {
+                    font-weight: 300;
+                    color: #b2b5be;
+                    flex: 1 0 auto;
+                    font-size: 1em;
+                    line-height: 1.6em;
+                    margin-bottom: 2em;
+                    margin-top: 2em;
+                }
+
+                \& button {
+                    font-size: 2em;
+                }
+
+                \& aside {
+                    background: linear-gradient(180deg, #000000a6 88%, transparent);
+                }
+
+                \& .img {
+                    min-height: 100vh;
+                    position: absolute;
+                }
+
+                \& .main-txt>div {
+                    width: unset;
+                    padding-top: 5em;
+                }
+
+            }
+
+            @media screen and (max-width: 500px) {
+                \& h1 {
+                    font-size: 5em;
+                }
+            } */
+        </style>
+        <div class="img"></div>
+        <aside>
+            <div class="main-txt">
+                <h1>Take Your Trading to New Heights</h1>
+                <h3>Multiple Advanced CryptoCurrency Charts On One Screen <br> All for FREE</h3>
+                <div "links">
+                    <div class="dropdown">
+                        <button style="background-color: #3465ce;">View Charts</button>
+                        <div class="dropdown-content">
+                            <a target="_blank" href="../?c=" style="color: white">My Charts</a>
+                            <a target="_blank" href="..?c=BINANCE:BTCUSDT,BINANCE:ETHUSDT,BINANCE:GMTUSDT,BINANCE:FTMUSDT,BINANCE:ALGOUSDT,BINANCE:LUNAUSDT,BINANCE:DOGEUSDT&p=1" style="color: #F0B90B">Binance</a>
+                            <a target="_blank" href="..?c=KUCOIN:BTCUSDT,KUCOIN:ETHUSDT,KUCOIN:GMTUSDT,KUCOIN:FTMUSDT,KUCOIN:APEUSDT,KUCOIN:FLUXUSDT,KUCOIN:JARUSDT&p=1" style="color: #3caf91">Kucoin</a>
+                        </div>
+                    </div>
+                    <div></div>
+                    <div class="dropdown">
+                        <button>Scanners</button>
+                        <div class="dropdown-content">
+                            <a target="_blank" href="/scanner/index.html" style="color: #F0B90B">MCC Binance Scanner</a>
+                            <a target="_blank" href="/adv-scanner.html">MCC Advanced Scanner</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+    <section "headline-features">
+        <style class="scoped">
+            \& {
+                color: white;
+                text-align: center;
+                display: grid;
+                /* max-width: var(--w); */
+                margin: auto;
+                grid-template-columns: 480px 480px 480px;
+                justify-content: center;
+                column-gap: 2em;
+                padding: 3em 0;
+            }
+
+            \& h3 {
+                font-size: 2em;
+            }
+
+            \& div {
+                background: black;
+                border-color: #2962ff4d;
+                box-shadow: 0 0 15px #2962ff4d;
+                padding: 2em 2em;
+                border-radius: 6px;
+                text-align: left;
+                margin: 2em 2em;
+            }
+
+            \& div:hover {
+                border-color: #2962ff4d;
+                box-shadow: 0 0 50px #2962ff4d;
+                /* box-shadow: 0 2px 4px #0006; */
+                /* border: 2px solid #2962ff4d; */
+                border-radius: 8px;
+                transition: border .1s linear;
+            }
+
+            \& p {
+                font-weight: 300;
+                color: #b2b5be;
+                flex: 1 0 auto;
+                font-size: 16px;
+                line-height: 24px;
+                margin-bottom: 25px;
+                margin-top: 16px;
+            }
+
+            @media screen and (max-width: 1650px) {
+                \& {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+            }
+
+            @media screen and (max-width: 1350px) {
+                \& {
+                    grid-template-columns: 1fr;
+                    padding: 0;
+                }
+
+                \& p {
+                    font-size: 1.3em;
+                    line-height: 1.5em;
+                    margin-bottom: 4em;
+                }
+
+                \& h3 {
+                    margin-top: 0;
+                    max-width: 100%;
+                    font-size: 3em;
+                }
+
+                \& div {
+                    width: 425px;
+                    justify-self: center;
+                }
+            }
+
+            @media screen and (max-width: 1026px) {
+                \& {
+                    grid-template-columns: 1fr;
+                }
+
+                \& h2 {
+                    font-size: 12px;
+                }
+
+                \& h3 {
+                    font-size: 2.5em;
+                    align-items: baseline;
+                    color: #fff;
+                    display: flex;
+                    font-weight: 400;
+                    line-height: 1.3em;
+                    max-width: 400px;
+                }
+
+
+            }
+
+            @media screen and (max-width: 500px) {
+                \& p {
+                    font-size: 1em;
+                }
+
+                \& h3 {
+                    font-size: 2em;
+                }
+
+                \& div {
+                    width: auto;
+                    height: 350px;
+                }
+            }
+        </style>
+        <div>
+            <img src="" alt="">
+            <h3>Live Cryptocurrency Charts</h3>
+            <p>Easily monitor all of your favorite Cryptocurrencies with real-time (live) charts & price data. Bitcoin
+                (BTC), Ethereum (ETH), DogeCoin (DOGE) and more. Be the first to see the market moves and get ahead of
+                the competition with MCC.</p>
+        </div>
+        <div>
+            <img src="" alt="">
+            <h3>Supports Your Favorite Crypto Exchanges</h3>
+            <p>View the price action for all of your favorite exchanges all on one screen. Binance, Coinbase (Pro),
+                Kucoin, FTX and more. No more hassle of multiple tabs for keeping up with cryptocurrency prices across
+                multiple exchanges.</p>
+        </div>
+        <div>
+            <img src="" alt="">
+            <h3>MultiCoinCharts Scanners</h3>
+            <p>Take your trading to the next level with our MCC Scanners (More to Come). Find trades quicker
+                and easier than ever before with the most advanced crytocurrency scanners on the market.</p>
+        </div>
+    </section>
+    <section "mcc-showcase">
+        <style class="scoped">
+            \& {
+                display: flex;
+                flex-direction: column;
+            }
+
+            \& h2 {
+                font-size: 2.3em;
+                color: white;
+            }
+
+            \& h3 {
+                color: white;
+                text-align: center;
+                font-size: 1em;
+            }
+
+            p {
+                color: white;
+            }
+
+            \& aside {
+                margin: auto;
+            }
+
+            \& div {
+                margin: auto;
+            }
+
+            \& .icon {
+                filter: invert(1);
+                height: 120px;
+                width: 120px;
+            }
+
+            \& .vid {
+                text-align: center;
+                height: 484px;
+                overflow: hidden;
+            }
+
+            @media screen and (max-width: 1026px) {
+                \& video {
+                    max-width: 90%;
+                }
+
+                \& h2 {
+                    font-size: 3em;
+                }
+
+                \& h3 {
+                    font-size: 1.5em;
+                }
+            }
+
+            @media screen and (max-width: 800px) {
+                \& .vid {
+                    height: auto;
+                }
+            }
+
+            @media screen and (max-width: 500px) {
+                \& .vid {
+                    height: auto;
+                }
+            }
+        </style>
+        <aside>
+            <h2 style="text-align: center;">Experience The Power of MultiCoinCharts</h2>
+            <h3>The Most Advanced Free Charting Platform</h3>
+        </aside>
+        <div class="vid">
+            <video autoplay loop name="MCC Showcase" muted>
+                <source src="https://i.imgur.com/mZvtuLX.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div style="background: #00081d; padding-top: 3em; padding-bottom: 3em; ">
+            <a target="_blank" href="https://twitter.com/MultiCoinCharts"><img class="icon" src="../images/twitter.png"
+                    alt="Twitter Icon"></a>
+        </div>
+    </section>
+</body>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<LINK rel="shortcut icon" type="image/png" href="images/favicon.png">
+	<title>MCC Advanced Scanner</title>
+</head>
+
+<style>
+
+	#scanner {
+		display: grid;
+		grid-template-columns: 20% 60% 20%;
+		height: 100%;
+	}
+
+	body {
+		margin: 0;
+		height: 100vh;
+		background-color: #1e222d;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	}
+
+	.navbar {
+		/* position: relative; */
+		overflow: hidden;
+		background-color: #333;
+	}
+
+	.navbar a {
+		font-size: 16px;
+		color: white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+	}
+
+	.center {
+		justify-content: center;
+	}
+
+	.dropdown {
+		float: left;
+		overflow: hidden;
+	}
+	.dropdown .dropbtn {
+		font-size: 16px;
+		border: none;
+		outline: none;
+		color: #d1d4dc;
+		padding: 14px 16px;
+		background-color: inherit;
+		font-family: inherit;
+		margin: 0;
+	}
+
+	.navbar a:hover,
+	.dropdown:hover .dropbtn {
+		background-color: #1e53e5;
+	}
+
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #223251;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		z-index: 1;
+	}
+
+	.dropdown-content>span {
+		float: none;
+		color: #d1d4dc;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.dropdown-content>span:hover {
+		background-color: #ddd;
+		color: black;
+	}
+
+	.dropdown:hover .dropdown-content {
+		display: block;
+	}
+
+	.active {
+		background-color: #3465ce !important;
+	}
+</style>
+
+<body>
+
+	<div class="navbar">
+		<div class="dropdown"><a href="./?c="><button class="dropbtn colorTheme">Return to MCC</button></a></div>
+		<div class="center">
+			<div class="dropdown exchange">
+				<button class="dropbtn"> Exchange </button>
+				<div onclick="defaults.market = exchanges[event.target.dataset.id]; refresh()" class="dropdown-content">
+					<span data-id="21">
+						Cryptocurrencies
+					</span>
+					<span data-id="20">
+						Forex
+					</span>
+					<span data-id="0">
+						USA (NASDAQ, NYSE, NYSE ARCA, OTC)
+					</span><span data-id="1">
+						Australia (ASX)
+					</span><span data-id="2">
+						Canada (TSX, TSXV, CSE, NEO)
+					</span><span data-id="3">
+						Egypt (EGX)
+					</span><span data-id="4">
+						Germany (FWB, SWB, XETR, BER, DUS, HAM, HAN, MUN)
+					</span><span data-id="5">
+						Greece (ATHEX)
+					</span><span data-id="6">
+						India (BSE, NSE)
+					</span><span data-id="7">
+						Israel (TASE)
+					</span><span data-id="8">
+						Italy (MIL)
+					</span><span data-id="9">
+						Luxembourg (LUXSE)
+					</span><span data-id="10">
+						Norway (EURONEXTOSE)
+					</span><span data-id="11">
+						Philippines (PSE)
+					</span><span data-id="12">
+						Poland (NEWCONNECT)
+					</span><span data-id="13">
+						Slovakia (BSSE)
+					</span><span data-id="14">
+						South Korea (KRX)
+					</span><span data-id="15">
+						Sweden (NGM)
+					</span><span data-id="16">
+						Taiwan (TPEX)
+					</span><span data-id="17">
+						Turkey (BIST)
+					</span><span data-id="18">
+						United Kingdom (LSE, LSIN)
+					</span><span data-id="19">
+						Vietnam (HNX, UPCOM)
+					</span>
+				</div>
+			</div>
+			<div class="dropdown screener">
+				<button class="dropbtn"> Screener </button>
+				<div onclick="defaults.defaultScreen = screeners[event.target.dataset.id]; refresh()"
+					class="dropdown-content">
+					<span data-id="0" class="tv-dropdown-behavior__item tv-control-select__option i-active">
+						General
+					</span><span data-id="1">
+						Rising pairs
+					</span><span data-id="2">
+						Falling pairs
+					</span><span data-id="3">
+						All-time high
+					</span><span data-id="4">
+						All-time low
+					</span><span data-id="5">
+						New 52-week high
+					</span><span data-id="6">
+						New 52-week low
+					</span><span data-id="7">
+						New monthly high
+					</span><span data-id="8">
+						New monthly low
+					</span><span data-id="9">
+						Most volatile
+					</span><span data-id="10">
+						Overbought
+					</span><span data-id="11">
+						Oversold
+					</span><span data-id="12">
+						Outperforming SMA50
+					</span><span data-id="13">
+						Underperforming SMA50
+					</span>
+				</div>
+			</div>
+			<div class="dropdown column">
+				<button class="dropbtn"> Default Column </button>
+				<div onclick="defaults.defaultColumn = columns[event.target.dataset.id]; refresh()"
+					class="dropdown-content">
+					<span data-id="0" class="tv-dropdown-behavior__item tv-control-select__option i-active">
+						Overview
+					</span><span data-id="1">
+						Perfomance
+					</span><span data-id="2">
+						Oscillators
+					</span><span data-id="3">
+						Trend-Following
+					</span>
+				</div>
+			</div>
+			<div class="dropdown"><button onclick="defaults.showToolbar = !defaults.showToolbar; refresh()"
+					class="dropbtn showToolbar">Advanced Filters</button></div>
+			<div class="dropdown"><button onclick="defaults.colorTheme = !defaults.colorTheme; refresh()"
+					class="dropbtn colorTheme">Light Mode</button></div>
+		</div>
+
+	</div>
+	<div id="scanner"><div></div></div>
+	
+	<script>
+
+
+		const defaults = { market: "crypto", colorTheme: false, defaultScreen: "ath", defaultColumn: "overview", showToolbar: false }
+		const { market, colorTheme, defaultScreen, defaultColumn, showToolbar } = getParamsObj(defaults)
+
+		const tv_opts = {
+			"width": "100%",
+			"height": "100%",
+			"defaultColumn": "overview",
+			"defaultScreen": "ath",
+			"market": "crypto",
+			"showToolbar": false,
+			"colorTheme": "dark",
+			"locale": "en",
+			"largeChartUrl": "localhost:5500/?c={tvexchange}:{tvsymbol}&p=1&s=1"
+		}
+
+
+		tv_opts.market = market
+		tv_opts.colorTheme = colorTheme ? "light" : "dark"
+		tv_opts.defaultScreen = defaultScreen
+		tv_opts.defaultColumn = defaultColumn
+		tv_opts.showToolbar = showToolbar
+
+		//#region Toolbar "active" classes
+		const exchanges = "america,australia,canada,egypt,germany,greece,india,israel,italy,luxembourg,norway,philippines,poland,slovakia,korea,sweden,taiwan,turkey,uk,vietnam,forex,crypto".split(",")
+		const exch_id = exchanges.findIndex(exch => exch == market)
+		const span_exch_option = document.querySelector(`.exchange [data-id="${exch_id}"]`)
+		if (span_exch_option) span_exch_option.className = "active"
+
+		const screeners = "general,top_gainers,top_losers,ath,atl,above_52wk_high,below_52wk_low,monthly_high,monthly_low,most_volatile,overbought,oversold,outperforming_SMA50,underperforming_SMA50".split(",")
+		const scr_id = screeners.findIndex(scr => scr == defaultScreen)
+		const span_scr_option = document.querySelector(`.screener [data-id="${scr_id}"]`)
+		if (span_scr_option) span_scr_option.className = "active"
+
+		const columns = "overview,performance,oscillators,moving_averages".split(",")
+		const clm_id = columns.findIndex(clm => clm == defaultColumn)
+		const span_clm_option = document.querySelector(`.column [data-id="${clm_id}"]`)
+		if (span_clm_option) span_clm_option.className = "active"
+
+		if (tv_opts.colorTheme == "light")
+			document.querySelector(".colorTheme").className += " active"
+
+		if (tv_opts.showToolbar)
+			document.querySelector(".showToolbar").className += " active"
+
+
+		//#endregion
+		//#region Create Widget & append to page
+		const script = document.createElement("script")
+
+		script.textContent = JSON.stringify(tv_opts)
+
+		script.src = "https://s3.tradingview.com/external-embedding/embed-widget-screener.js"
+
+		let scanDiv = document.getElementById("scanner")
+		scanDiv.append(script)
+		// document.body.append(script)
+		//#endregion
+		//#region Functions
+		function refresh() {
+			const real = {}
+			for (const property in defaults) {
+				const value = defaults[property]
+				if (value === true)
+					real[property] = ""
+				else if (value === false)
+					continue
+				else real[property] = value
+			}
+			const params = new URLSearchParams(Object.entries(real))
+			location.search = `?${params}`
+		}
+
+		/** @type {<T>(t:T)=>T} */
+		function getParamsObj() {
+			const sp = new URLSearchParams(location.search)
+			const params = Object.fromEntries(sp.entries())
+
+			for (const property in defaults) {
+				if (property in params && !params[property])
+					defaults[property] = true
+				else if (property in params)
+					defaults[property] = params[property]
+				else continue
+			}
+			return defaults
+		}
+		//#endregion
+
+	</script>
+
+</body>
+
+</html>

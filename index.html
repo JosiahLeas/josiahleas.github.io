@@ -31,6 +31,29 @@
 	<META itemprop="image" content="https://www.multicoincharts.com/images/mcc-capture.png">
 	<META name="fo-verify" content="210b05bb-bce5-49f0-a5fc-7494b6362a69">
 	<META name="coinzilla" content="3b3a0956d217d754c20eaf951132d265" />
+	<!-- Google Metas -->
+	<SCRIPT async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></SCRIPT>
+	<SCRIPT>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments) };
+		gtag('js', new Date());
+		gtag('config', 'UA-107348406-1');
+		(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-K6QVJBW');
+	</SCRIPT>
+	<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({
+			google_ad_client: "ca-pub-3023875029405790",
+			enable_page_level_ads: true
+		});
+	</script> -->
 	<!-- Open Graph Metas -->
 	<META name="og:title" content="MultiCoinCharts">
 	<META name="og:description"
@@ -49,8 +72,8 @@
 
 	<SCRIPT async type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
 	<SCRIPT async type="text/javascript" src="js/emocoin.js?v8.0"></SCRIPT>
-	<SCRIPT async type="text/javascript" src="js/headstart.js?v3.0"></SCRIPT>
-	
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js"></SCRIPT>
+
 
 	<SCRIPT src="https://cdn.jsdelivr.net/gh/VSADX/scoped-css@main/scoped-css.js" type="module"></SCRIPT>
 </HEAD>
@@ -85,7 +108,29 @@
 				width: auto;
 				max-width: 990px;
 			}
+
+			\& p {
+				pointer-events: none;
+				background: white;
+				color: black;
+				border-radius: 50%;
+				position: absolute;
+				width: 32px;
+				height: 32px;
+				line-height: 32px;
+				right: 1px;
+				top: -13px;
+				z-index: 9;
+			}
+
+			\& h3 {
+				position: absolute;
+				right: 40px;
+				top: -13px;
+				z-index: 9;
+			}
 		</STYLE>
+		<p id="adClose" href="javascript:void(0)" onclick="top_space.remove()" style="cursor: pointer;">X</p>
 		<iframe data-aa="1757628" src="//ad.a-ads.com/1757628?size=728x90"
 			style="width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;"></iframe>
 	</DIV>
@@ -93,7 +138,6 @@
 		<STYLE class="scoped">
 			\& {
 				max-width: 100vw;
-				overflow-x: hidden;
 				padding-right: 90px;
 				position: relative;
 				padding: 3px;
@@ -103,12 +147,14 @@
 				display: none;
 			}
 
-			@media screen and (max-width: 920px) {
+			@media screen and (max-width: 750px) {
 				\& {
-					padding-bottom: 2em;
+					text-align: center;
 				}
+
 			}
 		</STYLE>
+		<a href="./"><button class="theme">HOME</button></a>
 		<DIV class="label theme">
 			<LABEL for="width" class="number-label">Width</LABEL>
 			<INPUT id="width" value="2" class="box-size" title="Adjusts the chart width" type="number" name="box-width"
@@ -123,67 +169,92 @@
 			Javascript Error
 		</BUTTON>
 		<BUTTON id="indicators_reveal" class="theme" onclick="XDirectUI.visibility('modalIndicators')">
-			INDICATORS
+			Indicators
 		</BUTTON>
 		<BUTTON id="share_reveal" class="theme" onclick="XDirectUI.visibility('modalAd');">
-			SHARE
+			Share
 		</BUTTON>
 		<BUTTON id="chart_rearrange" class="theme" onclick="XDirectUI.toggle_rearrange_mode()">
-			REARRANGE
+			Rearrange
 		</BUTTON>
 		<BUTTON id="add_chart_reveal" class="theme" onclick="XDirectUI.visibility('chart_add_select');">
-			ADD CHART
+			Add Chart
 		</BUTTON>
 		<!-- TODO: MCC Profiles Feature -->
 		<SELECT id="profile_select" class="theme" style="display: none;">
 			<OPTION value="default" selected="true">Default</OPTION>
 		</SELECT>
-		<A class="btn btn-nav theme" href="https://multicoincharts.com/scanner" target="_blank">
+		<div>
 			<STYLE class="scoped">
 				\& {
-					padding: 2px;
-					background: rgb(55, 161, 210);
-					color: white;
-					justify-content: center;
-					right: 4px;
-					top: 4px;
-					text-transform: none;
+					display: contents;
 				}
 
 				\&>span {
 					color: #444;
 				}
 
-				@media screen and (max-width: 920px) {
-					\& {
-						bottom: .25em;
-						top: unset;
-						left: 0;
-						right: 0;
-						margin: auto;
-						max-width: 18em;
-					}
+				\& .dropdown {
+					position: relative;
+					display: inline-block;
 				}
-			</STYLE>
-			&nbsp;MCC Scanner &nbsp;
-		</A>
-		<A class="btn btn-nav theme right" href="https://discord.gg/EPgHzgSwRz" target="_blank">
-			<STYLE class="scoped">
-				\& {
-					padding: 2px;
-					background: rgb(55, 161, 210);
-					color: white;
+
+				\& .dropdown>button {
+					background-color: purple;
+				}
+
+				\& .dropdown-content {
+					display: none;
 					position: absolute;
-					right: 4px;
-					top: 4px;
-					text-transform: none;
+					box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+					z-index: 1;
+					overflow: auto;
+					border-radius: .25em;
 				}
 
-				\&>span {
-					color: #444;
+				\& .dropdown-content a {
+					color: #d463d4;
+					padding: 0.5em 0.5em;
+					text-decoration: none;
+					display: block;
+					background: #fff1;
+					backdrop-filter: blur(15px);
+					font-size: 1.2em;
 				}
 
-				@media screen and (max-width: 920px) {
+				\& .dropdown-content a:hover {
+					background-color: #fff3;
+				}
+
+				\& .dropdown:hover .dropdown-content {
+					width: 150%;
+					display: block;
+				}
+
+				\& button {
+					background: #fff1;
+					backdrop-filter: blur(15px);
+					width: 100%;
+					color: #b67db6;
+					border-radius: .25em;
+					overflow: auto;
+					border-radius: .25em;
+					border: none;
+					font-weight: bold;
+					color: white;
+					transition: filter .25s;
+					border: 1px solid #9b9b9bad;
+				}
+
+				\& button:hover {
+					filter: brightness(.75);
+				}
+
+				\& button:active {
+					filter: brightness(1.25);
+				}
+
+				@media screen and (max-width: 885px) {
 					\& {
 						bottom: .25em;
 						top: unset;
@@ -192,11 +263,168 @@
 						margin: auto;
 						max-width: 18em;
 					}
+
+					\& .dropdown-content {
+						width: 100% !important;
+					}
+
+					\& button {
+						font-size: 9px;
+					}
+				}
+
+				@media screen and (max-width: 700px) {
+					.theme {
+						font-size: 8px;
+					}
 				}
 			</STYLE>
-			&nbsp;Join us on Discord <span id="features"></span>&nbsp;
-		</A>
+			<div class="dropdown">
+				<button> MCC Scanners</button>
+				<div style="padding-top: 5px;">
+					<div class="dropdown-content">
+						<a href="/scanner" target="_blank" style="color: #F0B90B">Binance Scanner</a>
+						<a href="/adv-scanner.html" target="_blank">Advanced Scanner</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<STYLE class="scoped">
+				\& {
+					float: right;
+					display: block;
+				}
 
+				\&>span {
+					color: #444;
+				}
+
+				\& .dropdown {
+					position: relative;
+					display: inline-block;
+				}
+
+				\& .dropdown>button {
+					background-color: #3465ce;
+				}
+
+				\& .dropdown-content {
+					display: none;
+					position: absolute;
+					box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+					z-index: 1;
+					overflow: auto;
+					border-radius: .25em;
+				}
+
+				\& .dropdown-content a {
+					color: rgb(55, 161, 210);
+					padding: 0.5em 0.5em;
+					text-decoration: none;
+					display: block;
+					background: #fff1;
+					backdrop-filter: blur(15px);
+					font-size: 1.2em;
+				}
+
+				\& .dropdown-content a:hover {
+					background-color: #fff3;
+				}
+
+				\& .dropdown:hover .dropdown-content {
+					transform: translateX(-25%);
+					width: 150%;
+					display: block;
+				}
+
+				\& button {
+					background: #fff1;
+					backdrop-filter: blur(15px);
+					width: 100%;
+					color: #b67db6;
+					border-radius: .25em;
+					overflow: auto;
+					border-radius: .25em;
+					border: none;
+					font-weight: bold;
+					color: white;
+					transition: filter .25s;
+					border: 1px solid #9b9b9bad;
+				}
+
+				\& button:hover {
+					filter: brightness(.75);
+				}
+
+				\& button:active {
+					filter: brightness(1.25);
+				}
+
+
+				@media screen and (max-width: 885px) {
+					\& button {
+						font-size: 9px;
+					}
+				}
+
+				@media screen and (max-width: 765px) {
+					\& {
+						bottom: .25em;
+						top: unset;
+						left: 0;
+						right: 0;
+						margin: auto;
+						max-width: 18em;
+						float: unset;
+						display: inline-block;
+					}
+				}
+			</STYLE>
+			<div class="dropdown">
+				<button> MCC Community</button>
+				<div style="padding-top: 5px;">
+					<div class="dropdown-content">
+						<A class="btn btn-nav theme right">
+							<STYLE class="scoped">
+								\& {
+									padding: 2px;
+									background: #1D9BF0;
+									color: white;
+									position: absolute;
+									right: 4px;
+									top: 4px;
+									text-transform: none;
+								}
+
+								\&>span {
+									color: #444;
+								}
+
+								@media screen and (max-width: 885px) {
+									\& {
+										bottom: .25em;
+										top: unset;
+										left: 0;
+										right: 0;
+										margin: auto;
+										max-width: 18em;
+									}
+
+									\& a {
+										font-size: 8px;
+									}
+								}
+							</STYLE>
+							&nbsp;Discord <span hidden id="features"></span>&nbsp;
+						</A>
+						<a href="https://twitter.com/MultiCoinCharts" target="_blank">Twitter</a>
+						<a style="color: #5865f2;" href="https://discord.gg/EPgHzgSwRz" target="_blank">Discord</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="modalConfig" class="modalConfig hide">
 			<div class="hero">
 				<div class="cornflower-box">
@@ -314,51 +542,51 @@
 						</div>
 						<hr>
 						<div>
-							<span for="hide_top_toolbar" class="cWhite fwBold">
+							<span for="hide_top_toolbar" class="cWhite fwBold">Hide Top Toolbar (Symbol Change)
 								<span data-balloon-length="fit"
-								data-balloon="If you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved upon reload. Use 'ADD CHART' or '+' button to save configuration"
+									data-balloon="If you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
 									data-balloon-pos="up" class="medBallon"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>&nbsp;Hide Top Toolbar (Symbol Change)
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
 							</span>
 							<input id="hide_top_toolbar" type="checkbox" name="hide_top_toolbar"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</div>
 						<div>
-							<span for="hide_legend" class="cWhite fwBold">
+							<span for="hide_legend" class="cWhite fwBold">Hide Legend
 								<span data-balloon-length="fit"
-									data-balloon="Hide coin info and OHLC that is shown on top left of chart"
+									data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
 									data-balloon-pos="up" class="medBallon"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>&nbsp;Hide Coin Info/OHLC
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
 							</span>
 							<input id="hide_legend" type="checkbox" name="hide_legend"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</div>
 						<div>
-							<span for="hide_side_toolbar" class="cWhite fwBold">
+							<span for="hide_side_toolbar" class="cWhite fwBold">Hide Side Toolbar
 								<span data-balloon-length="fit"
-									data-balloon="Hides Drawing tools shown on left of chart"
+									data-balloon="Due to limitation of TradingView widget, if you tick this OPTION you will be able to change the Symbol/Pairs in your charts, however it will not be saved in your configurations. The configuration will still be the first Symbol/Pairs that you setup."
 									data-balloon-pos="up" class="medBallon"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>&nbsp;Hide Side Toolbar
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
 							</span>
 							<input id="hide_side_toolbar" type="checkbox" name="hide_side_toolbar"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</div>
 						<hr>
 						<div>
-							<span for="usesmallbutton" class="cWhite fwBold">
+							<span for="usesmallbutton" class="cWhite fwBold">Use Small Buttons
 								<span data-balloon-length="fit"
-									data-balloon="Use smaller button size, applies to the following buttons: Show in Fullscreen, Remove this Chart"
+									data-balloon="Use smaller button size, applies to the following buttons: Open in Coinigy, Show in Fullscreen, Remove this Chart"
 									data-balloon-pos="up"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>&nbsp;Use Small Buttons
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
 							</span>
 							<input id="usesmallbutton" type="checkbox" name="usesmallbutton"
 								onclick="storeMAN(true, this.id, this.checked)">
 						</div>
 						<div>
-							<span for="dark" class="cWhite fwBold">
+							<span for="dark" class="cWhite fwBold">Use Dark Mode
 								<span data-balloon-length="fit" data-balloon="Opens charts in light mode."
 									data-balloon-pos="up"
-									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>&nbsp;Use Dark Mode
+									style="font-weight:bold;border-bottom:1px dotted #999">(?)</span>
 							</span>
 							<input id="dark" type="checkbox" name="dark"
 								onclick="storeMAN(true, this.id, this.checked)">
@@ -388,16 +616,7 @@
 					<div class="divPairsSetup t-left">
 						<h3>MultiCoinCharts</h3>
 						<br>
-						<div id="IndGrid" style="
-							display: grid;
-							grid-template-columns: 1fr 1fr 1fr 1fr;
-							background: #f8f8f8;
-							border-radius: 4px;
-							max-height: 260px;
-							padding: 0px 20px;
-							overflow-y: scroll;
-							color: #222;
-							align-self: center;">
+						<div id="IndGrid">
 							<p>ACCD</p><input type="checkbox" id="ACCD">
 							<p>studyADR</p><input type="checkbox" id="studyADR">
 							<p>AROON</p><input type="checkbox" id="AROON">
@@ -554,6 +773,16 @@
 					#i1d8796bc>div {
 						display: flex;
 					}
+
+					@media screen and (max-width: 650px) {
+						#i1d8796bc {
+							grid-template-columns: 1fr;
+						}
+
+						#i17d72448>div {
+							row-gap: 0;
+						}
+					}
 				</style>
 				<div>
 					<div class="divPairsSetup" id="i17d72448">
@@ -591,6 +820,12 @@
 							#i17d72448 details>div {
 								max-width: 310px;
 								padding-bottom: 2em;
+							}
+
+							@media screen and (max-width: 885px) {
+								#i17d72448>div {
+									row-gap: .2em;
+								}
 							}
 						</style>
 
@@ -658,6 +893,7 @@
 							}
 
 							#i1ac88a90 .\@first {
+								cursor: pointer;
 								width: 256px;
 								margin: 32px 0;
 								font-size: .8em;
@@ -669,6 +905,10 @@
 								display: block;
 								overflow-x: hidden;
 								padding: 12px;
+							}
+
+							#chart_adder {
+								text-transform: uppercase;
 							}
 						</style>
 						<p>
@@ -804,6 +1044,12 @@
 					text-align: center;
 					margin-top: 0px;
 				}
+
+				@media screen and (max-width: 885px) {
+					\&>p {
+						font-size: 11em;
+					}
+				}
 			</STYLE>
 			<P href="javascript:void(0)" onclick="XDirectUI.visibility('chart_add_select')"><SPAN>+</SPAN></P>
 			<UL>
@@ -922,10 +1168,12 @@
 			</A>
 		</DIV>
 	</DIV>
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?5.2.2"></SCRIPT>
+	<SCRIPT async type="text/javascript" src="js/testdrive.js"></SCRIPT>
 	<SCRIPT>
+		const urlContainParams = window.location.search.length === 0;
+		if (urlContainParams) window.location.href = '/home/';
 		let load_counter = 0;
-		onerror = function (_,_,_,_,err) {return !err}
+		onerror = function (_, _, _, _, err) { return !err }
 		void (function fireWhenReady() {
 			try {
 				eval("initPage;all;TradingView")
@@ -943,23 +1191,7 @@
 			return initPage()
 		})()
 	</SCRIPT>
-	<!-- Google Metas -->
-	<SCRIPT async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></SCRIPT>
-	<SCRIPT>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments) };
-		gtag('js', new Date());
-		gtag('config', 'UA-107348406-1');
-		(function (w, d, s, l, i) {
-			w[l] = w[l] || []; w[l].push({
-				'gtm.start':
-					new Date().getTime(), event: 'gtm.js'
-			}); var f = d.getElementsByTagName(s)[0],
-				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-		})(window, document, 'script', 'dataLayer', 'GTM-K6QVJBW');
-	</SCRIPT>
-	
+
 </BODY>
 
 </HTML>
