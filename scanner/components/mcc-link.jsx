@@ -39,5 +39,10 @@ const style = css`
   .mcc-link a:hover {
     background-color: #0002;
   }
+
+  @media screen and (max-width: 885px) {
+    .mcc-link a {
+      font-size: 1em;
+    }
 `
 add_style(style)

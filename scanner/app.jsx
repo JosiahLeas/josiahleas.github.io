@@ -68,6 +68,13 @@ html {
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
+
+@media screen and (max-width: 885px) {
+    h1 {
+      font-size: 1.5em;
+      padding-top: 1.5em;
+    }
+}
 `
 add_style(style)
 render(App, document.getElementById("main"))

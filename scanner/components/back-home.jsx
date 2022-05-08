@@ -32,5 +32,11 @@ const style = css`
     border: none;
     transition: all .2s;
   }
+
+  @media screen and (max-width: 885px) {
+    .back-button a, .back-button button {
+      font-size: 1em;
+    }
+	}
 `
 add_style(style)
