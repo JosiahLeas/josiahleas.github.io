@@ -531,7 +531,19 @@ div.divPairsSetup h3 {
 
 @media screen and (max-width: 885px) {
   .t-center {
-	  padding-top: 20px;
+    padding-top: 20px;
+  }
+
+  .number-label {
+    font-size: 9px;
+  }
+
+  input {
+    font-size: 9px;
+  }
+
+  #chart_rearrange {
+    display: none;
   }
   /* .number-label {
     font-size: 9px;
