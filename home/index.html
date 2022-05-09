@@ -171,6 +171,11 @@
                 width: 100%;
             }
 
+            \& .dropdown-content-active {
+                display: block;
+                width: 100%;
+            }
+
             \& button {
                 margin: 0 !important;
                 background: #fff1;
@@ -315,9 +320,10 @@
                 <h3>Multiple Advanced CryptoCurrency Charts On One Screen <br> All for FREE</h3>
                 <div "links">
                     <div class="dropdown">
-                        <a href="#viewCharts"><button style="background-color: #3465ce;">View
+                        <a href="#viewCharts"><button
+                                style="background-color: #3465ce;">View
                                 Charts</button></a>
-                        <div class="dropdown-content">
+                        <div id="dropdown" class="dropdown-content">
                             <a target="_blank" href="../?c=" style="color: white">My Charts</a>
                             <a target="_blank"
                                 href="..?c=BINANCE:BTCUSDT,BINANCE:ETHUSDT,BINANCE:GMTUSDT,BINANCE:FTMUSDT,BINANCE:ALGOUSDT,BINANCE:LUNAUSDT,BINANCE:DOGEUSDT&p=1"
@@ -328,7 +334,7 @@
                         </div>
                     </div>
                     <div></div>
-                    <div class="dropdown">
+                    <div id="dropdown" class="dropdown">
                         <button>Scanners</button>
                         <div class="dropdown-content">
                             <a target="_blank" href="/scanner/index.html" style="color: #F0B90B">MCC Binance Scanner</a>
@@ -556,4 +562,25 @@
                     alt="Twitter Icon"></a>
         </div>
     </section>
+    <script>
+        // let clicked = 0
+        // let dropdown = document.getElementById("dropdown")
+
+        // function activateDropdown() {
+        //     if (clicked == 0)
+        //     dropdown.classList.toggle("dropdown-content-active")
+        //     // clicked = 1
+        //     // console.log(clicked)
+        // }
+
+        // function removeDropdown() {
+        //   if(clicked == 1)   {
+        //       console.log("ran")
+        //       dropdown.classList.toggle("dropdown-content-active")
+        //       clicked = 0
+        //       console.log(clicked)
+        //   }
+        // }
+    </script>
+
 </body>

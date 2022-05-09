@@ -530,7 +530,10 @@ div.divPairsSetup h3 {
 }
 
 @media screen and (max-width: 885px) {
-  .number-label {
+  .t-center {
+	  padding-top: 20px;
+  }
+  /* .number-label {
     font-size: 9px;
   }
   input {
@@ -554,8 +557,8 @@ div.divPairsSetup h3 {
   }
 
   .t-center {
-	  padding-top: 12px;
-  }
+	  padding-top: 20px;
+  } */
 }
 
 @media screen and (max-width: 700px) {
