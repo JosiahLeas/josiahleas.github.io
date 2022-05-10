@@ -271,6 +271,10 @@
 					\& button {
 						font-size: 9px;
 					}
+
+					\& .dropdown-content a {
+						font-size: 8px;
+					}
 				}
 
 				@media screen and (max-width: 700px) {
@@ -365,6 +369,15 @@
 				@media screen and (max-width: 885px) {
 					\& button {
 						font-size: 9px;
+					}
+
+					\& .dropdown-content a {
+						font-size: 8px;
+					}
+
+					\& .dropdown:hover .dropdown-content {
+						transform: translateX(0);
+						width: 100%;
 					}
 				}
 
@@ -910,10 +923,11 @@
 							#chart_adder {
 								text-transform: uppercase;
 							}
+
 							@media screen and (max-width: 750px) {
 								#i1ac88a90 .\@first {
 									margin: 16px 0;
-									max-height: 17vh;
+									max-height: 15vh;
 								}
 							}
 						</style>
