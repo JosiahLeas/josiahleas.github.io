@@ -529,6 +529,12 @@ div.divPairsSetup h3 {
   align-self: center;
 }
 
+@media screen and (max-height: 720px) {
+  .modalInfo, .modalConfig, .modalAd {
+    overflow-y: scroll;
+  }
+}
+
 @media screen and (max-width: 885px) {
   .t-center {
     padding-top: 20px;
