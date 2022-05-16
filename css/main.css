@@ -532,6 +532,7 @@ div.divPairsSetup h3 {
 @media screen and (max-height: 720px) {
   .modalInfo, .modalConfig, .modalAd {
     overflow-y: scroll;
+    overflow-x: clip;
   }
 }
 
