@@ -76,6 +76,9 @@ html {
 
     h1 {
       font-size: 1.5em;
+    }
+
+    .t-grid {
       place-content: center;
     }
 }
