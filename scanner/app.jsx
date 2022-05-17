@@ -70,9 +70,13 @@ html {
 }
 
 @media screen and (max-width: 885px) {
+    #main > h1 {
+      padding-top: 1.5em;
+    }
+
     h1 {
       font-size: 1.5em;
-      padding-top: 1.5em;
+      place-content: center;
     }
 }
 `
