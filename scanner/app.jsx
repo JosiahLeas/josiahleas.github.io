@@ -75,7 +75,7 @@ html {
     }
 
     h1 {
-      font-size: 1.5em;
+      font-size: 2.5em;
     }
 
     .t-grid {

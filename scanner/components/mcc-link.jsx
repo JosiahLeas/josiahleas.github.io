@@ -42,7 +42,7 @@ const style = css`
 
   @media screen and (max-width: 885px) {
     .mcc-link a {
-      font-size: 1em;
+      font-size: 1.5em;
     }
 `
 add_style(style)
