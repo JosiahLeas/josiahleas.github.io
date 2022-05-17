@@ -10,7 +10,7 @@ export function HowTo() {
 
 
     return <>
-        <div class="back-button" style="right: 1em; left: auto; top: .71em">
+        <div class="back-button" style="right: 1em; left: auto; top: 1em">
             <button onClick={useCallback(() => show_box = true)}>How To Use</button>
         </div>
         <Transition name="slide">
