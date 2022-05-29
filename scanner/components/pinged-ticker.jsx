@@ -12,10 +12,13 @@ export function PingedTicker({ ticker }) {
 
     setTimeout(useCallback(() => time = latest()), 2 * 1000)
 
+    function openInNewTab() {
+      open(`/?c=${ticker.symbol}&s=1&p=1` , "_blank")
+    }
 
     return <>
 
-        <div class={ticker.count > 5 ? "ping tickers" : "tickers"}>
+        <div style="cursor: pointer;" onClick={openInNewTab} class={ticker.count > 5 ? "ping tickers" : "tickers"}>
             <h1>{ticker.symbol}</h1>
             <p>{ticker.count}</p>
 
