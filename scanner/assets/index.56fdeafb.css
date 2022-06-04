@@ -1,1 +1,235 @@
-header{display:grid;margin-top:8em;padding-top:1em;border-radius:1em;padding-bottom:2.8em;grid-template-columns:1fr 1fr 1fr;background-color:#ffffff05;font-size:.6em}.tickers{justify-content:center;display:grid;grid-template-columns:auto auto;border:1px solid rgba(255,255,255,.2666666667);background-color:#ffffff06;padding-bottom:10px;border-radius:5px}.tickers>h1{color:#d1d4dc;font-size:30px;font-weight:400;letter-spacing:-.3px;line-height:35px;margin:0;font-size:1.3em;align-self:center}.tickers>p{color:#2962ff;cursor:pointer;display:inline-block;font-weight:700;max-width:100%;padding-right:3px;align-self:center;margin:0 0 0 10px}.tickers .x2{justify-self:center}.tickers.ping{border-color:#f44336}.select-set select{margin:-.25em auto auto;font-size:2.1em;background:#272b35;color:#fff;padding:.25em 1em;border-radius:.25em}.how-to{position:absolute;background:rgba(0,0,0,.4);color:#fff;z-index:2;width:100vw;height:100vh;top:0;right:0;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);display:flex}.how-to>div{background-color:#1e222d;padding:40px;width:50%;inset:0;margin:auto;text-align:center;border-radius:.75em}.how-to h1{line-height:unset;font-size:2.5em}.how-to p{color:#fff}button.how{position:absolute;color:#fff;text-decoration:none;padding:.1em .25em;border-radius:5px;border:1px solid #2962ff;font-size:2em;background-color:#1e222d;transition:all .3s}button.how:hover{background-color:#2962ff;cursor:pointer}.back-button{position:absolute;left:1em;top:1em}.back-button a,.back-button button{color:#fff;text-decoration:none;padding:.25em 1em;border-radius:5px;font-size:1.5em;background-color:transparent;border:none;transition:all .2s}.back-button a:hover,.back-button button:hover{color:#2962ff}@media screen and (max-width: 885px){.back-button a,.back-button button{font-size:1em}}.mcc-link{width:100%;display:block;text-align:center;padding-top:1.5em}.mcc-link a{color:#fff;text-decoration:none;padding:.25em 1em;border-radius:.25em;font-size:2.5em;text-transform:capitalize;background-color:#fff1;transition:all .3s}.mcc-link a:hover{background-color:#0002}@media screen and (max-width: 885px){.mcc-link a{font-size:1.5em}}body{font-family:--apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif}label{display:block}html{background:#131722}.t-grid{height:100%;margin:50px 25px;padding:5px 100px;display:grid;grid-gap:20px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}@media screen and (max-width: 885px){#main>h1{padding-top:1.5em}h1{font-size:2.5em}.t-grid{place-content:center}}
+header {
+    display: grid;
+    margin-top: 8em;
+    padding-top: 1em;
+    border-radius: 1em;
+    padding-bottom: 2.8em;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #ffffff05;
+    font-size: .6em
+}
+
+.tickers {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    border: 1px solid rgba(255, 255, 255, .2666666667);
+    background-color: #ffffff06;
+    padding-bottom: 10px;
+    border-radius: 5px
+}
+
+.tickers>h1 {
+    color: #d1d4dc;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -.3px;
+    line-height: 35px;
+    margin: 0;
+    font-size: 1.3em;
+    align-self: center
+}
+
+.tickers>p {
+    color: #2962ff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    max-width: 100%;
+    padding-right: 3px;
+    align-self: center;
+    margin: 0 0 0 10px
+}
+
+.tickers .x2 {
+    justify-self: center
+}
+
+.tickers.ping {
+    border-color: #f44336
+}
+
+.select-set select {
+    margin: -.25em auto auto;
+    font-size: 2.1em;
+    background: #272b35;
+    color: #fff;
+    padding: .25em 1em;
+    border-radius: .25em
+}
+
+.how-to {
+    position: absolute;
+    background: rgba(0, 0, 0, .4);
+    color: #fff;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    display: flex
+}
+
+.how-to>div {
+    background-color: #1e222d;
+    padding: 40px;
+    width: 50%;
+    inset: 0;
+    margin: auto;
+    text-align: center;
+    border-radius: .75em
+}
+
+.how-to h1 {
+    line-height: unset;
+    font-size: 2.5em
+}
+
+.how-to p {
+    color: #fff
+}
+
+button.how {
+    position: absolute;
+    color: #fff;
+    text-decoration: none;
+    padding: .1em .25em;
+    border-radius: 5px;
+    border: 1px solid #2962ff;
+    font-size: 2em;
+    background-color: #1e222d;
+    transition: all .3s
+}
+
+button.how:hover {
+    background-color: #2962ff;
+    cursor: pointer
+}
+
+.back-button {
+    position: absolute;
+    left: 1em;
+    top: 1em
+}
+
+.back-button a,
+.back-button button {
+    color: #fff;
+    text-decoration: none;
+    padding: .25em 1em;
+    border-radius: 5px;
+    font-size: 1.5em;
+    background-color: transparent;
+    border: none;
+    transition: all .2s
+}
+
+.back-button a:hover,
+.back-button button:hover {
+    color: #2962ff
+}
+
+@media screen and (max-width: 885px) {
+
+    .back-button a,
+    .back-button button {
+        font-size: 1em
+    }
+}
+
+.mcc-link {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding-top: 1.5em
+}
+
+.mcc-link a {
+    color: #fff;
+    text-decoration: none;
+    padding: .25em 1em;
+    border-radius: .25em;
+    font-size: 2.5em;
+    text-transform: capitalize;
+    background-color: #fff1;
+    transition: all .3s
+}
+
+.mcc-link a:hover {
+    background-color: #0002
+}
+
+@media screen and (max-width: 885px) {
+    .mcc-link a {
+        font-size: 1.5em
+    }
+}
+
+body {
+    font-family: --apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif
+}
+
+label {
+    display: block
+}
+
+html {
+    background: #131722
+}
+
+.t-grid {
+    height: 100%;
+    margin: 50px 25px;
+    padding: 5px 100px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+}
+
+@media screen and (max-width: 885px) {
+    #main>h1 {
+        padding-top: 1.5em
+    }
+
+    h1 {
+        font-size: 2.5em
+    }
+
+    .t-grid {
+        place-content: center;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    header {
+        grid-template-columns: 1fr;
+        margin-top: 4em;
+        margin-bottom: -3em;
+        font-size: .8em;
+    }
+
+    .how-to h1 {
+        font-size: 1.5em;
+    }
+
+    .how-to p {
+        font-size: 0.7em;
+    }
+
+    .how {
+        font-size: 1em !important;
+    }
+
+    .select-set select {
+        font-size: 1.5em
+    }
+
+    .t-grid div h1 {
+        font-size: 1em
+    }
+
+    .tickers {
+        width: 150px;
+    }
+}
