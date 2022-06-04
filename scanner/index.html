@@ -1,57 +1,19 @@
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="shortcut icon" type="image/ico" href="/assets/favicon.0e726a38.ico" />
+    <title>MCC Binance Scanner</title>
+    <script type="module" crossorigin src="/assets/index.d7a73599.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.d7c5f3d0.js">
+    <link rel="stylesheet" href="/assets/index.56fdeafb.css">
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="app"></div>
 
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107348406-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-
-  gtag('config', 'UA-107348406-1');
-</script>
-
-
-<script type="module">
-  const app = "./app.jsx"
-  start(app)
-
-  async function start(entry_url = "./index.js") {
-
-    const sw = navigator.serviceWorker
-    sw.register("./jsx-compiling-sw.js")
-    const reg = await sw.ready
-    reg.active.postMessage(true)
-    sw.onmessage = () => import(entry_url)
-  }
-</script>
-
-<title>MCC Scanner</title>
-<meta name="description" content="MCC Scanner - The most advanced Binance cryptocurrency scanner/screener for trading">
-<meta name="keywords" content="crypto,cryptocurrency,scanner,screener,binance,trade">
-<meta name="robots" content="index, follow">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="language" content="English">
-<LINK rel="shortcut icon" type="image/png" href="../images/favicon.png">
-
-
-<div id="main"></div>
-
-<div style="text-align: center;">
-  <!-- <iframe data-aa="1836137" src="//ad.a-ads.com/1836137?size=728x90"
-    style="width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent; margin: auto;"></iframe> -->
-  <!-- <ins class="618accbfbd273d0013a4fa81" style="width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent; margin: auto;"></ins><script>!function(e,n,c,t,o,r){!function e(n,c,t,o,r,m,s,a){s=c.getElementsByTagName(t)[0],(a=c.createElement(t)).async=!0,a.src="https://"+r[m]+"/js/"+o+".js",a.onerror=function(){a.remove(),(m+=1)>=r.length||e(n,c,t,o,r,m)},s.parentNode.insertBefore(a,s)}(window,document,"script","618accbfbd273d0013a4fa81",["cdn.bmcdn2.com"],0)}();</script> -->
-  <!-- Coinzilla Banner 728x90 -->
-  <script async src="https://coinzillatag.com/lib/display.js"></script>
-  <div class="coinzilla" data-zone="C-1561bcfe3da00dd673"></div>
-  <script>
-    window.coinzilla_display = window.coinzilla_display || [];
-    var c_display_preferences = {};
-    c_display_preferences.zone = "1561bcfe3da00dd673";
-    c_display_preferences.width = "728";
-    c_display_preferences.height = "90";
-    coinzilla_display.push(c_display_preferences);
-  </script>
-</div>
+    
+  </body>
+</html>
