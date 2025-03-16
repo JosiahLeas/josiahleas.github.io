@@ -194,10 +194,11 @@
         });
     });
   </script> -->
-  <script>
+  <!-- <script>
     document.addEventListener('DOMContentLoaded', () => {
       const searchBox = document.getElementById('search');
       const searchQuery = searchBox.value.trim(); // Save current search query
+      let tableList = null;
       const fetchData = () => {
         fetch('https://search.multicoincharts.com/cryptometer')
           .then(response => {
@@ -272,8 +273,94 @@
 
       setInterval(fetchData, 30000);
     });
-  </script>
+  </script> -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const searchBox = document.getElementById('search');
+  let tableList = null; // Declare List.js instance globally
 
+  const fetchData = () => {
+    const currentSearch = searchBox.value.trim(); // Store current search query
+
+    fetch('https://search.multicoincharts.com/cryptometer')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success === 'true' && data.error === 'false') {
+          const tableBody = document.querySelector('#data-table tbody');
+          tableBody.innerHTML = ''; // Clear existing data
+
+          data.data.forEach(item => {
+            let cleanExchange = item.exchange.replace(/_(spot|futures|pro|us)/gi, '');
+            let cleanPair = item.pair.replace('-', '');
+            const row = document.createElement('tr');
+            const link = `https://www.multicoincharts.com/?c=${cleanExchange}:${cleanPair}&p=1&s=1`;
+
+            row.innerHTML = `
+              <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
+              <td class="exchange">${item.exchange}</td>
+              <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
+              <td class="side">${item.side}</td>
+              <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
+            `;
+            tableBody.appendChild(row);
+          });
+
+          if (!tableList) {
+            // Initialize List.js only once
+            tableList = new List('table-container', {
+              valueNames: ['pair', 'exchange', 'change_detected', 'side', { name: 'timestamp', attr: 'data-timestamp' }],
+              sortFunction: (a, b, options) => {
+                const sortBy = options.valueName;
+                if (sortBy === 'change_detected') {
+                  return parseFloat(a.values()[sortBy]) - parseFloat(b.values()[sortBy]);
+                } else if (sortBy === 'timestamp') {
+                  return parseInt(a.values()[sortBy]) - parseInt(b.values()[sortBy]);
+                } else {
+                  return a.values()[sortBy].localeCompare(b.values()[sortBy]);
+                }
+              }
+            });
+
+            // Enable lazy search
+            searchBox.addEventListener('input', () => {
+              tableList.search(searchBox.value);
+            });
+          } else {
+            // Update List.js dataset
+            tableList.reIndex();
+            tableList.update();
+          }
+
+          // **Reapply search filter after refresh**
+          if (currentSearch) {
+            tableList.search(currentSearch);
+          }
+
+          document.getElementById('last-refresh').textContent = `Last Refresh: ${new Date().toLocaleString()}`;
+        } else {
+          console.error('API reported an error:', data);
+        }
+      })
+      .catch(error => {
+        console.error('Fetch error:', error.message);
+      });
+  };
+
+  // Initial fetch
+  fetchData();
+
+  // Refresh button functionality
+  document.getElementById('refresh').addEventListener('click', fetchData);
+
+  setInterval(fetchData, 30000);
+});
+
+</script>
 </body>
 
 </html>
