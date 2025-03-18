@@ -107,10 +107,13 @@
 
 <body>
   <h1>Crypto Rapid Movements</h1>
-  <div>
-    <span id="last-refresh"
-      style="font-size: 0.9em; color: white; display: block; margin-top: 5px; justify-content: center; text-align: center;"></span>
+  <div
+    style="display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px; justify-self: center; padding-bottom: 1em;">
+    <button id="enable-alerts">Enable Audio Alerts</button>
+    <span id="last-refresh" style="font-size: 0.9em; color: white;"></span>
   </div>
+  <audio id="alert-sound" src="https://www.myinstants.com/media/sounds/taco-bell-bong-sfx.mp3" preload="auto"></audio>
+
   <div class="controls">
     <input class="search" id="search" placeholder="Search..." />
     <button id="refresh">Refresh</button>
@@ -274,7 +277,7 @@
       setInterval(fetchData, 30000);
     });
   </script> -->
-<script>
+  <!-- <script>
 document.addEventListener('DOMContentLoaded', () => {
   const searchBox = document.getElementById('search');
   let tableList = null; // Declare List.js instance globally
@@ -359,8 +362,233 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(fetchData, 30000);
 });
+</script>  -->
 
-</script>
+  <!-- <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchBox = document.getElementById('search');
+      let tableList = null;
+      let previousData = new Map(); // Store previous data
+
+      const fetchData = () => {
+        const currentSearch = searchBox.value.trim();
+
+        fetch('https://search.multicoincharts.com/cryptometer')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.success === 'true' && data.error === 'false') {
+              const tableBody = document.querySelector('#data-table tbody');
+              tableBody.innerHTML = '';
+
+              let newData = new Map();
+              let alertTriggered = false;
+
+              data.data.forEach(item => {
+                let cleanExchange = item.exchange.replace(/_(spot|futures|pro|us)/gi, '');
+                let cleanPair = item.pair.replace('-', '');
+                const row = document.createElement('tr');
+                const link = `https://www.multicoincharts.com/?c=${cleanExchange}:${cleanPair}&p=1&s=1`;
+
+                row.innerHTML = `
+              <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
+              <td class="exchange">${item.exchange}</td>
+              <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
+              <td class="side">${item.side}</td>
+              <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
+            `;
+                tableBody.appendChild(row);
+
+                // Store data in a Map for comparison
+                let dataKey = `${item.exchange}-${item.pair}`;
+                let dataValue = `${item.change_detected}-${item.timestamp}`;
+                newData.set(dataKey, dataValue);
+
+                // Check if this is new or updated data
+                if (!previousData.has(dataKey) || previousData.get(dataKey) !== dataValue) {
+                  alertTriggered = true;
+                }
+              });
+
+              // Play alert if new data is found
+              if (alertTriggered) {
+                playAlertSound();
+              }
+
+              // Update previousData with new dataset
+              previousData = newData;
+
+              if (!tableList) {
+                tableList = new List('table-container', {
+                  valueNames: ['pair', 'exchange', 'change_detected', 'side', { name: 'timestamp', attr: 'data-timestamp' }],
+                  sortFunction: (a, b, options) => {
+                    const sortBy = options.valueName;
+                    if (sortBy === 'change_detected') {
+                      return parseFloat(a.values()[sortBy]) - parseFloat(b.values()[sortBy]);
+                    } else if (sortBy === 'timestamp') {
+                      return parseInt(a.values()[sortBy]) - parseInt(b.values()[sortBy]);
+                    } else {
+                      return a.values()[sortBy].localeCompare(b.values()[sortBy]);
+                    }
+                  }
+                });
+
+                searchBox.addEventListener('input', () => {
+                  tableList.search(searchBox.value);
+                });
+              } else {
+                tableList.reIndex();
+                tableList.update();
+              }
+
+              if (currentSearch) {
+                tableList.search(currentSearch);
+              }
+
+              document.getElementById('last-refresh').textContent = `Last Refresh: ${new Date().toLocaleString()}`;
+            } else {
+              console.error('API reported an error:', data);
+            }
+          })
+          .catch(error => {
+            console.error('Fetch error:', error.message);
+          });
+      };
+
+      // Function to play alert sound
+      const playAlertSound = () => {
+        const audio = new Audio('https://www.myinstants.com/media/sounds/bell.mp3'); // Replace with your preferred sound URL
+        audio.play().catch(error => console.error('Error playing sound:', error));
+      };
+
+      fetchData();
+
+      document.getElementById('refresh').addEventListener('click', fetchData);
+
+      setInterval(fetchData, 30000);
+    });
+
+  </script> -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchBox = document.getElementById('search');
+      let tableList = null;
+      let previousData = new Map();
+      let alertsEnabled = false; // Track user consent
+
+      // Enable alerts when the user clicks the button
+      document.getElementById('enable-alerts').addEventListener('click', () => {
+        alertsEnabled = true;
+        document.getElementById('enable-alerts').textContent = 'Enable Audio ✅';
+      });
+
+      const fetchData = () => {
+        const currentSearch = searchBox.value.trim().toLowerCase(); // Get search query
+        fetch('https://search.multicoincharts.com/cryptometer')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.success === 'true' && data.error === 'false') {
+              const tableBody = document.querySelector('#data-table tbody');
+              tableBody.innerHTML = '';
+
+              let newData = new Map();
+              let alertTriggered = false;
+
+              data.data.forEach(item => {
+                let cleanExchange = item.exchange.replace(/_(spot|futures|pro|us)/gi, '');
+                let cleanPair = item.pair.replace('-', '');
+                const row = document.createElement('tr');
+                const link = `https://www.multicoincharts.com/?c=${cleanExchange}:${cleanPair}&p=1&s=1`;
+
+                row.innerHTML = `
+            <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
+            <td class="exchange">${item.exchange}</td>
+            <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
+            <td class="side">${item.side}</td>
+            <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
+          `;
+                tableBody.appendChild(row);
+
+                let dataKey = `${item.exchange}-${item.pair}`;
+                let dataValue = `${item.change_detected}-${item.timestamp}`;
+                newData.set(dataKey, dataValue);
+
+                // Only trigger alert if new data matches the search query
+                const matchesSearch =
+                  item.pair.toLowerCase().includes(currentSearch) ||
+                  item.exchange.toLowerCase().includes(currentSearch);
+
+                if (matchesSearch && (!previousData.has(dataKey) || previousData.get(dataKey) !== dataValue)) {
+                  alertTriggered = true;
+                }
+              });
+
+              if (alertTriggered && alertsEnabled) {
+                playAlertSound();
+              }
+
+              previousData = newData;
+
+              if (!tableList) {
+                tableList = new List('table-container', {
+                  valueNames: ['pair', 'exchange', 'change_detected', 'side', { name: 'timestamp', attr: 'data-timestamp' }],
+                  sortFunction: (a, b, options) => {
+                    const sortBy = options.valueName;
+                    if (sortBy === 'change_detected') {
+                      return parseFloat(a.values()[sortBy]) - parseFloat(b.values()[sortBy]);
+                    } else if (sortBy === 'timestamp') {
+                      return parseInt(a.values()[sortBy]) - parseInt(b.values()[sortBy]);
+                    } else {
+                      return a.values()[sortBy].localeCompare(b.values()[sortBy]);
+                    }
+                  }
+                });
+
+                searchBox.addEventListener('input', () => {
+                  tableList.search(searchBox.value);
+                });
+              } else {
+                tableList.reIndex();
+                tableList.update();
+              }
+
+              if (currentSearch) {
+                tableList.search(currentSearch);
+              }
+
+              document.getElementById('last-refresh').textContent = `Last Refresh: ${new Date().toLocaleString()}`;
+            } else {
+              console.error('API reported an error:', data);
+            }
+          })
+          .catch(error => {
+            console.error('Fetch error:', error.message);
+          });
+      };
+
+      // Function to play alert sound
+      const playAlertSound = () => {
+        const audio = document.getElementById('alert-sound');
+        audio.play().catch(error => console.error('Error playing sound:', error));
+      };
+
+      fetchData();
+
+      document.getElementById('refresh').addEventListener('click', fetchData);
+
+      setInterval(fetchData, 30000);
+    });
+  </script>
+
 </body>
 
 </html>
