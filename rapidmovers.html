@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   </script> -->
-  <script>
+  <!-- <script>
     document.addEventListener('DOMContentLoaded', () => {
       const searchBox = document.getElementById('search');
       let tableList = null;
@@ -483,8 +483,24 @@ document.addEventListener('DOMContentLoaded', () => {
       // Enable alerts when the user clicks the button
       document.getElementById('enable-alerts').addEventListener('click', () => {
         alertsEnabled = true;
-        document.getElementById('enable-alerts').textContent = 'Enable Audio ✅';
+        document.getElementById('enable-alerts').textContent = 'Alerts Enabled ✅';
       });
+
+      const updateURL = (query) => {
+        const url = new URL(window.location);
+        if (query) {
+          url.searchParams.set('search', query);
+        } else {
+          url.searchParams.delete('search');
+        }
+        window.history.replaceState({}, '', url);
+      };
+
+      // Function to get search query from URL
+      const getSearchFromURL = () => {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('search') || '';
+      };
 
       const fetchData = () => {
         const currentSearch = searchBox.value.trim().toLowerCase(); // Get search query
@@ -587,8 +603,136 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setInterval(fetchData, 30000);
     });
-  </script>
+  </script> -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const searchBox = document.getElementById('search');
+  let tableList = null;
+  let previousData = new Map();
+  let alertsEnabled = false;
 
+  // Enable alerts when user clicks the button
+  document.getElementById('enable-alerts').addEventListener('click', () => {
+    alertsEnabled = true;
+    document.getElementById('enable-alerts').textContent = 'Alerts Enabled ✅';
+  });
+
+  // Function to update the URL with search query
+  const updateURL = (query) => {
+    const url = new URL(window.location);
+    if (query) {
+      url.searchParams.set('search', query);
+    } else {
+      url.searchParams.delete('search');
+    }
+    window.history.replaceState({}, '', url);
+  };
+
+  // Function to get search query from URL
+  const getSearchFromURL = () => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('search') || '';
+  };
+
+  const fetchData = () => {
+    const currentSearch = searchBox.value.trim().toLowerCase();
+    fetch('https://search.multicoincharts.com/cryptometer')
+      .then(response => response.json())
+      .then(data => {
+        if (data.success === 'true' && data.error === 'false') {
+          const tableBody = document.querySelector('#data-table tbody');
+          tableBody.innerHTML = '';
+
+          let newData = new Map();
+          let alertTriggered = false;
+
+          data.data.forEach(item => {
+            let cleanExchange = item.exchange.replace(/_(spot|futures|pro|us)/gi, '');
+            let cleanPair = item.pair.replace('-', '');
+            const row = document.createElement('tr');
+            const link = `https://www.multicoincharts.com/?c=${cleanExchange}:${cleanPair}&p=1&s=1`;
+
+            row.innerHTML = `
+              <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
+              <td class="exchange">${item.exchange}</td>
+              <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
+              <td class="side">${item.side}</td>
+              <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
+            `;
+            tableBody.appendChild(row);
+
+            let dataKey = `${item.exchange}-${item.pair}`;
+            let dataValue = `${item.change_detected}-${item.timestamp}`;
+            newData.set(dataKey, dataValue);
+
+            const matchesSearch =
+              item.pair.toLowerCase().includes(currentSearch) ||
+              item.exchange.toLowerCase().includes(currentSearch);
+
+            if (matchesSearch && (!previousData.has(dataKey) || previousData.get(dataKey) !== dataValue)) {
+              alertTriggered = true;
+            }
+          });
+
+          if (alertTriggered && alertsEnabled) {
+            playAlertSound();
+          }
+
+          previousData = newData;
+
+          if (!tableList) {
+            tableList = new List('table-container', {
+              valueNames: ['pair', 'exchange', 'change_detected', 'side', { name: 'timestamp', attr: 'data-timestamp' }],
+              sortFunction: (a, b, options) => {
+                const sortBy = options.valueName;
+                if (sortBy === 'change_detected') {
+                  return parseFloat(a.values()[sortBy]) - parseFloat(b.values()[sortBy]);
+                } else if (sortBy === 'timestamp') {
+                  return parseInt(a.values()[sortBy]) - parseInt(b.values()[sortBy]);
+                } else {
+                  return a.values()[sortBy].localeCompare(b.values()[sortBy]);
+                }
+              }
+            });
+
+            searchBox.addEventListener('input', () => {
+              tableList.search(searchBox.value);
+              updateURL(searchBox.value); // Update URL as user types
+            });
+          } else {
+            tableList.reIndex();
+            tableList.update();
+          }
+
+          if (currentSearch) {
+            tableList.search(currentSearch);
+          }
+
+          document.getElementById('last-refresh').textContent = `Last Refresh: ${new Date().toLocaleString()}`;
+        } else {
+          console.error('API reported an error:', data);
+        }
+      })
+      .catch(error => {
+        console.error('Fetch error:', error.message);
+      });
+  };
+
+  // Function to play alert sound
+  const playAlertSound = () => {
+    const audio = document.getElementById('alert-sound');
+    audio.play().catch(error => console.error('Error playing sound:', error));
+  };
+
+  // Populate search box from URL on page load
+  searchBox.value = getSearchFromURL();
+
+  fetchData();
+  document.getElementById('refresh').addEventListener('click', fetchData);
+  setInterval(fetchData, 30000);
+});
+
+</script>
 </body>
 
 </html>
