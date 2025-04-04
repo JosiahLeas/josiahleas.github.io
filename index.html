@@ -291,7 +291,7 @@
 				<div style="padding-top: 5px;">
 					<div class="dropdown-content">
 						<a href="/scanner" target="_blank" style="color: #F0B90B">Binance Scanner</a>
-						<a href="/adv-scanner" target="_blank" >Advanced Scanner</a>
+						<a href="/adv-scanner" target="_blank">Advanced Scanner</a>
 						<a href="/rapidmovers" target="_blank" style="color: #2962ff">Rapid Movers</a>
 					</div>
 				</div>
@@ -331,13 +331,13 @@
 					padding: 0.5em 0.5em;
 					text-decoration: none;
 					display: block;
-					background: #fff1;
+					background: black;
 					backdrop-filter: blur(15px);
 					font-size: 1.2em;
 				}
 
 				\& .dropdown-content a:hover {
-					background-color: #fff3;
+					background-color: #33333333;
 				}
 
 				\& .dropdown:hover .dropdown-content {
@@ -394,7 +394,6 @@
 						margin: auto;
 						max-width: 18em;
 						float: unset;
-						display: inline-block;
 					}
 				}
 			</STYLE>
@@ -1031,6 +1030,51 @@
 		<INPUT hidden id="do_not_show" type="checkbox" name="do_not_show"onclick="storeMAN(true, this.id, this.checked)" > -->
 
 	</DIV>
+	<div id="announcement" class="notify-area" style="display: none;">
+		<style class="scoped">
+			\& {
+				background-color: #2962ff;
+				padding: 1.25em;
+				text-align: center;
+				color: white;
+				position: relative;
+			}
+
+			\& p {
+				pointer-events: none;
+				background: white;
+				color: black;
+				border-radius: 50%;
+				position: absolute;
+				width: 32px;
+				height: 32px;
+				line-height: 32px;
+				text-align: center;
+				z-index: 9;
+				bottom: 6px;
+				right: 1px;
+				cursor: pointer;
+				pointer-events: auto;
+			}
+		</style>
+		Introducing the MultiCoinCharts Rapid Movers Scanner
+		<a style="color: white;" target="_blank" href="../rapidmovers.html"><b><u>Check it out</u></b></a>
+		<p onclick="dismissAnnouncement()">X</p>
+	</div>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			if (!localStorage.getItem("announcementDismissed")) {
+				document.getElementById("announcement").style.display = "block";
+			}
+		});
+
+		function dismissAnnouncement() {
+			localStorage.setItem("announcementDismissed", "true");
+			document.getElementById("announcement").remove();
+		}
+	</script>
+
 	<DIV id="charts">
 		<DIV id="notif" class="box newsletter left options">
 			<STYLE class="scoped">
