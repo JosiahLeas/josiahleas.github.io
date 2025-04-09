@@ -9,48 +9,68 @@
 
 <url>
   <loc>https://www.multicoincharts.com/</loc>
-  <lastmod>2020-04-01T21:06:33+00:00</lastmod>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://www.multicoincharts.com/scanner</loc>
-  <lastmod>2020-08-10T13:25:21-04:00</lastmod>
-  <priority>0.98</priority>
-</url>
-<url>
-  <loc>https://www.multicoincharts.com/adv-scanner.html</loc>
-  <lastmod>2020-08-10T13:25:21-04:00</lastmod>
-  <priority>0.98</priority>
-</url>
-<url>
-  <loc>https://www.multicoincharts.com/about/index.html</loc>
-  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
-  <priority>0.6</priority>
-</url>
-<url>
-  <loc>https://www.multicoincharts.com/about.html</loc>
-  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <loc>https://www.multicoincharts.com/home/</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.multicoincharts.com/about/view_multiple_charts.html</loc>
-  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <loc>https://www.multicoincharts.com/scanner/</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/adv-scanner</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/rapidmovers</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/rapidmovers.html</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/?c=</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.multicoincharts.com/about/change_number_charts.html</loc>
-  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <loc>https://www.multicoincharts.com/home/..?c=BINANCE:BTCUSDT,BINANCE:ETHUSDT,BINANCE:GMTUSDT,BINANCE:XRPUSDT,BINANCE:ALGOUSDT,BINANCE:LUNAUSDT,BINANCE:DOGEUSDT&amp;p=1</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.multicoincharts.com/about/using_chart_organizer.html</loc>
-  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <loc>https://www.multicoincharts.com/home/..?c=KUCOIN:BTCUSDT,KUCOIN:ETHUSDT,KUCOIN:GMTUSDT,KUCOIN:XRPUSDT,KUCOIN:APEUSDT,KUCOIN:FLUXUSDT,KUCOIN:JARUSDT&amp;p=1</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.multicoincharts.com/about/using_tradingview.html</loc>
-  <lastmod>2019-05-26T21:06:33+00:00</lastmod>
+  <loc>https://www.multicoincharts.com/scanner/index.html</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
   <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/adv-scanner.html</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/adv-scanner?c=</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.multicoincharts.com/adv-scanner.html?c=</loc>
+  <lastmod>2025-04-04T01:15:35+00:00</lastmod>
+  <priority>0.51</priority>
 </url>
 
 
