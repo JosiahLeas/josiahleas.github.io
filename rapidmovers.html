@@ -11,7 +11,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-40B0DD4ZBX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-40B0DD4ZBX');
@@ -116,11 +116,20 @@
 
 <body>
   <h1>Crypto Rapid Movements</h1>
-  <div
-    style="display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px; justify-self: center; padding-bottom: 1em;">
-    <button id="enable-alerts">Enable Audio Alerts</button>
-    <span id="last-refresh" style="font-size: 0.9em; color: white;"></span>
+  <div style="display: flex; flex-direction: column; align-items: center; padding-bottom: 1em;">
+    <!-- Top button spans full width, centered -->
+    <button id="top-tokens" style="margin-bottom: 0.5em;">Show Top 9 Tokens</button>
+  
+    <!-- Row: Enable Alerts + Last Refresh, aligned horizontally -->
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <button id="enable-alerts">Enable Audio Alerts</button>
+      <span id="last-refresh" style="font-size: 0.9em; color: white;"></span>
+    </div>
+  
+    <!-- Link result spans below -->
+    <div id="top-links" style="margin-top: 0.5em;"></div>
   </div>
+  
   <audio id="alert-sound" src="https://www.myinstants.com/media/sounds/taco-bell-bong-sfx.mp3" preload="auto"></audio>
 
   <div class="controls">
@@ -144,357 +153,20 @@
       </tbody>
     </table>
   </div>
-
-  <!-- <script>
+  <script>
+    const searchBox = document.getElementById('search');
     document.addEventListener('DOMContentLoaded', () => {
-      fetch('https://search.multicoincharts.com/cryptometer')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          if (data.success === 'true' && data.error === 'false') {
-            const tableBody = document.querySelector('#data-table tbody');
-            tableBody.innerHTML = ''; // Clear existing data
-
-            data.data.forEach(item => {
-              let cleanExchange = item.exchange.replace(/_(spot|futures|pro|us)/gi, '');
-              let cleanPair = item.pair.replace('-', '');
-              const row = document.createElement('tr');
-              const link = `https://www.multicoincharts.com/?c=${cleanExchange}:${cleanPair}&p=1&s=1`;
-
-              row.innerHTML = `
-                <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
-                <td class="exchange">${item.exchange}</td>
-                <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
-                <td class="side">${item.side}</td>
-                <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
-              `;
-              tableBody.appendChild(row);
-            });
-
-            // Initialize List.js with proper numeric sorting
-            const options = {
-              valueNames: ['pair', 'exchange', 'change_detected', 'side', { name: 'timestamp', attr: 'data-timestamp' }],
-              sortFunction: (a, b, options) => {
-                const sortBy = options.valueName;
-                if (sortBy === 'change_detected') {
-                  return parseFloat(a.values()[sortBy]) - parseFloat(b.values()[sortBy]);
-                } else if (sortBy === 'timestamp') {
-                  return parseInt(a.values()[sortBy]) - parseInt(b.values()[sortBy]);
-                } else {
-                  return a.values()[sortBy].localeCompare(b.values()[sortBy]);
-                }
-              }
-            };
-            const tableList = new List('table-container', options);
-
-            // Enable lazy search
-            const searchBox = document.getElementById('search');
-            searchBox.addEventListener('input', () => {
-              tableList.search(searchBox.value);
-            });
-
-          } else {
-            console.error('API reported an error:', data);
-          }
-        })
-        .catch(error => {
-          console.error('Fetch error:', error.message);
-        });
-    });
-  </script> -->
-  <!-- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const searchBox = document.getElementById('search');
-      const searchQuery = searchBox.value.trim(); // Save current search query
-      let tableList = null;
-      const fetchData = () => {
-        fetch('https://search.multicoincharts.com/cryptometer')
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
-            }
-            return response.json();
-          })
-          .then(data => {
-            if (data.success === 'true' && data.error === 'false') {
-              const tableBody = document.querySelector('#data-table tbody');
-              tableBody.innerHTML = ''; // Clear existing data
-
-              data.data.forEach(item => {
-                let cleanExchange = item.exchange.replace(/_(spot|futures|pro|us)/gi, '');
-                let cleanPair = item.pair.replace('-', '');
-                const row = document.createElement('tr');
-                const link = `https://www.multicoincharts.com/?c=${cleanExchange}:${cleanPair}&p=1&s=1`;
-
-                row.innerHTML = `
-                  <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
-                  <td class="exchange">${item.exchange}</td>
-                  <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
-                  <td class="side">${item.side}</td>
-                  <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
-                `;
-                tableBody.appendChild(row);
-              });
-
-              // Initialize List.js with proper numeric sorting
-              const options = {
-                valueNames: ['pair', 'exchange', 'change_detected', 'side', { name: 'timestamp', attr: 'data-timestamp' }],
-                sortFunction: (a, b, options) => {
-                  const sortBy = options.valueName;
-                  if (sortBy === 'change_detected') {
-                    return parseFloat(a.values()[sortBy]) - parseFloat(b.values()[sortBy]);
-                  } else if (sortBy === 'timestamp') {
-                    return parseInt(a.values()[sortBy]) - parseInt(b.values()[sortBy]);
-                  } else {
-                    return a.values()[sortBy].localeCompare(b.values()[sortBy]);
-                  }
-                }
-              };
-              const tableList = new List('table-container', options);
-
-              // Enable lazy search
-              const searchBox = document.getElementById('search');
-              searchBox.addEventListener('input', () => {
-                tableList.search(searchBox.value);
-              });
-
-              if (searchQuery) {
-                tableList.search(searchQuery);
-              }
-
-              document.getElementById('last-refresh').textContent = `Last Refresh: ${new Date().toLocaleString()}`;
-
-            } else {
-              console.error('API reported an error:', data);
-            }
-          })
-          .catch(error => {
-            console.error('Fetch error:', error.message);
-          });
-      };
-
-      // Initial fetch
-      fetchData();
-
-      // Refresh button functionality
-      document.getElementById('refresh').addEventListener('click', fetchData);
-
-      setInterval(fetchData, 30000);
-    });
-  </script> -->
-  <!-- <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const searchBox = document.getElementById('search');
-  let tableList = null; // Declare List.js instance globally
-
-  const fetchData = () => {
-    const currentSearch = searchBox.value.trim(); // Store current search query
-
-    fetch('https://search.multicoincharts.com/cryptometer')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (data.success === 'true' && data.error === 'false') {
-          const tableBody = document.querySelector('#data-table tbody');
-          tableBody.innerHTML = ''; // Clear existing data
-
-          data.data.forEach(item => {
-            let cleanExchange = item.exchange.replace(/_(spot|futures|pro|us)/gi, '');
-            let cleanPair = item.pair.replace('-', '');
-            const row = document.createElement('tr');
-            const link = `https://www.multicoincharts.com/?c=${cleanExchange}:${cleanPair}&p=1&s=1`;
-
-            row.innerHTML = `
-              <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
-              <td class="exchange">${item.exchange}</td>
-              <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
-              <td class="side">${item.side}</td>
-              <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
-            `;
-            tableBody.appendChild(row);
-          });
-
-          if (!tableList) {
-            // Initialize List.js only once
-            tableList = new List('table-container', {
-              valueNames: ['pair', 'exchange', 'change_detected', 'side', { name: 'timestamp', attr: 'data-timestamp' }],
-              sortFunction: (a, b, options) => {
-                const sortBy = options.valueName;
-                if (sortBy === 'change_detected') {
-                  return parseFloat(a.values()[sortBy]) - parseFloat(b.values()[sortBy]);
-                } else if (sortBy === 'timestamp') {
-                  return parseInt(a.values()[sortBy]) - parseInt(b.values()[sortBy]);
-                } else {
-                  return a.values()[sortBy].localeCompare(b.values()[sortBy]);
-                }
-              }
-            });
-
-            // Enable lazy search
-            searchBox.addEventListener('input', () => {
-              tableList.search(searchBox.value);
-            });
-          } else {
-            // Update List.js dataset
-            tableList.reIndex();
-            tableList.update();
-          }
-
-          // **Reapply search filter after refresh**
-          if (currentSearch) {
-            tableList.search(currentSearch);
-          }
-
-          document.getElementById('last-refresh').textContent = `Last Refresh: ${new Date().toLocaleString()}`;
-        } else {
-          console.error('API reported an error:', data);
-        }
-      })
-      .catch(error => {
-        console.error('Fetch error:', error.message);
-      });
-  };
-
-  // Initial fetch
-  fetchData();
-
-  // Refresh button functionality
-  document.getElementById('refresh').addEventListener('click', fetchData);
-
-  setInterval(fetchData, 30000);
-});
-</script>  -->
-
-  <!-- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const searchBox = document.getElementById('search');
-      let tableList = null;
-      let previousData = new Map(); // Store previous data
-
-      const fetchData = () => {
-        const currentSearch = searchBox.value.trim();
-
-        fetch('https://search.multicoincharts.com/cryptometer')
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
-            }
-            return response.json();
-          })
-          .then(data => {
-            if (data.success === 'true' && data.error === 'false') {
-              const tableBody = document.querySelector('#data-table tbody');
-              tableBody.innerHTML = '';
-
-              let newData = new Map();
-              let alertTriggered = false;
-
-              data.data.forEach(item => {
-                let cleanExchange = item.exchange.replace(/_(spot|futures|pro|us)/gi, '');
-                let cleanPair = item.pair.replace('-', '');
-                const row = document.createElement('tr');
-                const link = `https://www.multicoincharts.com/?c=${cleanExchange}:${cleanPair}&p=1&s=1`;
-
-                row.innerHTML = `
-              <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
-              <td class="exchange">${item.exchange}</td>
-              <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
-              <td class="side">${item.side}</td>
-              <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
-            `;
-                tableBody.appendChild(row);
-
-                // Store data in a Map for comparison
-                let dataKey = `${item.exchange}-${item.pair}`;
-                let dataValue = `${item.change_detected}-${item.timestamp}`;
-                newData.set(dataKey, dataValue);
-
-                // Check if this is new or updated data
-                if (!previousData.has(dataKey) || previousData.get(dataKey) !== dataValue) {
-                  alertTriggered = true;
-                }
-              });
-
-              // Play alert if new data is found
-              if (alertTriggered) {
-                playAlertSound();
-              }
-
-              // Update previousData with new dataset
-              previousData = newData;
-
-              if (!tableList) {
-                tableList = new List('table-container', {
-                  valueNames: ['pair', 'exchange', 'change_detected', 'side', { name: 'timestamp', attr: 'data-timestamp' }],
-                  sortFunction: (a, b, options) => {
-                    const sortBy = options.valueName;
-                    if (sortBy === 'change_detected') {
-                      return parseFloat(a.values()[sortBy]) - parseFloat(b.values()[sortBy]);
-                    } else if (sortBy === 'timestamp') {
-                      return parseInt(a.values()[sortBy]) - parseInt(b.values()[sortBy]);
-                    } else {
-                      return a.values()[sortBy].localeCompare(b.values()[sortBy]);
-                    }
-                  }
-                });
-
-                searchBox.addEventListener('input', () => {
-                  tableList.search(searchBox.value);
-                });
-              } else {
-                tableList.reIndex();
-                tableList.update();
-              }
-
-              if (currentSearch) {
-                tableList.search(currentSearch);
-              }
-
-              document.getElementById('last-refresh').textContent = `Last Refresh: ${new Date().toLocaleString()}`;
-            } else {
-              console.error('API reported an error:', data);
-            }
-          })
-          .catch(error => {
-            console.error('Fetch error:', error.message);
-          });
-      };
-
-      // Function to play alert sound
-      const playAlertSound = () => {
-        const audio = new Audio('https://www.myinstants.com/media/sounds/bell.mp3'); // Replace with your preferred sound URL
-        audio.play().catch(error => console.error('Error playing sound:', error));
-      };
-
-      fetchData();
-
-      document.getElementById('refresh').addEventListener('click', fetchData);
-
-      setInterval(fetchData, 30000);
-    });
-
-  </script> -->
-  <!-- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const searchBox = document.getElementById('search');
       let tableList = null;
       let previousData = new Map();
-      let alertsEnabled = false; // Track user consent
+      let alertsEnabled = false;
 
-      // Enable alerts when the user clicks the button
+      // Enable alerts when user clicks the button
       document.getElementById('enable-alerts').addEventListener('click', () => {
         alertsEnabled = true;
         document.getElementById('enable-alerts').textContent = 'Alerts Enabled ✅';
       });
 
+      // Function to update the URL with search query
       const updateURL = (query) => {
         const url = new URL(window.location);
         if (query) {
@@ -512,14 +184,9 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       const fetchData = () => {
-        const currentSearch = searchBox.value.trim().toLowerCase(); // Get search query
+        const currentSearch = searchBox.value.trim().toLowerCase();
         fetch('https://search.multicoincharts.com/cryptometer')
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
-            }
-            return response.json();
-          })
+          .then(response => response.json())
           .then(data => {
             if (data.success === 'true' && data.error === 'false') {
               const tableBody = document.querySelector('#data-table tbody');
@@ -535,19 +202,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const link = `https://www.multicoincharts.com/?c=${cleanExchange}:${cleanPair}&p=1&s=1`;
 
                 row.innerHTML = `
-            <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
-            <td class="exchange">${item.exchange}</td>
-            <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
-            <td class="side">${item.side}</td>
-            <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
-          `;
+              <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
+              <td class="exchange">${item.exchange}</td>
+              <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
+              <td class="side">${item.side}</td>
+              <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
+            `;
                 tableBody.appendChild(row);
 
                 let dataKey = `${item.exchange}-${item.pair}`;
                 let dataValue = `${item.change_detected}-${item.timestamp}`;
                 newData.set(dataKey, dataValue);
 
-                // Only trigger alert if new data matches the search query
                 const matchesSearch =
                   item.pair.toLowerCase().includes(currentSearch) ||
                   item.exchange.toLowerCase().includes(currentSearch);
@@ -580,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 searchBox.addEventListener('input', () => {
                   tableList.search(searchBox.value);
+                  updateURL(searchBox.value); // Update URL as user types
                 });
               } else {
                 tableList.reIndex();
@@ -606,142 +273,47 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.play().catch(error => console.error('Error playing sound:', error));
       };
 
+      // Populate search box from URL on page load
+      searchBox.value = getSearchFromURL();
+
       fetchData();
-
       document.getElementById('refresh').addEventListener('click', fetchData);
-
       setInterval(fetchData, 30000);
     });
-  </script> -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-  const searchBox = document.getElementById('search');
-  let tableList = null;
-  let previousData = new Map();
-  let alertsEnabled = false;
 
-  // Enable alerts when user clicks the button
-  document.getElementById('enable-alerts').addEventListener('click', () => {
-    alertsEnabled = true;
-    document.getElementById('enable-alerts').textContent = 'Alerts Enabled ✅';
+    document.getElementById('top-tokens').addEventListener('click', () => {
+  const currentSearch = searchBox.value.trim().toLowerCase();
+
+  const matchedRows = Array.from(document.querySelectorAll('#data-table tbody tr')).filter(row => {
+    const pair = row.querySelector('.pair').textContent.toLowerCase();
+    const exchange = row.querySelector('.exchange').textContent.toLowerCase();
+    return pair.includes(currentSearch) || exchange.includes(currentSearch);
   });
 
-  // Function to update the URL with search query
-  const updateURL = (query) => {
-    const url = new URL(window.location);
-    if (query) {
-      url.searchParams.set('search', query);
-    } else {
-      url.searchParams.delete('search');
-    }
-    window.history.replaceState({}, '', url);
-  };
+  const latestRows = matchedRows
+  .map(row => {
+    const timestamp = parseInt(row.querySelector('.timestamp').dataset.timestamp);
+    const pair = row.querySelector('.pair').textContent;
+    const exchange = row.querySelector('.exchange').textContent;
+    const cleanExchange = exchange.replace(/_(spot|futures|pro|us)/gi, '');
+    const cleanPair = pair.replace('-', '');
+    return { timestamp, cleanExchange, cleanPair };
+  })
+  .sort((a, b) => b.timestamp - a.timestamp) // newest first
+  .slice(0, 9); // top 9 in correct order
 
-  // Function to get search query from URL
-  const getSearchFromURL = () => {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('search') || '';
-  };
+  if (latestRows.length === 0) return;
 
-  const fetchData = () => {
-    const currentSearch = searchBox.value.trim().toLowerCase();
-    fetch('https://search.multicoincharts.com/cryptometer')
-      .then(response => response.json())
-      .then(data => {
-        if (data.success === 'true' && data.error === 'false') {
-          const tableBody = document.querySelector('#data-table tbody');
-          tableBody.innerHTML = '';
+  const combined = latestRows.map(item => `${item.cleanExchange}:${item.cleanPair}`).join(',');
+  const fullURL = `https://www.multicoincharts.com/?c=${combined}&p=1#nav`;
 
-          let newData = new Map();
-          let alertTriggered = false;
-
-          data.data.forEach(item => {
-            let cleanExchange = item.exchange.replace(/_(spot|futures|pro|us)/gi, '');
-            let cleanPair = item.pair.replace('-', '');
-            const row = document.createElement('tr');
-            const link = `https://www.multicoincharts.com/?c=${cleanExchange}:${cleanPair}&p=1&s=1`;
-
-            row.innerHTML = `
-              <td class="pair"><a href="${link}" target="_blank">${item.pair}</a></td>
-              <td class="exchange">${item.exchange}</td>
-              <td class="change_detected" data-change="${parseFloat(item.change_detected)}">${item.change_detected}</td>
-              <td class="side">${item.side}</td>
-              <td class="timestamp" data-timestamp="${new Date(item.timestamp).getTime()}">${new Date(item.timestamp).toLocaleString()}</td>
-            `;
-            tableBody.appendChild(row);
-
-            let dataKey = `${item.exchange}-${item.pair}`;
-            let dataValue = `${item.change_detected}-${item.timestamp}`;
-            newData.set(dataKey, dataValue);
-
-            const matchesSearch =
-              item.pair.toLowerCase().includes(currentSearch) ||
-              item.exchange.toLowerCase().includes(currentSearch);
-
-            if (matchesSearch && (!previousData.has(dataKey) || previousData.get(dataKey) !== dataValue)) {
-              alertTriggered = true;
-            }
-          });
-
-          if (alertTriggered && alertsEnabled) {
-            playAlertSound();
-          }
-
-          previousData = newData;
-
-          if (!tableList) {
-            tableList = new List('table-container', {
-              valueNames: ['pair', 'exchange', 'change_detected', 'side', { name: 'timestamp', attr: 'data-timestamp' }],
-              sortFunction: (a, b, options) => {
-                const sortBy = options.valueName;
-                if (sortBy === 'change_detected') {
-                  return parseFloat(a.values()[sortBy]) - parseFloat(b.values()[sortBy]);
-                } else if (sortBy === 'timestamp') {
-                  return parseInt(a.values()[sortBy]) - parseInt(b.values()[sortBy]);
-                } else {
-                  return a.values()[sortBy].localeCompare(b.values()[sortBy]);
-                }
-              }
-            });
-
-            searchBox.addEventListener('input', () => {
-              tableList.search(searchBox.value);
-              updateURL(searchBox.value); // Update URL as user types
-            });
-          } else {
-            tableList.reIndex();
-            tableList.update();
-          }
-
-          if (currentSearch) {
-            tableList.search(currentSearch);
-          }
-
-          document.getElementById('last-refresh').textContent = `Last Refresh: ${new Date().toLocaleString()}`;
-        } else {
-          console.error('API reported an error:', data);
-        }
-      })
-      .catch(error => {
-        console.error('Fetch error:', error.message);
-      });
-  };
-
-  // Function to play alert sound
-  const playAlertSound = () => {
-    const audio = document.getElementById('alert-sound');
-    audio.play().catch(error => console.error('Error playing sound:', error));
-  };
-
-  // Populate search box from URL on page load
-  searchBox.value = getSearchFromURL();
-
-  fetchData();
-  document.getElementById('refresh').addEventListener('click', fetchData);
-  setInterval(fetchData, 30000);
+  // Open in new tab
+  window.open(fullURL, '_blank');
 });
 
-</script>
+
+
+  </script>
 </body>
 
 </html>
