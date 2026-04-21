@@ -31,7 +31,6 @@
 	<META itemprop="image" content="https://www.multicoincharts.com/images/mcc-capture.png">
 	<META name="fo-verify" content="210b05bb-bce5-49f0-a5fc-7494b6362a69">
 	<META name="coinzilla" content="3b3a0956d217d754c20eaf951132d265" />
-	<META name="google-adsense-account" content="ca-pub-6913364059838466">
 	<!-- Google Metas -->
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-40B0DD4ZBX"></script>
@@ -71,15 +70,67 @@
 
 
 	<SCRIPT src="https://cdn.jsdelivr.net/gh/VSADX/scoped-css@main/scoped-css.js" type="module"></SCRIPT>
+	<style>
+		 #offerModal {
+            display: none;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
 
-	<script>
-		window.ChartLoaderConfig = {
-			serverUrl: 'https://trending.multicoincharts.com',
-			enabled: true,
-			debug: false
-		};
-	</script>
-	<script src="https://trending.multicoincharts.com/sync.js"></script>
+        #modalContent {
+            background: white;
+            padding: 2em;
+            text-align: center;
+        }
+
+        #countryGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 1em;
+            margin: 1.5em 0;
+            justify-items: center;
+        }
+
+        .country-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 0.5em 0.2em;
+            transition: border 0.2s;
+            background: #f8f8f8;
+            min-width: 80px;
+        }
+
+        .country-card:hover {
+            border: 2px solid #2962ff;
+            background: #e3f0ff;
+        }
+
+        .country-flag {
+            width: 40px;
+            height: 28px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 0.4em;
+            box-shadow: 0 1px 4px #0002;
+        }
+
+        .country-name {
+            font-size: 0.95em;
+            color: #222;
+            text-align: center;
+        }
+	</style>
 </HEAD>
 
 <BODY style="background: #161823;">
@@ -193,7 +244,12 @@
 		<BUTTON id="add_chart_reveal" class="theme" onclick="XDirectUI.visibility('chart_add_select');">
 			Add Chart
 		</BUTTON>
-		<!-- TODO: MCC Profiles Feature -->
+		<BUTTON id="live_movers_reveal" class="theme" onclick="XDirectUI.visibility('liveMoversPanel');">
+			Rapid Movers
+		</BUTTON>
+		<BUTTON id="profiles_reveal" class="theme" onclick="XDirectUI.visibility('profilesPanel'); SavedProfiles.renderList();">
+			Profiles
+		</BUTTON>
 		<SELECT id="profile_select" class="theme" style="display: none;">
 			<OPTION value="default" selected="true">Default</OPTION>
 		</SELECT>
@@ -302,7 +358,7 @@
 					<div class="dropdown-content">
 						<a href="/scanner" target="_blank" style="color: #F0B90B">Binance Scanner</a>
 						<a href="/adv-scanner" target="_blank">Advanced Scanner</a>
-						<a href="/rapidmovers" target="_blank" style="color: #2962ff">Rapid Movers</a>
+						<a href="/rapidmovers.html" target="_blank" style="color: #2962ff">Rapid Movers Legacy</a>
 					</div>
 				</div>
 			</div>
@@ -740,7 +796,7 @@
 				\& input {
 					padding: 6px;
 					width: 100%;
-					box-sizing: border-box;
+				 box-sizing: border-box;
 				}
 			</STYLE>
 			<DIV>
@@ -965,6 +1021,1334 @@
 				</div>
 			</div>
 		</div>
+		<div id="liveMoversPanel" class="hide">
+			<style class="scoped">
+				body {
+					--dock-left-space: 0px;
+					--dock-right-space: 0px;
+					--live-panel-space: 0px;
+					--live-panel-left-space: 0px;
+					--live-panel-right-space: 0px;
+					overflow-x: hidden;
+				}
+
+				#top_space,
+				#nav,
+				#charts {
+					box-sizing: border-box;
+					transition: width .25s ease, max-width .25s ease, margin-left .25s ease, margin-right .25s ease, padding-right .25s ease, padding-left .25s ease;
+				}
+
+				body.has-side-dock #top_space,
+				body.has-side-dock #nav,
+				body.has-side-dock #charts {
+					width: calc(100vw - var(--dock-left-space) - var(--dock-right-space));
+					max-width: calc(100vw - var(--dock-left-space) - var(--dock-right-space));
+					margin-left: var(--dock-left-space);
+					margin-right: var(--dock-right-space);
+				}
+
+				body.has-side-dock #charts {
+					padding-left: .2em;
+					padding-right: .2em;
+				}
+
+				#liveMoversPanel {
+					--live-panel-direction: 1;
+					position: fixed;
+					top: 0;
+					right: 0;
+					left: auto;
+					width: min(340px, 100vw);
+					max-width: 100vw;
+					height: 100vh;
+					z-index: 1001;
+					background: rgba(12, 16, 28, 0.98);
+					border-left: 1px solid #2e3d61;
+					border-right: none;
+					box-shadow: -10px 0 40px #0008;
+					color: #d8e0f7;
+					transition: transform .25s ease, visibility .25s ease;
+					overflow: hidden;
+				}
+
+				body.live-panel-dock-left #liveMoversPanel {
+					--live-panel-direction: -1;
+					left: 0;
+					right: auto;
+					border-right: 1px solid #2e3d61;
+					border-left: none;
+					box-shadow: 10px 0 40px #0008;
+				}
+
+				#liveMoversPanel.hide,
+				#liveMoversPanel.tab-hidden {
+					transform: translateX(calc(110% * var(--live-panel-direction)));
+					visibility: hidden;
+					pointer-events: none;
+				}
+
+				#liveMoversPanel:not(.hide):not(.tab-hidden) {
+					transform: translateX(0);
+					visibility: visible;
+					pointer-events: auto;
+				}
+
+				body.dock-tab-live #liveMoversPanel {
+					z-index: 1004;
+				}
+
+				body.dock-tab-profiles #liveMoversPanel {
+					z-index: 1001;
+				}
+
+				#liveMoversPanel .shell {
+					display: grid;
+					grid-template-rows: auto 1fr;
+					height: 100%;
+					max-width: 100%;
+					overflow-x: hidden;
+				}
+
+				#liveMoversPanel .header {
+					padding: 1em;
+					border-bottom: 1px solid #24314f;
+					background: linear-gradient(180deg, #131c31 0%, #0f1728 100%);
+				}
+
+				#liveMoversPanel .header-top {
+					display: flex;
+					gap: .75em;
+					justify-content: space-between;
+					align-items: flex-start;
+					flex-wrap: wrap;
+				}
+
+				#liveMoversPanel .header-copy {
+					display: grid;
+					gap: .35em;
+					min-width: 0;
+				}
+
+				#liveMoversPanel .header h3 {
+					margin: 0;
+					color: white;
+					font-size: 1.15em;
+				}
+
+				#liveMoversPanel .header p {
+					margin: 0;
+					font-size: .92em;
+					line-height: 1.45;
+					color: #9db1dd;
+					max-width: 42ch;
+				}
+
+				#liveMoversPanel .header-actions {
+					display: grid;
+					grid-template-columns: 1fr 1fr auto;
+					gap: .5em;
+					align-items: center;
+					min-width: 0;
+				}
+
+				#liveMoversPanel .header-actions .theme {
+					white-space: nowrap;
+					font-size: .95em;
+					line-height: 1.2;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					padding: .5em .7em;
+					min-width: 0;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				#liveMoversPanel .dock-tab-btn,
+				#profilesPanel .dock-tab-btn {
+					padding: .5em .7em;
+					border-radius: .7em;
+					border: 1px solid #35558e;
+					background: #0f1728;
+					color: #d8e0f7;
+					white-space: nowrap;
+					font-size: .95em;
+					line-height: 1.2;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					min-width: 0;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				#liveMoversPanel .dock-tab-btn[data-tab="live"],
+				#profilesPanel .dock-tab-btn[data-tab="profiles"] {
+					border-color: #4f7dff;
+					background: #132242;
+					color: white;
+				}
+
+				body.dock-tab-live .dock-tab-btn[data-tab="live"],
+				body.dock-tab-profiles .dock-tab-btn[data-tab="profiles"] {
+					background: linear-gradient(135deg, #2962ff, #17357d);
+					border-color: #8ab5ff;
+					box-shadow: 0 0 0 1px #7aa6ff33;
+				}
+
+				#liveMoversPanel .body {
+					overflow-y: auto;
+					overflow-x: hidden;
+					padding: 1em;
+					display: grid;
+					gap: 1em;
+					max-width: 100%;
+				}
+
+				#liveMoversPanel .group {
+					background: linear-gradient(180deg, #18233b 0%, #121a2e 100%);
+					border: 1px solid #2b4067;
+					border-radius: .8em;
+					padding: .9em;
+					min-width: 0;
+					box-shadow: inset 0 1px 0 #ffffff08;
+				}
+
+				#liveMoversPanel .group-head {
+					display: grid;
+					gap: .2em;
+					margin-bottom: .75em;
+				}
+
+				#liveMoversPanel .group h4 {
+					margin: 0;
+					color: white;
+				}
+
+				#liveMoversPanel .group-head p {
+					margin: 0;
+					font-size: .82em;
+					line-height: 1.4;
+					color: #90a7d6;
+				}
+
+				#liveMoversPanel .grid {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					gap: .75em;
+				}
+
+				#liveMoversPanel label {
+					display: grid;
+					gap: .35em;
+					font-size: .9em;
+					color: #d7e3ff;
+					min-width: 0;
+				}
+
+				#liveMoversPanel label > span {
+					font-weight: 600;
+				}
+
+				#liveMoversPanel label small {
+					font-size: .78em;
+					line-height: 1.35;
+					color: #8fa6d6;
+				}
+
+				#liveMoversPanel .live-search-row {
+					display: flex;
+					align-items: stretch;
+					border: 1px solid #304164;
+					border-radius: .55em;
+					overflow: hidden;
+					background: #0f1728;
+					transition: border-color .15s ease, box-shadow .15s ease;
+				}
+
+				#liveMoversPanel .live-search-row:focus-within {
+					border-color: #4f7dff;
+					box-shadow: 0 0 0 3px #2962ff22;
+				}
+
+				#liveMoversPanel .live-search-row input {
+					flex: 1;
+					min-width: 0;
+					border: none !important;
+					border-radius: 0 !important;
+					box-shadow: none !important;
+					background: transparent !important;
+					padding: .65em .7em;
+					width: auto;
+				}
+
+				#liveMoversPanel .live-search-row input:focus {
+					outline: none;
+					background: transparent !important;
+					box-shadow: none !important;
+				}
+
+				#liveMoversPanel .live-search-clear {
+					flex-shrink: 0;
+					background: none;
+					border: none;
+					border-left: 1px solid #263557;
+					border-radius: 0;
+					color: #5a6e99;
+					cursor: pointer;
+					font-size: .85em;
+					line-height: 1;
+					padding: .5em .6em;
+					transition: background .15s ease, color .15s ease;
+				}
+
+				#liveMoversPanel .live-search-clear:hover {
+					background: #1d2a47;
+					color: #d8e0f7;
+				}
+
+				#liveMoversPanel .live-search-btn {
+					flex-shrink: 0;
+					background: #1a2c52;
+					border: none;
+					border-left: 1px solid #263557;
+					border-radius: 0;
+					color: #a8bfe8;
+					cursor: pointer;
+					font-size: .8em;
+					font-weight: 600;
+					letter-spacing: .04em;
+					padding: .5em .9em;
+					text-transform: uppercase;
+					transition: background .15s ease, color .15s ease;
+				}
+
+				#liveMoversPanel .live-search-btn:hover {
+					background: #2962ff;
+					color: white;
+				}
+
+				#liveMoversPanel .live-search-toggle {
+					display: flex;
+					align-items: center;
+					gap: .5em;
+					font-size: .83em;
+					color: #7a8fbb;
+					cursor: pointer;
+					user-select: none;
+					margin-top: .5em;
+				}
+
+				#liveMoversPanel .live-search-toggle input[type="checkbox"] {
+					width: auto;
+					margin: 0;
+					accent-color: #4f7dff;
+					cursor: pointer;
+				}
+
+				#liveMoversPanel input,
+				#liveMoversPanel select {
+					background: #0f1728;
+					color: white;
+					border: 1px solid #304164;
+					border-radius: .55em;
+					padding: .65em .7em;
+					box-sizing: border-box;
+					width: 100%;
+					min-width: 0;
+					transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+				}
+
+				#liveMoversPanel input:focus,
+				#liveMoversPanel select:focus {
+					outline: none;
+					border-color: #4f7dff;
+					box-shadow: 0 0 0 3px #2962ff22;
+					background: #111c31;
+				}
+
+				#liveMoversPanel .check-row,
+				#liveMoversPanel .exchange-list,
+				#liveMoversPanel .actions,
+				#liveMoversPanel .stats {
+					display: flex;
+					flex-wrap: wrap;
+					gap: .65em;
+					min-width: 0;
+				}
+
+				#liveMoversPanel .check-row {
+					display: grid;
+					grid-template-columns: 1fr;
+				}
+
+				#liveMoversPanel .toggle-card,
+				#liveMoversPanel .close-pref {
+					display: grid;
+					grid-template-columns: 1fr auto;
+					align-items: center;
+					gap: .75em;
+					padding: .75em .8em;
+					background: linear-gradient(180deg, #0f1728 0%, #10192d 100%);
+					border: 1px solid #30476f;
+					border-radius: .75em;
+					min-width: 0;
+				}
+
+				#liveMoversPanel .toggle-copy {
+					display: grid;
+					gap: .15em;
+					min-width: 0;
+				}
+
+				#liveMoversPanel .toggle-copy strong {
+					color: white;
+					font-size: .94em;
+				}
+
+				#liveMoversPanel .toggle-copy small {
+					color: #8ea7d8;
+					line-height: 1.35;
+				}
+
+				#liveMoversPanel .toggle-switch {
+					position: relative;
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+				}
+
+				#liveMoversPanel .toggle-switch input {
+					position: absolute;
+					inset: 0;
+					opacity: 0;
+					cursor: pointer;
+					width: 100%;
+					height: 100%;
+					margin: 0;
+				}
+
+				#liveMoversPanel .toggle-ui {
+					position: relative;
+					display: inline-block;
+					width: 46px;
+					height: 26px;
+					border-radius: 999px;
+					background: #24324f;
+					border: 1px solid #4c6797;
+					transition: background .18s ease, border-color .18s ease;
+				}
+
+				#liveMoversPanel .toggle-ui::after {
+					content: "";
+					position: absolute;
+					top: 2px;
+					left: 2px;
+					width: 20px;
+					height: 20px;
+					border-radius: 50%;
+					background: white;
+					box-shadow: 0 1px 3px #0007;
+					transition: transform .18s ease;
+				}
+
+				#liveMoversPanel .toggle-switch input:checked + .toggle-ui {
+					background: linear-gradient(135deg, #2962ff, #2ddf8f);
+					border-color: #7db0ff;
+				}
+
+				#liveMoversPanel .toggle-switch input:checked + .toggle-ui::after {
+					transform: translateX(20px);
+				}
+
+				#liveMoversPanel .consent-banner {
+					display: grid;
+					gap: .65em;
+					margin-top: .75em;
+					padding: .8em;
+					border-radius: .75em;
+					border: 1px solid #35558e;
+					background: linear-gradient(180deg, #12213b 0%, #0f182c 100%);
+				}
+
+				#liveMoversPanel .consent-banner strong {
+					color: white;
+					display: block;
+					margin-bottom: .2em;
+				}
+
+				#liveMoversPanel .consent-banner p {
+					margin: 0;
+					font-size: .86em;
+					line-height: 1.45;
+					color: #a9c1f2;
+				}
+
+				#liveMoversPanel .consent-actions {
+					display: flex;
+					flex-wrap: wrap;
+					gap: .5em;
+				}
+
+				#liveMoversPanel .exchange-list label {
+					display: flex;
+					align-items: center;
+					gap: .55em;
+					padding: .45em .65em;
+					background: #0f1728;
+					border: 1px solid #2b4067;
+					border-radius: .55em;
+					min-width: 0;
+				}
+
+				#liveMoversPanel .exchange-list input[type="checkbox"] {
+					appearance: none;
+					width: 1.05em;
+					height: 1.05em;
+					border-radius: .3em;
+					border: 1px solid #5b73a4;
+					background: #0c1323;
+					padding: 0;
+					margin: 0;
+					position: relative;
+					flex: 0 0 auto;
+				}
+
+				#liveMoversPanel .exchange-list input[type="checkbox"]:checked {
+					background: #2962ff;
+					border-color: #2962ff;
+				}
+
+				#liveMoversPanel .exchange-list input[type="checkbox"]:checked::after {
+					content: "";
+					position: absolute;
+					left: 3px;
+					top: 0px;
+					width: 4px;
+					height: 8px;
+					border: solid white;
+					border-width: 0 2px 2px 0;
+					transform: rotate(45deg);
+				}
+
+				#liveMoversPanel .stats span {
+					background: #0f1728;
+					padding: .45em .7em;
+					border: 1px solid #293b60;
+					border-radius: 999px;
+					font-size: .84em;
+				}
+
+				#live_status {
+					font-size: .9em;
+					color: #9ec0ff;
+					line-height: 1.4;
+				}
+
+				#live_custom_results,
+				#live_pins,
+				#live_items {
+					display: grid;
+					gap: .6em;
+				}
+
+				#live_pins .pin-item {
+					display: grid;
+					grid-template-columns: 1fr auto;
+					grid-template-rows: auto auto;
+					gap: .3em .6em;
+					padding: .65em .75em;
+					border: 1px solid #263557;
+					border-radius: .65em;
+					background: #0f1728;
+				}
+
+				#live_pins .pin-item > div:first-child {
+					grid-column: 1 / span 2;
+					grid-row: 1;
+					min-width: 0;
+				}
+
+				#live_pins .pin-item-actions {
+					grid-column: 1 / span 2;
+					grid-row: 2;
+					display: flex;
+					align-items: center;
+					gap: .4em;
+					flex-wrap: wrap;
+				}
+
+				#live_pins .pin-item-actions .pin-slot-label {
+					display: flex;
+					align-items: center;
+					gap: .3em;
+					font-size: .8em;
+					color: #7a8fbb;
+					margin-right: auto;
+				}
+
+				#live_pins .pin-item-actions .pin-slot-label input {
+					width: 3.8em;
+					padding: .25em .4em;
+					font-size: 1em;
+				}
+
+				#live_pins .pin-item-actions .theme {
+					padding: .3em .65em;
+					font-size: .8em;
+					font-weight: 600;
+					letter-spacing: .03em;
+					min-width: 2em;
+					text-align: center;
+				}
+
+				#live_custom_results .mini-item {
+					align-items: center;
+					gap: .6em;
+					padding: .65em .75em;
+					border: 1px solid #263557;
+					border-radius: .65em;
+					background: #0f1728;
+				}
+
+				#live_custom_results .mini-item > div:first-child {
+					flex: 1;
+					min-width: 0;
+				}
+
+				#live_custom_results .mini-item-actions {
+					display: flex;
+					gap: .35em;
+					flex-shrink: 0;
+				}
+
+				#live_custom_results .mini-item-actions .theme {
+					padding: .3em .65em;
+					font-size: .8em;
+					font-weight: 600;
+					letter-spacing: .03em;
+					min-width: 2.8em;
+					text-align: center;
+				}
+					display: grid;
+					grid-template-columns: 1fr auto;
+					grid-template-rows: auto auto;
+					gap: .3em .6em;
+					padding: .65em .75em;
+					border: 1px solid #263557;
+					border-radius: .65em;
+					background: #0f1728;
+				}
+
+				#live_items .live-item > div:first-child {
+					grid-column: 1;
+					grid-row: 1;
+					min-width: 0;
+				}
+
+				#live_items .live-item .move {
+					grid-column: 2;
+					grid-row: 1;
+					align-self: center;
+					text-align: right;
+					white-space: nowrap;
+				}
+
+				#live_items .live-item-actions {
+					grid-column: 1 / span 2;
+					grid-row: 2;
+					display: flex;
+					gap: .4em;
+					justify-content: flex-end;
+				}
+
+				#live_items .live-item-actions .theme {
+					padding: .3em .65em;
+					font-size: .8em;
+					font-weight: 600;
+					letter-spacing: .03em;
+				}
+
+				#liveMoversPanel .empty-note,
+				#live_custom_results .empty-note,
+				#live_pins .empty-note {
+					font-size: .88em;
+					color: #9db1dd;
+					padding: .25em 0;
+				}
+
+				#liveMoversPanel .mini-note {
+					font-size: .85em;
+					color: #9db1dd;
+					margin: .6em 0 0;
+					line-height: 1.45;
+				}
+
+				#live_items .live-item.changed {
+					border-color: #2962ff;
+					box-shadow: 0 0 0 1px #2962ff55;
+				}
+
+				#live_items strong {
+					color: white;
+				}
+
+				#live_items small {
+					display: block;
+					margin-top: .2em;
+					color: #9db1dd;
+				}
+
+				#live_items .move {
+					font-weight: bold;
+					text-align: right;
+				}
+
+				#live_items .up {
+					color: #2ddf8f;
+				}
+
+				#live_items .down {
+					color: #ff6b81;
+				}
+
+				#liveMoversPanel .theme {
+					margin: 0;
+					padding: .55em .75em;
+					max-width: 100%;
+				}
+
+				#liveMoversPanel .dock-hero {
+					margin-top: .85em;
+					display: grid;
+					grid-template-columns: 1fr auto;
+					gap: .75em;
+					padding: .8em;
+					background: linear-gradient(180deg, #16233d 0%, #111a30 100%);
+					border: 1px solid #314a77;
+					border-radius: .8em;
+				}
+
+				#liveMoversPanel .hero-pill {
+					display: inline-flex;
+					align-items: center;
+					padding: .38em .65em;
+					border-radius: 999px;
+					background: #0f1728;
+					border: 1px solid #35558e;
+					font-size: .8em;
+					color: #b8cdf8;
+					width: fit-content;
+				}
+
+				#liveMoversPanel .inline-setting {
+					display: grid;
+					gap: .3em;
+					min-width: 120px;
+				}
+
+				#liveMoversPanel .inline-setting span,
+				#liveMoversPanel label > span {
+					font-weight: 600;
+					color: #e5eeff;
+				}
+
+				#live_exchange_dynamic {
+					width: 100%;
+				}
+
+				#liveMoversPanel .actions .theme,
+				#liveMoversPanel .stats span {
+					flex: 1 1 auto;
+					min-width: 0;
+					text-align: center;
+				}
+
+				#liveMoversPanel .pin-item-actions {
+					justify-content: flex-start;
+					flex-wrap: wrap;
+				}
+
+				@media screen and (max-width: 1000px) {
+					body.live-panel-open {
+						--live-panel-space: 0px !important;
+						--live-panel-left-space: 0px !important;
+						--live-panel-right-space: 0px !important;
+					}
+				}
+
+				@media screen and (max-width: 700px) {
+					#liveMoversPanel .grid {
+						grid-template-columns: 1fr;
+					}
+
+					#liveMoversPanel {
+						width: min(100vw, 340px);
+					}
+
+					#liveMoversPanel .dock-hero {
+						grid-template-columns: 1fr;
+					}
+				}
+			</style>
+			<div class="shell">
+				<div class="header">
+					<div class="header-top">
+						<div class="header-copy">
+							<h3>Rapid Movers</h3>
+							<p>Your saved charts stay on screen first. Turn on live updates or apply matches only when you want to switch to the live layout.</p>
+						</div>
+						<div class="header-actions">
+							<button class="theme dock-tab-btn" data-tab="live" type="button" onclick="XDirectUI.switchDockTab('live')">Rapid Movers</button>
+							<button class="theme dock-tab-btn" data-tab="profiles" type="button" onclick="XDirectUI.switchDockTab('profiles')">Saved Profiles</button>
+							<button class="theme" type="button" onclick="XDirectUI.visibility('liveMoversPanel')">Close</button>
+						</div>
+					</div>
+					<div class="dock-hero">
+						<div>
+							<div class="hero-pill">Real-time feed</div>
+							<p>When both docks share one side, the tab buttons above let you swap views</p>
+						</div>
+						<label class="inline-setting">
+							<span>Dock side</span>
+							<select id="live_panel_side">
+								<option value="left">Left</option>
+								<option value="right">Right</option>
+							</select>
+						</label>
+					</div>
+				</div>
+				<div class="body">
+					<div class="group">
+						<div class="group-head">
+							<h4>Controls</h4>
+							<p>Fine-tune what gets replaced, how often new movers are checked, and how the panel behaves.</p>
+						</div>
+						<div class="check-row">
+							<label class="toggle-card">
+								<span class="toggle-copy">
+									<strong>Enable live updates</strong>
+									<small>If needed, Rapid Movers can open Saved Profiles once and highlight where to save this layout.</small>
+								</span>
+								<span class="toggle-switch">
+									<input id="live_enabled" type="checkbox">
+									<span class="toggle-ui"></span>
+								</span>
+							</label>
+							<label class="toggle-card">
+								<span class="toggle-copy">
+									<strong>Play audio alerts</strong>
+									<small>Hear a sound when a fresh movers batch arrives.</small>
+								</span>
+								<span class="toggle-switch">
+									<input id="live_alerts" type="checkbox">
+									<span class="toggle-ui"></span>
+								</span>
+							</label>
+						</div>
+						<div class="empty-note" style="margin-top:.55em;">Tip: if live scanning is on, closing this panel lets you restore a saved profile or keep the live charts running in the background.</div>
+						<div class="grid" style="margin-top:.8em;">
+							<label>
+								<span>Search movers</span>
+								<small>Filter by exchange or symbol words like btc, pepe, or coinbase.</small>
+								<input id="live_search" type="text" placeholder="binance, btc, pepe">
+							</label>
+							<label>
+								<span>Direction</span>
+								<small>Show pumps, dumps, or both.</small>
+								<select id="live_side">
+									<option value="BOTH">Both</option>
+									<option value="PUMP">Pump</option>
+									<option value="DUMP">Dump</option>
+								</select>
+							</label>
+							<label>
+								<span>Minimum move %</span>
+								<small>Hide symbols moving less than this amount.</small>
+								<input id="live_min_change" type="number" step="0.1" min="0" value="0">
+							</label>
+							<label>
+								<span>Max live charts</span>
+								<small>Limit how many chart slots can be updated at once.</small>
+								<input id="live_max_charts" type="number" min="1" max="100" value="8">
+							</label>
+							<label>
+								<span>Keep first charts pinned</span>
+								<small>Reserve the first visible slots for your top matches.</small>
+								<input id="live_pinned_count" type="number" min="0" max="20" value="0">
+							</label>
+							<label>
+								<span>Refresh cadence</span>
+								<small>Choose how often to check for a newer movers batch.</small>
+								<input id="live_refresh_seconds" type="number" min="5" max="600" value="60">
+							</label>
+							<label>
+								<span>Sort order</span>
+								<small>Prioritize the newest, biggest, pump, or dump matches.</small>
+								<select id="live_sort">
+									<option value="newest">Newest</option>
+									<option value="biggest">Biggest move</option>
+									<option value="pumps">Top pumps</option>
+									<option value="dumps">Top dumps</option>
+								</select>
+							</label>
+							<label>
+								<span>Update mode</span>
+								<small>Choose whether matches apply automatically or only when you confirm.</small>
+								<select id="live_apply_mode">
+									<option value="auto">Auto replace</option>
+									<option value="manual">Manual apply</option>
+									<option value="notify">Notify only</option>
+								</select>
+							</label>
+							<label>
+								<span>Chart highlight</span>
+								<small>Choose whether Rapid Movers briefly marks stayed charts, new charts, both, or neither.</small>
+								<select id="live_highlight_mode">
+									<option value="stayed">Stayed only</option>
+									<option value="new">New only</option>
+									<option value="both">Highlight both</option>
+									<option value="off">Off</option>
+								</select>
+							</label>
+						</div>
+					</div>
+
+					<div class="group">
+						<div class="group-head">
+							<h4>Exchanges</h4>
+							<p>Pick the markets you want Rapid Movers to watch.</p>
+						</div>
+						<div class="exchange-list">
+							<label><input id="live_exchange_all" type="checkbox"> All exchanges</label>
+							<div id="live_exchange_dynamic" class="exchange-list"></div>
+						</div>
+					</div>
+
+					<div class="group">
+						<div class="actions">
+							<button id="live_refresh_now" class="theme" type="button">Refresh Now</button>
+							<button id="live_apply_now" class="theme" type="button">Apply to Charts</button>
+							<button id="live_pause_toggle" class="theme" type="button">Pause</button>
+						</div>
+						<div class="stats" style="margin-top:.7em;">
+							<span id="live_last_refresh">Waiting for feed...</span>
+							<span id="live_match_count">0 matches</span>
+							<span id="live_change_count">0 changed</span>
+						</div>
+						<div id="live_status" style="margin-top:.7em;">Ready.</div>
+					</div>
+
+					<div class="group">
+						<div class="group-head">
+							<h4>Pinned & custom charts</h4>
+							<p>Add your own symbols and keep them locked in place above the live movers list.</p>
+						</div>
+						<label>
+							<span>Find any chart</span>
+							<small>Search for a ticker or paste a full symbol such as BINANCE:BTCUSDT.</small>
+							<div class="live-search-row">
+								<input id="live_custom_query" type="text" placeholder="ETH, TSLA, BINANCE:BTCUSDT">
+								<button id="live_custom_clear" class="live-search-clear" type="button" title="Clear search" aria-label="Clear search" hidden>&#10005;</button>
+								<button id="live_custom_search" class="live-search-btn" type="button">Search</button>
+							</div>
+						</label>
+						<label class="live-search-toggle">
+							<input id="live_custom_clear_on_add" type="checkbox">
+							<span>Clear search after adding</span>
+						</label>
+						<div id="live_custom_results">
+							<div class="empty-note">Type at least 2 characters to find a chart you can add or pin.</div>
+						</div>
+						<p class="mini-note">Pinned charts stay at the top and will not be replaced by live updates. Use ↑ and ↓ to place them wherever you want.</p>
+						<div id="live_pins">
+							<div class="empty-note">No pinned charts yet.</div>
+						</div>
+					</div>
+
+					<div class="group">
+						<div class="group-head">
+							<h4>Matching movers</h4>
+							<p>This feed shows the symbols currently matching your filters and update mode.</p>
+						</div>
+						<div id="live_items"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="profilesPanel" class="hide">
+			<style class="scoped">
+				#profilesPanel {
+					--profiles-panel-direction: -1;
+					position: fixed;
+					top: 0;
+					left: 0;
+					right: auto;
+					width: min(340px, 100vw);
+					max-width: 100vw;
+					height: 100vh;
+					z-index: 1002;
+					background: rgba(12, 16, 28, 0.98);
+					border-right: 1px solid #2e3d61;
+					border-left: none;
+					box-shadow: 10px 0 40px #0008;
+					color: #d8e0f7;
+					overflow: hidden;
+					transition: transform .25s ease, visibility .25s ease;
+				}
+
+				body.profiles-panel-dock-right #profilesPanel {
+					--profiles-panel-direction: 1;
+					left: auto;
+					right: 0;
+					border-left: 1px solid #2e3d61;
+					border-right: none;
+					box-shadow: -10px 0 40px #0008;
+				}
+
+				#profilesPanel.hide,
+				#profilesPanel.tab-hidden {
+					transform: translateX(calc(110% * var(--profiles-panel-direction)));
+					visibility: hidden;
+					pointer-events: none;
+				}
+
+				#profilesPanel:not(.hide):not(.tab-hidden) {
+					transform: translateX(0);
+					visibility: visible;
+					pointer-events: auto;
+				}
+
+				body.dock-tab-profiles #profilesPanel {
+					z-index: 1005;
+				}
+
+				body.dock-tab-live #profilesPanel {
+					z-index: 1002;
+				}
+
+				#profilesPanel .shell {
+					display: grid;
+					grid-template-rows: auto 1fr;
+					height: 100%;
+				}
+
+				#profilesPanel .header {
+					padding: 1em;
+					border-bottom: 1px solid #24314f;
+					background: linear-gradient(180deg, #131c31 0%, #0f1728 100%);
+				}
+
+				#profilesPanel .header-top {
+					display: flex;
+					gap: .75em;
+					justify-content: space-between;
+					align-items: flex-start;
+					flex-wrap: wrap;
+				}
+
+				#profilesPanel .header-copy {
+					display: grid;
+					gap: .35em;
+					min-width: 0;
+				}
+
+				#profilesPanel .header-actions,
+				#profilesPanel .actions {
+					display: flex;
+					gap: .5em;
+					flex-wrap: wrap;
+					align-items: center;
+				}
+
+				#profilesPanel .header-actions {
+					display: grid;
+					grid-template-columns: 1fr 1fr auto;
+					gap: .5em;
+					align-items: center;
+					min-width: 0;
+				}
+
+				#profilesPanel .header-actions .theme {
+					white-space: nowrap;
+					font-size: .95em;
+					line-height: 1.2;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					padding: .5em .7em;
+					min-width: 0;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				#profilesPanel .dock-hero {
+					margin-top: .85em;
+					display: grid;
+					grid-template-columns: 1fr auto;
+					gap: .75em;
+					padding: .8em;
+					background: linear-gradient(180deg, #16233d 0%, #111a30 100%);
+					border: 1px solid #314a77;
+					border-radius: .8em;
+				}
+
+				#profilesPanel .hero-pill {
+					display: inline-flex;
+					align-items: center;
+					padding: .38em .65em;
+					border-radius: 999px;
+					background: #0f1728;
+					border: 1px solid #35558e;
+					font-size: .8em;
+					color: #b8cdf8;
+					width: fit-content;
+				}
+
+				#profilesPanel .inline-setting {
+					display: grid;
+					gap: .3em;
+					min-width: 120px;
+				}
+
+				#profilesPanel .inline-setting span,
+				#profilesPanel label > span {
+					font-weight: 600;
+					color: #e5eeff;
+				}
+
+				#profilesPanel .body {
+					padding: 1em;
+					display: grid;
+					gap: 1em;
+					overflow-y: auto;
+					overflow-x: hidden;
+				}
+
+				#profilesPanel .group {
+					background: linear-gradient(180deg, #18233b 0%, #121a2e 100%);
+					border: 1px solid #2b4067;
+					border-radius: .85em;
+					padding: .95em;
+					display: grid;
+					gap: .75em;
+					box-shadow: inset 0 1px 0 #ffffff08;
+				}
+
+				#profilesPanel .group-head {
+					display: grid;
+					gap: .2em;
+				}
+
+				@keyframes mcc-guided-pulse {
+					0%   { box-shadow: 0 0 0 2px #78b7ff33, 0 0 1.2em #78b7ff22; }
+					50%  { box-shadow: 0 0 0 5px #78b7ff55, 0 0 2em #78b7ff44; }
+					100% { box-shadow: 0 0 0 2px #78b7ff33, 0 0 1.2em #78b7ff22; }
+				}
+				@keyframes mcc-guided-btn-pulse {
+					0%   { box-shadow: 0 0 0 2px #78b7ff66, 0 0 1em #78b7ff55; border-color: #78b7ff; }
+					50%  { box-shadow: 0 0 0 5px #78b7ffaa, 0 0 1.8em #78b7ff99; border-color: #aad4ff; }
+					100% { box-shadow: 0 0 0 2px #78b7ff66, 0 0 1em #78b7ff55; border-color: #78b7ff; }
+				}
+
+				#profilesPanel .group.guided-highlight {
+					border-color: #78b7ff;
+					animation: mcc-guided-pulse 1.6s ease-in-out infinite;
+				}
+
+				#profilesPanel .guide-note {
+					background: rgba(65, 121, 214, 0.14);
+					border: 1px solid #4b79d6;
+					border-radius: .7em;
+					padding: .7em;
+					display: grid;
+					gap: .45em;
+				}
+
+				#profilesPanel .guide-note-checkbox {
+					display: flex;
+					align-items: center;
+					gap: .5em;
+					font-size: .88em;
+					cursor: pointer;
+					user-select: none;
+					color: #b8ccf0;
+				}
+
+				#profilesPanel .guide-note-checkbox input[type="checkbox"] {
+					width: auto;
+					margin: 0;
+					accent-color: #78b7ff;
+					cursor: pointer;
+				}
+
+				#liveMoversPanel .consent-actions .guided-highlight,
+				#profilesPanel .guided-highlight .theme,
+				#profilesPanel .theme.guided-highlight {
+					border-color: #78b7ff;
+					animation: mcc-guided-btn-pulse 1.6s ease-in-out infinite;
+				}
+
+				#profilesPanel label {
+					display: grid;
+					gap: .35em;
+				}
+
+				#profilesPanel input,
+				#profilesPanel select {
+					background: #0f1728;
+					color: white;
+					border: 1px solid #304164;
+					border-radius: .6em;
+					padding: .65em .7em;
+					box-sizing: border-box;
+					width: 100%;
+					transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+				}
+
+				#profilesPanel input:focus,
+				#profilesPanel select:focus {
+					outline: none;
+					border-color: #4f7dff;
+					box-shadow: 0 0 0 3px #2962ff22;
+					background: #111c31;
+				}
+
+				#profilesPanel select[size] {
+					min-height: 13em;
+					padding: .35em;
+				}
+
+				#profilesPanel .startup-card {
+					display: grid;
+					grid-template-columns: auto 1fr;
+					gap: .65em;
+					align-items: flex-start;
+					padding: .75em .8em;
+					border-radius: .75em;
+					border: 1px solid #30476f;
+					background: linear-gradient(180deg, #0f1728 0%, #10192d 100%);
+				}
+
+				#profilesPanel .startup-card input[type="checkbox"] {
+					width: auto;
+					margin-top: .2em;
+				}
+
+				#profilesPanel .status-note {
+					padding: .7em .8em;
+					border-radius: .75em;
+					border: 1px solid #2f446c;
+					background: #0f1728;
+					font-size: .88em;
+					line-height: 1.45;
+					color: #a9c1f2;
+				}
+
+				#profilesPanel h3,
+				#profilesPanel h4,
+				#profilesPanel p,
+				#profilesPanel small {
+					margin: 0;
+				}
+
+				#profilesPanel h3,
+				#profilesPanel h4 {
+					color: white;
+				}
+
+				#profilesPanel p,
+				#profilesPanel small {
+					color: #9db1dd;
+					line-height: 1.45;
+				}
+
+				#profilesPanel .theme {
+					margin: 0;
+					flex: 1 1 120px;
+				}
+
+				@media screen and (max-width: 700px) {
+					#profilesPanel .dock-hero {
+						grid-template-columns: 1fr;
+					}
+
+					#profilesPanel {
+						width: min(100vw, 340px);
+					}
+				}
+			</style>
+			<div class="shell">
+				<div class="header">
+					<div class="header-top">
+						<div class="header-copy">
+							<h3>Saved Profiles</h3>
+							<p>Keep polished chart setups on hand and switch back to them without rebuilding the board.</p>
+						</div>
+						<div class="header-actions">
+							<button class="theme dock-tab-btn" data-tab="live" type="button" onclick="XDirectUI.switchDockTab('live')">Rapid Movers</button>
+							<button class="theme dock-tab-btn" data-tab="profiles" type="button" onclick="XDirectUI.switchDockTab('profiles')">Saved Profiles</button>
+							<button class="theme" type="button" onclick="XDirectUI.visibility('profilesPanel')">Close</button>
+						</div>
+					</div>
+					<div class="dock-hero">
+						<div>
+							<div class="hero-pill">Per-chart timeframes + indicators</div>
+							<p>When both docks share one side, the tab buttons above let you swap views</p>
+						</div>
+						<label class="inline-setting">
+							<span>Dock side</span>
+							<select id="profile_panel_side">
+								<option value="left">Left</option>
+								<option value="right" selected>Right</option>
+							</select>
+						</label>
+					</div>
+				</div>
+				<div class="body">
+					<div id="profile_current_layout_group" class="group">
+						<div class="group-head">
+							<h4>Save the current layout</h4>
+							<p>Store this chart board exactly as it looks right now, including each chart’s own timeframe and indicators.</p>
+						</div>
+						<label>
+							<span>Profile name</span>
+							<input id="profile_name" type="text" placeholder="morning setup">
+						</label>
+						<div class="actions">
+							<button class="theme" type="button" onclick="SavedProfiles.saveProfile()">Save / Update</button>
+							<button class="theme" type="button" onclick="SavedProfiles.loadSelectedProfile()">Load selected</button>
+						</div>
+						<div class="status-note">Everything stays local to this browser for fast restores and easy experimenting.</div>
+					</div>
+
+					<div id="profile_saved_list_group" class="group">
+						<div class="group-head">
+							<h4>Your saved layouts</h4>
+							<p>Pick a saved setup to load, rename, delete, or mark as the startup default.</p>
+						</div>
+						<select id="profile_profiles_list" size="8" onchange="SavedProfiles.syncNameFromSelection()">
+							<option value="">No saved profiles yet</option>
+						</select>
+						<!-- <label class="startup-card">
+							<input id="profile_startup_default" type="checkbox">
+							<span>
+								<strong>Use selected profile on startup</strong>
+								<small id="profile_default_label">No startup default selected yet.</small>
+							</span>
+						</label> -->
+						<div class="actions">
+							<button class="theme" type="button" onclick="SavedProfiles.loadSelectedProfile()">Load</button>
+							<button class="theme" type="button" onclick="SavedProfiles.renameSelectedProfile()">Rename</button>
+							<button class="theme" type="button" onclick="SavedProfiles.deleteSelectedProfile()">Delete</button>
+						</div>
+						<p id="profile_status" class="status-note">Profiles are saved locally and reload instantly.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<audio id="live_alert_sound" src="https://www.myinstants.com/media/sounds/taco-bell-bong-sfx.mp3" preload="auto"></audio>
 		<!-- <DIV ID="popup" class="modalConfig hide">
 			<STYLE class="scoped">
 				.do-not-show {
@@ -1040,7 +2424,7 @@
 		<INPUT hidden id="do_not_show" type="checkbox" name="do_not_show"onclick="storeMAN(true, this.id, this.checked)" > -->
 
 	</DIV>
-	<div id="announcement" class="notify-area" style="display: none;">
+	<div id="announcement" class="notify-area" style="display: none; cursor: pointer;">
 		<style class="scoped">
 			\& {
 				background-color: #2962ff;
@@ -1048,10 +2432,10 @@
 				text-align: center;
 				color: white;
 				position: relative;
+				cursor: pointer;
 			}
 
 			\& p {
-				pointer-events: none;
 				background: white;
 				color: black;
 				border-radius: 50%;
@@ -1066,21 +2450,37 @@
 				cursor: pointer;
 				pointer-events: auto;
 			}
+
+			\& a {
+				color: white;
+				text-decoration: underline;
+				cursor: pointer;
+			}
 		</style>
-		Introducing the MultiCoinCharts Rapid Movers Scanner
-		<a style="color: white;" target="_blank" href="../rapidmovers.html"><b><u>Check it out</u></b></a>
-		<p onclick="dismissAnnouncement()">X</p>
+		💸 Get $5 + earn bonuses with Freecash – Click to see if you're eligible
+        <a style="color: white;" target="_blank"><b><u>Check it out</u></b></a>
+		<p onclick="event.stopPropagation(); dismissAnnouncement()">X</p>
 	</div>
+
+	<div id="offerModal">
+        <div id="modalContent">
+            <h2>Where are you located?</h2>
+            <div id="countryGrid">
+                <!-- Country cards will be injected here -->
+            </div>
+            <div id="result" style="margin-top:1em;"></div>
+        </div>
+    </div>
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
-			if (!localStorage.getItem("announcementDismissed")) {
+			if (!localStorage.getItem("freecashDismissed")) {
 				document.getElementById("announcement").style.display = "block";
 			}
 		});
 
 		function dismissAnnouncement() {
-			localStorage.setItem("announcementDismissed", "true");
+			localStorage.setItem("freecashDismissed", "true");
 			document.getElementById("announcement").remove();
 		}
 	</script>
@@ -1222,7 +2622,7 @@
 				background: rgba(0, 0, 0, .95);
 				height: 100vh;
 				top: 0;
-				z-index: 16;
+			 z-index: 16;
 				width: 100vw;
 				display: grid;
 				transition: transform .5s;
@@ -1243,12 +2643,13 @@
 			<P>by @leasj</P>
 			<P id="pCrashCounter"></P> <BR>
 			<A id="aCrashRefresh" href="javascript:void(0)" style="display: none;"
-				onclick="localStorage.clear(); location.href= location.href.includes('?') ? location.href + `&p=1`:location.href + '?p=1' ">
+				onclick="localStorage.clear(); location.reload()">
 				Click to refresh browser cache
 			</A>
 		</DIV>
 	</DIV>
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v10.1"></SCRIPT>
+	<!-- <SCRIPT async type="text/javascript" src="js/copypasta.min.js?v10.1"></SCRIPT> -->
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v26.1"></SCRIPT>
 	<SCRIPT>
 		let load_counter = 0;
 		onerror = function (_, _, _, _, err) { return !err }
@@ -1269,6 +2670,83 @@
 			return initPage()
 		})()
 	</SCRIPT>
+
+	    <script>
+        let clicked = 0
+        let dropdown = document.getElementById("dropdown")
+        let dropdown2 = document.getElementById("dropdown2")
+
+        function activateDropdown() {
+            if (clicked == 0)
+                dropdown.classList.toggle("dropdown-content-active")
+            clicked = 1
+            // console.log(clicked)
+        }
+
+        function removeDropdown() {
+            if (clicked == 1) {
+                dropdown.classList.toggle("dropdown-content-active")
+                clicked = 0
+            }
+        }
+
+        const eligible = ["US", "DE", "GB", "FR", "CA", "NL", "JP", "KR", "BE", "SE", "PL", "IT", "AT", "AU", "CH"];
+        const modal = document.getElementById("offerModal");
+        const banner = document.getElementById("announcement");
+        const result = document.getElementById("result");
+
+        banner.addEventListener("click", () => {
+            modal.style.display = "flex";
+        });
+
+        const countries = [
+            { code: "US", name: "United States" },
+            { code: "DE", name: "Germany" },
+            { code: "GB", name: "United Kingdom" },
+            { code: "FR", name: "France" },
+            { code: "CA", name: "Canada" },
+            { code: "NL", name: "Netherlands" },
+            { code: "JP", name: "Japan" },
+            { code: "KR", name: "South Korea" },
+            { code: "BE", name: "Belgium" },
+            { code: "SE", name: "Sweden" },
+            { code: "PL", name: "Poland" },
+            { code: "IT", name: "Italy" },
+            { code: "AT", name: "Austria" },
+            { code: "AU", name: "Australia" },
+            { code: "CH", name: "Switzerland" }
+        ];
+
+        // Render country cards
+        const countryGrid = document.getElementById("countryGrid");
+        countryGrid.innerHTML = countries.map(c => `
+    <div class="country-card" data-code="${c.code}">
+        <img class="country-flag" src="https://flagcdn.com/w40/${c.code.toLowerCase()}.png" alt="${c.name} flag">
+        <span class="country-name">${c.name}</span>
+    </div>
+    `).join("");
+
+        // Handle card click
+        countryGrid.addEventListener("click", function (e) {
+            const card = e.target.closest(".country-card");
+            if (!card) return;
+            const selected = card.getAttribute("data-code");
+            if (eligible.includes(selected)) {
+                result.innerHTML = "✅ You're eligible! <a href='https://freecash.com/r/108978724648670450271' target='_blank'>Click here to claim</a>";
+            } else {
+                result.innerHTML = "❌ Sorry, this offer is not available in your country.";
+            }
+        });
+
+        // Close modal on outside click
+        window.addEventListener("click", (e) => {
+            if (e.target == modal) {
+                modal.style.display = "none";
+                result.innerHTML = "";
+                document.getElementById("countrySelect").value = "";
+            }
+        });
+    </script>
 
 </BODY>
 
