@@ -1,7 +1,15 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <HTML>
 
 <HEAD>
+	<SCRIPT>
+		(function() {
+			var search = window.location.search;
+			if (search.length === 0 || search === '?') {
+				window.location.replace('/home/');
+			}
+		})();
+	</SCRIPT>
 	<!-- #region Metas -->
 	<!-- HTML 5 Metas -->
 	<META name="description"
@@ -61,7 +69,7 @@
 	<TITLE>MCC - More Than One TradingView Crypto Chart on One Screen</TITLE>
 
 	<LINK rel="shortcut icon" type="image/png" href="images/favicon.png">
-	<LINK href="css/main.css?ver=8.7" rel="stylesheet">
+	<LINK href="css/main.css?ver=9.2" rel="stylesheet">
 	<LINK href="css/baloon.css" rel="stylesheet">
 
 	<SCRIPT async type="text/javascript" src="https://s3.tradingview.com/tv.js"></SCRIPT>
@@ -185,7 +193,7 @@
 				z-index: 9;
 			}
 		</STYLE>
-		<p id="adClose" href="javascript:void(0)" onclick="top_space.remove()" style="cursor: pointer;">X</p>
+		<p id="adClose" href="javascript:void(0)" onclick="mcc_close_top_ad_space()" style="cursor: pointer;">X</p>
 		<script async src="https://coinzillatag.com/lib/display.js">
 		</script>
 		<div class="coinzilla" data-zone="C-1561bcfe3da00dd673"></div>
@@ -198,6 +206,17 @@
 			coinzilla_display.push(c_display_preferences);
 		</script>
 	</DIV>
+	<!-- Mobile Notification Banner -->
+	<div id="mobileNotification" class="mobile-notification hide" role="status" aria-live="polite" aria-atomic="true">
+		<div class="notification-copy">
+			<span id="notificationTitle" class="notification-title"></span>
+			<span id="notificationText"></span>
+			<div id="notificationActions" class="notification-actions hide">
+				<button id="notificationActionButton" type="button" class="notification-action-btn" onclick="mcc_mobile_notification_action()">Use Mobile Enhanced</button>
+			</div>
+		</div>
+		<button class="close-notification" onclick="if (window.MobileOptimization && typeof MobileOptimization.hideNotification === 'function') { MobileOptimization.hideNotification(); } else { document.getElementById('mobileNotification').classList.add('hide'); }">&times;</button>
+	</div>
 	<DIV class="topnav" id="nav">
 		<STYLE class="scoped">
 			\& {
@@ -221,13 +240,69 @@
 		<a href="./home"><button class="theme">HOME</button></a>
 		<DIV class="label theme">
 			<LABEL for="width" class="number-label">Width</LABEL>
-			<INPUT id="width" value="2" class="box-size" title="Adjusts the chart width" type="number" name="box-width"
-				min="1" max="20" />
+			<SELECT id="width" class="box-size" title="Adjusts the chart width" name="box-width">
+				<OPTION value="1">1</OPTION>
+				<OPTION value="2" selected="true">2</OPTION>
+				<OPTION value="3">3</OPTION>
+				<OPTION value="4">4</OPTION>
+				<OPTION value="5">5</OPTION>
+				<OPTION value="6">6</OPTION>
+				<OPTION value="7">7</OPTION>
+				<OPTION value="8">8</OPTION>
+				<OPTION value="9">9</OPTION>
+				<OPTION value="10">10</OPTION>
+				<OPTION value="11">11</OPTION>
+				<OPTION value="12">12</OPTION>
+				<OPTION value="13">13</OPTION>
+				<OPTION value="14">14</OPTION>
+				<OPTION value="15">15</OPTION>
+				<OPTION value="16">16</OPTION>
+				<OPTION value="17">17</OPTION>
+				<OPTION value="18">18</OPTION>
+				<OPTION value="19">19</OPTION>
+				<OPTION value="20">20</OPTION>
+				<OPTION value="21">21</OPTION>
+				<OPTION value="22">22</OPTION>
+				<OPTION value="23">23</OPTION>
+				<OPTION value="24">24</OPTION>
+				<OPTION value="25">25</OPTION>
+				<OPTION value="__custom__">Custom...</OPTION>
+			</SELECT>
 		</DIV>
 		<DIV class="label theme">
-			<LABEL for="width" class="number-label">Height</LABEL>
-			<INPUT id="height" value="2" class="box-size" title="Adjust the chart height" type="number"
-				name="box-height" min="1" max="20" />
+			<LABEL for="height" class="number-label">Height</LABEL>
+			<SELECT id="height" class="box-size" title="Adjust the chart height" name="box-height">
+				<OPTION value="1">1</OPTION>
+				<OPTION value="2" selected="true">2</OPTION>
+				<OPTION value="3">3</OPTION>
+				<OPTION value="4">4</OPTION>
+				<OPTION value="5">5</OPTION>
+				<OPTION value="6">6</OPTION>
+				<OPTION value="7">7</OPTION>
+				<OPTION value="8">8</OPTION>
+				<OPTION value="9">9</OPTION>
+				<OPTION value="10">10</OPTION>
+				<OPTION value="11">11</OPTION>
+				<OPTION value="12">12</OPTION>
+				<OPTION value="13">13</OPTION>
+				<OPTION value="14">14</OPTION>
+				<OPTION value="15">15</OPTION>
+				<OPTION value="16">16</OPTION>
+				<OPTION value="17">17</OPTION>
+				<OPTION value="18">18</OPTION>
+				<OPTION value="19">19</OPTION>
+				<OPTION value="20">20</OPTION>
+				<OPTION value="21">21</OPTION>
+				<OPTION value="22">22</OPTION>
+				<OPTION value="23">23</OPTION>
+				<OPTION value="24">24</OPTION>
+				<OPTION value="25">25</OPTION>
+				<OPTION value="__custom__">Custom...</OPTION>
+			</SELECT>
+		</DIV>
+		<DIV class="label theme">
+			<LABEL for="customHeightInput" class="number-label">Bar px</LABEL>
+			<INPUT id="customHeightInput" class="box-size" title="Set chart-control-bar height in pixels (min 15, max 35, step 5, blank = default 15)" name="box-custom-height" type="number" min="15" max="35" step="5" value="15" placeholder="default" style="width:72px;" />
 		</DIV>
 		<BUTTON id="config_reveal" class="theme" onclick="XDirectUI.visibility('modalConfig')">
 			Javascript Error
@@ -244,15 +319,293 @@
 		<BUTTON id="add_chart_reveal" class="theme" onclick="XDirectUI.visibility('chart_add_select');">
 			Add Chart
 		</BUTTON>
-		<BUTTON id="live_movers_reveal" class="theme" onclick="XDirectUI.visibility('liveMoversPanel');">
+		<BUTTON id="live_movers_reveal" class="theme" onclick="XDirectUI.switchDockTab('live');">
 			Rapid Movers
 		</BUTTON>
-		<BUTTON id="profiles_reveal" class="theme" onclick="XDirectUI.visibility('profilesPanel'); SavedProfiles.renderList();">
+		<BUTTON id="profiles_reveal" class="theme" onclick="XDirectUI.switchDockTab('profiles'); SavedProfiles.renderList();">
 			Profiles
 		</BUTTON>
+		<BUTTON id="desktop_scroll_lock_toggle" class="theme" onclick="DesktopChartPager.toggleLock()">
+			Scroll Grid: Off
+		</BUTTON>
+		<BUTTON id="desktop_grid_buttons_toggle" class="theme" onclick="DesktopChartPager.toggleControls()">
+			Grid Nav: On
+		</BUTTON>
+		<button id="mobile_nav_slot_1" class="mobile-toggle-btn mobile-nav-slot" onclick="mcc_mobile_nav_slot_click(1)" style="display: none;">HOME</button>
+		<button id="mobile_nav_slot_2" class="mobile-toggle-btn mobile-nav-slot" onclick="mcc_mobile_nav_slot_click(2)" style="display: none;">RAPID</button>
+		<button id="mobile_nav_slot_3" class="mobile-toggle-btn mobile-nav-slot" onclick="mcc_mobile_nav_slot_click(3)" style="display: none;">PROFILES</button>
+		<button id="mobile_nav_slot_4" class="mobile-toggle-btn mobile-nav-slot" onclick="mcc_mobile_nav_slot_click(4)" style="display: none;">BUTTONS</button>
 		<SELECT id="profile_select" class="theme" style="display: none;">
 			<OPTION value="default" selected="true">Default</OPTION>
 		</SELECT>
+		<!-- Mobile Hamburger Menu -->
+		<div class="mobile-menu-container" id="mobileMenuContainer">
+			<STYLE class="scoped">
+				\& {
+					display: none;
+					position: relative;
+					margin-left: auto;
+				}
+
+				\&.active {
+					display: flex;
+					flex-direction: column;
+				}
+
+				@media screen and (max-width: 768px) {
+					\& {
+						display: flex;
+						flex-direction: column;
+					}
+				}
+			</STYLE>
+			<input type="checkbox" id="mobileMenuToggle" class="mobile-menu-toggle" />
+			<label for="mobileMenuToggle" class="mobile-menu-icon" onclick="event.stopPropagation()">
+				<span></span>
+				<span></span>
+				<span></span>
+			</label>
+			<nav class="mobile-menu" id="mobileMenu">
+				<div class="mobile-menu-header">
+					<h3>Menu</h3>
+				</div>
+				<div class="mobile-menu-section">
+					<h4>View Settings</h4>
+					<div class="mobile-menu-item">
+						<label for="mobileTimezoneSelect" style="display: inline-block; width: 120px;">Timezone:</label>
+						<select id="mobileTimezoneSelect" class="mobile-select">
+							<option value="Etc/UTC">UTC</option>
+							<option value="exchange">Exchange</option>
+							<option value="Pacific/Honolulu">Honolulu</option>
+							<option value="America/Los_Angeles">Los Angeles</option>
+							<option value="America/Phoenix">Phoenix</option>
+							<option value="America/Mexico_City">Mexico City</option>
+							<option value="America/Bogota">Bogota</option>
+							<option value="America/New_York">New York</option>
+							<option value="America/Caracas">Caracas</option>
+							<option value="America/Argentina/Buenos_Aires">Buenos Aires</option>
+							<option value="America/Sao_Paulo">Sao Paulo</option>
+							<option value="Europe/London">London</option>
+							<option value="Europe/Rome">Rome</option>
+							<option value="Asia/Jerusalem">Jerusalem</option>
+							<option value="Europe/Istanbul">Istanbul</option>
+							<option value="Asia/Tehran">Tehran</option>
+							<option value="Asia/Dubai">Dubai</option>
+							<option value="Asia/Ashkhabad">Ashkhabad</option>
+							<option value="Asia/Kolkata">Kolkata</option>
+							<option value="Asia/Almaty">Almaty</option>
+							<option value="Asia/Bangkok">Bangkok</option>
+							<option value="Asia/Taipei">Taipei</option>
+							<option value="Asia/Singapore">Singapore</option>
+							<option value="Asia/Shanghai">Shanghai</option>
+							<option value="Asia/Chongqing">Chongqing</option>
+							<option value="Asia/Hong_Kong">Hong Kong</option>
+							<option value="Asia/Seoul">Seoul</option>
+							<option value="Asia/Tokyo">Tokyo</option>
+							<option value="Australia/Brisbane">Brisbane</option>
+							<option value="Australia/Adelaide">Adelaide</option>
+							<option value="Australia/Sydney">Sydney</option>
+							<option value="Pacific/Auckland">New Zealand</option>
+							<option value="Pacific/Fakaofo">Tokelau</option>
+							<option value="Pacific/Chatham">Chatham Islands</option>
+						</select>
+					</div>
+					<div class="mobile-menu-item">
+						<label for="mobileStyleSelect" style="display: inline-block; width: 120px;">Bar Type:</label>
+						<select id="mobileStyleSelect" class="mobile-select">
+							<option value="0">Bars</option>
+							<option value="1">Candles</option>
+							<option value="2">Line</option>
+							<option value="3">Area</option>
+							<option value="4">Renko</option>
+							<option value="5">Kagi</option>
+							<option value="6">Point and Figure</option>
+							<option value="7">Line Break</option>
+							<option value="8">Heikin Ashi</option>
+							<option value="9">Hollow Candles</option>
+						</select>
+					</div>
+					<div class="mobile-menu-item">
+						<label for="mobileWidthInput" style="display: inline-block; width: 60px;">Width:</label>
+						<select id="mobileWidthInput" class="box-size mobile-input mobile-grid-select">
+							<option value="1">1</option>
+							<option value="2" selected="true">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="__custom__">Custom...</option>
+						</select>
+					</div>
+					<div class="mobile-menu-item">
+						<label for="mobileHeightInput" style="display: inline-block; width: 60px;">Height:</label>
+						<select id="mobileHeightInput" class="box-size mobile-input mobile-grid-select">
+							<option value="1">1</option>
+							<option value="2" selected="true">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="__custom__">Custom...</option>
+						</select>
+					</div>
+					<div class="mobile-menu-item">
+						<label for="mobileCustomHeightInput" style="display: inline-block; width: 80px;">Bar px:</label>
+						<input id="mobileCustomHeightInput" class="box-size mobile-input" type="number" min="15" max="35" step="5" value="15" placeholder="default" style="width:90px;" />
+					</div>
+					<p class="mobile-menu-note">Grid size is fully manual now. On narrow phones, single-panel view (1 column) is usually best for readability and keeping prices visible.</p>
+					<div class="mobile-menu-item mobile-menu-toggle-item">
+						<label for="mobileRangeModeToggle" style="display: inline-block; width: 120px;">Use Date Range:</label>
+						<input id="mobileRangeModeToggle" type="checkbox" />
+					</div>
+					<div class="mobile-menu-item">
+						<label for="mobileIntervalSelect" style="display: inline-block; width: 120px;">Default Interval:</label>
+						<select id="mobileIntervalSelect" class="mobile-select">
+							<option value="1">1m</option>
+							<option value="3">3m</option>
+							<option value="5">5m</option>
+							<option value="15">15m</option>
+							<option value="30">30m</option>
+							<option value="60">1h</option>
+							<option value="120">2h</option>
+							<option value="180">3h</option>
+							<option value="240">4h</option>
+							<option value="D">1d</option>
+							<option value="W">1w</option>
+						</select>
+					</div>
+					<div class="mobile-menu-item">
+						<label for="mobileRangeSelect" style="display: inline-block; width: 120px;">Date Range:</label>
+						<select id="mobileRangeSelect" class="mobile-select">
+							<option value="1d">1 Day</option>
+							<option value="5d">5 Days</option>
+							<option value="1m">1 Month</option>
+							<option value="3m">3 Months</option>
+							<option value="6m">6 Months</option>
+							<option value="ytd">YTD</option>
+							<option value="12m">1 Year</option>
+							<option value="60m">5 Years</option>
+							<option value="all">All Time</option>
+						</select>
+					</div>
+					<div class="mobile-menu-item mobile-menu-toggle-item">
+						<label for="mobileDetailsToggle" style="display: inline-block; width: 60px;">Details:</label>
+						<input id="mobileDetailsToggle" type="checkbox" />
+					</div>
+					<div class="mobile-menu-item mobile-menu-toggle-item">
+						<label for="mobileBottomToolbarToggle" style="display: inline-block; width: 120px;">Bottom Toolbar:</label>
+						<input id="mobileBottomToolbarToggle" type="checkbox" />
+					</div>
+					<div class="mobile-menu-item mobile-menu-toggle-item">
+						<label for="mobileTopToolbarToggle" style="display: inline-block; width: 120px;">Hide Top Toolbar:</label>
+						<input id="mobileTopToolbarToggle" type="checkbox" />
+					</div>
+					<div class="mobile-menu-item mobile-menu-toggle-item">
+						<label for="mobileLegendToggle" style="display: inline-block; width: 60px;">Legend:</label>
+						<input id="mobileLegendToggle" type="checkbox" />
+					</div>
+					<div class="mobile-menu-item mobile-menu-toggle-item">
+						<label for="mobileSideToolbarToggle" style="display: inline-block; width: 120px;">Hide Side Toolbar:</label>
+						<input id="mobileSideToolbarToggle" type="checkbox" />
+					</div>
+					<div class="mobile-menu-item mobile-menu-toggle-item">
+						<label for="mobileSmallButtonsToggle" style="display: inline-block; width: 120px;">Small Buttons:</label>
+						<input id="mobileSmallButtonsToggle" type="checkbox" />
+					</div>
+					<div class="mobile-menu-item mobile-menu-toggle-item">
+						<label for="mobileDarkToggle" style="display: inline-block; width: 60px;">Dark:</label>
+						<input id="mobileDarkToggle" type="checkbox" checked="checked" />
+					</div>
+					<button class="mobile-menu-button" onclick="mcc_open_mobile_nav_customize_modal()">Customize Nav Buttons</button>
+					<button class="mobile-menu-button" onclick="mcc_mobile_open_panel('modalConfig')">Full Settings</button>
+				</div>
+				<div class="mobile-menu-section">
+					<h4>Indicators</h4>
+					<button class="mobile-menu-button" onclick="mcc_mobile_open_indicators()">Indicators</button>
+				</div>
+				<div class="mobile-menu-section">
+					<h4>Chart Management</h4>
+					<button class="mobile-menu-button" id="rearrange-mobile" onclick="mcc_mobile_toggle_rearrange()">Rearrange</button>
+					<button class="mobile-menu-button" onclick="mcc_mobile_open_add_chart()">Add Chart</button>
+					<button class="mobile-menu-button" onclick="mcc_mobile_save_profile()">Save</button>
+					<button class="mobile-menu-button" id="mobile_chart_buttons_anchor_toggle" onclick="mcc_mobile_cycle_chart_buttons()">Buttons: Top Left</button>
+				</div>
+				<div class="mobile-menu-section">
+					<h4>Panels</h4>
+					<button class="mobile-menu-button" onclick="mcc_mobile_open_panel('liveMoversPanel')">Rapid Movers</button>
+					<button class="mobile-menu-button" onclick="mcc_mobile_open_profiles()">Profiles</button>
+				</div>
+				<div class="mobile-menu-section">
+					<h4>More</h4>
+					<button class="mobile-menu-button" onclick="mcc_mobile_open_panel('modalAd')">Share</button>
+					<button class="mobile-menu-button" onclick="mcc_mobile_open_scanner()">Scanner</button>
+				</div>
+			</nav>
+			<div id="mobileNavCustomizeModal" class="mobile-nav-customize-modal hide" onclick="mcc_mobile_nav_customize_overlay_click(event)">
+				<div class="mobile-nav-customize-card" role="dialog" aria-modal="true" aria-label="Customize mobile navigation buttons" onclick="event.stopPropagation()">
+					<div class="mobile-nav-customize-head">
+						<h4>Customize Mobile Buttons</h4>
+						<button type="button" class="mobile-nav-customize-close" onclick="mcc_close_mobile_nav_customize_modal()">Close</button>
+					</div>
+					<p class="mobile-nav-customize-copy">Top and bottom button bars can be customized independently. Bottom actions automatically avoid actions already used on top.</p>
+					<div class="mobile-nav-customize-grid">
+						<div class="mobile-nav-customize-column">
+							<h5>Top Navbar</h5>
+							<div class="mobile-menu-item"><label for="mobileNavbarTopSlot1Select">Slot 1:</label><select id="mobileNavbarTopSlot1Select" class="mobile-select"><option value="none">None</option><option value="home">Home</option><option value="rapid">Rapid Movers</option><option value="profiles">Profiles</option><option value="buttons">Buttons Toggle</option><option value="add">Add Chart</option><option value="rearrange">Rearrange</option><option value="settings">Settings</option><option value="indicators">Indicators</option><option value="share">Share</option></select></div>
+							<div class="mobile-menu-item"><label for="mobileNavbarTopSlot2Select">Slot 2:</label><select id="mobileNavbarTopSlot2Select" class="mobile-select"><option value="none">None</option><option value="home">Home</option><option value="rapid">Rapid Movers</option><option value="profiles">Profiles</option><option value="buttons">Buttons Toggle</option><option value="add">Add Chart</option><option value="rearrange">Rearrange</option><option value="settings">Settings</option><option value="indicators">Indicators</option><option value="share">Share</option></select></div>
+							<div class="mobile-menu-item"><label for="mobileNavbarTopSlot3Select">Slot 3:</label><select id="mobileNavbarTopSlot3Select" class="mobile-select"><option value="none">None</option><option value="home">Home</option><option value="rapid">Rapid Movers</option><option value="profiles">Profiles</option><option value="buttons">Buttons Toggle</option><option value="add">Add Chart</option><option value="rearrange">Rearrange</option><option value="settings">Settings</option><option value="indicators">Indicators</option><option value="share">Share</option></select></div>
+							<div class="mobile-menu-item"><label for="mobileNavbarTopSlot4Select">Slot 4:</label><select id="mobileNavbarTopSlot4Select" class="mobile-select"><option value="none">None</option><option value="home">Home</option><option value="rapid">Rapid Movers</option><option value="profiles">Profiles</option><option value="buttons">Buttons Toggle</option><option value="add">Add Chart</option><option value="rearrange">Rearrange</option><option value="settings">Settings</option><option value="indicators">Indicators</option><option value="share">Share</option></select></div>
+						</div>
+						<div class="mobile-nav-customize-column">
+							<h5>Bottom Bar</h5>
+							<div class="mobile-menu-item"><label for="mobileNavbarBottomSlot1Select">Slot 1:</label><select id="mobileNavbarBottomSlot1Select" class="mobile-select"><option value="none">None</option><option value="home">Home</option><option value="rapid">Rapid Movers</option><option value="profiles">Profiles</option><option value="buttons">Buttons Toggle</option><option value="add">Add Chart</option><option value="rearrange">Rearrange</option><option value="settings">Settings</option><option value="indicators">Indicators</option><option value="share">Share</option></select></div>
+							<div class="mobile-menu-item"><label for="mobileNavbarBottomSlot2Select">Slot 2:</label><select id="mobileNavbarBottomSlot2Select" class="mobile-select"><option value="none">None</option><option value="home">Home</option><option value="rapid">Rapid Movers</option><option value="profiles">Profiles</option><option value="buttons">Buttons Toggle</option><option value="add">Add Chart</option><option value="rearrange">Rearrange</option><option value="settings">Settings</option><option value="indicators">Indicators</option><option value="share">Share</option></select></div>
+							<div class="mobile-menu-item"><label for="mobileNavbarBottomSlot3Select">Slot 3:</label><select id="mobileNavbarBottomSlot3Select" class="mobile-select"><option value="none">None</option><option value="home">Home</option><option value="rapid">Rapid Movers</option><option value="profiles">Profiles</option><option value="buttons">Buttons Toggle</option><option value="add">Add Chart</option><option value="rearrange">Rearrange</option><option value="settings">Settings</option><option value="indicators">Indicators</option><option value="share">Share</option></select></div>
+							<div class="mobile-menu-item"><label for="mobileNavbarBottomSlot4Select">Slot 4:</label><select id="mobileNavbarBottomSlot4Select" class="mobile-select"><option value="none">None</option><option value="home">Home</option><option value="rapid">Rapid Movers</option><option value="profiles">Profiles</option><option value="buttons">Buttons Toggle</option><option value="add">Add Chart</option><option value="rearrange">Rearrange</option><option value="settings">Settings</option><option value="indicators">Indicators</option><option value="share">Share</option></select></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Legacy hidden toggles retained in script via menu controls -->
 		<div>
 			<STYLE class="scoped">
 				\& {
@@ -276,7 +629,7 @@
 					display: none;
 					position: absolute;
 					box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-					z-index: 1;
+					z-index: 1200;
 					overflow: auto;
 					border-radius: .25em;
 				}
@@ -387,7 +740,7 @@
 					display: none;
 					position: absolute;
 					box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-					z-index: 1;
+					z-index: 1200;
 					overflow: auto;
 					border-radius: .25em;
 				}
@@ -827,29 +1180,66 @@
 				</DIV>
 			</DIV>
 		</DIV>
-		<div id="chart_add_select" class="hide">
+		<div id="chart_add_select" class="hide" onclick="mcc_add_chart_overlay_click(event)">
 			<style class="scoped">
 				#chart_add_select {
 					position: fixed;
-					background: rgba(0, 0, 0, .85);
+					background: rgba(0, 0, 0, .78);
 					height: 100vh;
 					top: 0;
 					left: 0;
 
-					justify-content: center;
-					align-content: center;
-
-					z-index: 16;
+					z-index: 120900;
 					width: 100vw;
-					display: grid;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					overflow-y: auto;
+					box-sizing: border-box;
+					padding: 10px 10px calc(16px + env(safe-area-inset-bottom));
 				}
 			</style>
-			<div id="i1d8796bc">
+			<div id="i1d8796bc" onclick="event.stopPropagation()">
 				<style class="scoped">
 					#i1d8796bc {
+						position: relative;
 						display: grid;
 						column-gap: 1em;
+						row-gap: 1em;
 						grid-template-columns: 1fr 1fr;
+						align-items: start;
+						width: min(940px, calc(100vw - 18px));
+						max-height: calc(100dvh - 20px - env(safe-area-inset-bottom));
+						overflow: auto;
+						margin: auto;
+						padding-top: 8px;
+					}
+
+					#i1d8796bc .chart-add-close-row {
+						grid-column: 1 / -1;
+						display: flex;
+						justify-content: flex-end;
+						align-items: center;
+					}
+
+					#i1d8796bc .chart-add-close-top {
+						position: relative;
+						min-width: 104px;
+						height: 34px;
+						border-radius: .45em;
+						border: 1px solid #5d77a8;
+						background: linear-gradient(180deg, #263654 0%, #17233a 100%);
+						color: #dce8ff;
+						font-size: 15px;
+						line-height: 1;
+						font-weight: 700;
+						padding: 0 .7em;
+						cursor: pointer;
+						box-shadow: 0 4px 14px #0009;
+					}
+
+					#i1d8796bc .chart-add-close-top:hover {
+						filter: brightness(1.08);
 					}
 
 					#i1d8796bc>div {
@@ -859,24 +1249,49 @@
 					@media screen and (max-width: 650px) {
 						#i1d8796bc {
 							grid-template-columns: 1fr;
+							max-height: calc(100dvh - 12px - env(safe-area-inset-bottom));
+							overflow: auto;
+							row-gap: .6em;
+							align-content: stretch;
+							padding-top: 2px;
+						}
+
+						#i1d8796bc .chart-add-close-top {
+							min-width: 90px;
+							height: 32px;
+							font-size: 14px;
+							padding: 0 .55em;
+						}
+
+						#i1d8796bc>div {
+							min-height: 0;
 						}
 
 						#i17d72448>div {
 							row-gap: 0;
 						}
+
+						#i17d72448 {
+							max-height: min(43dvh, 320px);
+						}
 					}
 				</style>
+				<div class="chart-add-close-row">
+					<button class="chart-add-close-top" type="button" aria-label="Close Add Chart"
+						onclick="mcc_close_add_chart_panel()">Close &times;</button>
+				</div>
 				<div>
 					<div class="divPairsSetup" id="i17d72448">
 						<h3>Crypto</h3>
 						<div id="Crypto-Insert">
 							<button onclick="exch_fill.go('crypto', 'Binance')">Binance</button><button
 								onclick="exch_fill.go('crypto', 'Coinbase')">Coinbase</button><button
-								onclick="exch_fill.go('crypto', 'Gemini')">Gemini</button><button
+								onclick="exch_fill.go('crypto', 'Kraken')">Kraken</button><button
+								onclick="exch_fill.go('crypto', 'OKX')">OKX</button><button
+								onclick="exch_fill.go('crypto', 'Bybit')">Bybit</button><button
 								onclick="exch_fill.go('crypto', 'KuCoin')">KuCoin</button><button
-								onclick="exch_fill.go('crypto', 'Bittrex')">Bittrex</button><button
-								onclick="exch_fill.go('crypto', 'BitMEX')">BitMEX</button><button
-								onclick="exch_fill.go('crypto', 'Bitfinex')">Bitfinex</button>
+								onclick="exch_fill.go('crypto', 'Bitfinex')">Bitfinex</button><button
+								onclick="exch_fill.go('crypto', 'Gate.io')">Gate.io</button>
 
 							<div style="grid-column: 1 / span 3"></div>
 						</div>
@@ -886,6 +1301,49 @@
 								max-height: 400px;
 								overflow-y: auto;
 								margin: auto;
+								width: min(100%, 450px);
+								padding: .75em;
+								border-radius: .8em;
+								border: 1px solid #355a95;
+								background: linear-gradient(180deg, rgba(16, 28, 52, 0.9) 0%, rgba(10, 16, 32, 0.95) 100%);
+								box-shadow: 0 8px 24px #0008;
+								box-sizing: border-box;
+							}
+
+							#i17d72448>h3,
+							#i17d72448 details>summary>h3 {
+								margin: 0;
+								padding: .45em .65em;
+								border-radius: .35em;
+								background: #d7e2f5;
+								color: #091327;
+								text-align: center;
+								font-weight: 700;
+								font-size: 1.45em;
+								line-height: 1.2;
+								white-space: normal;
+								overflow-wrap: anywhere;
+								box-sizing: border-box;
+								position: relative;
+							}
+
+							#i17d72448 details>summary>h3::after {
+								content: " \25BE";
+								font-size: .8em;
+								color: #2a406e;
+							}
+
+							#i17d72448 details[open]>summary>h3::after {
+								content: " \25B4";
+							}
+
+							#i17d72448 details {
+								margin-top: .55em;
+							}
+
+							#i17d72448 summary {
+								list-style: none;
+								cursor: pointer;
 							}
 
 							#i17d72448>div {
@@ -895,25 +1353,52 @@
 								grid-template-columns: 1fr 1fr 1fr;
 							}
 
+							#i17d72448 button {
+								border: 1px solid #6f86b3;
+								border-radius: .35em;
+								background: #e5edf9;
+								color: #091327;
+								font-weight: 600;
+								transition: filter .15s ease, transform .1s ease;
+							}
+
+							#i17d72448 button:hover {
+								filter: brightness(.97);
+							}
+
+							#i17d72448 button:active {
+								transform: translateY(1px);
+							}
+
 							#i17d72448 summary::marker {
 								font-size: 0;
 							}
 
 							#i17d72448 details>div {
-								max-width: 310px;
-								padding-bottom: 2em;
+								max-width: 100%;
+								padding: .45em 0 .2em;
 							}
 
 							@media screen and (max-width: 885px) {
 								#i17d72448>div {
 									row-gap: .2em;
 								}
+
+								#i17d72448 {
+									padding: .6em;
+								}
+
+								#i17d72448>h3,
+								#i17d72448 details>summary>h3 {
+									padding: .4em .55em;
+									font-size: 1.1em;
+								}
 							}
 						</style>
 
 						<details>
 							<summary>
-								<h3>Other Crypto (Click to expand)</h3>
+								<h3>Other Crypto</h3>
 							</summary>
 							<div id="Crypto-Insert-Alts">
 								<button onclick="exch_fill.go('crypto', 'CEXio')">CEXio</button><button
@@ -946,17 +1431,21 @@
 							</div>
 						</details>
 
-						<h3>Forex</h3>
-						<div id="Forex-Insert">
-							<button onclick="exch_fill.go('forex', 'ICE')">ICE</button><button
-								onclick="exch_fill.go('forex', 'Saxo')">Saxo</button><button
-								onclick="exch_fill.go('forex', 'Forex.com')">Forex.com</button><button
-								onclick="exch_fill.go('forex', 'OANDA')">OANDA</button><button
-								onclick="exch_fill.go('forex', 'FXCM')">FXCM</button><button
-								onclick="exch_fill.go('forex', 'Global Prime')">Global Prime</button>
+						<details>
+							<summary>
+								<h3>Forex</h3>
+							</summary>
+							<div id="Forex-Insert">
+								<button onclick="exch_fill.go('forex', 'ICE')">ICE</button><button
+									onclick="exch_fill.go('forex', 'Saxo')">Saxo</button><button
+									onclick="exch_fill.go('forex', 'Forex.com')">Forex.com</button><button
+									onclick="exch_fill.go('forex', 'OANDA')">OANDA</button><button
+									onclick="exch_fill.go('forex', 'FXCM')">FXCM</button><button
+									onclick="exch_fill.go('forex', 'Global Prime')">Global Prime</button>
 
-							<div style="grid-column: 1 / span 3"></div>
-						</div>
+								<div style="grid-column: 1 / span 3"></div>
+							</div>
+						</details>
 					</div>
 				</div>
 				<div>
@@ -964,39 +1453,221 @@
 						<style class="scoped">
 							#i1ac88a90 {
 								margin: auto;
+								width: min(100%, 450px);
+								display: flex;
+								flex-direction: column;
+								gap: .55em;
+								padding: .75em;
+								border-radius: .8em;
+								border: 1px solid #355a95;
+								background: linear-gradient(180deg, rgba(16, 28, 52, 0.9) 0%, rgba(10, 16, 32, 0.95) 100%);
+								box-shadow: 0 8px 24px #0008;
+								min-height: 0;
 							}
 
-							#i1ac88a90>input {
-								font-size: 22px;
-								border-radius: .2em;
-								border: none;
-								width: 256px;
-								padding: 0.25em 0.6em;
+							#i1ac88a90 p {
+								margin: 0;
+								text-align: center;
+								line-height: 1.35;
+								color: #b8c9ef;
+							}
+
+							#i1ac88a90 .chart-add-input-row {
+								display: grid;
+								grid-template-columns: minmax(0, 1fr) auto;
+								gap: .45em;
+								align-items: center;
+							}
+
+							#i1ac88a90 #chart_adder {
+								font-size: 20px;
+								font-weight: 600;
+								border-radius: .35em;
+								border: 1px solid #6b83ad;
+								width: 100%;
+								height: 42px;
+								padding: 0.35em 0.62em;
+								box-sizing: border-box;
+								box-shadow: 0 0 0 1px #ffffff22;
+							}
+
+							#i1ac88a90 #chart_adder:focus {
+								outline: none;
+								border-color: #5d84d9;
+								box-shadow: 0 0 0 3px #3f6fd033;
 							}
 
 							#i1ac88a90 .\@first {
-								cursor: pointer;
-								width: 256px;
-								margin: 32px 0;
+								cursor: default;
+								width: 100%;
+								margin: 0;
 								font-size: .8em;
 								list-style: none;
 								overflow-y: scroll;
-								max-height: 280px;
-								background: #ddd;
-								color: #000;
+								max-height: 270px;
+								background: #d7e2f5;
+								color: #091327;
 								display: block;
 								overflow-x: hidden;
-								padding: 12px;
+								padding: 8px;
+								border: 1px solid #6f86b3;
+								border-radius: .45em;
+								box-sizing: border-box;
+								flex: 1 1 auto;
+								min-height: 110px;
+							}
+
+							#chart_options a {
+								color: #1a46b5;
+							}
+
+							#chart_options .chart-add-result-item {
+								margin: 0;
+								padding: 0;
+								list-style: none;
+							}
+
+							#chart_options .chart-add-result-row {
+								display: grid;
+								grid-template-columns: auto 1fr;
+								gap: .45em;
+								align-items: start;
+								padding: .45em;
+								border: 1px solid #afbfdf;
+								border-radius: .35em;
+								margin-bottom: .35em;
+								background: #cfdcf2;
+								cursor: pointer;
+							}
+
+							#chart_options .chart-add-result-row.selected {
+								background: #b7c9eb;
+								border-color: #6b87bf;
+							}
+
+							#chart_options .chart-add-result-check {
+								margin-top: .2em;
+								transform: scale(1.05);
+							}
+
+							#chart_options .chart-add-result-copy strong {
+								display: block;
+							}
+
+							#chart_options .chart-add-result-copy .desc {
+								display: block;
+								margin-top: .1em;
+							}
+
+							#chart_options hr {
+								border: none;
+								border-top: 1px solid #9cb1d7;
+								margin: .35em 0;
 							}
 
 							#chart_adder {
 								text-transform: uppercase;
+								background: #f2f6ff;
+								color: #08152e;
+								border: 1px solid #7b8fac;
+							}
+
+							#i1ac88a90 .chart-add-selection-summary {
+								display: none;
+								padding: .45em .55em;
+								border: 1px solid #6f86b3;
+								border-radius: .42em;
+								background: #dde7f8;
+								color: #0b1b39;
+								font-size: .84em;
+							}
+
+							#i1ac88a90 .chart-add-selection-summary.visible {
+								display: block;
+							}
+
+							#i1ac88a90 .chart-add-selection-summary .title {
+								font-weight: 700;
+								margin-bottom: .2em;
+							}
+
+							#i1ac88a90 .chart-add-selection-summary .list {
+								display: flex;
+								flex-wrap: wrap;
+								gap: .3em;
+							}
+
+							#i1ac88a90 .chart-add-selection-summary .chip {
+								display: inline-flex;
+								align-items: center;
+								padding: .18em .45em;
+								border-radius: 999px;
+								background: #becdea;
+								border: 1px solid #859dc9;
+								font-size: .9em;
+								font-weight: 600;
+							}
+
+							#i1ac88a90 .chart-add-selected-btn {
+								display: inline-flex;
+								align-items: center;
+								justify-content: center;
+								min-width: 118px;
+								height: 42px;
+								padding: 0 .85em;
+								border-radius: .42em;
+								border: 1px solid #6f86b3;
+								background: linear-gradient(180deg, #e9f0fb 0%, #d4e0f4 100%);
+								color: #10203e;
+								font-size: .95em;
+								font-weight: 700;
+								cursor: pointer;
+							}
+
+							#i1ac88a90 .chart-add-selected-btn:disabled {
+								opacity: .5;
+								cursor: not-allowed;
 							}
 
 							@media screen and (max-width: 750px) {
+								#chart_add_select {
+									height: 100dvh;
+									padding: 6px 8px calc(10px + env(safe-area-inset-bottom));
+									overflow-y: auto;
+									align-items: center;
+									justify-content: center;
+								}
+
+								#i1ac88a90 {
+									max-height: min(44dvh, 295px);
+									padding: .6em;
+									gap: .45em;
+								}
+
+								#i1ac88a90 p {
+									font-size: .9em;
+								}
+
+								#i1ac88a90 .chart-add-input-row {
+									grid-template-columns: minmax(0, 1fr) auto;
+									gap: .3em;
+								}
+
+								#i1ac88a90 #chart_adder {
+									font-size: 17px;
+									height: 38px;
+								}
+
+								#i1ac88a90 .chart-add-selected-btn {
+									min-width: 102px;
+									height: 38px;
+									padding: 0 .55em;
+									font-size: .85em;
+								}
+
 								#i1ac88a90 .\@first {
-									margin: 16px 0;
-									max-height: 15vh;
+									max-height: min(23dvh, 150px);
+									min-height: 88px;
 								}
 							}
 						</style>
@@ -1004,19 +1675,17 @@
 							Use the textbox to add specific ticker charts. <br>
 							Press enter to add it.
 						</p>
-						<input id="chart_adder" placeholder="BINANCE:BTCUSDT">
-						<br>
-						<div id="chart_options" class="@first border-none"></div>
-						<div>
-							<span>&nbsp;</span>
-							<span class="t-center" style="flex: none;">
-								<a class="ok" href="javascript:void(0)"
-									onclick="XDirectUI.visibility('chart_add_select')">
-									Done
-								</a>
-							</span>
-							<span>&nbsp;</span>
+						<div class="chart-add-input-row">
+							<input id="chart_adder" placeholder="BINANCE:BTCUSDT">
+							<button class="chart-add-selected-btn" id="chart_add_add_selected" type="button" disabled>
+								Add Selected (<span id="chart_add_selected_count">0</span>)
+							</button>
 						</div>
+						<div class="chart-add-selection-summary" id="chart_add_selection_summary" aria-live="polite">
+							<div class="title">Coins to add</div>
+							<div class="list" id="chart_add_selected_list"></div>
+						</div>
+						<div id="chart_options" class="@first border-none"></div>
 					</div>
 				</div>
 			</div>
@@ -1029,18 +1698,17 @@
 					--live-panel-space: 0px;
 					--live-panel-left-space: 0px;
 					--live-panel-right-space: 0px;
+					--dock-panel-width: clamp(340px, 28vw, 400px);
 					overflow-x: hidden;
 				}
 
 				#top_space,
-				#nav,
 				#charts {
 					box-sizing: border-box;
 					transition: width .25s ease, max-width .25s ease, margin-left .25s ease, margin-right .25s ease, padding-right .25s ease, padding-left .25s ease;
 				}
 
 				body.has-side-dock #top_space,
-				body.has-side-dock #nav,
 				body.has-side-dock #charts {
 					width: calc(100vw - var(--dock-left-space) - var(--dock-right-space));
 					max-width: calc(100vw - var(--dock-left-space) - var(--dock-right-space));
@@ -1053,16 +1721,27 @@
 					padding-right: .2em;
 				}
 
+				@media screen and (min-width: 900px) {
+					body.mcc-desktop-nav-fixed.has-side-dock #nav,
+					body.mcc-desktop-nav-fixed.has-side-dock .topnav#nav {
+						left: 0 !important;
+						right: 0 !important;
+						width: 100vw !important;
+						max-width: 100vw !important;
+					}
+				}
+
 				#liveMoversPanel {
 					--live-panel-direction: 1;
+					display: block !important;
 					position: fixed;
 					top: 0;
 					right: 0;
 					left: auto;
-					width: min(340px, 100vw);
+					width: min(var(--dock-panel-width), 100vw);
 					max-width: 100vw;
 					height: 100vh;
-					z-index: 1001;
+					z-index: 120700;
 					background: rgba(12, 16, 28, 0.98);
 					border-left: 1px solid #2e3d61;
 					border-right: none;
@@ -1070,6 +1749,16 @@
 					color: #d8e0f7;
 					transition: transform .25s ease, visibility .25s ease;
 					overflow: hidden;
+				}
+
+				body.mcc-desktop-nav-fixed #liveMoversPanel {
+					top: var(--mcc-desktop-nav-height, 32px);
+					height: calc(100vh - var(--mcc-desktop-nav-height, 32px));
+				}
+
+				body.mcc-mobile-nav-fixed #liveMoversPanel {
+					top: var(--mcc-mobile-nav-height, var(--mcc-mobile-header-height, 42px));
+					height: calc(100vh - var(--mcc-mobile-nav-height, var(--mcc-mobile-header-height, 42px)));
 				}
 
 				body.live-panel-dock-left #liveMoversPanel {
@@ -1095,19 +1784,29 @@
 				}
 
 				body.dock-tab-live #liveMoversPanel {
-					z-index: 1004;
+					z-index: 120740;
 				}
 
 				body.dock-tab-profiles #liveMoversPanel {
-					z-index: 1001;
+					z-index: 120700;
 				}
 
 				#liveMoversPanel .shell {
 					display: grid;
 					grid-template-rows: auto 1fr;
 					height: 100%;
+					min-height: 0;
 					max-width: 100%;
 					overflow-x: hidden;
+				}
+
+				#liveMoversPanel,
+				#liveMoversPanel * {
+					box-sizing: border-box;
+				}
+
+				#liveMoversPanel * {
+					min-width: 0;
 				}
 
 				#liveMoversPanel .header {
@@ -1128,6 +1827,7 @@
 					display: grid;
 					gap: .35em;
 					min-width: 0;
+					max-width: 100%;
 				}
 
 				#liveMoversPanel .header h3 {
@@ -1142,27 +1842,30 @@
 					line-height: 1.45;
 					color: #9db1dd;
 					max-width: 42ch;
+					white-space: normal;
+					overflow-wrap: anywhere;
 				}
 
 				#liveMoversPanel .header-actions {
 					display: grid;
-					grid-template-columns: 1fr 1fr auto;
+					grid-template-columns: repeat(3, minmax(0, 1fr));
 					gap: .5em;
 					align-items: center;
 					min-width: 0;
+					width: 100%;
 				}
 
 				#liveMoversPanel .header-actions .theme {
 					white-space: nowrap;
-					font-size: .95em;
+					font-size: clamp(.82em, .7vw, .95em);
 					line-height: 1.2;
 					display: flex;
 					align-items: center;
 					justify-content: center;
 					padding: .5em .7em;
 					min-width: 0;
-					overflow: hidden;
-					text-overflow: ellipsis;
+					overflow: visible;
+					text-overflow: clip;
 				}
 
 				#liveMoversPanel .dock-tab-btn,
@@ -1179,8 +1882,8 @@
 					align-items: center;
 					justify-content: center;
 					min-width: 0;
-					overflow: hidden;
-					text-overflow: ellipsis;
+					overflow: visible;
+					text-overflow: clip;
 				}
 
 				#liveMoversPanel .dock-tab-btn[data-tab="live"],
@@ -1197,12 +1900,22 @@
 					box-shadow: 0 0 0 1px #7aa6ff33;
 				}
 
+				#live_movers_reveal.live-running {
+					background: linear-gradient(135deg, #2962ff, #17357d);
+					border-color: #8ab5ff;
+					box-shadow: 0 0 0 1px #7aa6ff33;
+					color: white;
+				}
+
 				#liveMoversPanel .body {
 					overflow-y: auto;
 					overflow-x: hidden;
+					scrollbar-gutter: stable;
 					padding: 1em;
 					display: grid;
 					gap: 1em;
+					min-height: 0;
+					min-width: 0;
 					max-width: 100%;
 				}
 
@@ -1212,13 +1925,29 @@
 					border-radius: .8em;
 					padding: .9em;
 					min-width: 0;
+					max-width: 100%;
 					box-shadow: inset 0 1px 0 #ffffff08;
+				}
+
+				#liveMoversPanel .group p,
+				#liveMoversPanel .group small,
+				#liveMoversPanel .group .empty-note,
+				#liveMoversPanel .group .mini-note,
+				#liveMoversPanel .group .toggle-copy,
+				#liveMoversPanel .group .toggle-copy small {
+					white-space: normal;
+					overflow-wrap: anywhere;
+					word-break: break-word;
+					max-width: 100%;
 				}
 
 				#liveMoversPanel .group-head {
 					display: grid;
 					gap: .2em;
 					margin-bottom: .75em;
+					min-width: 0;
+					max-width: 100%;
+					padding-right: .25em;
 				}
 
 				#liveMoversPanel .group h4 {
@@ -1231,12 +1960,36 @@
 					font-size: .82em;
 					line-height: 1.4;
 					color: #90a7d6;
+					white-space: normal;
+					overflow-wrap: anywhere;
+					word-break: break-word;
+					max-width: 100%;
 				}
 
 				#liveMoversPanel .grid {
 					display: grid;
-					grid-template-columns: 1fr 1fr;
+					grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 					gap: .75em;
+					align-items: start;
+				}
+
+				#liveMoversPanel .controls-group .grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+					gap: .55em .65em;
+				}
+
+				#liveMoversPanel .controls-group label {
+					gap: .25em;
+				}
+
+				#liveMoversPanel .controls-group label small {
+					font-size: .74em;
+					line-height: 1.22;
+				}
+
+				#liveMoversPanel .controls-group input,
+				#liveMoversPanel .controls-group select {
+					padding: .52em .58em;
 				}
 
 				#liveMoversPanel label {
@@ -1252,9 +2005,13 @@
 				}
 
 				#liveMoversPanel label small {
+					display: block;
 					font-size: .78em;
 					line-height: 1.35;
 					color: #8fa6d6;
+					white-space: normal;
+					overflow-wrap: anywhere;
+					word-break: break-word;
 				}
 
 				#liveMoversPanel .live-search-row {
@@ -1491,45 +2248,86 @@
 					gap: .5em;
 				}
 
-				#liveMoversPanel .exchange-list label {
+				#liveMoversPanel #live_exchange_dynamic.exchange-list {
 					display: flex;
-					align-items: center;
+					flex-wrap: wrap;
 					gap: .55em;
-					padding: .45em .65em;
-					background: #0f1728;
-					border: 1px solid #2b4067;
-					border-radius: .55em;
+				}
+
+				#liveMoversPanel .exchange-list label {
+					display: inline-flex;
+					align-items: center;
+					gap: .5em;
+					padding: .48em .72em;
+					background: linear-gradient(180deg, #121d34 0%, #0f1728 100%);
+					border: 1px solid #35558e;
+					border-radius: .6em;
 					min-width: 0;
+					cursor: pointer;
+					font-weight: 600;
+					color: #dce8ff;
+					transition: border-color .14s ease, background .14s ease, box-shadow .14s ease, transform .12s ease;
+				}
+
+				#liveMoversPanel .exchange-list label:hover {
+					border-color: #5a85d9;
+					background: linear-gradient(180deg, #162748 0%, #121d34 100%);
+					box-shadow: 0 0 0 1px #89b1ff24;
+				}
+
+				#liveMoversPanel .exchange-list label:active {
+					transform: translateY(1px);
+				}
+
+				#liveMoversPanel .exchange-list label:has(input[type="checkbox"]:checked) {
+					border-color: #8cb5ff;
+					background: linear-gradient(180deg, #173160 0%, #12244a 100%);
+					box-shadow: 0 0 0 1px #8ab5ff44;
+					color: #ffffff;
 				}
 
 				#liveMoversPanel .exchange-list input[type="checkbox"] {
 					appearance: none;
-					width: 1.05em;
-					height: 1.05em;
-					border-radius: .3em;
-					border: 1px solid #5b73a4;
-					background: #0c1323;
+					width: 1.12em;
+					height: 1.12em;
+					border-radius: .35em;
+					border: 1px solid #7294d2;
+					background: linear-gradient(180deg, #0b1220 0%, #0f1a2f 100%);
 					padding: 0;
 					margin: 0;
 					position: relative;
 					flex: 0 0 auto;
+					transition: border-color .14s ease, background .14s ease, box-shadow .14s ease;
+				}
+
+				#liveMoversPanel .exchange-list input[type="checkbox"]::after {
+					content: "";
+					position: absolute;
+					left: .30em;
+					top: .09em;
+					width: .24em;
+					height: .52em;
+					border: solid #fff;
+					border-width: 0 2px 2px 0;
+					transform: rotate(45deg) scale(0);
+					opacity: 0;
+					transition: transform .12s ease, opacity .1s ease;
 				}
 
 				#liveMoversPanel .exchange-list input[type="checkbox"]:checked {
-					background: #2962ff;
-					border-color: #2962ff;
+					background: linear-gradient(135deg, #2962ff 0%, #4f8dff 100%);
+					border-color: #5f98ff;
+					box-shadow: 0 0 0 1px #9fc1ff55;
 				}
 
 				#liveMoversPanel .exchange-list input[type="checkbox"]:checked::after {
-					content: "";
-					position: absolute;
-					left: 3px;
-					top: 0px;
-					width: 4px;
-					height: 8px;
-					border: solid white;
-					border-width: 0 2px 2px 0;
-					transform: rotate(45deg);
+					transform: rotate(45deg) scale(1);
+					opacity: 1;
+				}
+
+				#liveMoversPanel .exchange-list input[type="checkbox"]:focus-visible {
+					outline: none;
+					box-shadow: 0 0 0 2px #0f1728, 0 0 0 4px #4f8dff66;
 				}
 
 				#liveMoversPanel .stats span {
@@ -1631,6 +2429,8 @@
 					min-width: 2.8em;
 					text-align: center;
 				}
+
+				#live_items .live-item {
 					display: grid;
 					grid-template-columns: 1fr auto;
 					grid-template-rows: auto auto;
@@ -1728,6 +2528,8 @@
 					background: linear-gradient(180deg, #16233d 0%, #111a30 100%);
 					border: 1px solid #314a77;
 					border-radius: .8em;
+					min-width: 0;
+					max-width: 100%;
 				}
 
 				#liveMoversPanel .hero-pill {
@@ -1740,6 +2542,11 @@
 					font-size: .8em;
 					color: #b8cdf8;
 					width: fit-content;
+				}
+
+				#liveMoversPanel .dock-hero p {
+					white-space: normal;
+					overflow-wrap: anywhere;
 				}
 
 				#liveMoversPanel .inline-setting {
@@ -1765,13 +2572,32 @@
 					text-align: center;
 				}
 
+				#liveMoversPanel .actions {
+					display: grid;
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+					gap: .65em;
+					width: 100%;
+					min-width: 0;
+				}
+
+				#liveMoversPanel .actions .theme {
+					box-sizing: border-box;
+					width: 100%;
+					max-width: 100%;
+					margin: 0;
+				}
+
 				#liveMoversPanel .pin-item-actions {
 					justify-content: flex-start;
 					flex-wrap: wrap;
 				}
 
 				@media screen and (max-width: 1000px) {
-					body.live-panel-open {
+					body.has-side-dock,
+					body.live-panel-open,
+					body.profiles-panel-open {
+						--dock-left-space: 0px !important;
+						--dock-right-space: 0px !important;
 						--live-panel-space: 0px !important;
 						--live-panel-left-space: 0px !important;
 						--live-panel-right-space: 0px !important;
@@ -1783,11 +2609,21 @@
 						grid-template-columns: 1fr;
 					}
 
+					#liveMoversPanel .controls-group .grid {
+						grid-template-columns: repeat(2, minmax(0, 1fr));
+					}
+
 					#liveMoversPanel {
-						width: min(100vw, 340px);
+						width: min(100vw, var(--dock-panel-width));
 					}
 
 					#liveMoversPanel .dock-hero {
+						grid-template-columns: 1fr;
+					}
+				}
+
+				@media screen and (max-width: 380px) {
+					#liveMoversPanel .controls-group .grid {
 						grid-template-columns: 1fr;
 					}
 				}
@@ -1820,7 +2656,7 @@
 					</div>
 				</div>
 				<div class="body">
-					<div class="group">
+					<div class="group controls-group">
 						<div class="group-head">
 							<h4>Controls</h4>
 							<p>Fine-tune what gets replaced, how often new movers are checked, and how the panel behaves.</p>
@@ -1961,7 +2797,7 @@
 						<div id="live_custom_results">
 							<div class="empty-note">Type at least 2 characters to find a chart you can add or pin.</div>
 						</div>
-						<p class="mini-note">Pinned charts stay at the top and will not be replaced by live updates. Use ↑ and ↓ to place them wherever you want.</p>
+						<p class="mini-note">Pinned charts stay at the top and will not be replaced by live updates. Use ↑ and ↓  to place them wherever you want.</p>
 						<div id="live_pins">
 							<div class="empty-note">No pinned charts yet.</div>
 						</div>
@@ -1981,14 +2817,15 @@
 			<style class="scoped">
 				#profilesPanel {
 					--profiles-panel-direction: -1;
+					display: block !important;
 					position: fixed;
 					top: 0;
 					left: 0;
 					right: auto;
-					width: min(340px, 100vw);
+					width: min(var(--dock-panel-width), 100vw);
 					max-width: 100vw;
 					height: 100vh;
-					z-index: 1002;
+					z-index: 120710;
 					background: rgba(12, 16, 28, 0.98);
 					border-right: 1px solid #2e3d61;
 					border-left: none;
@@ -1996,6 +2833,16 @@
 					color: #d8e0f7;
 					overflow: hidden;
 					transition: transform .25s ease, visibility .25s ease;
+				}
+
+				body.mcc-desktop-nav-fixed #profilesPanel {
+					top: var(--mcc-desktop-nav-height, 32px);
+					height: calc(100vh - var(--mcc-desktop-nav-height, 32px));
+				}
+
+				body.mcc-mobile-nav-fixed #profilesPanel {
+					top: var(--mcc-mobile-nav-height, var(--mcc-mobile-header-height, 42px));
+					height: calc(100vh - var(--mcc-mobile-nav-height, var(--mcc-mobile-header-height, 42px)));
 				}
 
 				body.profiles-panel-dock-right #profilesPanel {
@@ -2021,17 +2868,27 @@
 				}
 
 				body.dock-tab-profiles #profilesPanel {
-					z-index: 1005;
+					z-index: 120750;
 				}
 
 				body.dock-tab-live #profilesPanel {
-					z-index: 1002;
+					z-index: 120710;
 				}
 
 				#profilesPanel .shell {
 					display: grid;
 					grid-template-rows: auto 1fr;
 					height: 100%;
+					min-height: 0;
+				}
+
+				#profilesPanel,
+				#profilesPanel * {
+					box-sizing: border-box;
+				}
+
+				#profilesPanel * {
+					min-width: 0;
 				}
 
 				#profilesPanel .header {
@@ -2052,6 +2909,7 @@
 					display: grid;
 					gap: .35em;
 					min-width: 0;
+					max-width: 100%;
 				}
 
 				#profilesPanel .header-actions,
@@ -2062,25 +2920,38 @@
 					align-items: center;
 				}
 
+				#profilesPanel .actions {
+					display: grid;
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+					gap: .5em;
+					width: 100%;
+					min-width: 0;
+				}
+
+				#profilesPanel select[size] {
+					max-width: 100%;
+				}
+
 				#profilesPanel .header-actions {
 					display: grid;
-					grid-template-columns: 1fr 1fr auto;
+					grid-template-columns: repeat(3, minmax(0, 1fr));
 					gap: .5em;
 					align-items: center;
 					min-width: 0;
+					width: 100%;
 				}
 
 				#profilesPanel .header-actions .theme {
 					white-space: nowrap;
-					font-size: .95em;
+					font-size: clamp(.82em, .7vw, .95em);
 					line-height: 1.2;
 					display: flex;
 					align-items: center;
 					justify-content: center;
 					padding: .5em .7em;
 					min-width: 0;
-					overflow: hidden;
-					text-overflow: ellipsis;
+					overflow: visible;
+					text-overflow: clip;
 				}
 
 				#profilesPanel .dock-hero {
@@ -2092,6 +2963,8 @@
 					background: linear-gradient(180deg, #16233d 0%, #111a30 100%);
 					border: 1px solid #314a77;
 					border-radius: .8em;
+					min-width: 0;
+					max-width: 100%;
 				}
 
 				#profilesPanel .hero-pill {
@@ -2124,6 +2997,9 @@
 					gap: 1em;
 					overflow-y: auto;
 					overflow-x: hidden;
+					scrollbar-gutter: stable;
+					min-height: 0;
+					min-width: 0;
 				}
 
 				#profilesPanel .group {
@@ -2133,12 +3009,64 @@
 					padding: .95em;
 					display: grid;
 					gap: .75em;
+					min-width: 0;
+					max-width: 100%;
 					box-shadow: inset 0 1px 0 #ffffff08;
+				}
+
+				#profilesPanel .group p,
+				#profilesPanel .group small,
+				#profilesPanel .group .status-note,
+				#profilesPanel .group .group-head p {
+					white-space: normal;
+					overflow-wrap: anywhere;
+					word-break: break-word;
+					max-width: 100%;
+				}
+
+				#profile_saved_list_group .group-head p,
+				#profile_current_layout_group .group-head p,
+				#profile_saved_list_group .status-note,
+				#profile_current_layout_group .status-note {
+					white-space: normal;
+					overflow-wrap: anywhere;
+					word-break: break-word;
+					max-width: 100%;
+				}
+
+				#profile_saved_list_group .actions,
+				#profile_current_layout_group .actions {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+
+				#profile_saved_list_group .actions .theme:nth-child(3) {
+					grid-column: 1 / -1;
+				}
+
+				#profile_saved_list_group select[size] {
+					min-height: 6.5em;
+					max-height: 8.5em;
+				}
+
+				#profile_saved_list_group .status-note {
+					padding: .55em .65em;
+					font-size: .82em;
+					line-height: 1.35;
 				}
 
 				#profilesPanel .group-head {
 					display: grid;
 					gap: .2em;
+					min-width: 0;
+					max-width: 100%;
+					padding-right: .25em;
+				}
+
+				#profilesPanel .group-head p {
+					white-space: normal;
+					overflow-wrap: anywhere;
+					word-break: break-word;
+					max-width: 100%;
 				}
 
 				@keyframes mcc-guided-pulse {
@@ -2264,18 +3192,36 @@
 					line-height: 1.45;
 				}
 
+				#profilesPanel .status-note {
+					overflow-wrap: anywhere;
+				}
+
+				#profilesPanel .dock-hero p,
+				#profilesPanel .header p {
+					white-space: normal;
+					overflow-wrap: anywhere;
+				}
+
 				#profilesPanel .theme {
 					margin: 0;
 					flex: 1 1 120px;
+					box-sizing: border-box;
+					width: 100%;
+					max-width: 100%;
 				}
 
 				@media screen and (max-width: 700px) {
+					#liveMoversPanel .actions,
+					#profilesPanel .actions {
+						grid-template-columns: 1fr;
+					}
+
 					#profilesPanel .dock-hero {
 						grid-template-columns: 1fr;
 					}
 
 					#profilesPanel {
-						width: min(100vw, 340px);
+						width: min(100vw, var(--dock-panel-width));
 					}
 				}
 			</style>
@@ -2310,7 +3256,7 @@
 					<div id="profile_current_layout_group" class="group">
 						<div class="group-head">
 							<h4>Save the current layout</h4>
-							<p>Store this chart board exactly as it looks right now, including each chart’s own timeframe and indicators.</p>
+							<p>Store this chart board exactly as it looks right now, including each chartâ€™s own timeframe and indicators.</p>
 						</div>
 						<label>
 							<span>Profile name</span>
@@ -2424,7 +3370,7 @@
 		<INPUT hidden id="do_not_show" type="checkbox" name="do_not_show"onclick="storeMAN(true, this.id, this.checked)" > -->
 
 	</DIV>
-	<div id="announcement" class="notify-area" style="display: none; cursor: pointer;">
+	<div id="announcement" class="notify-area" style="display: none;">
 		<style class="scoped">
 			\& {
 				background-color: #2962ff;
@@ -2432,7 +3378,6 @@
 				text-align: center;
 				color: white;
 				position: relative;
-				cursor: pointer;
 			}
 
 			\& p {
@@ -2457,8 +3402,8 @@
 				cursor: pointer;
 			}
 		</style>
-		💸 Get $10 + earn bonuses with Freecash – Click to see if you're eligible
-        <a style="color: white;" target="_blank"><b><u>Check it out</u></b></a>
+		ðŸ’¸ Get $10 + earn bonuses with Freecash â€“ Click to see if you're eligible
+        <a style="color: white;" target="_blank" href="https://freecash.com/r/108978724648670450271"><b><u>Check it out</u></b></a>
 		<p onclick="event.stopPropagation(); dismissAnnouncement()">X</p>
 	</div>
 
@@ -2567,10 +3512,19 @@
 								#i2a7fa951>div {
 									display: flex;
 									height: 100%;
+									align-items: center;
+									justify-content: center;
 								}
 
 								#i2a7fa951 h3 {
-									margin: auto;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									margin: 0;
+								}
+
+								#i2a7fa951 iframe {
+									display: block;
 								}
 
 								#i2a7fa951 h3>p {
@@ -2648,8 +3602,24 @@
 			</A>
 		</DIV>
 	</DIV>
-	<!-- <SCRIPT async type="text/javascript" src="js/copypasta.min.js?v10.11"></SCRIPT> -->
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?v26.11"></SCRIPT>
+	<STYLE>
+		#modalConfig.hide,
+		#modalIndicators.hide,
+		#modalAd.hide,
+		#chart_add_select.hide,
+		#loading.hide,
+		.desktop-scroll-jump.hide {
+			display: none !important;
+			transform: none !important;
+			visibility: hidden !important;
+		}
+	</STYLE>
+	<!-- <SCRIPT async type="text/javascript" src="js/copypasta.min.js?v10.1"></SCRIPT> -->
+	<!-- <SCRIPT async type="text/javascript" src="js/copypasta.min.js?ver=20260428-171207"></SCRIPT> -->
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?ver=20260428-171827"></SCRIPT>
+	<!-- <SCRIPT async type="text/javascript" src="js/testdrive.js"></SCRIPT> -->
+
+	<!-- <SCRIPT defer type="text/javascript" src="js/mcc-tests.js"></SCRIPT> -->
 	<SCRIPT>
 		let load_counter = 0;
 		onerror = function (_, _, _, _, err) { return !err }
@@ -2690,64 +3660,11 @@
             }
         }
 
-        const eligible = ["US", "DE", "GB", "FR", "CA", "NL", "JP", "KR", "BE", "SE", "PL", "IT", "AT", "AU", "CH"];
-        const modal = document.getElementById("offerModal");
-        const banner = document.getElementById("announcement");
-        const result = document.getElementById("result");
 
-        banner.addEventListener("click", () => {
-            modal.style.display = "flex";
-        });
-
-        const countries = [
-            { code: "US", name: "United States" },
-            { code: "DE", name: "Germany" },
-            { code: "GB", name: "United Kingdom" },
-            { code: "FR", name: "France" },
-            { code: "CA", name: "Canada" },
-            { code: "NL", name: "Netherlands" },
-            { code: "JP", name: "Japan" },
-            { code: "KR", name: "South Korea" },
-            { code: "BE", name: "Belgium" },
-            { code: "SE", name: "Sweden" },
-            { code: "PL", name: "Poland" },
-            { code: "IT", name: "Italy" },
-            { code: "AT", name: "Austria" },
-            { code: "AU", name: "Australia" },
-            { code: "CH", name: "Switzerland" }
-        ];
-
-        // Render country cards
-        const countryGrid = document.getElementById("countryGrid");
-        countryGrid.innerHTML = countries.map(c => `
-    <div class="country-card" data-code="${c.code}">
-        <img class="country-flag" src="https://flagcdn.com/w40/${c.code.toLowerCase()}.png" alt="${c.name} flag">
-        <span class="country-name">${c.name}</span>
-    </div>
-    `).join("");
-
-        // Handle card click
-        countryGrid.addEventListener("click", function (e) {
-            const card = e.target.closest(".country-card");
-            if (!card) return;
-            const selected = card.getAttribute("data-code");
-            if (eligible.includes(selected)) {
-                result.innerHTML = "✅ You're eligible! <a href='https://freecash.com/r/108978724648670450271' target='_blank'>Click here to claim</a>";
-            } else {
-                result.innerHTML = "❌ Sorry, this offer is not available in your country.";
-            }
-        });
-
-        // Close modal on outside click
-        window.addEventListener("click", (e) => {
-            if (e.target == modal) {
-                modal.style.display = "none";
-                result.innerHTML = "";
-                document.getElementById("countrySelect").value = "";
-            }
-        });
     </script>
 
 </BODY>
 
 </HTML>
+
+
