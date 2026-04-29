@@ -966,19 +966,23 @@
 								onclick="storeMAN(true, this.id, this.checked)">
 						</div>
 						<br><br>
-						<div>
-							<!-- <SPAN>&nbsp;</SPAN> -->
-							<span class="t-center" style="flex: none; margin: auto;">
-								<a class="ok" id="LetsGo" href="javascript:void(0)"
-									onclick="XDirectUI.visibility('modalConfig'); location.reload()">Done</a>
-								&nbsp;&nbsp; &nbsp;&nbsp;
-								<a class="ok" style="background-color: #999;" href="javascript:void(0)"
-									onclick="XDirectUI.visibility('modalConfig')">Cancel</a>
-								&nbsp;&nbsp; &nbsp;&nbsp;
-								<a class="ok" style="background-color: #f44;" href="javascript:void(0)"
-									onclick="localStorage.clear(); location.reload()">Reset</a>
-							</span>
-							<!-- <SPAN>&nbsp;</SPAN> -->
+						<div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.6em; width: 100%;">
+							<a class="ok" id="LetsGo" href="javascript:void(0)"
+								onclick="XDirectUI.visibility('modalConfig'); location.reload()"
+								title="Close settings and reload page"
+								style="background-color: #2ecc71; padding: 0.8em; text-align: center; border-radius: 6px; font-weight: 600;">Done</a>
+							<a class="ok" href="javascript:void(0)"
+								onclick="XDirectUI.visibility('modalConfig')"
+								title="Close settings without saving changes"
+								style="background-color: #999; padding: 0.8em; text-align: center; border-radius: 6px; font-weight: 600;">Cancel</a>
+							<a class="ok" href="javascript:void(0)"
+								onclick="resetChartsToDefaults(); location.reload()"
+								title="Reset all per-chart settings to your global defaults (preserves global settings)"
+								style="background-color: #f8a900; padding: 0.8em; text-align: center; border-radius: 6px; font-weight: 600;">Reset Charts</a>
+							<a class="ok" href="javascript:void(0)"
+								onclick="localStorage.clear(); location.reload()"
+								title="Clear ALL settings including global defaults"
+								style="background-color: #e74c3c; padding: 0.8em; text-align: center; border-radius: 6px; font-weight: 600;">Reset All</a>
 						</div>
 					</div>
 				</div>
@@ -3356,6 +3360,31 @@
 		function dismissAnnouncement() {
 			localStorage.setItem("freecashDismissed", "true");
 			document.getElementById("announcement").remove();
+		}
+
+		function resetChartsToDefaults() {
+			// Global settings that should NOT be cleared
+			const globalSettings = new Set([
+				'timezone', 'style', 'interval', 'range', 'range_or_interval',
+				'details', 'withdateranges', 'hide_top_toolbar', 'hide_legend',
+				'hide_side_toolbar', 'usesmallbutton', 'dark', 'freecashDismissed',
+				'do_not_show'
+			]);
+
+			// Get all localStorage keys
+			const keysToDelete = [];
+			for (let i = 0; i < localStorage.length; i++) {
+				const key = localStorage.key(i);
+				// Delete if NOT a global setting
+				if (!globalSettings.has(key)) {
+					keysToDelete.push(key);
+				}
+			}
+
+			// Delete the per-chart settings
+			keysToDelete.forEach(key => localStorage.removeItem(key));
+
+			console.log('Reset ' + keysToDelete.length + ' per-chart settings to defaults');
 		}
 	</script>
 
