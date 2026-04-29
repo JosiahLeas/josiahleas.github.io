@@ -56,65 +56,6 @@
             /* background-color: #0d0d0d; */
         }
 
-        #offerModal {
-            display: none;
-            z-index: 100;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            justify-content: center;
-            align-items: center;
-        }
-
-        #modalContent {
-            background: white;
-            padding: 2em;
-            text-align: center;
-        }
-
-        #countryGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-            gap: 1em;
-            margin: 1.5em 0;
-            justify-items: center;
-        }
-
-        .country-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            padding: 0.5em 0.2em;
-            transition: border 0.2s;
-            background: #f8f8f8;
-            min-width: 80px;
-        }
-
-        .country-card:hover {
-            border: 2px solid #2962ff;
-            background: #e3f0ff;
-        }
-
-        .country-flag {
-            width: 40px;
-            height: 28px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 0.4em;
-            box-shadow: 0 1px 4px #0002;
-        }
-
-        .country-name {
-            font-size: 0.95em;
-            color: #222;
-            text-align: center;
-        }
     </style>
 </head>
 
@@ -130,16 +71,7 @@
             }
         </style>
         💸 Get $10 + earn bonuses with Freecash – Click to see if you're eligible
-        <a style="color: white;" target="_blank"><b><u>Check it out</u></b></a>
-    </div>
-    <div id="offerModal">
-        <div id="modalContent">
-            <h2>Where are you located?</h2>
-            <div id="countryGrid">
-                <!-- Country cards will be injected here -->
-            </div>
-            <div id="result" style="margin-top:1em;"></div>
-        </div>
+        <a style="color: white;" target="_blank" href="https://freecash.com/r/108978724648670450271"><b><u>Check it out</u></b></a>
     </div>
     <main "hero-image-y-text">
         <nav "overlay-nav">
@@ -661,61 +593,5 @@
             }
         }
 
-        const eligible = ["US", "DE", "GB", "FR", "CA", "NL", "JP", "KR", "BE", "SE", "PL", "IT", "AT", "AU", "CH"];
-        const modal = document.getElementById("offerModal");
-        const banner = document.getElementById("adBanner");
-        const result = document.getElementById("result");
-
-        banner.addEventListener("click", () => {
-            modal.style.display = "flex";
-        });
-
-        const countries = [
-            { code: "US", name: "United States" },
-            { code: "DE", name: "Germany" },
-            { code: "GB", name: "United Kingdom" },
-            { code: "FR", name: "France" },
-            { code: "CA", name: "Canada" },
-            { code: "NL", name: "Netherlands" },
-            { code: "JP", name: "Japan" },
-            { code: "KR", name: "South Korea" },
-            { code: "BE", name: "Belgium" },
-            { code: "SE", name: "Sweden" },
-            { code: "PL", name: "Poland" },
-            { code: "IT", name: "Italy" },
-            { code: "AT", name: "Austria" },
-            { code: "AU", name: "Australia" },
-            { code: "CH", name: "Switzerland" }
-        ];
-
-        // Render country cards
-        const countryGrid = document.getElementById("countryGrid");
-        countryGrid.innerHTML = countries.map(c => `
-    <div class="country-card" data-code="${c.code}">
-        <img class="country-flag" src="https://flagcdn.com/w40/${c.code.toLowerCase()}.png" alt="${c.name} flag">
-        <span class="country-name">${c.name}</span>
-    </div>
-    `).join("");
-
-        // Handle card click
-        countryGrid.addEventListener("click", function (e) {
-            const card = e.target.closest(".country-card");
-            if (!card) return;
-            const selected = card.getAttribute("data-code");
-            if (eligible.includes(selected)) {
-                result.innerHTML = "✅ You're eligible! <a href='https://freecash.com/r/108978724648670450271' target='_blank'>Click here to claim</a>";
-            } else {
-                result.innerHTML = "❌ Sorry, this offer is not available in your country.";
-            }
-        });
-
-        // Close modal on outside click
-        window.addEventListener("click", (e) => {
-            if (e.target == modal) {
-                modal.style.display = "none";
-                result.innerHTML = "";
-                document.getElementById("countrySelect").value = "";
-            }
-        });
     </script>
 </body>

@@ -78,67 +78,6 @@
 
 
 	<SCRIPT src="https://cdn.jsdelivr.net/gh/VSADX/scoped-css@main/scoped-css.js" type="module"></SCRIPT>
-	<style>
-		 #offerModal {
-            display: none;
-            z-index: 100;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            justify-content: center;
-            align-items: center;
-        }
-
-        #modalContent {
-            background: white;
-            padding: 2em;
-            text-align: center;
-        }
-
-        #countryGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-            gap: 1em;
-            margin: 1.5em 0;
-            justify-items: center;
-        }
-
-        .country-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            padding: 0.5em 0.2em;
-            transition: border 0.2s;
-            background: #f8f8f8;
-            min-width: 80px;
-        }
-
-        .country-card:hover {
-            border: 2px solid #2962ff;
-            background: #e3f0ff;
-        }
-
-        .country-flag {
-            width: 40px;
-            height: 28px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 0.4em;
-            box-shadow: 0 1px 4px #0002;
-        }
-
-        .country-name {
-            font-size: 0.95em;
-            color: #222;
-            text-align: center;
-        }
-	</style>
 </HEAD>
 
 <BODY style="background: #161823;">
@@ -3406,16 +3345,6 @@
         <a style="color: white;" target="_blank" href="https://freecash.com/r/108978724648670450271"><b><u>Check it out</u></b></a>
 		<p onclick="event.stopPropagation(); dismissAnnouncement()">X</p>
 	</div>
-
-	<div id="offerModal">
-        <div id="modalContent">
-            <h2>Where are you located?</h2>
-            <div id="countryGrid">
-                <!-- Country cards will be injected here -->
-            </div>
-            <div id="result" style="margin-top:1em;"></div>
-        </div>
-    </div>
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
