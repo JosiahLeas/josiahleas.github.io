@@ -243,7 +243,7 @@
 			<LABEL for="customHeightInput" class="number-label">Bar px</LABEL>
 			<INPUT id="customHeightInput" class="box-size" title="Set chart-control-bar height in pixels (min 15, max 35, step 5, blank = default 15)" name="box-custom-height" type="number" min="15" max="35" step="5" value="15" placeholder="default" style="width:72px;" />
 		</DIV>
-		<BUTTON id="config_reveal" class="theme" onclick="XDirectUI.visibility('modalConfig')">
+		<BUTTON id="config_reveal" class="theme" onclick="mcc_open_config_modal()">
 			Javascript Error
 		</BUTTON>
 		<BUTTON id="indicators_reveal" class="theme" onclick="XDirectUI.visibility('modalIndicators')">
@@ -494,7 +494,7 @@
 						<input id="mobileDarkToggle" type="checkbox" checked="checked" />
 					</div>
 					<button class="mobile-menu-button" onclick="mcc_open_mobile_nav_customize_modal()">Customize Nav Buttons</button>
-					<button class="mobile-menu-button" onclick="mcc_mobile_open_panel('modalConfig')">Full Settings</button>
+					<button class="mobile-menu-button" onclick="mcc_open_config_modal_mobile()">Full Settings</button>
 				</div>
 				<div class="mobile-menu-section">
 					<h4>Indicators</h4>
@@ -968,8 +968,8 @@
 						<br><br>
 						<div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.6em; width: 100%;">
 							<a class="ok" id="LetsGo" href="javascript:void(0)"
-								onclick="XDirectUI.visibility('modalConfig'); location.reload()"
-								title="Close settings and reload page"
+								onclick="mcc_handle_settings_done()"
+								title="Save global defaults from Settings and close (reloads only when non-timeframe settings changed)"
 								style="background-color: #2ecc71; padding: 0.8em; text-align: center; border-radius: 6px; font-weight: 600;">Done</a>
 							<a class="ok" href="javascript:void(0)"
 								onclick="XDirectUI.visibility('modalConfig')"
@@ -3386,6 +3386,77 @@
 
 			console.log('Reset ' + keysToDelete.length + ' per-chart settings to defaults');
 		}
+
+		function mcc_config_dirty_set() {
+			if (!window.__mccConfigDirtyKeys) window.__mccConfigDirtyKeys = new Set();
+			return window.__mccConfigDirtyKeys;
+		}
+
+		function mcc_track_config_dirty_key(key) {
+			const clean = (key || '').toString().trim();
+			if (!clean) return;
+			mcc_config_dirty_set().add(clean);
+		}
+
+		function mcc_init_config_dirty_tracking() {
+			const ids = [
+				'timezone', 'style', 'interval', 'range', 'range_or_interval',
+				'details', 'withdateranges', 'hide_top_toolbar', 'hide_legend',
+				'hide_side_toolbar', 'usesmallbutton', 'dark'
+			];
+
+			ids.forEach(function (id) {
+				const el = document.getElementById(id);
+				if (!el || el.dataset.mccConfigDirtyBound === 'true') return;
+
+				const markDirty = function () {
+					mcc_track_config_dirty_key(id);
+				};
+
+				el.addEventListener('change', markDirty);
+				el.addEventListener('click', markDirty);
+				el.dataset.mccConfigDirtyBound = 'true';
+			});
+		}
+
+		function mcc_open_config_modal() {
+			mcc_init_config_dirty_tracking();
+			mcc_config_dirty_set().clear();
+			if (typeof XDirectUI !== 'undefined' && XDirectUI && typeof XDirectUI.visibility === 'function') {
+				XDirectUI.visibility('modalConfig');
+			}
+		}
+
+		function mcc_open_config_modal_mobile() {
+			if (typeof mcc_mobile_after_close === 'function') {
+				mcc_mobile_after_close(function () {
+					mcc_open_config_modal();
+				});
+				return;
+			}
+			mcc_open_config_modal();
+		}
+
+		function mcc_handle_settings_done() {
+			const timeframeKeys = new Set(['interval', 'range', 'range_or_interval']);
+			const dirty = Array.from(mcc_config_dirty_set());
+			const timeframeOnly = dirty.length === 0 || dirty.every(function (key) {
+				return timeframeKeys.has(key);
+			});
+
+			if (typeof XDirectUI !== 'undefined' && XDirectUI && typeof XDirectUI.visibility === 'function') {
+				XDirectUI.visibility('modalConfig');
+			}
+
+			if (timeframeOnly) {
+				if (typeof mcc_apply_mobile_display_settings === 'function') {
+					mcc_apply_mobile_display_settings();
+				}
+				return;
+			}
+
+			location.reload();
+		}
 	</script>
 
 	<DIV id="charts">
@@ -3574,9 +3645,8 @@
 	</STYLE>
 	<!-- <SCRIPT async type="text/javascript" src="js/copypasta.min.js?v10.1"></SCRIPT> -->
 	<!-- <SCRIPT async type="text/javascript" src="js/copypasta.min.js?ver=20260428-171207"></SCRIPT> -->
-	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?ver=20260428-171827"></SCRIPT>
-	<!-- <SCRIPT async type="text/javascript" src="js/testdrive.js"></SCRIPT> -->
-
+	<!-- <SCRIPT async type="text/javascript" src="js/copypasta.min.js?ver=20260428-211900"></SCRIPT> -->
+	<SCRIPT async type="text/javascript" src="js/copypasta.min.js?ver=20260430-065319"></SCRIPT>
 	<!-- <SCRIPT defer type="text/javascript" src="js/mcc-tests.js"></SCRIPT> -->
 	<SCRIPT>
 		let load_counter = 0;
@@ -3624,5 +3694,7 @@
 </BODY>
 
 </HTML>
+
+
 
 
